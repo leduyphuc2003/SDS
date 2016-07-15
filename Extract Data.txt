@@ -1,0 +1,46 @@
+---Summary report on stocking up customer-Add Route 1 - chi Thai Hang
+select 
+A.TTYPE, A.ORDR as Order, A.COHDAT as OrderDate, A.CUST as Customer, F.OTSDES as OrderStatus, A.COHSRC as OrderSource, B.CODSTS as DetailStatus, B.PSN as PickingSlip , B.INVNO as Invoice, E.MANFST AS MANIFEST,B.ITEM, B.CODDES as ItemDescription, B.PRNCPL as Princpal, B.WHS as Warehouse, CODOUN as RequestedQty, B.CODUNT as SuppliedQty ,B.CODUBO as BackOrderedQty, B.CODVAL as SuppliedValue, C.COONAM as DeliveryName, C.COOAD1 as DeliveryAddress1, C.COOAD2  as DeliveryAddress2, C.COOAD3  as DeliveryAddress3,  C.COODI1 as DeliveryInstruction1, C.COODI2  as DeliveryInstruction2, C.COODI3  as DeliveryInstruction3,UOPCDE as UrgentOrderCode, ODMK1 as HospitalOrginalDocument, ODPOR As DeliveryDate, C.RTECDE as Route
+,G.TTYPE,INVNO,GIVINV,GIVBRF 
+from
+ZPTLIBD/COH A, ZPTLIBD/COD B, ZPTLIBD/COO C, ZPTLIBD/OD D, ZPTLIBD/OTH E, ZPTLIBD/OTS F,
+ZPTLIBD/INH G
+where 
+INHDEL='' and G.INVNO=E.INVNO AND G.TTYPE IN ('IV','CR') AND 
+COHDEL='' AND CODDEL='' AND A.TTYPE=B.TTYPE AND      A.ORDR=B.ORDR AND COHCNL<>'Y' AND A.ORDR=C.ORDR  AND COHSRC = 'SU'     AND COHDAT >= 20160708 and a.ttype = d.ttype and a.ordr = d.ordr AND E.TTYPE = A.TTYPE AND E.ORDR = A.ORDR AND E.OTHSTS = F.OTSSTS  AND B.PSN = E.PSN AND E.OTHSTS <> 'ZZZ' and a.cust in ('S01177')
+
+
+
+
+ OTHDEL  TTYPE        ORDR          PSN        INVNO       MANFST   CUST   
+          OR    28,168,960            0            0            0   S01348 
+          OR    29,989,369            0            0            0   S00364 
+          OR    29,984,378   55,110,406   70,620,055   88,836,885   C00022 
+		  
+		  
+select                                                              
+A.TTYPE, A.ORDR as Order, A.COHDAT as OrderDate, A.CUST as Customer,
+F.OTSDES as OrderStatus, A.COHSRC as OrderSource, B.CODSTS as       
+DetailStatus, B.PSN as PickingSlip , B.INVNO as Invoice, E.MANFST AS
+MANIFEST,B.ITEM, B.CODDES as ItemDescription, B.PRNCPL as Princpal, 
+B.WHS as Warehouse, CODOUN as RequestedQty, B.CODUNT as SuppliedQty 
+,B.CODUBO as BackOrderedQty, B.CODVAL as SuppliedValue, C.COONAM as 
+DeliveryName, C.COOAD1 as DeliveryAddress1, C.COOAD2  as            
+DeliveryAddress2, C.COOAD3  as DeliveryAddress3,  C.COODI1 as       
+DeliveryInstruction1, C.COODI2  as DeliveryInstruction2, C.COODI3   
+as DeliveryInstruction3,A.UOPCDE as UrgentOrderCode, ODMK1 as       
+HospitalOrginalDocument, ODPOR As DeliveryDate, C.RTECDE as Route   
+,G.TTYPE,G.INVNO,GIVINV,GIVBRF                                      
+from                                                                
+ZPTLIBD/COH A, ZPTLIBD/COD B, ZPTLIBD/COO C, ZPTLIBD/OD D,          
+ZPTLIBD/OTH E, ZPTLIBD/OTS F,                                       
+ZPTLIBD/INH G                                                       
+where                                                               
+INHDEL='' and G.INVNO=E.INVNO AND G.TTYPE IN ('IV','CR') AND        
+COHDEL='' AND CODDEL='' AND A.TTYPE=B.TTYPE AND      A.ORDR=B.ORDR  
+AND COHCNL<>'Y' AND A.ORDR=C.ORDR  AND COHSRC = 'SU'     AND COHDAT 
+>= 20160708 and a.ttype = d.ttype and a.ordr = d.ordr AND E.TTYPE = 
+A.TTYPE AND E.ORDR = A.ORDR AND E.OTHSTS = F.OTSSTS  AND B.PSN =    
+E.PSN AND E.OTHSTS <> 'ZZZ' and a.cust in ('S01177')                
+
+

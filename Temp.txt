@@ -1,0 +1,17 @@
+-	ket noi SQL voi AS400
+-	15 phút chạy hàm select * from psh where pshdat = currentdate 
+-	lưu kết quả vào mảng
+-	trộn mảng: dùng hàm swap vị trí 2 phần tử, swap 1k lần
+-	chia 2 mảng: nửa mảng đầu gán Y, nửa mảng sau gán N
+-	check trong bảng temp có chưa, nếu chưa có thì insert vào bảng tmp và bảng thật
+
+
+
+-	tao project tu trang web chon team foudation
+-	vao visual, connect vào project Call Card
+-	chọn configure, trỏ đến thư mục trên máy, get và map
+-	chép soucre đã có vào thư mục vừa map
+-	vào visual chọn solution, chuột phải chọn add soucre controll
+-	chuột phải solution chọn check in để upload toàn bộ soucre mới lên server
+
+

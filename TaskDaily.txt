@@ -1,0 +1,700 @@
+netsh wlan set hostednetwork mode=allow
+HSBC pass open file  29Jun1987321780
+
+gmail 
+pass phucthuy8788 
+
+04:69:f8:43:37:60	ipad cua minh
+34:de:1a:68:22:ac	laptop cua minh
+3C:15:C2:4E:FD:72 	ipad simla
+70:77:81:5F:F4:6D	TV Sony
+Parent Control	->	MAC BLOCKING
+
+Lenh back up Windows 8: run cmd as administrator rồi chạy lệnh này, với C là ổ cài win và D là ổ chứa file backup
+wbAdmin start backup -backupTarget:D: -include:C: -allCritical -quiet
+
+
+===================================================================================================
+Dear Phuc
+
+Nho em check giup chi em da mo quyen cho ban Cao Thi Thanh Truc access vao CRM system va nhan tin nhan tu dong qua email chua nhe
+
+Nhu chi da communicate T12/.2013. Truc se in charge CRM by CS side nen Truc can access vao nhung function nay de handle cong viec
+
+Thanks em a lot
+
+Vao 192.168.19.252
+-Vao Groups (Distribution List)
+-Tim den VNZP-CRM Project Team, chuot phai property, chon tab member, chon add va add email vao do
+
+============================================================
+ vieopr vnzp456;
+ May scan
+\\vnzpit-scan\scan 
+
+\\169.254.118.130\e$   // vao thu muc cua may tinh khac
+
+Report check daily 
+\\192.168.17.2\reports\ZPP\NW\DAILY\CHECK\2014\October\ZPV  
+
+Luu o day nha moi nguoi, co the tao them thu muc  “monitoring AS400” chang han, luu tat ca record vao do dum nha
+\\192.168.17.6\Departments\IT\ISO System Status Follow-up\2013\December\AS400 Followup
+
+Link server ISO
+\\192.168.17.6\Departments\IT\ISO System Status Follow-up\2014\March\AS400 Followup
+
+software \\192.168.17.26\software
+
+report daily
+
+\\192.168.17.2\reports\ZPP\NW\DAILY\CHECK\2014\November\ZPV
+report principal
+\\192.168.17.2\reports\ZPP\NW\MONTHLY\2014\January\S13
+
+Luu y: o K:\ la con \\192.168.17.6
+zeris status	
+\\192.168.17.6\Departments\IT\Zeris Status
+
+May scan 
+\\vnzpit-scan\scan 
+===============================================	roi
+Trước khi về: test 4 modem  
+pass zuelligvietnam
+service sms3 stop
+service sms3 start
+tail -f /var/log/sms/smsd.log
+de shutdown modem sms  shutdown -h 0
+rm -rf /var/spool/sms/D0/*		xoa tin nhan trong modem */
+ ls -a /var/spool/sms/D0 		xem so sms con trong modem D0, D1, D2, D3
+
+ 
+Dang nhap vao database Admin SQL 2005: 
+IP: 192.168.17.252
+user: sa
+pass: D13Hard3rVN
+
+SQL đăng nhập vào IP: 192.168.17.252, user: sa, pass: D13Hard3rVN
+Update SQL de gui tin nhan SMS: exec sp_updatestats 
+
+Server only gui tin nhan SMS (khong phai CRM): 192.168.17.160 dung tai khoan administrator/zuelligvietnam
+
+Neu ko duoc thi thu cai nay: dbcc freeproccache
+ ----------------------------------------
+ Nang cap server 252
+ 
+ Hi Phuc,
+
+Gui Phuc thong tin server moi.
+
+Windows Server 2008R2 Standard - 64bit
+
+RAM 9GB , HDD 250
+
+Remote Desktop vào
+IP: 192.168.17.45/24
+
+User/Pass: administrator / zuelligvietnam
+
+Phuc cai chuong trinh o C: va luu data o D: sau nay de backup.
+
+ ---------------------- IIS manager
+  Procedures
+-	To start IIS Manager
+1.
+From the Start menu, point to Administrative Tools, and then click Internet Information Services (IIS) Manager.
+
+-	To start IIS Manager from the Run dialog box
+1.
+From the Start menu, click Run.
+2.
+In the Open box, type inetmgr, and click OK.
+ 
+ ----------------------
+Lenh chuyen sms qua modem so 2 khac:           1 bi hu con lai 0 2 3
+										mv  /var/spool/sms/D0/*  /var/spool/sms/D1/  
+										mv  /var/spool/sms/D3/*  /var/spool/sms/D2/  
+										mv  /var/spool/sms/D2/*  /var/spool/sms/D1/
+		mv  /var/spool/sms/D0/a*  /var/spool/sms/D3/  
+		mv  /var/spool/sms/D1/a*  /var/spool/sms/D3/
+
+*/
+
+vnzplinux.zuelligpharma.interpharma.local:  # mv  /var/spool/sms/D2/*  /var/spool/sms/sent/
+*/
+ 
+ ls -a /var/spool/sms/D0 xem so sms con trong modem D0, D1, D2, D3
+ ls -a /var/spool/sms/D1
+ ls -a /var/spool/sms/D2
+ ls -a /var/spool/sms/D3
+ 
+•	Ở linux console, logon vào bằng root.
+•	Ra lệnh “postfix start” (không có các dấu “)
+•	Để xem mail log, ra lệnh: “tail –f /var/log/maillog”. Lệnh này sẽ trưng dụng console hiện tại để thể hiện mail log. Để thoát khỏi chế độ xem mail log, bấm Ctrl-C.
+•	Để xem sms3 log, ra lệnh: “tail –f /var/log/sms/smsd.log”.
+Các lệnh sau dùng để điều khiển 2 services – postfix và sms3:
+•	postfix start
+•	postfix stop
+•	service sms3 start
+•	service sms3 stop
+Để restart vnzplinux, ra lệnh: init 6
+Để tắt vnzplinux, ra lệnh: init 0
+
+Ten may tinh SMS vnzpsms
+Server SMS backup 192.168.17.37
+---------------------------------
+//Email queue: update de gui duoc, delete sms trong email queue
+select count(*)	
+from EMAILMAN
+ 	 
+	delete
+	from EMAILMAN
+	
+ --------------------------------------
+ select *	
+ from PROSPECT_LISTS
+   where DELETED =1
+   
+		 delete
+		  from PROSPECT_LISTS
+		  where DELETED =1
+		  
+  //Target list: update de gui duoc, Bang nay chua tat ca ca target list, xoa het ca target list ko su dung di la fix duoc time out
+  select *
+  from PROSPECT_LISTS_PROSPECTS
+  where deleted =1
+  
+  select count(*)
+  from PROSPECT_LISTS_PROSPECTS
+  where deleted =1
+  
+		  delete
+		   from PROSPECT_LISTS_PROSPECTS
+		  where deleted =1 
+-------------------------------------------
+===========================================================================================================
+Lam cho CAMLDP va VNMLDP luon
+A. Vào từng môi trường VIE: (Trước 9:30 PM) //ko phai vao strsql=================================================                                	      	        	        	
+1. WRKUSRJOB USER(*ALL) STATUS(*ACTIVE) JOBTYPE(*INTERACT)
+     Rồi đánh số 4 trước tất cả Job có All Status (DSC va tru viemtc) --> sau đó gõ lệnh OPTION(*IMMED) ở dòng có ===> rồi Enter.
+
+2. Gõ lệnh: WRKDQ   rồi Enter.
+     Vào màn hình: RPG073  "Data Queue Manager"  nhấn SHIFT_F1 rồi nhấn F5 kiểm tra các Queue có *INACTIVE hết chưa?
+
+3. Chạy lệnh WAJ để kiểm tra hệ thống có còn user nào trong QUEUE hay không?
+QBATCH (VIE) (Nếu còn User nào, không là user hệ thống (VIEOPR va IT, VIEMTC, VIEVQT, chạy thì nhấn số 4 -> End)
+
+==============================================================================================
+                                                                    
+B. Để tránh tình trạng java job gởi báo cáo daily bị trễ. Ta phải restart localrpt trước 09:20 PM mỗi ngày. Các bước làm như sau:                  	  	 	  	 	 	  	                
+
+1. Từ SDS chạy lệnh: endsbs localrpt *immed 
+
+2. Từ máy tính windows: Remote desktop vô 192.168.17.252 (dung VNC pass pas: 9102650), chạy IE của máy này sau đó nhập vào địa chỉ link 
+http://192.168.17.7 , log on vô bằng admin/admin, rồi cho save&restart.
+
+3. Từ SDS chạy lệnh: netstat *cnn, nhấn page down vài cái để tìm dòng có địa chỉ 192.168.17.7 Sau đó đợi đến khi dòng 192.168.17.7 biến mất. Nếu đợi hơn 3 phút mà dòng này không biến mất thì làm lại bước 2.
+
+4. Từ SDS chạy lệnh: strsbs localrpt
+
+================================================================================================   	
+4. Backup Sever AS400 Tan Tao Whs : ping 192.168.238.2
+==============================================================================================
+ runqry *n dqe 
+ 
+ select * from oth where othdel='' and othsts='O07'  
+ 
+=================================================  rrr               
+II. Check if there is any variances of value and cost for all items on IM file.                                                                                            	  	 	 	       	 
+	(Before running SQL checking, WAJ and find MSGW jobs to solve any pending problems)
+	
+	e0106, f0106 : 2 số này khi sang đầu tháng sau thì giảm đi 1, nghĩa là e0105, f0105
+	
+	tháng 1: e0112, f0112
+	tháng 2: e0111, f0111
+	tháng 3: e0110, f0110
+	tháng 4: e0109, f0109
+	tháng 5: e0108, f0108
+	tháng 6: e0107, f0107
+	tháng 7: e0106, f0106
+	tháng 8: e0105, f0105
+	tháng 9: e0104, f0104
+	tháng 10: e0103, f0103
+	tháng 11: e0102, f0102
+	tháng 12: e0101, f0101
+	
+DROP TABLE mtchu/im_var 
+
+CREATE TABLE mtchu/im_var  as (SELECT A.ITEM, e0106, f0106 FROM IM A, S01 B WHERE A.ITEM=B.ITEM AND (IMMTDV<>e0106 OR IMMTDC<>f0106)) with data
+	
+	Chú ý: File IM_VAR in mtchu was replaced.
+
+update im a   set (a.immtdv, a.immtdC) = (select coalesce( b.e0106, a.immtdv), coalesce( b.f0106, a.immtdC) from mtchu/im_var b where a.item = b.item) where exists (select * from mtchu/im_var c where a.item=c.item)
+
+
+III. Check if there is any variances of value and cost for all items on IW file======================================rrr
+		     			
+	e3006, f3006 hai so nay, neu nhay len thang sau thi tru moi so di 1 don vi, nghia la thanh e3005, f3005
+	
+	tháng 1: e3012, f3012
+	tháng 2: e3011, f3011
+	tháng 3: e3010, f3010
+	tháng 4: e3009, f3009
+	tháng 5: e3008, f3008
+	tháng 6: e3007, f3007
+	tháng 7: e3006, f3006
+	tháng 8: e3005, f3005
+	tháng 9: e3004, f3004
+	tháng 10: e3003, f3003
+	tháng 11: e3002, f3002
+	tháng 12: e3001, f3001
+	
+SELECT Item, WHS, IWSOH,IWSOA,IWSSA,IWSPK,IWSKSH,IWSOS FROM IW WHERE (IWSOH-IWSOA-IWSSA-IWSPK-IWSKSH-IWSOS < 0)  
+
+	neu co thi email bao minh
+
+DROP TABLE mtchu/iw_var
+
+CREATE TABLE mtchu/iw_var AS (SELECT A.ITEM, A.WHS, e3006, f3006 FROM IW A, S30 B WHERE A.ITEM=B.ITEM AND A.WHS=B.WHS AND (IWMTDV<>e3006 OR IWMTDC<>f3006)) with data
+
+     Khi co data duoc tao trong bang nay la binh thuong hay la loi? Bang S30 lay field nao theo thang?
+	Chú ý: File IW_VAR in mtchu was replaced.
+
+update iW a set (a.iWmtdv, a.iWmtdC) = (select coalesce( b.e3006, a.iWmtdv), coalesce( b.f3006, a.iWmtdC) from mtchu/iW_var b where a.item = b.item AND A.WHS=B.WHS) where exists (select * from mtchu/iW_var c where a.item=c.item AND A.WHS=C.WHS) 
+
+
+IV. Check ARD file: ===================================================================================rrr
+	thang 8: 20150801
+	thang 9: 20150901
+	thang 10: 20151001
+	thang 11: 20151101
+	thang 12: 20151201
+	thang 1: 20160101
+	thang 2: 20160201
+	thang 3: 20160301
+	thang 4: 20160401
+	thang 5: 20160501
+	thang 6: 20160601
+	thang 7: 20160701
+	
+SELECT * FROM ARD WHERE TTYPE='IV' AND ARPAT='IV' AND ARCRTD>=20160701 AND ARTRM LIKE 'CO%' AND ARDDIM<>'Y'
+
+     Neu ma co data thi can phai sua nhu the nao?
+
+V. Check IND file:=====================================================================================rrr
+
+SELECT * FROM IND WHERE INDCFD>=20160701 AND INDVAL<>0 AND  (INDSEL=0 OR INDUNT=0) 
+
+     Neu co du lieu can phai lam sua nhu the nao? Neu co thi gui qua CS confirm, sua theo file SAS
+
+SELECT * FROM IND WHERE INDCFD>=20160701 AND INDVAL=0 AND INDUNT<>0 AND INDLTY=''    
+
+ 
+DROP TABLE mtchu/inddy
+
+CREATE TABLE mtchu/inddy AS (SELECT TTYPE, INVNO, SUM(INDPPD) as INDPPD FROM IND WHERE INDCFD>=20160701   GROUP BY TTYPE, INVNO)  WITH DATA
+
+	Chú ý: File INDDY in mtchu was replaced.                              
+
+SELECT * FROM INH A, mtchu/INDDY B WHERE A.TTYPE=B.TTYPE AND A.INVNO=B.INVNO AND INHPPD<>INDPPD
+
+	Sua theo file termdis
+
+
+DROP TABLE MTCHU/IND_FIX  
+ 
+CREATE TABLE MTCHU/IND_FIX AS (SELECT A.TTYPE, A.INVNO, A.INDSEQ ,a.indcfd, B.INDPAC  FROM IND A,IND B WHERE A.INDDEL='' AND A.TTYPE='CR' AND A.INDPAC NOT LIKE 'T%' AND A.INDPAC NOT LIKE 'NT%' AND A.INDCFD >=20160701 AND B.TTYPE='IV' AND A.INDOIN = B.INVNO AND A.INDOIL = B.INDSEQ AND (B.INDPAC LIKE 'T%' OR B.INDPAC LIKE 'NT%')) WITH DATA
+
+update iND a set a.iNDPAC= (select coalesce( b.INDPAC,a.INDPAC ) from MTCHU/IND_FIX B where a.TTYPE= b.TTYPE AND A.INVNO=B.INVNO AND A.INDSEQ=B.INDSEQ) where inddel='' and TTYPE='CR' AND INDCFD>=20160701 AND exists (select * from MTCHU/IND_FIX c where a.TTYPE=c.TTYPE AND A.INVNO=C.INVNO AND A.INDSEQ=C.INDSEQ)
+
+	Kiem tra thue
+	
+SELECT A.TTYPE, A.INVNO, A.INDSEQ , INDOIN, B.CUST, C.CMTX, A.IMTX, TXRATE, ITEM, INDCFD, INDUNT, INDVAL, INDPPD, INDGST, (INDVAL-INDPPD) * D.TXRATE FROM IND A,INH B,CM C,TX D WHERE INDDEL='' AND INHDEL='' AND A.TTYPE=B.TTYPE AND A.INVNO=B.INVNO AND B.CUST=C.CUST AND C.CMTX=D.CMTX AND A.IMTX=D.IMTX AND (D.IMTX='' OR ABS(((INDVAL-INDPPD) * D.TXRATE) - INDGST) > 10) AND INDCFD >= 20160701 
+
+VI. Check IND vs. IT =============================================================================rrr
+
+DROP TABLE mtchu/itdy
+
+CREATE TABLE mtchu/itdy AS (SELECT TTYPE, BATCH, ITEM, BHSEQ, SUM(ITQTY) AS QTY FROM IT WHERE ITDEL='' AND TTYPE IN ('IV','CR') 
+AND ITDAT>=20160701 GROUP BY TTYPE, BATCH, ITEM, BHSEQ) WITH DATA
+
+IND co IT co SL= nhau
+SELECT * FROM IND A WHERE A.INDDEL='' AND NOT EXISTS (SELECT * FROM mtchu/ITDY B WHERE A.TTYPE=B.TTYPE AND A.INVNO=B.BATCH AND A.ITEM=B.ITEM AND A.INDSEQ=B.BHSEQ AND A.INDUNT=-B.QTY) AND A.INDUNT<>0 AND A.INDCFD>=20160701
+
+IND co va IT ko co
+SELECT * FROM IND A WHERE A.INDDEL='' AND A.INDUNT<>0 AND A.INDCFD>=20160701 AND NOT EXISTS (SELECT * FROM IT B WHERE B.ITDEL='' AND A.TTYPE=B.TTYPE AND A.INVNO=B.BATCH AND A.INDSEQ=B.BHSEQ) 
+
+IND ko co IT co
+SELECT * FROM mtchu/itdy A WHERE NOT EXISTS (SELECT * FROM IND B WHERE B.INDDEL='' AND A.TTYPE=B.TTYPE AND B.INVNO=A.BATCH AND B.INDSEQ=A.BHSEQ) 
+
+	Chú ý: 
+	- Nếu có lỗi thì báo kho xem dòng data này thuộc location, lot, date, số lượng là bao nhiêu. 
+	- Sau đó thêm Record này tương ứng trong file IT và IA. Sau đó nhờ kho in lại hóa đơn.	
+	
+C. CHAY CAU LENH UPDATE CO BAN CUOI NGAY.======================================
+								
+	UPDATE AJH set AJHbsy='' where AJHbsy='Y'
+	UPDATE cqh set cqhbsy='' where cqhbsy='Y'
+	UPDATE ORB SET ORBBSY='' WHERE ORBBSY='Y'
+	UPDATE COH SET COHBSY='' WHERE TTYPE='OR' AND COHBSY='Y'
+	UPDATE PSH SET PSHBSY='' WHERE TTYPE='PS' AND PSHBSY='Y'
+	UPDATE INH SET INHBSY='' WHERE TTYPE IN ('IV','CR') AND INHBSY='Y'
+	DELETE FROM JA WHERE MJDKEY LIKE 'IV4%' AND (GLACCT='' OR GLACCT LIKE '9%')
+	DELETE FROM JW WHERE MJDKEY LIKE 'IV4%' AND (GLACCT='' OR GLACCT LIKE '9%')
+	Update rch set rchbsy='' where rchbsy='Y'
+	UPDATE PARM38  SET P38BSY='' WHERE P38BSY<>''
+	UPDATE CM SET BATCH=0,BSEQ=0 WHERE BATCH<>0
+
+	UPDATE CQD A SET CQDQAL=0                                
+    WHERE A.CQDDEL='' and A.CQLLVL='01' and    
+	cqdqal<>0 AND NOT EXISTS (SELECT * FROM                  
+	 ia b WHERE                                              
+	A.CQHCMB=cust and A.CQHIMB=item and b.ttype in           
+	('OR','PS'))      
+
+	select * from ind where inddel='' and indcfd>=20160701 and  
+	indunt<>0 and indsel=0 and indlty=''  	
+
+	-- thieu thue
+	SELECT A.TTYPE, A.ORDR, B.CODSEQ, B.PSN, B.INVNO ,cohdat,cohbor,   
+	A.CUST, B.CODINO, B.ITEM, B.WHS, B.CODUNT, codval,B.CODGST, B.IMTX 
+	FROM coh a,cod b WHERE cohdel='' and coddel='' and a.ttype=b.ttype 
+	and a.ordr= b.ordr and codval<>0 and codgst=0 and cohdat>=20160701
+
+IX. Delete các LT ở trạng thái Entered: =====================================================   	     
+-MSDS -> 13  -> 51 -> 3  rồi nhấn 
+phím F11. Để Delete all LT có trạng thái Entered thì ta nhấn số 4 trước LT đó và chọn lý do delete là “USR”.
+-MSDS, 7 > 4 neu thay con bat ky return nao thi dung option 4 de delete het nhe
+
+X. GO MZSYU  ================================================================================                                                                                       	        	  	 	   	           	 	
+==> Type 17 Enter -> F9. For each option, unlock/delete inappropriate record(s). // chon 1 roi enter, roi xoa co L di 
+==> Type 18 Enter -> F9. For each option, unlock/delete inappropriate record(s).
+==> Type 9 Enter (Cần kiểm tra lại trước 9:30 PM). Nếu giờ quá lâu thì Delete (nhấn số 4 rồi Enter).
+
+6 so la khach hang
+5 so la tuyen giao hang 
+ 
+=================================================================================== 
+8h45-9h30h: test call check 
+FORMTYPE('ICS832XXX') OUTQ(ZPTAUTORPT)
+FROMTYPE('ID') OUTQ(ZPTAUTORPT)
+FORMTYPE('ICS832XXX') OUTQ(ZPTAUTORPT)
+FROMTYPE('ICS832XXX') OUTQ(ZPTAUTORPT)
+
+1.	Cahy lenh call check, enter lien tuc den khi chay xong
+2.	Nhan esc ->41, shift + F9, chon so 2, thay status JOBQ thi dien so 2 truoc status jobq do nhan roi xuong dong duoi danh cau lenh lenh 
+JOBQ(QTXTSRCH)
+3.	Sau khi chay xong hoac khi ra mot so bao cao thi Phuc nhan lenh WSF de xem bao cao co loi hay khong?
+	An so 5 de xem, neu record = 0 thi tot => enter go~ 4 de xoa, 
+			neu record != 0 thi co loi => de lai de xu li
+Neu gap bao cao GLS601C, tim IV va CR (shift F4 de tim) neu ko co thi tot -> delete di
+
+=================================================================================================
+Vao WAJ
+Tim xem co bao cao nao bi hold hay ko thi release no ra
+
+==============================================================================================                                                 
+Kiem tra tai khoan da post len day du cac hoa don chua
+Hi Phuc,
+
+Day la cach kiem tra cac tai khoan lien quan den A/R
+
+1. Kiem tra tat ca INH co mat trong GJ va (INHVAL-INHPPD+INHGST) = tong tai khoan 1311x.
+-- Kiem tra xem co trung nhau theo Company khong? file JW la chua post, GJ la da post roi
+SELECT MJDKEY,count(distinct CO) FROM JW
+GROUP BY mjdkey ORDER BY 2 desc 
+
+Neu co loi thi sua nhu ben duoi *******************************************
+SELECT MJDKEY,count(distinct CO) 
+FROM JW
+GROUP BY mjdkey ORDER BY 2 desc  
+
+ MJDKEY                 COUNT     
+ RE88496862000              2     
+ RE88496948000              2     
+ 
+ SELECT TTYPE,RCHNO,RCHSEQ,RCHCFD,CUST,
+ PRNCPL,WHS,RCHVAL,RCHCST,SUB 
+FROM RCH                                                           
+WHERE TTYPE='RE' AND RCHNO IN (88496862,88496948)      
+ TTYPE       RCHNO   RCHSEQ      RCHCFD   CUST    PRNCPL  WHS                RCHVAL                 RCHCST   SUB   
+  RE    88,496,862       3   20,140,604   S09232   U05    WM1            588,674.00             553,353.00   USS   
+  RE    88,496,948       1   20,140,604   N06529   U05    WH1            418,000.00             392,920.00   USN   
+
+select * 
+from JW 
+where  MJDKEY in ('RE88496862000','RE88496948000') 
+ CO  DIV  BR   GLACCT        GJSUM  MJDKEY                       JWDEBJ                  JWCRJ   JWNARR             
+ 01  000  000  1561.U05             RE88496862000            553,353.00             553,353.00   Returns - Entry    
+ 04  000  000  1561.U05             RE88496862000             34,736.00              34,736.00   Returns - Entry    
+ 01  000  000  1561.U05             RE88496948000            392,920.00             392,920.00   Returns - Entry    
+ 04  000  000  1561.U05             RE88496948000             26,050.00              26,050.00   Returns - Entry    
+
+ Xoa di CO=04 la nhung dong co gia tri khac RCHCST
+ DELETE   FROM JW                               
+WHERE (MJDKEY = 'RE88496862000' OR            
+      MJDKEY = 'RE88496948000') AND CO='04'   
+	  
+UPDATE  JW SET CO='04'                         
+WHERE (MJDKEY = 'RE88496862000' OR            
+      MJDKEY = 'RE88496948000') AND CO='01' 
+
+-------------------------------------------------------      
+SELECT MJDKEY,count(distinct CO) FROM gj WHERE gjdel='' and mjdate  
+between 20140801 and 20140831 GROUP BY mjdkey ORDER BY 2 desc      
+
+1a. Cau lenh kiem tra truoc khi post len JW
+SELECT substr(MJDKEY,1,2) as TTYPE, SUBSTR(MJDKEY,3,8) AS         
+INVNO,SUM( JWDEBJ- JWCRJ ) VAL FROM JW WHERE GLACCT like '1311%'  
+and substr(MJDKEY,1,2) in ('IV','CR') and 
+JWDATE between 20140801 and 20140831
+GROUP BY substr(MJDKEY,1,2), SUBSTR(MJDKEY,3,8)
+
+File JW in ldphuc was created.        
+--
+1b.
+SELECT A.TTYPE, A.INVNO, INHCFD,                        
+CUST, INHVAL, INHPPD, INHGST,INHCST,SUB,WHS                     
+FROM INH A, ldphuc/JW B                                  
+WHERE INHDEL='' AND A.TTYPE=B.TTYPE AND 
+A.INVNO=B.INVNO AND A.INHVAL<>0 AND                                                    
+B.VAL<>(A.INHVAL-A.INHPPD+A.INHGST)  			
+			
+Neu co loi thi sua nhu ben duoi ******************************************
+TTYPE       INVNO       INHCFD   CUST                  INHVAL        
+	IV    70393778   20140617   S00144          1,542,457.00    
+    
+ SELECT CO,DIV,BR,GLACCT,MJDKEY,JWDEBJ,	JWCRJ,	JWNARR	
+FROM JW WHERE MJDKEY ='IV70393778000'	 
+ CO	DIV	BR	GLACCT		MJDKEY			JWDEBJ	JWCRJ	JWNARR
+1	0	0	13111		IV70393778000	3239160	0		Invoice
+1	0	0	1561.B04	IV70393778000	0		2892110	Invoice
+1	0	0	33311.B04	IV70393778000	0		154246	Invoice
+1	10	1	51111.B04	IV70393778000	0		3084914	Invoice
+1	10	1	63211.B04	IV70393778000	2892110	0		Invoice
+
+select INVNO,INDCFD,ITEM,INDVAL,INDPPD,INDGST				
+from IND				
+where invno =70393778
+INVNO		INDCFD		ITEM	INDVAL	INDPPD	INDGST	(INDVAL+INDGST)
+70393778	20140617	B040170	496515	0		24826	521341 
+70393778	20140617	B040140	691098	0		34555	725653
+70393778	20140617	B040090	174448	0		8722	183170
+70393778	20140617	B040070	180396	0		9020	189416
+														1619580
+Ta thay 3239160 gap doi so 1619580, nen ta chia doi nhu ben duoi de JW bang voi IND
+
+update JW set JWDEBJ=JWDEBJ/2, JWCRJ=JWCRJ/2                  
+WHERE MJDKEY ='IV70393778000' and (JWDEBJ =0 or JWCRJ=0)      
+5 rows updated in JW in ZPTLIBD.                              
+	
+ CO  DIV  BR   GLACCT        MJDKEY                       JWDEBJ                  JWCRJ   JWNARR       
+ 01  000  000  13111         IV70393778000          1,619,580.00                    .00   Invoice      
+ 01  000  000  1561.B04      IV70393778000                   .00           1,446,055.00   Invoice      
+ 01  000  000  33311.B04     IV70393778000                   .00              77,123.00   Invoice      
+ 01  010  001  51111.B04     IV70393778000                   .00           1,542,457.00   Invoice      
+ 01  010  001  63211.B04     IV70393778000          1,446,055.00                    .00   Invoice     		
+
+Sau khi update thi chay lai cau lenh check o tren xem con loi ko  
+=========================================================================================================			
+	 select *                        
+	 from OTH                        
+	 where othsts in ('P01','O17')   
+	 and OTHDEL=''         
+
+  TTYPE        ORDR          PSN       
+   OR    29736982   54722593       
+  Bi OPS250, check ben trong pick thi thay bi Full Back Order (Cho Supplied = 0 cho tat ca cac line trong pick)   
+  
+   Line      Ordered    Supplied   B/Ordered         Price   
+    1        5.000        .000       5.000     167517.00   
+    AUGMENTIN BD        TAB   625MG  14'S   S170160        '
+	
+   select *                              
+ from OTH where ordr = 29736982          
+ and PSN = 54722593                      
+ SELECT statement run complete.      
+ 
+ update OTH set  OTHSTS='B03'            
+ where ordr = 29736982                   
+ and PSN = 54722593                      
+ and ttype='OR'       
+ 
+========================================================================================================   
+Luu y: chung nao ICS661 co loi moi lam                            			
+Them phan kiem tra cuoi ngay, Sau khi Phuc chay call check xong, P chay OPS810,OPS811, OPS812 xong roi moi chay bao cao ICS661. 
+
+
+
+8h45 hold ZPTJOBQ============================================================                                                                             	                     
+-	Go lenh WJQ, chon 3 truoc ZPTJOBQ de Hold ZPTJOBQ lai, 
+-	Back ra, go so 5 truoc ZPTJOBQ roi enter, de vao ben trong, 
+chon 2 truoc DayEnd, go lenh jobq(qtxtsrch) de move DayEnd vao QTXTSRCH
+
+
+trước 12h tối: insert SMS vao SDS=============================================                                	        	           	     
+INSERT INTO ZDR                               
+SELECT DISTINCT * FROM ldphuc/ZDR A            
+WHERE NOT EXISTS (SELECT * FROM ZDR B         
+WHERE A.EMLCON=B.EMLCON AND A.INDCFD=B.INDCFD)
+
+================================================================
+Tai khoan ben CAM SDS
+user: CAMOPR
+pass: vnzp456
+ 
+ 
+
+=======================================
+Dear All,
+
+Nham dap ung yeu tu viec canh tranh dich vu trong kinh doanh cung nhu cac buoc phat trien tiep theo cua nganh CNTT, trong nam 2014 nay ZPVN se trien khai viec quan ly thong tin theo tieu chuan iso 27001:2005 (Information Security Management System)
+
+Tat ca tai lieu luu theo link ben duoi, hau het la cua ISG sau nay se customize lai theo chuan ZPVN va phu hop voi hien trang trien khai - danh gia. Anh em luu y chi luu hanh noi bo khong public thong tin, dac biet folder ISO 27001 Documents la tai lieu phai mua ban quyen nen khong share nha.
+
+http://vnzpapp07/ISMS/SitePages/Home.aspx
+
+Anh em tham khao truoc de sau nay den minh trien khai cung de dang hon.
+
+=======================================================================================
+
+=====================================================================================
+Dear All,
+
+Tai khoan administrator cac server local da duoc doi qua pass moi: Keepw@lk1ng
+
+Anh/em khi remote vao server luu y.
+
+=====================================================================
+ 
+CRM moi - co Lien
+select p.ref,p.name,p.id, p.name,p.sds_state_code
+,pc1.name
+from res_partner p
+ left join res_partner_category pc1 on pc1.id = p.local_category1_id
+where p.is_company = False and customer = True
+
+remote vao 192.168.17.180
+
+user remote vao 192.168.17.180
+192.168.17.180\administrator
+Keepw@lk1ng
+
+Password database cho CRM pgAdmin
+db_password =openpgpwd
+
+\\192.168.17.180\C$
+user 
+192.168.17.180\administrator
+Keepw@lk1ng
+
+select p.ref
+from res_partner p
+ left join res_partner_category pc1 on pc1.id = p.local_category1_id
+where p.is_company = False and customer = True
+
+Trong pgAdmin: chọn execute query to file 
+ 
+=======================================================================
+Thong tin CRM moi 
+Hi anh,
+
+Gui anh thong tin server test cho he thong CRM moi. Tat ca cau hinh va data lay tu server dang hoat dong import qua server test.
+
+Account: 192.168.17.180\administrator   .Password: Keepw@lk1ng
+
+IP address: 192.168.17.180 / 24
+
+Dear Phuc, Chu
+
+    Gui cac ban link vao web CRM moi: http://crm.zuelligpharma.com.vn
+    Co the log in vao account Windows cua moi nguoi, hien gio dang cap quyen cho Chu, Phuc role CRC - read . Co the tu thay doi quyen lai nha…dung quyen admin de co quyen full thay doi setting system
+
+—> Minh se ban giao lai cho nhom Chu cac task pending, next action , va lien lac ban coding cua supplier (se thong ke gui file trong chieu nay) . Hy vong cac bac tiep tuc project thanh cong, minh phai lam cac project khac nua..thanks
+
+-----------
+Dear all
+
+  Do ban lap trinh vien truoc cua GSCom nghi viec, nhung van con nam thong tin password cua admin CRM, de an toan bao mat, nen minh da thay doi lai password moi cua admin CRM va password cua Teamviewer
+
+     - CRM admin : admin / Keepw@lk1ng
+
+      - Teamviewer: ID: 519 706 056 /  Keepw@lk1ng
+
+Anh Tien: Nhu trao doi, anh nho hoan thanh cac task pending con lai trong vong 2 ngay toi nha..thanks  
+
+
+IP SERVER new CRM
+Moi truong test
+Account: 192.168.17.180\administrator / Keepw@lk1ng
+IP address: 192.168.17.180 / 24
+[14/11/2014 12:02:48] ldphuc: c:\program file (x86) \opener7\Server\server và search .conf file
+
+db_user =openpg
+db_password =openpgpwd
+C:\Program Files (x86)\OpenERP7\Server\server\openerp\addons
+========================================================================
+Tạo:
+netsh wlan set hostednetwork mode=allow ssid=Congnghe.5giay key=12345678
+
+Phát:
+netsh wlan start hostednetwork
+
+Kiểm tra:
+netsh wlan show hostednetwork	
+
+Tắt:
+netsh wlan stop hostednetwork
+
+Hủy bỏ hostednetwork đã tạo:
+netsh wlan set hostednetwork mode=disallow ssid=Congnghe.5giay key=12345678
+
+-cai dat symantec endpoint protection rollback during install
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SessionManager
+ 
+Locate the PendingFileRenameOperations key and rename it to PendingFileRenameOperations2 or delete it and then try the install again.
+ 
+Do not reboot after deleting the key. Re-run the install immmediately after deleting as it usually comes back after a reboot.
+
+-----------------
+Bi quyet giau nhem thu muc tren Windows
+Hide thu muc: +s -h “C:\PCWorld Vietnam”
+Show thu muc: -s -h “C:\PCWorld Vietnam”
+============================================================
+Service Request # 60987 Phung Thi Thanh Trang
+Report cua 2 san pham M150040 & M15G0001
+Dear IT team,
+Xin vui lòng chạy giúp em report của 2 Item: M150040 (Neurobion tab) và M15G0001 (Listerine) với 
+những nội dung bên dưới:
+
+Customer Code
+Customer Name
+ZP Item Code
+Item Description
+Order Number
+Order Date
+Invoice Number
+Invoice Confirmed Date
+Quantity
+Month
+Sub-distributor
+Warehouse Code
+Transaction Type
+
+select b.ttype,b.invno,                           
+b.cust,INHDNM,item,INDDES,indunt,                 
+b.ordr,INHOIN,inhcfd,b.sub,                       
+c.whs                                             
+from inh b,ind c                            
+where inhdel='' and inddel=''       
+and b.ttype=c.ttype and b.invno=c.invno           
+and c.item in ('M150040','M15G0001')              
+and indcfd between 20151101 and 20160115          
+and b.ttype in ('IV','CR')                        
+File TEMP2 in ldphuc was replaced.               
+
+select a.*,b.COHCTD                   
+from ldphuc/temp2 a left join coh b    
+on    a.ordr=b.ordr                   
+and cohdel=''        
+
+vnzpadmin Imp@s1ble
