@@ -1,17 +1,132 @@
--	ket noi SQL voi AS400
--	15 phút chạy hàm select * from psh where pshdat = currentdate 
--	lưu kết quả vào mảng
--	trộn mảng: dùng hàm swap vị trí 2 phần tử, swap 1k lần
--	chia 2 mảng: nửa mảng đầu gán Y, nửa mảng sau gán N
--	check trong bảng temp có chưa, nếu chưa có thì insert vào bảng tmp và bảng thật
+select *                         
+from psh                         
+where ttype = 'PS' 
+and PSHDEL = '' 
+and PSHDAT = 20160717                 
 
 
 
--	tao project tu trang web chon team foudation
--	vao visual, connect vào project Call Card
--	chọn configure, trỏ đến thư mục trên máy, get và map
--	chép soucre đã có vào thư mục vừa map
--	vào visual chọn solution, chuột phải chọn add soucre controll
--	chuột phải solution chọn check in để upload toàn bộ soucre mới lên server
+
+============================================================
+phyto
+tan tao, mondial:  INV* ,ORL*
+
+select ttype,invno,inhcfd,inhpf                    
+from inh                                           
+where ttype='IV' and invno in                      
+                                                   
+	
+		
+
+select ttype, invno,psn,inhcfd,inhpf       
+from inh                                   
+where ttype ='IV' and psn   in (           
+60662287,60662288,60662289,60662290,       
+60662294,60662295,60662296,60662297,       
+60662298,60662299,60662300,60662301,       
+60662309,60662310,60662311,60662302,       
+60662303,60662304,60662305,60662306,       
+60662312,60662313,60662314,60662315,       
+60662316,60662317,60662318,60662319,       
+60662320,60662321,60662322,60662286,       
+60662291,60662292,60662293,60662307,       
+60662308,60662324,60662325,60662323,       
+60662326,60662327,60662328,60662329,       
+60662330,60662331,60662332,60662333,       
+60662334,60662335 )                        
 
 
+Dear Anh Phuc!
+Whs vua cho Picked cac order cua BV Quan 4 can lui ngay hoa don 6/7/16 a Phuc lam buoc tiep theo nhe.
+
+160716 33547935 60662450                                 WM1 S05809 15.Picked
+160716 33547935 60662451                                 WM1 S05809 15.Picked
+160716 33547947 60662452                                 WM1 S05809 15.Picked
+160716 33547947 60662453                                 WM1 S05809 15.Picked
+160716 33547974 60662454                                 WM1 S05809 15.Picked
+160716 33547987 60662455                                 WM1 S05809 15.Picked
+160716 33547987 60662456                                 WM1 S05809 15.Picked
+160716 33547996 60662457                                 WM1 S05809 15.Picked
+
+
+   
+select ttype, invno,psn,inhcfd,inhpf        
+from inh                                    
+where ttype ='IV' and psn   in (            
+60662450,                                   
+60662451,                                   
+60662452 ,                                  
+60662453  ,                                 
+60662454   ,                                
+60662455    ,                               
+60662456     ,                              
+60662457      )                             
+
+update inh set      INHCFD                  
+        =       20160706                    
+where ttype ='IV' and psn   in (            
+60662450,                                   
+60662451,                                   
+60662452 ,                                  
+60662453  ,                                 
+60662454   ,                                
+60662455    ,                               
+60662456     ,                              
+60662457      )                             
+5 rows updated in INH in ZPTLIBD.           
+
+TTYPE	INVNO	PSN	INHCFD	INHPF
+IV	73252561	60662451	20160706	P
+IV	73252563	60662453	20160706	P
+IV	73252564	60662454	20160706	P
+IV	73252566	60662456	20160706	P
+IV	73252567	60662457	20160706	P
+
+ Sel Date   Order#  P/Slip#     Inv#  M/Fest# Cust PO  #    Whs Cust#  Status   
+ -------------------------------------------------------------------------------
+   160716 33547935 60662450 73252561 89025975               WM1 S05809 19.M/F Cl
+   160716 33547935 60662451 73252561 89025975               WM1 S05809 19.M/F Cl
+   160716 33547947 60662452 73252563 89025975               WM1 S05809 19.M/F Cl
+   160716 33547947 60662453 73252563 89025975               WM1 S05809 19.M/F Cl
+   160716 33547974 60662454 73252564 89025975               WM1 S05809 19.M/F Cl
+   160716 33547987 60662455 73252566 89025975               WM1 S05809 19.M/F Cl
+   160716 33547987 60662456 73252566 89025975               WM1 S05809 19.M/F Cl
+   160716 33547996 60662457 73252567 89025975               WM1 S05809 19.M/F Cl
+
+**************GOi lai chi Phuong de in hoa don MOndial
+0903604099
+PHUONG <dtnphuong@phytopharma.vn>
+
+phyto
+tan tao, mondial:  INV* ,ORL*
+
+-	hold may in
+-	xoa hoa don trong may in
+-	chinh ngay
+-	bao cho user in lai
+
+===========================
+
+
+                                                                               
+ RPG101                     Order Tracking Manager                             
+                                                                               
+     All Warehouses                      All Customers                         
+     All Branches                                                              
+Inquiries ... 5=Customer 6=Order 7=P/Slip 8=Invoice 9=Tracking Detail E=Errors 
+-------------------------------------------------------------------------------
+Sel Date   Order#  P/Slip#     Inv#  M/Fest# Cust PO  #    Whs Cust#  Status   
+-------------------------------------------------------------------------------
+  140716 33538265 60648363 73245881 89025206               WM1 S10251 20.Desptc
+  
+                                                            Display Data         
+                                                                               
+Position to line  . . . . .                                                    
+....+                                                                          
+INHPF                                                                          
+  R                                                                            
+********  End of data  ********                                                
+                                                                               
+                                                                               
+                                                                               
+  

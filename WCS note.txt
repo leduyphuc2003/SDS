@@ -1,0 +1,107 @@
+-	ket noi SQL voi AS400
+	=	add file reference file IBM.Data.DB2.iSeries.dll
+	=	khai bao class As400ConnectionUtility: open, select, insert, update, closed connection
+	=	khai bao và chạy thử get data ra xem: ???
+	
+-	15 phút chạy hàm select * from psh where pshdat = currentdate
+	=	khai báo class có chứa string query, khai báo class As400ConnectionUtility, gọi select cho string query va luu ket qua select
+	=	set up 15 phut chay 1 lan: viet lop Timer1 
+	
+-	lưu kết quả select vào list class As400 co the xu li duoc
+
+-	trộn mảng: dùng hàm swap vị trí 2 phần tử, swap 1k lần
+-	chia 2 mảng: nửa mảng đầu gán Y, nửa mảng sau gán N
+
+-	tạo thêm connection string cho SQL server:
+	<add name="DefaultConnection" connectionString="Data Source=VNZPDPLE22;Initial Catalog=EmployeeSurvey;Integrated Security=true;" providerName="System.Data.SqlClient"/>
+-	them class SQLConnectionUtility: open, select, insert, closed connection
+
+-	check trong bảng temp có chưa, 
+-	nếu chưa có thì insert vào bảng tmp và bảng thật
+-	tạo installer cho windows service để chạy
+	http://diendan.congdongcviet.com/threads/t19526::tao-ung-dung-windows-service-don-gian-trong-lap-trinh-csharp.cpp
+	=	sử dụng file InstallUtil.exe trong thư mục C:\Windows\Microsoft.NET\Framework\v4.0.30319. Copy InstallUtil.exe vào thư mục C:\Users\dple\Desktop\Release. Mở cmd và run as administraotr rồi chạy lệnh bên dưới
+	InstallUtil.exe WCS2.exe
+	InstallUtil.exe /u WCS2.exe
+		hoặc
+	installutil WCS2.exe
+	installutil /u WCS2.exe
+	
+	
+	
+=======
+-	convert datatable to list c#
+
+-	Insert datatable in to sql table [closed]
+	 DataTable dt = new DataTable();
+	 string sql = "";
+	 for (int i = 0; i < dt.Rows.Count; i++)
+	 {
+		sql = sql + "insert into InvitationData (Col1, Col2, ColN) values('"
+			  + dt.Rows[i]["columnname"].ToString().Trim() + "','"
+			  + dt.Rows[i]["columnname"].ToString().Trim() + "','" 
+			  + dt.Rows[i]["columnname"].ToString().Trim() + "')";
+	 }
+
+-	Inserting a List<> into SQL Server table
+	List<String> list = new List<String>() { "A", "B", "C" };
+	using (var con = new SqlConnection(connectionString))
+	{
+		con.Open();
+		using (var cmd = new SqlCommand("INSERT INTO TABLE(Column)VALUES(@Column)", con))
+		{
+			cmd.Parameters.Add("@Column", SqlDbType.VarChar);
+			foreach (var value in list)
+			{
+				cmd.Parameters["@Column"].Value = value;
+				int rowsAffected = cmd.ExecuteNonQuery();
+			}
+		}
+	}
+
+ 
+-	sql server connection string c#
+	down vote
+	// .NET DataProvider -- Standard Connection with username and password
+	using System.Data.SqlClient;
+
+	SqlConnection conn = new SqlConnection();
+	conn.ConnectionString =
+	"Data Source=ServerName;" +
+	"Initial Catalog=DataBaseName;" +
+	"User id=UserName;" +
+	"Password=Secret;";
+	conn.Open();
+	
+	// .NET DataProvider -- Trusted Connection
+	SqlConnection conn = new SqlConnection();
+	conn.ConnectionString =
+	"Data Source=ServerName;" +
+	"Initial Catalog=DataBaseName;" +
+	"Integrated Security=SSPI;";
+	conn.Open();
+
+-	timer
+http://stackoverflow.com/questions/246697/best-timer-for-using-in-a-windows-service
+http://dotnet.edu.vn/ChuyenMuc/Timer-C-530.aspx
+http://diendan.congdongcviet.com/threads/t1002::thuc-thi-phuong-thuc-bang-timer-trong-lap-trinh-csharp.cpp
+http://stackoverflow.com/questions/12885013/windows-service-with-timer
+
+-	Walkthrough: Creating a Windows Service Application in the Component Designer
+https://msdn.microsoft.com/en-us/library/zt39148a(v=vs.110).aspx
+https://msdn.microsoft.com/en-us/library/zt39148a(v=vs.110).aspx#BK_WriteCode
+
+
+
+GetDataByQuery => select 
+ExecuteQuery	=> insert update
+
+new class => goi . su dung
+
+=============================================
+-	tao project tu trang web chon team foudation
+-	vao visual, connect vào project Call Card
+-	chọn configure, trỏ đến thư mục trên máy, get và map
+-	chép soucre đã có vào thư mục vừa map
+-	vào visual chọn solution, chuột phải chọn add soucre controll
+-	chuột phải solution chọn check in để upload toàn bộ soucre mới lên server

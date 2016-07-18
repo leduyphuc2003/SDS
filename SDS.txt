@@ -201,7 +201,7 @@ Trung Back end
                 App Store - iOS:
 -	eZRx Call-Me-Back for customers: 267
 -	eZRx Call-Me-Back Professional for SC: 48
-3. Total number of views of discounts: 3731 views 
+3. Total number of views of discounts: 3776 views 
 4. Number of discounts loaded into call me back: 68 promos, sent to 1861 customers per each promo
 
 Muc 5,6,7 lay trong file extract
