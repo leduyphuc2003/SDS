@@ -4,8 +4,34 @@ where ttype = 'PS'
 and PSHDEL = '' 
 and PSHDAT = 20160717                 
 
+CMTUN$ - Customer Total Unallocated Csh  
+ CUST                  CMTUN$   
+ S08665        509,508,426.00-  
+ 
+ Severity	Code	Description	Project	File	Line	Suppression State
+Error	CS0021	Cannot apply indexing with [] to an expression of type 'As400Table'	WcsApp	c:\users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\Form1.cs	78	Active
 
 
+update ard set arddel='Z'                           
+WHERE ARDDEL='' AND CUST='S08665'                   
+and DOCNO= 73197910                                 
+1 rows updated in ARD in ZPTLIBD.                   
+
+
+var result = retval.Where(p => !temp2.Any(p2 => p2.PSN == p.PSN && p2.ordr == p.ordr))
+
+var result = retval.Where(p => !temp2.Any(p2 => p2.PSN == p.PSN 
+item2.ORDR == item1.ORDR &&
+item2.PSN == item1.PSN 	&&	
+item2.CTMCDE == item1.CTMCDE &&
+item2.PSHCTN == item1.PSHCTN &&
+item2.CHK == item1.CHK ))
+
+					ORDR = Convert.ToInt32(dr["ORDR"].ToString()),
+                    PSN = Convert.ToInt32(dr["PSN"].ToString()),
+                    CTMCDE = dr["CTMCDE"].ToString(),
+                    PSHCTN = Convert.ToInt32(dr["PSHCTN"]),
+                    CHK = dr["CHK"].ToString()
 
 ============================================================
 phyto

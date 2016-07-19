@@ -15,9 +15,9 @@
 -	tạo thêm connection string cho SQL server:
 	<add name="DefaultConnection" connectionString="Data Source=VNZPDPLE22;Initial Catalog=EmployeeSurvey;Integrated Security=true;" providerName="System.Data.SqlClient"/>
 -	them class SQLConnectionUtility: open, select, insert, closed connection
-
 -	check trong bảng temp có chưa, 
 -	nếu chưa có thì insert vào bảng tmp và bảng thật
+
 -	tạo installer cho windows service để chạy
 	http://diendan.congdongcviet.com/threads/t19526::tao-ung-dung-windows-service-don-gian-trong-lap-trinh-csharp.cpp
 	=	sử dụng file InstallUtil.exe trong thư mục C:\Windows\Microsoft.NET\Framework\v4.0.30319. Copy InstallUtil.exe vào thư mục C:\Users\dple\Desktop\Release. Mở cmd và run as administraotr rồi chạy lệnh bên dưới
