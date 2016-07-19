@@ -1,4 +1,4 @@
-OPS250   test
+OPS250    
  select cohnor,cohbsy,cohsts,ordr   
  from coh                           
  where ordr=33568270                
