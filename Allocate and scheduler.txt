@@ -1,0 +1,1277 @@
+sum stock tu file IT
+SELECT item,whs,sum(itqty) FROM it WHERE (item='PHYTO-DNNK' or 
+item='N131150UL') and ttype not like 'R%' GROUP BY item,whs
+
+SELECT item,whs,sum(itqty) FROM it WHERE 
+item='S030020'  and ttype not like 'R%' GROUP BY item,whs
+
+	select sum(LBSOH),sum(LBSOA),sum(LBSPK) from LB where ITEM='A020170'
+	select sum(ILSOH),sum(ILSOA),sum(ILSPK) from IL where ITEM='A020170'
+	select sum(ISLSOH),sum(ISLSOA),sum(ISLSPK) from ISL where ITEM='A020170'
+	select sum(IMSOH),sum(IMSOA),sum(IMSPK),sum (IMSSA) from IM where ITEM='A020170'
+	select sum(IWSOH),sum(IWSOA),sum(IWSPK),sum (IWSSA) from IW where ITEM='A020170'
+
+allocate
+	select sum(LBSOA) from LB where ITEM='A020170'
+	select sum(ILSOA) from IL where ITEM='A020170'
+	select sum(IWSOA) from IW where ITEM='A020170'
+	select sum(ISLSOA) from ISL where ITEM='A020170'
+	select sum(IMSOA) from IM where ITEM='A020170'
+
+scheduler
+	select sum (IMSSA)
+	from IM where item ='A020170'
+				 
+	select sum (IWSSA)
+	from IW	where item ='A020170'
+
+pick
+	select sum(LBSPK) from LB where ITEM='A020170'
+	select sum(ILSPK) from IL where ITEM='A020170'
+	select sum(ISLSPK) from ISL where ITEM='A020170'
+	select sum(IMSPK) from IM where ITEM='A020170'
+	select sum(IWSPK) from IW where ITEM='A020170'
+
+Neu Ref# la RG thi cho allocate = 0 het, tuong tu cho scheduled neu co ttype la 'RG' thi cung update lai scheduled = 0 het
+	update IM set IMSSA=0
+	where item ='A' and IMSSA <> 0
+
+	update IW set IWSSA=0
+	where item ='A' and IWSSA <> 0 
+
+--------------------------------------------------------------------------------------------- allocate
+ SELECT ITEM, ISL#, LOCN, WHS ,SUM(IAQA) FROM ia          
+ WHERE ttype in ('OR','PS')                     
+  and item ='N170550'                                  
+group by ITEM, ISL#, LOCN, WHS order by locn              
+                                                       
+LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='P070050' 
+AND LOCN='C2-P1-1-1' 
+AND ISL#='A300840' 
+AND WHS='AS4' 
+
+UPDATE LB 
+SET  LBSOA= LBSOA-300                                    
+WHERE ITEM='P070050' 
+AND LOCN='C2-P1-1-1' 
+AND ISL#='A300840' 
+AND WHS='AS4'                                                        
+
+	IL
+	select ITEM, LOCN, WHS, ILSOA
+	from IL
+	WHERE ITEM='P070050' 
+	AND LOCN='C2-P1-1-1' 
+	AND WHS='AS4'    
+	 
+	UPDATE IL SET ILSOA=ILSOA-300                 
+	WHERE ITEM='P070050' 
+	AND LOCN='C2-P1-1-1'
+	AND WHS='AS4'  
+
+		ISL
+		select ITEM, ISL#, ISLSOA
+		from ISL
+		WHERE ITEM='P070050' 
+		AND ISL#='A300840' 
+
+		UPDATE ISL                                   
+		SET ISLSOA=ISLSOA-300                        
+		WHERE ITEM='P070050' 
+		AND ISL#='A300840'								 
+
+			IW
+			select ITEM, WHS, IWSOA
+			from IW 
+			WHERE ITEM='P070050'
+			AND WHS='AS4'
+			 
+			UPDATE IW SET IWSOA=IWSOA-300   
+			WHERE ITEM='P070050' 
+			AND WHS='AS4'                                
+
+				IM
+				select ITEM, IMSOA
+				from IM
+				WHERE ITEM='P070050' 
+
+				UPDATE IM SET IMSOA=IMSOA-300
+				WHERE ITEM='P070050'    
+
+check lai 3 bang nay gia tri phai bang nhau
+select sum(LBSOA) from LB where ITEM='A121210' AND WHS='WH1' 
+select sum(ILSOA) from IL where ITEM='A121210' AND WHS='WH1' 
+select sum(IWSOA) from IW where ITEM='A121210' AND WHS='WH1' 
+
+select sum(LBSOA) from LB where ITEM='A121210'
+select sum(ILSOA) from IL where ITEM='A121210'
+select sum(IWSOA) from IW where ITEM='A121210'
+select sum(ISLSOA) from ISL where ITEM='A121210'
+select sum(IMSOA) from IM where ITEM='A121210'
+
+all RG
+update lb set lbsoa =0          
+WHERE ITEM ='F020040L01'         
+and lbsoa <>0                   
+	
+ update il set ilsoa =0        
+  WHERE ITEM ='F020040L01'      
+ and ilsoa <>0                 
+ 
+  update isl set islsoa = 0             
+   WHERE ITEM ='F020040L01'             
+ and islsoa <>0                        
+ 
+  update iw set iwsoa =0                     
+    WHERE ITEM ='F020040L01'                 
+ and   iwsoa <>0                            
+ 
+ update im set imsoa =0           
+    WHERE ITEM ='F020040L01'      
+and imsoa <>0    
+------------------------------------------------------------------------------------------------------ scheduled
+		
+					ttype = RG **********************
+					IM
+					SELECT ITEM,IMSSA               
+					FROM IM                         
+					WHERE ITEM='F020110L01'   
+					and IMSSA <> 0 
+					 
+					 UPDATE IM SET IMSSA= 0 
+					WHERE ITEM='F020110L01'  
+					and IMSSA <> 0
+							
+							IW
+							select ITEM, IWSSA, WHS
+							from IW 	
+							WHERE ITEM='F020110L01' 
+							and IWSSA <>0 
+
+							update IW set IWSSA = 0
+							WHERE ITEM='F020110L01' 
+							and IWSSA <>0 		
+					********************************
+Scheduled
+
+IM
+SELECT ITEM,IMSSA               
+FROM IM                         
+WHERE ITEM='N13G0009'   
+
+UPDATE IM SET IMSSA=IMSSA + 7 + 37   
+WHERE ITEM='N13G0009'  
+  
+		IW
+		select ITEM, IWSSA, WHS
+		from IW 	
+		where ITEM='N13G0009' AND WHS='WH1'
+		
+		 UPDATE IW SET IWSSA=IWSSA + 8 
+		WHERE ITEM='N13G0009' 
+		AND WHS='WH1' 
+
+select sum (IMSSA)
+from IM where item ='N13G0009'                
+		  
+select sum (IWSSA)
+from IW	where item ='N13G0009'       
+
+
+		-- Sua hang loat
+		 select ITEM, IWSSA, WHS             
+		   from IW A                         
+		 where  ITEM                         
+		 =     'A020010'                     
+		 File TEMP in ldphuc was replaced.    
+ 
+		IW
+		select ITEM, IWSSA, WHS
+		from IW A	
+		where EXISTS (SELECT * FROM ldphuc/TEMP B WHERE A.ITEM=B.ITEM AND A.WHS=B.WHS) 
+		
+		   UPDATE IW A SET IWSSA=IWSSA - (SELECT IWSSA FROM ldphuc/TEMP B   
+		WHERE                                                              
+		A.ITEM=B.ITEM AND A.WHS=B.WHS)                                     
+		  where EXISTS (SELECT * FROM ldphuc/TEMP B WHERE A.ITEM=B.ITEM AND 
+		A.WHS=B.WHS)                                                       
+                                
+
+		 SELECT  ITEM,SUM( IWSSA ) IMSSA        
+		 FROM ldphuc/TEMP                        
+		 GROUP BY ITEM                          
+		File TEMP2 in ldphuc was replaced.       
+				
+				
+		UPDATE IM A SET IMSSA=IMSSA -(SELECT IMSSA FROM ldphuc/TEMP2 B WHERE 
+		A.ITEM=B.ITEM)                                                      
+		WHERE EXISTS (SELECT * FROM ldphuc/TEMP2 B WHERE A.ITEM=B.ITEM)      
+ 
+ 
+Bao loi tai suspension va Suspension Reason: 003  Level: 1 
+ thi sua nhu ben duoi 
+imsos=imsoh tai 5 bang
+		
+------------------------------------------------------------------------------------------- pick
+A121210
+
+1- LB
+select ITEM, LOCN, ISL#, WHS,LBSPK
+from LB 
+WHERE ITEM='A121210' 
+AND LOCN='PICKED' 
+AND ISL#='KE560' 
+AND WHS='WH1'	  
+ 
+UPDATE LB 
+SET  LBSPK= LBSPK+300                                    
+WHERE ITEM='A121210' 
+AND LOCN='PICKED' 
+AND ISL#='KE560'
+AND WHS='WH1'
+
+		2- ISL
+		select ITEM, ISL#, ISLSPK
+		from ISL 
+		WHERE ITEM='A121210' 
+		AND ISL#='KE560'
+
+		UPDATE ISL                                   
+		SET ISLSPK=ISLSPK + 300                        
+		WHERE ITEM='A121210' 
+		AND ISL#='KE560'
+		
+				3-  IL
+				select ITEM, LOCN, WHS, ILSPK
+				from IL 
+				WHERE ITEM='A121210' 
+				AND LOCN='PICKED' 
+				AND WHS='WH1'
+
+				 
+				UPDATE IL SET ILSPK=ILSPK+300                 
+				WHERE ITEM='A121210' 
+				AND LOCN='PICKED' 
+				AND WHS='WH1' 
+ 
+						 4- IW
+						 
+						select ITEM, WHS, IWSPK
+						from IW
+						WHERE ITEM='A121210' 
+						AND WHS='WH1'
+
+						UPDATE IW SET IWSPK=IWSPK+100   
+						WHERE ITEM='A121210' 
+						AND WHS='WH1' 
+ 
+								 5- IM
+								 select ITEM, IMSPK
+								 from IM
+								 where ITEM='A121210'  
+								 
+								 UPDATE IM SET IMSPK=IMSPK+100
+								WHERE ITEM='A121210' 
+
+select sum(LBSPK) from LB where ITEM='A121210' AND WHS='WH1' 
+select sum(ILSPK) from IL where ITEM='A121210' AND WHS='WH1' 
+select sum(IWSPK) from IW where ITEM='A121210' AND WHS='WH1' 
+
+3 cai deu bang 0 va bang nhau nen ok
+
+check 5 bang, select sum ra xem tu san pham do cho 5 bang, neu bang nhau het thi dung
+select sum(LBSPK) from LB where ITEM='A121210'
+select sum(ILSPK) from IL where ITEM='A121210'
+select sum(ISLSPK) from ISL where ITEM='A121210'
+select sum(IMSPK) from IM where ITEM='A121210'
+select sum(IWSPK) from IW where ITEM='A121210'
+
+ Pick Am
+update lb set LBSPK=0        
+WHERE LBSPK <0               
+
+update il set ilSPK=0                           
+WHERE ilSPK <0                                  
+                
+update isl set islSPK=0                         
+WHERE islSPK <0                                 
+             
+update iw set iwSPK=0                           
+WHERE iwSPK <0                                  
+            
+update im set imSPK=0                           
+WHERE imSPK <0   
+
+===================================================================================
+ZIC986 ICS816 ICS659
+select item,whs,iwsoh              
+from iw                            
+where item ='P040540'              
+File TEMP in ldphuc was replaced.   
+upload nguoc len file temp cot iwsoh= lbsoh-iwsoh trong file temp
+
+tao back up IW
+  select count(*)                                              
+ from iw a                                                    
+ WHERE                                                        
+ exists (select * from ldphuc/temp b where a.item=b.item and   
+ a.whs=b.whs) 
+  COUNT ( * )     
+          24     
+		  
+ select item,IWSOH,IWCMSH,IWSAL,IWCM3M,IWSALY,IWCM3Y            
+ from iw a                                                      
+ WHERE                                                          
+ exists (select * from ldphuc/temp b where a.item=b.item and     
+ a.whs=b.whs)                                                   
+ File TEMP2 in ldphuc was replaced.                              
+ 
+UPDATE IW c SET               
+IWSOH =IWSOH   
++ (select IWSOH  from ldphuc/temp b where c.item=b.item and c.whs=b.whs)  
+,IWCMSH = IWCMSH  
++ (select IWSOH  from ldphuc/temp b where c.item=b.item and c.whs=b.whs)    
+,IWSAL = IWSAL  
+- (select IWSOH  from ldphuc/temp b where c.item=b.item and c.whs=b.whs)   
+,IWCM3M = IWCM3M  
+- (select IWSOH  from ldphuc/temp b where c.item=b.item and c.whs=b.whs)  
+,IWSALY = IWSALY  
+- (select IWSOH  from ldphuc/temp b where c.item=b.item and c.whs=b.whs)  
+,IWCM3Y = IWCM3Y  
+- (select IWSOH  from ldphuc/temp b where c.item=b.item and c.whs=b.whs)  
+WHERE exists (select * from ldphuc/temp b where c.item=b.item and c.whs=b.whs)
+ 
+
+back up im 
+select item,IMSOH,IMCMSH,IMSAL,IMCM3M,IMSALY,IMCM3Y           
+from IM a                                                     
+where exists (select * from ldphuc/temp b where a.item=b.item) 
+File TEMP3 in ldphuc was replaced.   
+
+select item,sum(IWSOH) B               
+from ldphuc/temp                        
+group by item                          
+File TEMP4 in ldphuc was replaced.      
+
+UPDATE IM c SET             
+IMSOH     =IMSOH   
++ (select B from ldphuc/temp4 b where c.item=b.item)  
+, IMCMSH  = IMCMSH 
++ (select B from ldphuc/temp4 b where c.item=b.item) 
+, IMSAL   = IMSAL  
+- (select B from ldphuc/temp4 b where c.item=b.item) 
+, IMCM3M  = IMCM3M 
+- (select B from ldphuc/temp4 b where c.item=b.item) 
+, IMSALY  = IMSALY 
+- (select B from ldphuc/temp4 b where c.item=b.item) 
+, IMCM3Y  = IMCM3Y 
+- (select B from ldphuc/temp4 b where c.item=b.item) 
+where exists (select * from ldphuc/temp4 b where c.item=b.item)     
+ 
+===========================================================
+ALLOCATE BI AM 
+
+select ITEM, LOCN, ISL#, WHS, LBSOA    
+from LB                                
+WHERE ITEM='M040300UL'                 
+and lbsoa<0                            
+
+UPDATE  LB SET LBSOA=0   
+WHERE ITEM='P090020UL'   
+ AND  LBSOA<0            
+ 
+ 
+	select ITEM, LOCN, WHS, ILSOA        
+	from IL                             
+	WHERE ITEM='P090020UL'              
+	AND  ILSOA<0  
+	 
+	      
+	UPDATE IL SET ILSOA=0                
+	WHERE ITEM='P090020UL'              
+	AND  ILSOA<0                         
+	 
+ 
+			select ITEM, ISL#, ISLSOA         
+			 from ISL                        
+			 WHERE ITEM='P090020UL'          
+			 AND ISLSOA<0                      
+			   
+			 UPDATE ISL SET ISLSOA=0           
+			 WHERE ITEM='P090020UL'          
+			 AND ISLSOA<0                      
+ 
+ 
+					select ITEM, WHS, IWSOA             
+					from IW                            
+					WHERE ITEM='P090020UL'             
+					AND IWSOA<0                           
+						 
+					UPDATE IW SET IWSOA=0                 
+					WHERE ITEM='P090020UL'             
+					AND IWSOA<0                           
+
+							select ITEM, IMSOA           
+							from IM  
+							WHERE ITEM='P090020UL'                    
+							AND IMSOA<0 
+							
+							UPDATE IM SET IMSOA=0                
+								WHERE ITEM='P090020UL'           
+							AND IMSOA<0  
+	
+RG
+update lb set lbsoa =0          
+WHERE ITEM ='F020040L01'         
+and lbsoa <>0                   
+	
+ update il set ilsoa =0        
+  WHERE ITEM ='F020040L01'      
+ and ilsoa <>0                 
+ 
+  update isl set islsoa = 0             
+   WHERE ITEM ='F020040L01'             
+ and islsoa <>0                        
+ 
+  update iw set iwsoa =0                     
+    WHERE ITEM ='F020040L01'                 
+ and   iwsoa <>0                            
+ 
+ update im set imsoa =0           
+    WHERE ITEM ='F020040L01'      
+and imsoa <>0                    
+======
+pick Am 
+ 
+UPDATE LB 
+SET LBSPK=0                                  
+WHERE ITEM='A05RC7D73' 
+and   LBSPK < 0 
+
+		UPDATE ISL                                   
+		SET ISLSPK=0                       
+		WHERE ITEM='A05RC7D73' 
+		and   ISLSPK < 0
+
+				 
+				UPDATE IL SET ILSPK=0             
+				WHERE ITEM='A05RC7D73' 
+				and   ILSPK < 0		 
+
+						UPDATE IW SET IWSPK=0
+						WHERE ITEM='A05RC7D73' 
+						and   IWSPK < 0					 
+								 
+								 UPDATE IM SET IMSPK=0
+								WHERE ITEM='A05RC7D73' 
+								and   IMSPK < 0
+================================================================================
+Var In Chuan ne (neu bao cao chay ra la - thi minh + vao IM, neu bao cao la + thi minh - vao IM; con IW co the de den mai)
+		Var In   Var Out 
+S090110	43.000-	43.000-
+
+update IM set IMTOUT=IMTOUT+43, IMTIN=IMTIN +43   
+			WHERE ITEM='S090110'  
+			
+==========================================================
+S13C0010     
+IMSOD  - Item Stock On Delivery Orders  	
+IM D/Order  D/O Alloc    D/O Var|
+---------------------------------                        
+    47.000     49.000      2.000-
+	
+ select IMSOD,item        
+ from im                  
+ where item ='S13C0010'   	
+   IMSOD   ITEM       
+  47.000   S13C0010   
+
+   update im set  IMSOD = IMSOD+2    
+ where item ='S13C0010'            
+ 1 rows updated in IM in ZPTLIBD.  
+     IMSOD   ITEM             
+    49.000   S13C0010			
+=========================================================
+ICS660:
+SELECT ITEM,ISL#,SUM(LBSOA) LBSOA                   
+FROM LB                                             
+WHERE ITEM='P040320' AND LBDEL=''  AND LBSOA<>0     
+GROUP BY ITEM, ISL#                                 
+File LB in ldphuc was replaced.                      
+
+SELECT A.*, B. ISLSOA                                    
+FROM ldphuc/LB A, ISL B                                   
+WHERE A.ITEM=B.ITEM AND A.ISL#=B.ISL# AND LBSOA<>ISLSOA  
+
+
+==========================================================
+ICS816: (816) (Update stock on hand LBSOH ILSOH ISLSOH ta se update binh thuong nhu allocate. Rieng IWSOH va IMSOH thi phai update 6 field giong nhu cau lenh ben duoi: tuc la neu thieu stock thi cong stock tru sale va nguoc lai)
+-	Dua vao stock chuan de so sanh cac file IM, IW, IL, LB, ISL (voi dien kien cac hoa don da duoc co trong file IT voi IND)
+SELECT ITEM, SUM(ITQTY) ITQTY                    
+FROM IT                                          
+WHERE ITEM='P07VABO-02' AND TTYPE NOT LIKE 'R%'  
+GROUP BY ITEM    -- sum theo item, neu sum theo whs thi group by whs  
+
+SELECT ITEM, WHS, SUM(ITQTY) ITQTY                    
+FROM IT                                          
+WHERE ITEM='P07VABO-02' AND TTYPE NOT LIKE 'R%'  AND WHS=’…’
+GROUP BY ITEM, WHS
+
+-	Neu stock on hand bi thieu 2 hop thi update stock on hand, commercial, sale/sale commercial MTD, Sale/Sale commercial YTD, vi du:
+update iw set                          
+IWSOH  =  IWSOH  +2                  
+, IWCMSH =  IWCMSH +2                  
+, IWSAL  =  IWSAL  -2                  
+, IWCM3M =  IWCM3M -2                  
+, IWSALY =  IWSALY -2                  
+, IWCM3Y =  IWCM3Y -2                  
+WHERE iwDEL='' AND ITEM='G030350' AND  WHS='WM1'                              
+
+update im set                      
+ImSOH  =  ImSOH  +2              
+, ImCMSH =  ImCMSH +2              
+, ImSAL  =  ImSAL  -2              
+, ImCM3M =  ImCM3M -2              
+, ImSALY =  ImSALY -2              
+, ImCM3Y =  ImCM3Y -2              
+WHERE imDEL='' AND ITEM='G030350'
+
+ZIC986, ZIC987(Co thong tin whs)
+Sales –Returns = Net Qty + Net Bonus
+
+SELECT ITEM, TTYPE,SUM(INDUNT) INDUNT                    
+FROM IND                                                 
+WHERE ITEM='B060050' AND WHS='WM1' AND INDCFD >=20140301 
+GROUP BY ITEM, TTYPE                                     -- so sanh voi bao cao, neu sai cap nhat tuong tu cho truong hop stock on hand nhu bao cao ICS816
+
+Doi voi bao cao ICS837, ICS838, ICS839, ICS840 doi voi bao cao nay sai o file IM, IW cho nhung O/Bal  
+Receipt
+W/Tfrs 
+Sales  
+Returns
+ZPL Adj
+Prn Adj
+On Hand  
+========================================================
+ICS816 Truong hop IL thieu Stock ma bang IL lai ko co dong data co LOCN do
+ A020170UL    
+ SELECT ITEM, WHS,LOCN,ISL#, SUM(ITQTY) ITQTY                  
+FROM IT                                                   
+WHERE ITEM='A020170UL' AND TTYPE NOT LIKE 'R%'            
+GROUP BY ITEM, WHS,LOCN,ISL#                                   
+ 
+ ITEM                  WHS  LOCN          ISL#                                                 ITQTY            
+A020170UL             WM1  RECEIPT       38119XP                                            245.000   
+        
+		LB
+select ITEM, LOCN, ISL#, WHS, LBSOA, LBSOH
+from LB	
+WHERE ITEM='A020170UL' 
+AND LOCN='RECEIPT' 
+AND ISL#='38119XP' 
+AND WHS='WM1'  
+
+		  
+ select ITEM, LOCN,       WHS, ilSOA, ilSOH           
+ from il                                              
+ WHERE ITEM='A020170UL'                               
+ AND LOCN='RECEIPT'                                   
+ AND WHS='WM1'                                        
+ Ko co dong nao
+ 
+ select ITEM, LOCN,       WHS, ilSOA, ilSOH              
+from il                                                 
+WHERE                                                   
+LOCN='' and ildel=''                                    
+and ilsoh=0                                             
+
+select ITEM, LOCN,       WHS, ilSOA, ilSOH          
+from il                                             
+WHERE                                               
+LOCN='' and ildel=''  and ITEM='P070010S01'   and ilsoh=0                          
+		  
+ITEM                  LOCN          WHS           ILSOA            ILSOH      
+P070010S01                          AM1            .000             .000      
+
+
+update IL set ITEM='A020170UL',LOCN='RECEIPT',WHS='WM1',ilSOH=245
+WHERE                                               
+LOCN='' and ildel=''  and ITEM='P070010S01'   
+1 rows updated in IL in ZPTLIBD.        
+
+ select ITEM, LOCN,       WHS, ilSOA, ilSOH                       
+ from il                                                          
+ WHERE ITEM='A020170UL'                                           
+ AND LOCN='RECEIPT'                                               
+ AND WHS='WM1'                                                    
+ 
+ ITEM                  LOCN          WHS           ILSOA            ILSOH                 
+ A020170UL             RECEIPT       WM1            .000          245.000                 
+===============================================================================
+ICS816 chuan ne
+Ta se update stock on hand 5 bang dua theo bang IT
+SELECT ITEM, WHS, SUM(ITQTY) ITQTY                    
+FROM IT                                          
+WHERE ITEM='G030810' AND TTYPE NOT LIKE 'R%' 
+GROUP BY ITEM, WHS
+  G030810               WP1                               21.000     
+G030810               WM1                                524,345.000   
+
+G030810               WH1                                 58,302.000 
+G030810               WS1                                  6,800.000        
+G030810               WS2                                    310.000     
+G030810               WS4                                  6,800.000-    
+      
+	select sum(LBSOH),sum(LBSOA),sum(LBSPK) from LB where ITEM='S170150'           
+	select sum(ILSOH),sum(ILSOA),sum(ILSPK) from IL where ITEM='S170150'   			  
+	select sum(ISLSOH),sum(ISLSOA),sum(ISLSPK) from ISL where ITEM='S170150'
+	select sum(IMSOH),sum(IMSOA),sum(IMSPK),sum (IMSSA) from IM where ITEM='S170150'  						
+	select sum(IWSOH),sum(IWSOA),sum(IWSPK),sum (IWSSA) from IW where ITEM='S170150' 
+
+		
+select item,WHS, sum(IWSOH)         
+FROM IW                             
+WHERE ITEM='G030810' and whs= 'WH1'          
+group by item,whs      
+ ITEM                  WHS                              SUM ( IWSOH )             
+ G030810               WH1                                 58,102.000             
+ 
+ update iw set                          
+ IWSOH  =  IWSOH  +100                  
+, IWCMSH =  IWCMSH +100                  
+, IWSAL  =  IWSAL  -100                  
+, IWCM3M =  IWCM3M -100                  
+, IWSALY =  IWSALY -100                  
+, IWCM3Y =  IWCM3Y -100                  
+WHERE iwDEL='' AND ITEM='G030810' AND  WHS='WH1'  
+
+  select item,sum(IMSOH)            
+FROM IM                                  
+WHERE ITEM='B050020'                     
+group by item  
+                          
+ ITEM                                              SUM ( IMSOH )            
+ B050020                                              77,623.000            
+ 
+ update im set                      
+ImSOH  =  ImSOH  +20              
+, ImCMSH =  ImCMSH +20              
+, ImSAL  =  ImSAL  -20              
+, ImCM3M =  ImCM3M -20              
+, ImSALY =  ImSALY -20              
+, ImCM3Y =  ImCM3Y -20              
+WHERE imDEL='' AND ITEM='B050020'
+
+Sau do update 3 bang con lai LB IL ISL giong nhu allocate binh thuong
+
+LB
+select ITEM, LOCN, ISL#, WHS, LBSOH
+from LB	
+WHERE ITEM='B060180' 
+AND LOCN='CHANGE' 
+AND ISL#='CM20306' 
+AND WHS='WM1'  
+
+UPDATE LB 
+SET  LBSOH= LBSOH+9                                    
+WHERE ITEM='B060180' 
+AND LOCN='CHANGE' 
+AND ISL#='CM20306' 
+AND WHS='WM1' 
+
+IL 
+select ITEM, LOCN,       WHS, ILSOH   
+from IL                               
+WHERE ITEM='B060180'                  
+AND LOCN='CHANGE'                     
+AND WHS='WM1'                         
+
+ update IL set ILSOH=ILSOH +9
+ WHERE ITEM='B060180'                  
+AND LOCN='CHANGE'                     
+AND WHS='WM1'  
+
+ISL
+ select ITEM,       ISL#,     islSOH           
+ from isl                                      
+ WHERE ITEM='B060180'                          
+ AND ISL#='CM20306'
+
+ update isl set islSOH=islSOH +9
+ WHERE ITEM='B060180'                          
+ AND ISL#='CM20306' 
+
+ -------------- Suspended chuan ne
+ D010080    
+   <-------------- Suspended --------------> 
+        IW           IL            LB      
+
+      320.000       160.000       160.000  
+ ------------  ------------  ------------  
+      320.000       160.000       160.000  
+Check 	  
+	  SELECT ITEM, SUM(IMSOS) IMSOS      
+FROM IM                          
+WHERE ITEM='D010080' 
+GROUP BY ITEM                    
+ ITEM                                                      IMSOS   
+ D010080                                               3,442.000   
+ 
+  select ITEM,WHS, SUM(IWSOS) IWSOS   	
+ from IW 
+ WHERE ITEM='D010080' 
+ GROUP BY ITEM,WHS
+  D010080               WH1                                    320.000          
+ D010080               WM1                                  3,122.000    
+ 
+SELECT ITEM,WHS, SUM(LBSOS) LBSOS       
+FROM LB                           
+WHERE ITEM='D010080' 
+GROUP BY ITEM,WHS
+ ITEM                                                      LBSOS       
+ D010080               WH1                                    160.000  
+ D010080               WM1                                  3,122.000      
+ 
+
+ Sua trong 2 bang IW va IM cho bang voi LB va IL 
+ 
+ select item,IWSOS 	
+ from IW 
+ WHERE ITEM='D010080' AND WHS='WH1'
+ 
+UPDATE IW SET    IWSOS=IWSOS -160                                   
+WHERE ITEM='D010080' AND WHS='WH1'
+1 rows updated in IW in ZPTLIBD.  
+ D010080               WH1                                    160.000      
+  
+select ITEM,IMSOS 
+from IM 
+WHERE ITEM='D010080'
+
+UPDATE IM SET    IMSOS=IMSOS-160 
+WHERE ITEM='D010080'
+ ITEM                                                      IMSOS   
+ D010080                                               3,282.000   
+ 
+
+================================================================================
+ICS816 chuan
+S130020 
+
+SELECT ITEM, WHS, SUM(ITQTY) ITQTY                    
+FROM IT                                          
+WHERE ITEM='S130020' AND TTYPE NOT LIKE 'R%'  
+GROUP BY ITEM, WHS
+
+ <---------- Stock On Hand --------------> 
+         IW           IL           LB      
+-------------------------------------------
+   195181.000    195231.000    195231.000  
+ ------------  ------------  ------------  
+   195181.000    195231.000    195231.000  
+ ============  ============  ============  
+   195181.000    195231.000    195231.000  
+   
+ ITEM                  WHS                                      ITQTY           
+          
+ S130020               NXH                                  7,200.000  
+ 
+ S130020               WM1                                195231.000  
+ 
+ S130020               WH1                                 43,492.000           
+ S130020               WS1                                 37,332.000-          
+S130020               WS2                                      3.000     
+S130020               WH4                                 30,800.000         
+S130020               WS5                                 54,119.000     
+
+select item,WHS, sum(IWSOH)         
+FROM IW                             
+WHERE ITEM='S130020' and whs= 'WM1'          
+group by item,whs      
+
+ITEM                  WHS                              SUM ( IWSOH )     
+S130020               WM1                                195,221.000     
+
+update iw set                          
+ IWSOH  =  IWSOH  +10                  
+, IWCMSH =  IWCMSH +10                  
+, IWSAL  =  IWSAL  -10                  
+, IWCM3M =  IWCM3M -10                  
+, IWSALY =  IWSALY -10                  
+, IWCM3Y =  IWCM3Y -10                  
+WHERE iwDEL='' AND ITEM='S130020' AND  WHS='WM1'                              
+
+
+
+select item,WHS, sum(ILSOH)         
+FROM IL                             
+WHERE ITEM='S130020' and whs= 'WM1'            
+group by item,whs   
+ITEM                  WHS                              SUM ( ILSOH )     
+S130020               WM1                                195,231.000     
+
+select item,WHS, sum(LBSOH)         
+FROM LB                             
+WHERE ITEM='S130020' and whs= 'WM1'               
+group by item,whs  
+ITEM                  WHS                              SUM ( LBSOH )         
+S130020               WM1                                195,231.000         
+
+=============================================================================			
+Truong hop hoa don trong IND chua insert vao IT:
+			
+Neu hoa don trong IND còn thiếu dòng sản phẩm nào đó chưa được  insert vao IT thi ta phai insert vao IT, IA roi chinh lai stock cho sản phẩm đó.
+Ví dụ dòng 
+
+TTYPE	INVNO	INDSEQ	ORDR			PSN		ITEM	WHS	INDVAL		INDUCT		INDUCT	INDCST
+	IV	70043703	1	29407997	54225951	S130020	WM1	7505714		142560		142560	7128000  Dòng này thiếu chưa add vào IT
+	IV	70043703	2	29407997	54225951	A121750	WM1	5514150		147336		147336	4420080
+	IV	70043703	3	29407997	54225952	M040140	WM1	10181000	87287		87287	8728700
+
+	ITVAL	= - INDCST	
+	ITCST   = INDUCT
+	
+Ta sẽ dựa vào 2 dòng còn lại bên dưới để insert vào IT và IA, đầu tiên ta copy data của dòng có sản phẩm đúng bên dưới vào file ldphuc/IT và ldphuc/IA rồi chỉnh update lại các field trong ldphuc/IT và ldphuc/IA cho đúng với sản phẩm bị thiếu, sau đó mới insert vào IT,IA từ bảng ldphuc/IT và ldphuc/IA, sau đó sẽ chỉnh lại stock on hand SOH cho các bảng đó:
+ 
+ IV	70043703	2	29407997	54225951	A121750	WM1	5514150		147336		147336	4420080
+
+ 
+
+		
+S130020 
+
+SELECT ITEM, WHS, SUM(ITQTY) ITQTY                    
+FROM IT                                          
+WHERE ITEM='S130020' AND TTYPE NOT LIKE 'R%'  
+GROUP BY ITEM, WHS
+
+ <---------- Stock On Hand --------------> 
+         IW           IL           LB      
+-------------------------------------------
+   195181.000    195231.000    195231.000  
+ ------------  ------------  ------------  
+   195181.000    195231.000    195231.000  
+ ============  ============  ============  
+   195181.000    195231.000    195231.000  
+   
+ ITEM                  WHS                                      ITQTY           
+          
+ S130020               NXH                                  7,200.000  
+ 
+ S130020               WM1                                195231.000  
+ 
+ S130020               WH1                                 43,492.000           
+ S130020               WS1                                 37,332.000-          
+S130020               WS2                                      3.000     
+S130020               WH4                                 30,800.000         
+S130020               WS5                                 54,119.000     
+
+select item,WHS, sum(IWSOH)         
+FROM IW                             
+WHERE ITEM='S130020' and whs= 'WM1'          
+group by item,whs      
+
+ITEM                  WHS                              SUM ( IWSOH )     
+S130020               WM1                                195,221.000     
+
+update iw set                          
+ IWSOH  =  IWSOH  +10                  
+, IWCMSH =  IWCMSH +10                  
+, IWSAL  =  IWSAL  -10                  
+, IWCM3M =  IWCM3M -10                  
+, IWSALY =  IWSALY -10                  
+, IWCM3Y =  IWCM3Y -10                  
+WHERE iwDEL='' AND ITEM='S130020' AND  WHS='WM1'                              
+
+
+
+select item,WHS, sum(ILSOH)         
+FROM IL                             
+WHERE ITEM='S130020' and whs= 'WM1'            
+group by item,whs   
+ITEM                  WHS                              SUM ( ILSOH )     
+S130020               WM1                                195,231.000     
+
+select item,WHS, sum(LBSOH)         
+FROM LB                             
+WHERE ITEM='S130020' and whs= 'WM1'               
+group by item,whs  
+ITEM                  WHS                              SUM ( LBSOH )         
+S130020               WM1                                195,231.000         
+-------------------
+ICS659
+
+SUM tu bang IT
+SELECT TTYPE,ITEM,SUM(INDUNT)               
+FROM IND                                    
+WHERE ITEM='S130020' AND INDCFD >=20140301  
+GROUP BY TTYPE,ITEM                         
+TTYPE  ITEM                                             SUM ( INDUNT )                                 
+ CR    S130020                                               4311.000-                                
+ IV    S130020                                              72707.000                                 
+ 
+ Copy tu ket qua man hinh bao cao ICS659
+ Sales	Returns	Net Qty	Net	Bonus
+ 	 	 	 	 
+72717	4311	68393	 	3
+
+ 
+ Sale chi co trong IW, IM. Stock on hand SOH se co trong IT (se luon dung khi hoa don trong IND da insert vao trong IT) va trong 5 bang LB IL ISL IW IM. Neu sai SOH thi dua theo file IT de sua, neu sai 
+ 
+ update iw set                                           
+  IWSOH  =  IWSOH  +10                                   
+ , IWCMSH =  IWCMSH +10                                  
+ , IWSAL  =  IWSAL  -10                                  
+ , IWCM3M =  IWCM3M -10                                  
+ , IWSALY =  IWSALY -10                                  
+ , IWCM3Y =  IWCM3Y -10                                  
+ WHERE iwDEL='' AND ITEM='S130020' AND  WHS='WM1'        
+ 1 rows updated in IW in ZPTLIBD.                        
+
+  update iM set                        
+  IMSOH  =  IMSOH  +10                
+ , IMCMSH =  IMCMSH +10               
+ , IMSAL  =  IMSAL  -10               
+ , IMCM3M =  IMCM3M -10               
+ , IMSALY =  IMSALY -10               
+ , IMCM3Y =  IMCM3Y -10               
+ WHERE iMDEL='' AND ITEM='S130020'    
+ 1 rows updated in IM in ZPTLIBD.     
+
+===================================================================================
+ ICS660C  sua giong nhu ICS832, kiem tra allocate va scheduler
+P040740    
+3	33915505	F01-12-04-04
+26	33900900	B14-06-2-1
+
+ ITEM                  LOCN          ISL#             WHS           LBSOA        
+ P040740               B14-06-2-1    33900900         WH1          26.000        
+ P040740               F01-12-04-04  33915505         WH1           3.000        
+ 
+ 		ISL
+		select ITEM, ISL#, ISLSOA
+		from ISL
+		WHERE ITEM='P040740' 
+		AND ISL#='33915505' 
+ P040740               33915505              1,285.000 
+		UPDATE ISL                                   
+		SET ISLSOA=ISLSOA-1282                        
+		WHERE ITEM='P040740' 
+		AND ISL#='33915505' 		                                                        
+
+	select sum(LBSOA) from LB where ITEM='P040740'
+	select sum(ILSOA) from IL where ITEM='P040740'
+	select sum(IWSOA) from IW where ITEM='P040740'
+	select sum(ISLSOA) from ISL where ITEM='P040740'
+	select sum(IMSOA) from IM where ITEM='P040740'
+================================================================================================================
+B070450		ZIC986 ZIC987: check neu so sale da dung het ma van sai thi moi rebuild
+Check so sale 
+    select ttype,item,whs,sum(indunt)                          
+from ind                                                       
+where item ='B070450' and indcfd >= 20140701 and inddel=''     
+group by ttype,item,whs                                                                                
+ 
+ TTYPE  ITEM                  WHS                             SUM ( INDUNT )     
+  CR    B070450               WS1                                    460.000-    
+  CR    B070450               WH6                                      6.000-    
+																	466-
+																	
+  IV    B070450               WS1                                  1,155.000     
+  IV    B070450               WH6                                    402.000     
+  IV    B070450               WM1                                      1.000 
+																	1558
+																	-1380=	178
+													
+select ttype,item,whs,sum(indunt)							                              
+from ind                                                       
+where item ='B070450' and indcfd >= 20140101 and inddel=''     
+group by ttype,item,whs      
+ TTYPE  ITEM                  WHS                             SUM ( INDUNT )   
+  CR    B070450               WS1                                    874.000-  
+  IV    B070450               WS1                                  6,134.000   
+  IV    B070450               WH6                                  1,557.000   
+  CR    B070450               WH1                                    386.000-  
+  IV    B070450               WM1                                      2.000   
+  CR    B070450               WH6                                      8.000-  
+  IV    B070450               WH1                                  4,193.000  
+
+TTYPE	ITEM	WHS	SUM	( INDUNT )	
+	IV	B070450	WS1	 	6134	
+	IV	B070450	WH6	 	1557	
+	IV	B070450	WM1	 	2	
+	IV	B070450	WH1	 	4193	
+						11886	181
+					
+					
+TTYPE	ITEM	WHS	SUM	( INDUNT )	
+	CR	B070450	WS1	 	-874	
+	CR	B070450	WH1	 	-386	
+	CR	B070450	WH6	 	-8	
+						-1268	
+  
+  
+  
+SELECT ITEM, WHS, SUM(ITQTY) ITQTY                    
+FROM IT                                          
+WHERE ITEM='B070450' AND TTYPE NOT LIKE 'R%' 
+GROUP BY ITEM, WHS
+
+ ITEM                  WHS                                      ITQTY   
+ B070450               WS1                                  1,488.000   
+															-232
+										
+															
+	select sum(LBSOH),sum(LBSOA),sum(LBSPK) from LB where ITEM='B070450'  and WHS='WS1'    
+      SUM ( LBSOH )        
+      1,720.000                  	
+	select sum(ILSOH),sum(ILSOA),sum(ILSPK) from IL where ITEM='B070450'	and WHS='WS1'    	
+   SUM ( ILSOH )  
+      1,720.000              	 
+	select sum(IWSOH),sum(IWSOA),sum(IWSPK),sum (IWSSA) from IW where ITEM='B070450'	and WHS='WS1' 
+       SUM ( IWSOH )  
+      1,720.000  
+	  
+
+	select sum(LBSOH),sum(LBSOA),sum(LBSPK) from LB where ITEM='B070450'       
+  SUM ( LBSOH )      
+      2,271.000          
+	select sum(ILSOH),sum(ILSOA),sum(ILSPK) from IL where ITEM='B070450'   			  
+	select sum(ISLSOH),sum(ISLSOA),sum(ISLSPK) from ISL where ITEM='B070450'
+	select sum(IMSOH),sum(IMSOA),sum(IMSPK),sum (IMSSA) from IM where ITEM='B070450'  						
+	select sum(IWSOH),sum(IWSOA),sum(IWSPK),sum (IWSSA) from IW where ITEM='B070450'    
+ -------
+ Anh thay co su khac biet stock o 2 cho nay, bang dung lech cua sales (178), em fix trong ngay hom nay luon di nha:
+ITEM                  WHS  LOCN          ISL#                      LBSOH                               SUM ( ITQTY )
+B070450               WS1  REINVOICE     140748084               124.000                                        .000
+B070450               WS1  REINVOICE     141158082                54.000                                        .000
+	
+select item,WHS, sum(IWSOH)         
+FROM IW                             
+WHERE ITEM='B070450' and whs= 'WS1'          
+group by item,whs      
+  ITEM                  WHS                              SUM ( IWSOH )         
+ B070450               WS1                                  1,720.000         
+ 
+ update iw set                          
+ IWSOH  =  IWSOH          -178          
+, IWCMSH =  IWCMSH         -178           
+, IWSAL  =  IWSAL         +178           
+, IWCM3M =  IWCM3M         +178           
+, IWSALY =  IWSALY         +178           
+, IWCM3Y =  IWCM3Y         +178           
+WHERE iwDEL='' AND ITEM='B070450' AND  WHS='WS1'   
+ ITEM                  WHS                              SUM ( IWSOH )       
+ B070450               WS1                                  1,542.000       
+
+ 
+   select item,sum(IMSOH)            
+FROM IM                                  
+WHERE ITEM='B070450'                     
+group by item  
+    ITEM                                              SUM ( IMSOH )    
+ B070450                                               2,271.000    
+ 
+ update im set                      
+ImSOH  =  ImSOH      	-178          
+, ImCMSH =  ImCMSH       -178        
+, ImSAL  =  ImSAL     	 +178        
+, ImCM3M =  ImCM3M        +178        
+, ImSALY =  ImSALY        +178        
+, ImCM3Y =  ImCM3Y       +178        
+WHERE imDEL='' AND ITEM='B070450'
+ ITEM                                              SUM ( IMSOH )     
+ B070450                                               2,093.000     
+
+ LB
+select ITEM, LOCN, ISL#, WHS, LBSOH
+from LB	
+WHERE ITEM='B070450' 
+AND LOCN='REINVOICE' 
+AND ISL#='141158082' 
+AND WHS='WS1'  
+ ITEM                  LOCN          ISL#             WHS           LBSOH  
+ B070450               REINVOICE     140748084        WS1         124.000  
+  ITEM                  LOCN          ISL#             WHS           LBSOH    
+ B070450               REINVOICE     141158082        WS1          54.000    
+ 
+UPDATE LB 
+SET  LBSOH= LBSOH -54                                   
+WHERE ITEM='B070450' 
+AND LOCN='REINVOICE' 
+AND ISL#='141158082' 
+AND WHS='WS1'  
+ ITEM                  LOCN          ISL#             WHS           LBSOH  
+ B070450               REINVOICE     140748084        WS1            .000  
+  ITEM                  LOCN          ISL#             WHS           LBSOH    
+ B070450               REINVOICE     141158082        WS1            .000    
+ 
+ IL 
+select ITEM, LOCN,       WHS, ILSOH   
+from IL                               
+WHERE ITEM='B070450'                  
+AND LOCN='REINVOICE'                     
+AND WHS='WS1'                         
+ ITEM                  LOCN          WHS           ILSOH  
+ B070450               REINVOICE     WS1         178.000  
+ 
+ update IL set ILSOH=ILSOH -178
+WHERE ITEM='B070450'                  
+AND LOCN='REINVOICE'                     
+AND WHS='WS1'  
+ ITEM                  LOCN          WHS           ILSOH   
+ B070450               REINVOICE     WS1            .000   
+ 
+ISL
+ select ITEM,       ISL#,     islSOH           
+ from isl                                      
+ WHERE ITEM='B070450'                          
+ AND ISL#='141158082'
+ ITEM                  ISL#                     ISLSOH    
+ B070450               140748084               572.000    
+ ITEM                  ISL#                     ISLSOH     
+ B070450               141158082             1,699.000        
+ 
+ update isl set islSOH=islSOH -54
+ WHERE ITEM='B070450'                          
+ AND ISL#='141158082'
+ ITEM                  ISL#                     ISLSOH    
+ B070450               140748084               448.000    
+  ITEM                  ISL#                     ISLSOH   
+ B070450               141158082             1,645.000   
+ 
+ ==========================================================================
+ ==============================================================================
+Fix khi ICS816,ICS659 dung; chi rieng ZIC986 sai
+SELECT ITEM,SUM(CASE WHEN TTYPE='IV' THEN INDUNT END) IV,           
+SUM(CASE WHEN TTYPE='CR' THEN INDUNT END) CR                        
+FROM IND                                                            
+WHERE TTYPE IN ('IV','CR') AND INDCFD BETWEEN 20141001 AND 20141031
+AND ITEM IN ('P040560' , 
+'S130020'  ,
+'S130051'  )                                   
+GROUP BY ITEM ORDER BY ITEM        
+
+
+		Sales	Returns	Net qty	
+P040560	94652	 	
+S130020	88234	 	
+S130051	52924	 
+				
+				
+File IND				
+ITEM	IV	 	Phai cong vao sale
+P040560	101052		6400	 
+S130020	95434		7200	 
+S130051	56224		3300	 
+ 
+----------------------------- 
+SELECT ITEM, WHS, SUM(ITQTY) ITQTY                    
+FROM IT                                          
+WHERE ITEM='P040560' AND TTYPE NOT LIKE 'R%' 
+GROUP BY ITEM, WHS
+ITEM                  WHS                                      ITQTY  
+P040560               TXP                                       .000  
+P040560               WM1                                151,811.000  
+P040560               WH1                                       .000  
+P040560               WS1                                  2,990.000  
+P040560               WC2                                       .000  
+P040560               WH2                                       .000  
+P040560               WS2                                       .000  
+P040560               WH4                                 44,800.000  
+P040560               WS4                                  3,000.000- 
+P040560               WS5                                       .000  
+P040560               WH6                                 36,817.000  
+
+ ITEM                                                      ITQTY  
+ P040560                                             233,418.000  
+ 
+ SELECT ITEM,whs,locn,isl#,  SUM(ITQTY) ITQTY       
+FROM IT                                            
+WHERE ITEM='P040560' AND TTYPE NOT LIKE 'R%'       
+GROUP BY  ITEM,whs,locn,isl#                       
+File TEMP in ldphuc was replaced.                   
+
+
+ ITEM   WHS    LOCN   ISL#                 LBKEY   I  LB   
+
+select a.*,b.item,b.whs,b.locn,b.isl#,b.lbsoh,(a.ITQTY-b.lbsoh)  
+"(a.ITQTY-b.lbsoh)"                                                 
+ from ldphuc/temp a, lb b                                            
+ where  a.item=b.item and a.whs=b.whs                               
+ and a.locn=b.locn and a.isl#=b.isl#  
+  File TEMP2 in ldphuc was replaced.    
+
+
+Sau do fillter ra xem nhung dong nao co so luong khac giua IT va LB, ta tim duoc dong nay
+ 
+ITEM01	WHS01	LOCN01		ISL#01	LBSOH	
+P040560	WM1		REDRESSED	X584B	0		-6400
+select item,WHS, sum(IWSOH)         
+FROM IW                             
+WHERE ITEM='P040560' and whs= 'WM1'          
+group by item,whs 
+ ITEM                  WHS                              SUM ( IWSOH )      
+ P040560               WM1                                158,211.000      
+ 
+ update iw set                          
+ IWSOH  =  IWSOH       - 6400          
+, IWCMSH =  IWCMSH      - 6400           
+, IWSAL  =  IWSAL        + 6400          
+, IWCM3M =  IWCM3M        + 6400         
+, IWSALY =  IWSALY        + 6400        
+, IWCM3Y =  IWCM3Y         + 6400       
+WHERE iwDEL='' AND ITEM='P040560' AND  WHS='WM1'  	
+	 ITEM                  WHS                              SUM ( IWSOH )    
+ P040560               WM1                                151,811.000    
+	
+ update im set                      
+ImSOH  =  ImSOH  - 6400              
+, ImCMSH =  ImCMSH - 6400              
+, ImSAL  =  ImSAL   + 6400                
+, ImCM3M =  ImCM3M  + 6400                
+, ImSALY =  ImSALY  + 6400                
+, ImCM3Y =  ImCM3Y  + 6400                 
+WHERE imDEL='' AND ITEM='P040560'	
+
+ITEM01	WHS01	LOCN01		ISL#01	LBSOH	
+P040560	WM1		REDRESSED	X584B	0		-6400
+LB
+select ITEM, LOCN, ISL#, WHS, LBSOH
+from LB	
+WHERE ITEM='P040560' 
+AND LOCN='REDRESSED' 
+AND ISL#='X584B' 
+AND WHS='WM1'  
+
+UPDATE LB 
+SET  LBSOH= LBSOH -6400                                    
+WHERE ITEM='P040560' 
+AND LOCN='REDRESSED' 
+AND ISL#='X584B' 
+AND WHS='WM1' 	
+ ITEM                  LOCN          ISL#             WHS           LBSOH  
+ P040560               REDRESSED     X584B            WM1       6,400.000- 	
+	
+	
+UPDATE il                              
+SET  ilSOH= ilSOH -6400                
+WHERE ITEM='P040560'                   
+AND LOCN='REDRESSED'                   
+AND WHS='WM1'                          
+1 rows updated in IL in ZPTLIBD.       
+	
+UPDATE isl                          
+SET islSOH=islSOH -6400             
+WHERE ITEM='P040560'                
+AND ISL#='X584B'                    
+1 rows updated in ISL in ZPTLIBD.  
+
+
+
+
+
+

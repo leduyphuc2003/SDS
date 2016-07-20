@@ -1,3 +1,9 @@
+15 phut goi ham 1 lan: get gio phut hien tai timeNow, va lay (timeNow-15) truyen vao ham select de 
+select * from where psh where  ttype = 'PS' and whs='WM1' and PSHCTD = currentDate and 
+PSHCTT  between (timeNow-15) and timeNow
+
+select ORDR, PSN, CTMCDE,PSHCTN,PSHSTS from psh where ttype = 'PS' and whs='WM1' and PSHDEL = ''  and PSHCTD = {0}
+
 SELECT *
   FROM [CallCard].[dbo].[UserCallPLan]
   where UserName LIKE '%O09%'

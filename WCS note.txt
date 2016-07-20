@@ -33,6 +33,8 @@
 	installutil WCS2.exe
 	installutil /u WCS2.exe
 	
+	
+
 /****** Script for SelectTopNRows command from SSMS  ******/
 SELECT  *
   FROM [ttt].[dbo].[temp]
