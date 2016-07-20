@@ -1,0 +1,109 @@
+﻿@model ItemMaster.Web.Models.ZppStock
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 style="color: #117577">Create Product</h2>
+
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @*<h4>ZppStock</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Change Image", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" class="form-control" name="image" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ZpItemCode, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="control-label col-md-2"><strong> Item Code</strong></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ZpItemCode, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.ZpItemCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ItemDescription, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="control-label col-md-2"><strong>Item Description</strong></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ItemDescription, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.ItemDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"><strong>Principle</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PRNCode, new {htmlAttributes = new {@class = "form-control", required = "required", name= "PRNCode" } })
+                @Html.ValidationMessageFor(model => model.PRNCode, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ItemStorageCode, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="control-label col-md-2"><strong>Item Storage Code</strong></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ItemStorageCode, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.ItemStorageCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Template, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="control-label col-md-2"><strong>Temptale</strong></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Template, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Template, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ControlledTemperture, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="control-label col-md-2"><strong>Controlled Temperature</strong></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ControlledTemperture, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.ControlledTemperture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.DeliveryMode, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="control-label col-md-2"><strong>Delivery Mode</strong></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeliveryMode, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.DeliveryMode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.StorageCondition, htmlAttributes: new {@class = "control-label col-md-2"})*@
+            <div class="control-label col-md-2"><strong>Storage Condition</strong></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StorageCondition, new {htmlAttributes = new {@class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.StorageCondition, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.ChangeReason, new { Value = "any thing" })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default"/>
+                @Html.ActionLink("Cancel", "Index", "Home", new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

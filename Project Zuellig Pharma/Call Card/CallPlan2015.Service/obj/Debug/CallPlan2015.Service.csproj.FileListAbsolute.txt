@@ -1,0 +1,84 @@
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\obj\Debug\ResolveAssemblyReference.cache
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+D:\PH\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+D:\PH\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+D:\PH\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+D:\PH\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+D:\PH\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+D:\PH\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+D:\PH\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+D:\PH\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+D:\PH\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.xml
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.xml
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.xml
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.dll
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.xml
+D:\Desktop\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+D:\Desktop\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+D:\Desktop\CallPlan2015\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\CallPlan2015.Service.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\CallPlan2015.Common.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\CallPlan2015.DataModel.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Debug\IBM.Data.DB2.iSeries.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Service\obj\Debug\CallPlan2015.Service.pdb

@@ -1,0 +1,206 @@
+﻿@using Newtonsoft.Json
+@model ItemMaster.Web.Models.ZppStock
+
+@{
+    ViewBag.Title = "Edit Product";
+}
+
+<h2 style="color: #117577">Edit Item </h2>
+
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.Label("Change Image", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <input type="file" class="form-control" name="image" />
+                    </div>
+                </div>
+                <img class="thumbnail img-responsive" src="@Url.Content(Model.Images[0]?.Url ?? string.Empty)" alt="no image" />
+            </div>
+
+            <div class="col-md-6">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Item Code </strong></div>
+                    @*@Html.LabelFor(model => model.ZpItemCode, htmlAttributes: new {@class = "control-label col-md-3"})*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ZpItemCode, new {htmlAttributes = new {@class = "form-control", @disabled = "disabled"}})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.ItemDescription, htmlAttributes: new { @class = "control-label col-md-3" })*@
+                    <div class="control-label col-md-4"><strong> Item Description</strong></div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ItemDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ItemDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Item Storage Code</strong></div>
+                    @*@Html.LabelFor(model => model.ItemStorageCode, htmlAttributes: new {@class = "control-label col-md-3"})*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ItemStorageCode, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.ItemStorageCode, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Temptale </strong></div>
+                    @*@Html.LabelFor(model => model.Template, htmlAttributes: new {@class = "control-label col-md-3"})*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Template, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Template, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Controlled Temperature </strong></div>
+                    @*@Html.LabelFor(model => model.ControlledTemperture, htmlAttributes: new { @class = "control-label col-md-3" })*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ControlledTemperture, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.ControlledTemperture, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Delivery Mode </strong></div>
+                    @*@Html.LabelFor(model => model.DeliveryMode, htmlAttributes: new { @class = "control-label col-md-3" })*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DeliveryMode, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.DeliveryMode, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Storage Condition </strong>
+                    </div>
+                    @*@Html.LabelFor(model => model.StorageCondition, htmlAttributes: new {@class = "control-label col-md-3"})*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.StorageCondition, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.StorageCondition, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Principal </strong></div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PRNCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PRNCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    <div class="control-label col-md-4"><strong> Active </strong>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="checkbox" style="margin-left: 20px">
+                            @Html.CheckBoxFor(model => model.Active, new {name = "Active"})
+                        </div>
+                    </div>
+                </div>*@
+
+                @*<div class="form-group">
+                    <div class="control-label col-md-4"><strong> Active </strong>
+                    </div>
+                    <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.StrActive, new SelectList(
+                              new List<Object>{
+                                   new { value = "ACT" , text = "ACT"  },
+                                   new { value = "DIS" , text = "DIS" },
+                                },
+                              "value",
+                              "text",
+                               2) , new {name = "StrActive" })
+                    </div>
+                </div>*@
+
+
+                <div class="form-group"> 
+                    <div class="control-label col-md-4"><strong> Attach file </strong>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="file" class="form-control" name="attachFile"/>
+                    </div>
+                </div>
+
+                
+
+                @*<div class="form-group">
+                    <div class="control-label col-md-4"><strong> Reason Code </strong>
+                    </div>
+                    <div class="col-md-8">
+                        <select id="CategoryId" multiple="multiple" name="ReasonCode" size="8">
+                            <option value="1">Update of Item Description</option>
+                            <option value="2">Update of Item Storage</option>
+                            <option value="3">Update of Temptale</option>
+                            <option value="4">Update of Controlled Temperature</option>
+                            <option value="5">Update of Delivery Mode</option>
+                            <option value="6">Update of Storage Condition</option>
+                            <option value="7">Update of Picture</option>
+                            <option value="8">Update Attached file</option>
+                        </select>
+                    </div>
+                </div>*@
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong> Reason Code </strong>
+                    </div>
+                        @{
+                            var items = new List<SelectListItem>
+                            {
+                                new SelectListItem {Value = "RC01", Text = "Update of Item Description"},
+                                new SelectListItem {Value = "RC02", Text = "Update of Item Storage"},
+                                new SelectListItem {Value = "RC03", Text = "Update of Temptale"},
+                                new SelectListItem {Value = "RC04", Text = "Update of Controlled Temperature"},
+                                new SelectListItem {Value = "RC05", Text = "Update of Delivery Mode"},
+                                new SelectListItem {Value = "RC06", Text = "Update of Storage Condition"},
+                                new SelectListItem {Value = "RC07", Text = "Update of Picture"},
+                                new SelectListItem {Value = "RC08", Text = "Update Attached file"}
+                                //new SelectListItem {Value = "RC09", Text = "Update Status Active"}
+                            };
+                        }
+                    <div class="col-md-8" Styles = "margin-left: -15px;">
+                        @Html.ListBox("myListbox", items, new
+                           {    required = "required",
+                               size = "8",
+                           })
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-4"><strong>  Update Reason </strong></div>
+                    @*@Html.LabelFor(model => model.ChangeReason, new {@class = "control-label col-md-3"})*@
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(model => model.ChangeReason, new { @class = "form-control", @rows = 3, required = "required" })
+                        @Html.ValidationMessageFor(model => model.ChangeReason, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-6">
+                        <input type="submit" value="OK" class="btn btn-default"/>
+
+                        @Html.ActionLink("Cancel", "Index", "Home", new { @class = "btn btn-default" })
+
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+  

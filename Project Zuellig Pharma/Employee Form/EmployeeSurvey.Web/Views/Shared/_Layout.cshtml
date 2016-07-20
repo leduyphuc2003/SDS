@@ -1,0 +1,82 @@
+﻿@using EmployeeSurvey.Web.Models
+@using Microsoft.AspNet.Identity
+@{
+    var db = new ApplicationDbContext();
+    var id = User.Identity.GetUserId();
+    var user = db.Users.FirstOrDefault(x => x.Id == id);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Employee Declaration Form</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #F1F1F1; border-color: #F1F1F1;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Employee Declaration Form", "Index", "Survey", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    @*@if (User.Identity.GetUserName() == "Admin")
+                    {
+                        <li>@Html.ActionLink("User Management", "Index", "UserManagement")</li>
+                        <li>@Html.ActionLink("Import Users", "ImportUsers", "UserManagement")</li>
+                        <li>@Html.ActionLink("Export Users", "ExportUsers", "UserManagement")</li>
+                    }*@
+
+                    @{
+                        //if ((user != null) && (user.Level.Equals("99")))
+                        if (user?.Level == "99")
+                        {
+                             <li>@Html.ActionLink("User Management", "Index", "UserManagement")</li>
+                             <li>@Html.ActionLink("Import Users", "ImportUsers", "UserManagement")</li>
+                             <li>@Html.ActionLink("Export Users", "ExportUsers", "UserManagement")</li>
+                             <li>@Html.ActionLink("About", "About", "Home")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                        }
+                    }
+
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Zuellig Pharma Vietnam Ltd</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            toastr.options.closeButton = true;
+        });
+
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+    </script>
+</body>
+</html>

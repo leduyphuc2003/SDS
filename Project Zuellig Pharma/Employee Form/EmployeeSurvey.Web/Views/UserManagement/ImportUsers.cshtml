@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Import Users";
+}
+
+<h2>Import Users</h2>
+<br/>
+@if (ViewBag.Error != null)
+{
+    <span class="text-danger">
+        @ViewBag.Error
+    </span>
+}
+
+@using (Html.BeginForm("ImportUsers", "UserManagement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-10">
+            <input type="file" class="form-control" name="UploadedFile"/>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-10">
+            <input type="submit" class="btn btn-success" value="Import"/>
+        </div>
+    </div>
+}

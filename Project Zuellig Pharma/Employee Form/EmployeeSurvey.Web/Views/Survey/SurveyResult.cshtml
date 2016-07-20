@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "SurveyResult";
+}
+<div class="row">
+    <br/>
+    <div class="col-md-4">
+        <div class="alert alert-success" role="alert">
+            <h4 style="color: #094658">Thank you, 
+            @($"{User.Identity.GetUserName()}"), for submitting your Employee Declaration Form - @(DateTime.Now.ToString("F"))</h4>
+
+            <h4 style="color: #094658"><i>Cám ơn 
+            @($"{User.Identity.GetUserName()}") đã hoàn thành bản khai báo thông tin - @(DateTime.Now.ToString("F"))</i></h4>
+        </div>   
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Import";
+}
+
+<h2 style="color: #117577">Import Item</h2>
+<br />
+@if (ViewBag.Error != null)
+{
+    <span class="text-danger">
+        @ViewBag.Error
+    </span>
+}
+
+@using (Html.BeginForm("Import", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-10">
+            <input type="file" class="form-control" name="file" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-10">
+            <input type="submit" class="btn btn-success" value="Import"/>
+            @Html.ActionLink("Cancel", "Index", "Home", new { @class = "btn btn-success" })
+        </div>
+    </div>
+}
+

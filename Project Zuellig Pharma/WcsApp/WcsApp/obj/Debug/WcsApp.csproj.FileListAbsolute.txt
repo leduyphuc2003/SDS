@@ -1,0 +1,10 @@
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\bin\Debug\WcsApp.exe.config
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\bin\Debug\WcsApp.exe
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\bin\Debug\WcsApp.pdb
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\bin\Debug\IBM.Data.DB2.iSeries.dll
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\obj\Debug\WcsApp.csprojResolveAssemblyReference.cache
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\obj\Debug\WcsApp.Form1.resources
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\obj\Debug\WcsApp.Properties.Resources.resources
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\obj\Debug\WcsApp.csproj.GenerateResource.Cache
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\obj\Debug\WcsApp.exe
+C:\Users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\obj\Debug\WcsApp.pdb

@@ -1,0 +1,926 @@
+﻿@using EmployeeSurvey.Web.Models
+@model EmployeeSurvey.Web.Models.SurveyViewModel
+@{
+    ViewBag.Title = "Survey";
+}
+
+
+<div style="height: 100px">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12" align="center">
+        <img src="~/Images/logo.jpg" alt="logo" />
+        <br /><br />
+        <h3><strong>Employee Declare Form</strong></h3>
+        <h3 class="text-primary"><strong><em>Tờ khai về thân nhân của nhân viên</em></strong></h3>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        Name of Employee: @Model.FullName <br />
+        <p class="text-primary"><em>Họ & Tên Nhân Viên </em></p>
+    </div>
+    <div class="col-md-4">
+        Employee Code: @Model.EmployeeCode <br />
+        <p class="text-primary"><em>Mã số Nhân Viên </em></p>
+    </div>
+    <div class="col-md-4">
+        Position: @Model.Position <br />
+        <p class="text-primary"><em> Chức vụ</em></p>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        Department: @Model.Department <br />
+        <p class="text-primary"><em> Bộ phận</em></p>
+    </div>
+    <div class="col-md-4">
+        Institution: @Model.Institution <br />
+        <p class="text-primary"><em> Hãng</em></p>
+    </div>
+    <div class="col-md-4">
+        Date joined: @Model.DateJoined.ToString("dd/MM/yyyy") <br />
+        <p class="text-primary"><em> Ngày gia nhập</em></p>
+    </div>
+</div>
+<br/>
+
+<div class="row">
+    <div class="col-md-4">
+        Country: @Model.Country <br />
+        <p class="text-primary"><em> Quốc gia</em></p>
+    </div>
+    <div class="col-md-4">
+ 
+    </div>
+    <div class="col-md-4">
+ 
+    </div>
+</div>
+<br/>
+
+<div class="row">
+    <div class="col-md-12">
+        <strong>Anti-Corruption</strong> / <strong class="text-primary"><em> Chống Tham Nhũng</em></strong>
+    </div>
+</div><br />
+<div class="row">
+    <div class="col-md-12">
+        For purposes of this Declaration Form: / <span class="text-primary"><em>Định nghĩa một số từ dùng trong biểu mẫu này: </em></span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <strong><u><a data-toggle="tooltip" title="a)	Any elected official, officer or employee of a government or any department or agency (including the military whether voluntarily or through mandatory military service), including any officer, employee or member of a ruling family;
+
+b)	Any officer or employee of a public international organisation (for e.g. United Nations, International Monetary Fund, World Bank etc.);
+
+c)	Any political party or candidate of a political party or office;
+
+d)	Any officer or employee of a state-owned or state-controlled entity;
+
+e)	Any person acting in an official capacity for or on behalf of any such entity or persons above." style="width: max-content; color: black;">"Government Official"</a></u></strong> refers to: / <span class="text-primary"><strong><em><u><a data-toggle="tooltip" title="a)	Viên chức do dân bầu, cán bộ hoặc nhân viên của bất kỳ cơ quan, sở ban ngành của chính phủ (bao gồm cả quân đội dù tự nguyện hay nghĩa vụ quân sự bắt buộc), bao gồm viên chức, nhân viên hoặc thành viên của một gia đình cầm quyền;
+
+b)	Cán bộ hoặc nhân viên của một tổ chức quốc tế công (Ví dụ: Liên Hiệp Quốc, Quỹ Tiền tệ Quốc Tế, Ngân Hàng Thế Giới vv)
+
+c)	Đảng viên hoặc đối tượng đảng của một đảng phái chính trị.
+
+d)	Cán bộ hoặc nhân viên của một tổ chức do chính quyền sở hữu hay quản lý.
+
+e)	Bất kỳ cá nhân nào có tư cách chính thức để hành xử  hoặc thay mặt cho bất kỳ tổ chức hay cá nhân nào nêu ở trên.
+" style="width: max-content; color: #117577;">Cán bộ, Nhân viên Chính quyền</a></u></em></strong> là:</span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        a) Any elected official, officer or employee of a government or any department or agency (including the military whether voluntarily or through mandatory military service), including any officer, employee or member of a ruling family;
+        <br/><span class="text-primary"><em> Viên chức do dân bầu, cán bộ hoặc nhân viên của bất kỳ cơ quan, sở ban ngành của chính phủ (bao gồm cả quân đội dù tự nguyện hay nghĩa vụ quân sự bắt buộc), bao gồm viên chức, nhân viên hoặc thành viên của một gia đình cầm quyền;</em> </span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        b) Any officer or employee of a public international organisation (for e.g. United Nations, International Monetary Fund, World Bank etc.);
+        <br/><span class="text-primary"><em>Cán bộ hoặc nhân viên của một tổ chức quốc tế công (Ví dụ: Liên Hiệp Quốc, Quỹ Tiền tệ Quốc Tế, Ngân Hàng Thế Giới vv)</em> </span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        c) Any political party or candidate of a political party or office;<br/><span class="text-primary"><em>Đảng viên hoặc đối tượng đảng của một đảng phái chính trị.</em> </span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        d) Any officer or employee of a state-owned or state-controlled entity;
+        <br/><span class="text-primary"><em>Cán bộ hoặc nhân viên của một tổ chức do chính quyền sở hữu hay quản lý.</em> </span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        e)	Any person acting in an official capacity for or on behalf of any such entity or persons above.
+        <br/><span class="text-primary"><em>Bất kỳ cá nhân nào có tư cách chính thức để hành xử  hoặc thay mặt cho bất kỳ tổ chức hay cá nhân nào nêu ở trên.</em> </span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        <strong><a data-toggle="tooltip" title="Spouse, partner, child, siblings, parents, parents-in-laws" style="width: max-content; color: black;">"Family Member"</a></strong> refers to: spouse, partner, child, siblings, parents, parents-in-laws
+        <br/><span class="text-primary"><em><strong> <a data-toggle="tooltip" title="Vợ chồng, con cái, anh chị em ruột, bố mẹ ruột, bố mẹ vợ, bố mẹ chồng." style="width: max-content; color: #117577;">"Thành viên Gia đình"</a></strong> là: Vợ chồng, con cái, anh chị em ruột, bố mẹ ruột, bố mẹ vợ, bố mẹ chồng.</em> </span>
+    </div>
+</div>
+<br />
+
+@using (Html.BeginForm("Save", "Survey", FormMethod.Post, new {@id = "surveyForm"}))
+{
+    <hr class="col-md-8" />
+    <div class="row">
+        <div class="col-md-8">
+            1) Are you currently a <u><a data-toggle="tooltip" title="a)	Any elected official, officer or employee of a government or any department or agency (including the military whether voluntarily or through mandatory military service), including any officer, employee or member of a ruling family;
+
+b)	Any officer or employee of a public international organisation (for e.g. United Nations, International Monetary Fund, World Bank etc.);
+
+c)	Any political party or candidate of a political party or office;
+
+d)	Any officer or employee of a state-owned or state-controlled entity;
+
+e)	Any person acting in an official capacity for or on behalf of any such entity or persons above." style="width: max-content; color: black;">Government Official</a></u> ?<br />
+        <span class="text-primary">
+            <em>
+                Hiện nay bạn có phải là <u>
+                    <a data-toggle="tooltip" title="a)	Viên chức do dân bầu, cán bộ hoặc nhân viên của bất kỳ cơ quan, sở ban ngành của chính phủ (bao gồm cả quân đội dù tự nguyện hay nghĩa vụ quân sự bắt buộc), bao gồm viên chức, nhân viên hoặc thành viên của một gia đình cầm quyền;
+
+b)	Cán bộ hoặc nhân viên của một tổ chức quốc tế công (Ví dụ: Liên Hiệp Quốc, Quỹ Tiền tệ Quốc Tế, Ngân Hàng Thế Giới vv)
+
+c)	Đảng viên hoặc đối tượng đảng của một đảng phái chính trị.
+
+d)	Cán bộ hoặc nhân viên của một tổ chức do chính quyền sở hữu hay quản lý.
+
+e)	Bất kỳ cá nhân nào có tư cách chính thức để hành xử  hoặc thay mặt cho bất kỳ tổ chức hay cá nhân nào nêu ở trên.
+" style="width: max-content; color: #117577;">Cán bộ, Nhân viên Chính quyền</a>
+                </u> không?
+            </em>
+        </span>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                @Html.RadioButtonFor(m => m.SurveyAnswers[0].YesNoOption, YesNoAnswer.Yes, new {id = "yesCheck1", onclick = "javascript:yesnoCheck()" }) Yes / <span class="text-primary"><em> Có</em> </span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                @Html.RadioButtonFor(m => m.SurveyAnswers[0].YesNoOption, YesNoAnswer.No, new {id = "noCheck1", onclick = "javascript:yesnoCheck()" }) No / <span class="text-primary"><em> Không</em> </span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+    If Yes, please provide the position, government organisation and duration (i.e. start and end date) which you have been in this position / <span class="text-primary"><em>Nếu Có, xin nêu rõ chức vụ, cơ quan và thời gian đảm nhận chức vụ này.</em> </span>
+        </div>
+        <div class="col-md-8" id="ifYes1">
+            @Html.TextAreaFor(m => m.SurveyAnswers[0].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+
+
+    <div class="row">
+        <div class="col-md-8">
+            2)	Are any of your <a data-toggle="tooltip" title="Spouse, partner, child, siblings, parents, parents-in-laws" style="width: max-content; color: black;">Family Members</a> currently a <u>
+    <a data-toggle="tooltip" title="a)	Any elected official, officer or employee of a government or any department or agency (including the military whether voluntarily or through mandatory military service), including any officer, employee or member of a ruling family;
+
+b)	Any officer or employee of a public international organisation (for e.g. United Nations, International Monetary Fund, World Bank etc.);
+
+c)	Any political party or candidate of a political party or office;
+
+d)	Any officer or employee of a state-owned or state-controlled entity;
+
+e)	Any person acting in an official capacity for or on behalf of any such entity or persons above." style="width: max-content; color: black;">Government Official</a></u>
+    ?<br />
+    <span class="text-primary">
+        <em>
+            <a data-toggle="tooltip" title="Vợ chồng, con cái, anh chị em ruột, bố mẹ ruột, bố mẹ vợ, bố mẹ chồng." style="width: max-content; color: #117577;">Thành viên Gia đình</a> của bạn có ai là <u>
+                <a data-toggle="tooltip" title="a)	Viên chức do dân bầu, cán bộ hoặc nhân viên của bất kỳ cơ quan, sở ban ngành của chính phủ (bao gồm cả quân đội dù tự nguyện hay nghĩa vụ quân sự bắt buộc), bao gồm viên chức, nhân viên hoặc thành viên của một gia đình cầm quyền;
+
+b)	Cán bộ hoặc nhân viên của một tổ chức quốc tế công (Ví dụ: Liên Hiệp Quốc, Quỹ Tiền tệ Quốc Tế, Ngân Hàng Thế Giới vv)
+
+c)	Đảng viên hoặc đối tượng đảng của một đảng phái chính trị.
+
+d)	Cán bộ hoặc nhân viên của một tổ chức do chính quyền sở hữu hay quản lý.
+
+e)	Bất kỳ cá nhân nào có tư cách chính thức để hành xử  hoặc thay mặt cho bất kỳ tổ chức hay cá nhân nào nêu ở trên.
+" style="width: max-content; color: #117577;">Cán bộ, Nhân viên Chính quyền</a>
+            </u> không?
+        </em>
+    </span>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[1].YesNoOption, YesNoAnswer.Yes, new {id = "yesCheck2", onclick = "javascript:yesnoCheck()" }) Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[1].YesNoOption, YesNoAnswer.No, new {id = "noCheck2", onclick = "javascript:yesnoCheck()" }) No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If Yes, please provide the name, position, government organisation and duration (i.e. start and end date) which the <a data-toggle="tooltip" title="Spouse, partner, child, siblings, parents, parents-in-laws" style="width: max-content; color: black;">family members</a> has been in this position /
+            <span class="text-primary"><em> Nếu Có,  xin nêu rõ họ tên, chức vụ, cơ quan và thời gian <a data-toggle="tooltip" title="Vợ chồng, con cái, anh chị em ruột, bố mẹ ruột, bố mẹ vợ, bố mẹ chồng." style="width: max-content; color: #117577;">Thành viên Gia đình</a> đảm nhận chức vụ đó.</em></span>
+        </div>
+        <div class="col-md-8" id="ifYes2">
+            @Html.TextAreaFor(m => m.SurveyAnswers[1].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+
+
+    //cau 3
+    <div class="row">
+        <div class="col-md-8">
+            3)	Have you ever previously been a <u>
+    <a data-toggle="tooltip" title="a)	Any elected official, officer or employee of a government or any department or agency (including the military whether voluntarily or through mandatory military service), including any officer, employee or member of a ruling family;
+
+b)	Any officer or employee of a public international organisation (for e.g. United Nations, International Monetary Fund, World Bank etc.);
+
+c)	Any political party or candidate of a political party or office;
+
+d)	Any officer or employee of a state-owned or state-controlled entity;
+
+e)	Any person acting in an official capacity for or on behalf of any such entity or persons above." style="width: max-content; color: black;">Government Official</a></u>
+    ? <br />
+    <span class="text-primary">
+        <em>
+            Bạn có từng là <u>
+                <a data-toggle="tooltip" title="a)	Viên chức do dân bầu, cán bộ hoặc nhân viên của bất kỳ cơ quan, sở ban ngành của chính phủ (bao gồm cả quân đội dù tự nguyện hay nghĩa vụ quân sự bắt buộc), bao gồm viên chức, nhân viên hoặc thành viên của một gia đình cầm quyền;
+
+b)	Cán bộ hoặc nhân viên của một tổ chức quốc tế công (Ví dụ: Liên Hiệp Quốc, Quỹ Tiền tệ Quốc Tế, Ngân Hàng Thế Giới vv)
+
+c)	Đảng viên hoặc đối tượng đảng của một đảng phái chính trị.
+
+d)	Cán bộ hoặc nhân viên của một tổ chức do chính quyền sở hữu hay quản lý.
+
+e)	Bất kỳ cá nhân nào có tư cách chính thức để hành xử  hoặc thay mặt cho bất kỳ tổ chức hay cá nhân nào nêu ở trên.
+" style="width: max-content; color: #117577;">Cán bộ, Nhân viên Chính quyền</a>
+            </u>?
+        </em>
+    </span>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[2].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck3", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[2].YesNoOption, YesNoAnswer.No, new { id = "noCheck3", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If Yes, please provide the position, government organisation and duration (i.e. start and end date) which you were in this position /
+            <span class="text-primary"><em> Nếu Có, xin nêu rõ chức vụ, cơ quan và thời gian đảm nhận chức vụ này.</em></span>
+        </div>
+        <div class="col-md-8" id="ifYes3">
+            @Html.TextAreaFor(m => m.SurveyAnswers[2].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+
+    //cau 4
+    <div class="row">
+        <div class="col-md-8">
+            4)	Have any of your <a data-toggle="tooltip" title="Spouse, partner, child, siblings, parents, parents-in-laws" style="width: max-content; color: black;">Family Members</a> previously been a <u><a data-toggle="tooltip" title="a)	Any elected official, officer or employee of a government or any department or agency (including the military whether voluntarily or through mandatory military service), including any officer, employee or member of a ruling family;
+
+b)	Any officer or employee of a public international organisation (for e.g. United Nations, International Monetary Fund, World Bank etc.);
+
+c)	Any political party or candidate of a political party or office;
+
+d)	Any officer or employee of a state-owned or state-controlled entity;
+
+e)	Any person acting in an official capacity for or on behalf of any such entity or persons above." style="width: max-content; color: black;">Government Official</a></u>?<br />
+            <span class="text-primary"><em> <a data-toggle="tooltip" title="Vợ chồng, con cái, anh chị em ruột, bố mẹ ruột, bố mẹ vợ, bố mẹ chồng." style="width: max-content; color: #117577;">Thành viên Gia đình</a> của bạn có ai từng là <u><a data-toggle="tooltip" title="a)	Viên chức do dân bầu, cán bộ hoặc nhân viên của bất kỳ cơ quan, sở ban ngành của chính phủ (bao gồm cả quân đội dù tự nguyện hay nghĩa vụ quân sự bắt buộc), bao gồm viên chức, nhân viên hoặc thành viên của một gia đình cầm quyền;
+
+b)	Cán bộ hoặc nhân viên của một tổ chức quốc tế công (Ví dụ: Liên Hiệp Quốc, Quỹ Tiền tệ Quốc Tế, Ngân Hàng Thế Giới vv)
+
+c)	Đảng viên hoặc đối tượng đảng của một đảng phái chính trị.
+
+d)	Cán bộ hoặc nhân viên của một tổ chức do chính quyền sở hữu hay quản lý.
+
+e)	Bất kỳ cá nhân nào có tư cách chính thức để hành xử  hoặc thay mặt cho bất kỳ tổ chức hay cá nhân nào nêu ở trên.
+" style="width: max-content; color: #117577;">Cán bộ, Nhân viên Chính quyền</a></u> không?
+</em></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[3].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck4", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[3].YesNoOption, YesNoAnswer.No, new { id = "noCheck4", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If Yes, please provide the position, government organisation and duration (i.e. start and end date) which the <a data-toggle="tooltip" title="Spouse, partner, child, siblings, parents, parents-in-laws" style="width: max-content; color: black;">family member</a> was working in. /
+            <span class="text-primary"><em> Nếu Có,  xin nêu rõ họ tên, chức vụ, cơ quan và thời gian <a data-toggle="tooltip" title="Vợ chồng, con cái, anh chị em ruột, bố mẹ ruột, bố mẹ vợ, bố mẹ chồng." style="width: max-content; color: #117577;">Thành viên Gia đình</a> đã từng đảm nhận chức vụ đó.</em></span>
+        </div>
+        <div class="col-md-8" id="ifYes4" >
+            @Html.TextAreaFor(m => m.SurveyAnswers[3].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+
+    //cau 5
+    <div class="row">
+        <div class="col-md-8">
+            5)	Have you ever been involved during the past 10 years in any legal proceedings involving allegations of fraud, bribery or corruption?
+            <span class="text-primary"><em> Trong vòng 10 năm qua, bạn có từng bị dính líu đến bất kỳ vấn đề về pháp lý liên quan đến cáo buộc gian lận, hối lộ hoặc tham nhũng không?</em></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[4].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck5", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[4].YesNoOption, YesNoAnswer.No, new { id = "noCheck5", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If Yes, please provide details (e.g., date of claim(s), type and amount of claims, result of the investigation or proceeding).(You don’t have to provide the names of the other people who were involved other than yourself /
+            <span class="text-primary"><em> Nếu Có, xin nêu chi tiết (ví dụ: thời điểm, tính chất vụ việc, kết quả điều tra hay xử lý)</em></span>
+        </div>
+        <div class="col-md-8" id="ifYes5">
+            @Html.TextAreaFor(m => m.SurveyAnswers[4].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+
+    <div class="row">
+        <div class="col-md-8">
+            <strong>Debarment and Exclusion / </strong><strong><span class="text-primary"><em> Tước quyền và Ngăn cấm</em></span></strong>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-md-8">
+            For purposes of this Declaration Form: <span class="text-primary"><em> Định nghĩa một số từ dùng trong biểu mẫu này:</em></span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-8">
+            <strong>“FDA”</strong> refers to the United States Food and Drug Administration or any successor agency thereto.
+            <br/><span class="text-primary"><em> “FDA” là Cục Quản lý Thực phẩm và Dược phẩm Hoa Kỳ hoặc bất kỳ cơ quan kế tục theo đó.</em></span>
+        </div>
+    </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                <strong>“Debarred Individual”</strong> refers to: an individual w ho has been debarred by the FDA pursuant to Title 21 of the United States Code (“U.S.C.”) Section 335a(a) or (b) from providing services in any capacity to a person that has an approved or pending drug product application with the FDA.
+                <br/><span class="text-primary"><em><strong>“Người bị Tước quyền”</strong> là người bị FDA, căn cứ theo Điều 21 của Bộ Luật Hoa Kỳ (“U.S.C”) Mục 335a (a) hoặc (b), tước quyền cung cấp dịch vụ dưới bất kỳ tư cách nào cho người có sản phẩm đã được phê duyệt hoặc đang chờ duyệt bởi FDA. </em></span>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                <strong>“Excluded Individual”</strong> refers to
+                <br/><span class="text-primary"><em> <strong>“Người bị Ngăn cấm”</strong> là</em></span>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                a) An individual who has been excluded, debarred, suspended or is otherwise ineligible to participate in U.S. federal health care programs such as Medicare or Medicaid by the Office of the Inspector General (OIG/HHS) of the U.S. Department of Health and Human Services; or
+                <br/><span class="text-primary"><em>Người bị Văn phòng Tổng Thanh Tra (OIG/HHS) của Sở Y Tế và Dịch Vụ Nhân sinh Hoa Kỳ ngăn cấm, tước quyền, đình chỉ hoặc tuyên bố không đủ tư cách để tham gia vào những chương trình chăm sóc sức khỏe liên bang Hoa Kỳ chẳng hạn như Medicare hoặc Medicaid; hoặc </em> </span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                b) an individual who has been excluded, debarred, suspended or is otherwise ineligible to participate in U.S. federal procurement and non-procurement programs, including those produced by the U.S. General Services Administration (GSA).
+                <br/><span class="text-primary"><em> Người bị ngăn cấm, tước quyền, đình chỉ hoặc tuyên bố không đủ tư cách tham gia vào những chương trình mua sắm và không mua sắm của liên bang Hoa Kỳ , bao gồm những chương trình của Cục Quản lý Dịch Vụ Chung của Hoa Kỳ (GSA)</em></span>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                <strong>“Convicted Individual”</strong> or <strong>"Convicted Entity"</strong> refers to an individual or entity, as applicable, who has been convicted of a criminal offense that falls within the ambit of Title 21 of U.S.C. Section 335a(a) or Title 42 of U.S.C. Section 1320a - 7(a), but has not yet been excluded, debarred, suspended or otherwise declared ineligible
+                <br/><span class="text-primary"><em> <strong>“Người bị kết án”</strong> hoặc <strong>“Tổ chức bị kết án”</strong> là người hoặc tổ chức bị kết án hình sự thuộc phạm vi Điều 21 của U.S.C Mục 335 (a) hoặc Điều 42 của U.S.C Mục 1320a – 7(a) dù chưa bị ngăn cấm, tước quyền, đình chỉ hoặc tuyên bố không đủ tư cách.</em></span>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                <strong>“Sanctioned Lists”</strong> consist of:
+                <br/><span class="text-primary"><em><strong>“ Danh sách Bị Trừng phạt” </strong> bao gồm: </em></span>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-8">
+                a)	the U.S. Treasury Department’s List of Specially Designated Nationals and Blocked Persons (the <strong>“SDN List”</strong>)/
+                <span class="text-primary"><em> Danh sách những Kiều dân Đặc biệt và Người bị chặn của Bộ Tài Chính Hoa Kỳ.</em></span>
+                <br />
+                <a href="https://www.treasury.gov/resource-center/sanctions/Pages/default.aspx" target="_blank"><span class="text-primary">https://www.treasury.gov/resource-center/sanctions/Pages/default.aspx) </span></a>
+                <br />
+                <a href="https://sanctionssearch.ofac.treas.gov/" target="_blank"><span class="text-primary"><span class="text-primary">(https://sanctionssearch.ofac.treas.gov/) </span></span></a>
+                <br />
+            </div>
+        </div>
+
+            <br />
+            <div class="row">
+                <div class="col-md-8">
+                    b) the U.S. Commerce Department’s Denied Persons List /
+                    <span class="text-primary"><em>Danh sách Người bị Tù chối của Bộ Thương Mại Hoa Kỳ </em></span>
+                    <br />
+                    <a href="http://www.bis.doc.gov/dpl/thedeniallist.asp" target="_blank"><span class="text-primary">(http://www.bis.doc.gov/dpl/thedeniallist.asp)</span></a>
+                </div>
+            </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            c) the Consolidated List of Persons, Groups and Entities Subject to EU Financial Sanctions /
+                            <span class="text-primary"><em> Danh sách Tổng hợp các Cá nhân, Nhóm và Tổ chức chịu sự Trừng phạt Tài chính của EU </em></span>
+                            <br />
+                            <a href="http://eeas.europa.eu/cfsp/sanctions/consol-list/index_en.htm" target="_blank"><span class="text-primary">(http://eeas.europa.eu/cfsp/sanctions/consol-list/index_en.htm). </span></a>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            d) the Consolidated United Nations Security Council Sanctions List (“UN List”)/
+                            <span class="text-primary"><em> Danh sách Trừng phạt của Hội đồng Bảo An Liên Hiệp Quốc ( "Danh sách của Liên Hợp Quốc")</em></span>
+                            <br />
+                            <a href="https://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list" target="_blank"><span class="text-primary">(https://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list)</span></a>
+                        </div>
+                    </div>
+
+                    <hr class="col-md-8" />
+    //cau 6
+    <div class="row">
+        <div class="col-md-8">
+            6) Have you ever been: / <span class="text-primary"><em> Bạn có từng</em></span>
+            <br />
+        </div>
+    </div>
+    //cau 6i - cau 6 trong chuong trinh
+    <div class="row">
+        <div class="col-md-8">
+            (i) convicted of any of the felonies identified among the exclusion authorities listed on the U.S. Department of Health and Human Services, Office of Inspector General website
+            <a href="http://oig.hhs.gov/exclusions/authorities.asp" target="_blank"><span class="text-primary">(http://oig.hhs.gov/exclusions/authorities.asp)</span></a>
+            , including 42 U.S.C. 1320a-7(a) <br />
+            <span class="text-primary"><em>
+                bị kết án vì một trong các trọng tội được xác định giữa các cơ quan chức năng được liệt kê trên website của Sở Y tế và Dịch vụ Nhân sinh Hoa Kỳ, Văn phòng Tổng Thanh tra
+                <a href="http://oig.hhs.gov/exclusions/authorities.asp" target="_blank"><span class="text-primary">(http://oig.hhs.gov/exclusions/authorities.asp)</span></a>, bao gồm  42 USC 1320a-7 (a) /
+             </em>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[5].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck6", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary">Có</span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[5].YesNoOption, YesNoAnswer.No, new { id = "noCheck6", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary">Không</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8" id="ifYes6">
+            @Html.TextAreaFor(m => m.SurveyAnswers[5].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <br />
+    //cau 6i end
+
+    //cau 6ii - cau 7 trong chuong trinh
+    <div class="row">
+        <div class="col-md-8">
+            (ii) identified in the List of Excluded Individuals/Entities (LEIE) database
+            <a href="https://exclusions.oig.hhs.gov" target="_blank"><span class="text-primary">(https://exclusions.oig.hhs.gov)</span></a> on said website or the U.S. General Services Administration's list of Parties Excluded from Federal Programs
+            <a href="https://www.sam.gov/portal/SAM/#1" target="_blank">
+                <span class="text-primary">(https://www.sam.gov/portal/SAM/#1)</span>
+            </a>
+            ; or
+            <br />
+            <span class="text-primary"><em>bị liệt kê trong cơ sở dữ liệu Danh sách Cá Nhân/Tổ chức bị Ngăn Cấm (LEIE)  (https://exclusions.oig.hhs.gov)  trên trang web đã nêu hoặc trong Danh sách Các Đối tượng bị Ngăn Cấm tham gia Chương trình Liên bang của  Cục Quản lý Dịch Vụ Chung của Hoa Kỳ (https://www.sam.gov/portal/SAM/#1); hoặc  </em></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[6].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck7", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[6].YesNoOption, YesNoAnswer.No, new { id = "noCheck7", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8" id="ifYes7">
+            @Html.TextAreaFor(m => m.SurveyAnswers[6].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    //cau 6ii end
+
+    <br />
+    //cau 6iii - cau 8 trong chuong trinh
+    <div class="row">
+        <div class="col-md-8">
+            (iii)  listed by any U.S. federal agency as being suspended, debarred, excluded, or otherwise ineligible to participate in U.S. Federal procurement
+            <br />
+            <span class="text-primary"><em>bị bất kỳ cơ quan liên bang Hoa Kỳ liệt kê vào danh sách đang bị đình chỉ, tước quyền, ngăn cấm hoặc tuyên bố không đủ tư cách tham gia hoạt động mua sắm Liên bang Hoa Kỳ. </em></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[7].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck8", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[7].YesNoOption, YesNoAnswer.No, new { id = "noCheck8", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8" id="ifYes8">
+            @Html.TextAreaFor(m => m.SurveyAnswers[7].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    //cau 6iii end
+
+    <div class="row">
+        <div class="col-md-8">
+            If you answered “Yes” to any of the above, please provide details. /
+            <span class="text-primary"><em> Nếu trả lời “Có” bất kỳ câu nào trên đây, xin cung cấp rõ chi tiết.</em></span>
+        </div>
+    </div>
+
+    <hr class="col-md-8" />
+    //cau 7 - cau 9 trong chuong trinh
+    <div class="row">
+        <div class="col-md-8">
+            7)	Are you currently a Debarred Individual, an Excluded Individual, or a Convicted Individual, or the subject of a proceeding that could lead to you being a Debarred Individual, an Excluded Individual, or a Convicted Individual? <br />
+            <span class="text-primary"><em>
+                Hiên nay bạn có phải là Người bị Tước quyền, Người bị Ngăn Cấm, hoặc là Người bị Kết Án, hoặc là đối tượng trong một diễn biến có thể khiến bạn trở thành Người bị Tước quyền, Người bị Ngăn Cấm, hoặc là Người bị Kết Án?
+            </em>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[8].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck9", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[8].YesNoOption, YesNoAnswer.No, new { id = "noCheck9", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If “Yes”, please provide details. /
+            <span class="text-primary"><em> Nếu “Có”, xin cung cấp chi tiết.</em></span>
+        </div>
+        <div class="col-md-8" id="ifYes9">
+            @Html.TextAreaFor(m => m.SurveyAnswers[8].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+    //cau 7 end
+
+    //cau 8 - cau 10 trong chuong trinh
+    <div class="row">
+        <div class="col-md-8">
+            8)	Have you ever been a Debarred Individual, an Excluded Individual, or a Convicted Individual, or the subject of a proceeding that could lead to you being a Debarred Individual, an Excluded Individual, or a Convicted Individual?<br />
+            <span class="text-primary"><em>
+                Bạn có từng là Người bị Tước quyền, Người bị Ngăn Cấm, hoặc là Người bị Kết Án, hoặc là đối tượng trong một diễn biến có thể khiến bạn trở thành Người bị Tước quyền, Người bị Ngăn Cấm, hoặc là Người bị Kết Án?
+            </em></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[9].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck10", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[9].YesNoOption, YesNoAnswer.No, new { id = "noCheck10", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If “Yes”, please provide details. /
+            <span class="text-primary"><em> Nếu “Có”, xin cung cấp chi tiết.</em></span>
+        </div>
+        <div class="col-md-8" id="ifYes10" >
+            @Html.TextAreaFor(m => m.SurveyAnswers[9].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+    //cau 8 end
+
+    //cau 9 - cau 10 trong chuong trinh
+    @*<div class="row">
+        <div class="col-md-8">
+            9)	Have you ever been listed on any of the Sanctioned Lists? / <br />
+            <span class="text-primary"><em>
+                Bạn có từng bị đưa vào Danh Sách Bị Trừng Phạt”?
+            </em>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[10].YesNoOption, YesNoAnswer.Yes, new { id = "11", onclick = "showText(id, value)" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[10].YesNoOption, YesNoAnswer.No, new { id = "11", onclick = "showText(id, value)" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If “Yes”, please provide details. /
+            <span class="text-primary"><em> Nếu “Có”, xin cung cấp chi tiết.</em></span>
+        </div>
+        <div class="col-md-8" id="choose11" hidden>
+            @Html.TextAreaFor(m => m.SurveyAnswers[10].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />*@
+    //cau 9 end
+
+    <div class="row">
+        <div class="col-md-8">
+            9)	Have you ever been listed on any of the Sanctioned Lists? / <br />
+            <span class="text-primary">
+                <em>
+                    Bạn có từng bị đưa vào Danh Sách Bị Trừng Phạt”?
+                </em>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[10].YesNoOption, YesNoAnswer.Yes, new { id = "yesCheck11", onclick = "javascript:yesnoCheck()" })
+                    Yes / <span class="text-primary"><em> Có</em></span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(m => m.SurveyAnswers[10].YesNoOption, YesNoAnswer.No, new { id = "noCheck11", onclick = "javascript:yesnoCheck()" })
+                    No / <span class="text-primary"><em> Không</em></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            If “Yes”, please provide details. /
+            <span class="text-primary"><em> Nếu “Có”, xin cung cấp chi tiết.</em></span>
+        </div>
+        <div class="col-md-8" id="ifYes11">
+            @Html.TextAreaFor(m => m.SurveyAnswers[10].Content, new { @class = "form-control", @rows = 5 })
+        </div>
+    </div>
+    <hr class="col-md-8" />
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-md-8">
+            You hereby confirm that you are fully authorised to provide such information to ZP and that to the best of your knowledge, all declarations and information provided by you in this Declaration Form are correct and complete at the date of completion of this form.  Any false or misleading information provided could impact your employment with ZP.  You hereby also undertake to inform your HR department immediately and sign a new Declaration Form if (i) any of the declarations or information provided by you in this Declaration Form needs to be changed, or (ii) you become aware that any of the declarations or information provided by you in this Declaration Form was incorrect.
+            <br /><br />
+            Your signature below authorizes ZP to use any information contained in this Declaration Form for the purpose of performing due diligence on our employees.
+            <br /><br />
+            Your signature does not authorize use of this information for any other purpose or disclosure to any third party without express written consent, unless required by law.
+            <br /><br />
+            <span class="text-primary"><em>
+            Bạn xác nhận rằng bạn hoàn toàn có thẩm quyền cung cấp thông tin nêu trên cho ZP và đó là thông tin theo hiểu biết tốt nhất của bạn, tất cả các lời khai và thông tin do bạn cung cấp trong Tờ Khai về Thân Nhân của Nhân Viên này (Tờ Khai) là đúng và đầy đủ tại ngày điền hoàn tất Tờ Khai. Việc cung cấp bất kỳ thông tin sai lệch hoặc gây hiểu nhầm có thể ảnh hưởng đến công việc của bạn với ZP. Bạn cũng cam kết sẽ thông báo cho Bộ phận Nhân sự của ZP ngay lập tức và ký một Tờ Khai mới nếu (i) bất kỳ tuyên bố hoặc thông tin do bạn cung cấp trong Tờ Khai này cần phải được thay đổi, hoặc (ii) bạn ý thức được rằng bất kỳ lời khai hoặc thông tin do bạn cung cấp trong Tờ Khai này là không chính xác.
+            <br /><br />
+            Chữ ký của bạn dưới đây cho phép ZP được sử dụng bất kỳ thông tin trong Tờ Khai này cho mục đích  thẩm định tính tuân thủ  luật lệ và sự minh bạch của nhân viên.
+            <br /><br />
+            Chữ ký của bạn không cho phép sử dụng các thông tin này cho bất kỳ mục đích nào khác hoặc tiết lộ cho bất kỳ bên thứ ba mà không có sự đồng ý bằng văn bản, trừ khi luật pháp yêu cầu.
+        </em></span>
+        </div>
+
+    </div>
+
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-5">
+            <input type="submit" value="Submit" class="btn btn-success" onclick="return checkData()" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        
+        function yesnoCheck() {
+            if (document.getElementById('yesCheck11').checked) {
+                document.getElementById('ifYes11').style.display = 'block';
+            }
+            else document.getElementById('ifYes11').style.display = 'none';
+
+            if (document.getElementById('yesCheck1').checked) {
+                document.getElementById('ifYes1').style.display = 'block';
+            }
+            else document.getElementById('ifYes1').style.display = 'none';
+
+            if (document.getElementById('yesCheck2').checked) {
+                document.getElementById('ifYes2').style.display = 'block';
+            }
+            else document.getElementById('ifYes2').style.display = 'none';
+ 
+            if (document.getElementById('yesCheck3').checked) {
+                document.getElementById('ifYes3').style.display = 'block';
+            }
+            else document.getElementById('ifYes3').style.display = 'none';
+
+            if (document.getElementById('yesCheck4').checked) {
+                document.getElementById('ifYes4').style.display = 'block';
+            }
+            else document.getElementById('ifYes4').style.display = 'none';
+
+            if (document.getElementById('yesCheck5').checked) {
+                document.getElementById('ifYes5').style.display = 'block';
+            }
+            else document.getElementById('ifYes5').style.display = 'none';
+             
+            if (document.getElementById('yesCheck6').checked) {
+                document.getElementById('ifYes6').style.display = 'block';
+            }
+            else document.getElementById('ifYes6').style.display = 'none';
+
+            if (document.getElementById('yesCheck7').checked) {
+                document.getElementById('ifYes7').style.display = 'block';
+            }
+            else document.getElementById('ifYes7').style.display = 'none';
+
+            if (document.getElementById('yesCheck8').checked) {
+                document.getElementById('ifYes8').style.display = 'block';
+            }
+            else document.getElementById('ifYes8').style.display = 'none';
+
+            if (document.getElementById('yesCheck9').checked) {
+                document.getElementById('ifYes9').style.display = 'block';
+            }
+            else document.getElementById('ifYes9').style.display = 'none';
+
+            if (document.getElementById('yesCheck10').checked) {
+                document.getElementById('ifYes10').style.display = 'block';
+            }
+            else document.getElementById('ifYes10').style.display = 'none';
+
+        
+        }
+        
+        function showText(id, value) {
+            var inputId = '#choose' + id;
+            if (value === 'Yes') {
+                $(inputId).show();
+            } else {
+                $(inputId).hide();
+            }
+        }
+
+        function checkData() {
+            var hasError = false;
+
+            if ($('input:radio:checked').length < 11) {
+                toastr.error('You have to answer all question, include 11 questions!');
+                return false;
+            }
+
+            $('input:radio:checked').each(function () {
+                var $this = $(this);
+                var id = $this.attr('id');
+                var textId = '#choose' + id + ' textarea';
+                var value = $this.attr('value');
+                if (value === 'Yes' && $(textId).val().trim().length === 0) {
+                    hasError = true;
+                }
+            });
+
+            if (hasError) {
+                toastr.error('There are some errors need be fixed before submit, please check your survey again!');
+            }
+
+            return !hasError;
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            
+            $('[class="tooltip-inner"]').tooltip();
+
+            // show servey answer when page load first
+            $('#surveyForm input[type="radio"]:checked').each(function () {
+                var $this = $(this),
+                    id = $this.attr('id'),
+                    value = $this.attr('value');
+                showText(id, value);
+            });
+
+            
+        });
+
+
+    </script>
+}

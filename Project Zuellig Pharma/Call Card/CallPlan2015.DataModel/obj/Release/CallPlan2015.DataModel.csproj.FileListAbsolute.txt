@@ -1,0 +1,4 @@
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\bin\Release\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\bin\Release\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\obj\Release\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\obj\Release\CallPlan2015.DataModel.pdb

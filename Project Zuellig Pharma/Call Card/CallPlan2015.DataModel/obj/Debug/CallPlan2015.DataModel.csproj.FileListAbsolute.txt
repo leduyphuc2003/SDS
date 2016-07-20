@@ -1,0 +1,38 @@
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.DataModel\obj\Debug\ResolveAssemblyReference.cache
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
+D:\PH\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+D:\PH\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+D:\PH\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+D:\PH\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
+D:\PH\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.csprojResolveAssemblyReference.cache
+D:\Desktop\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+D:\Desktop\CallPlan2015\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.csprojResolveAssemblyReference.cache
+D:\Desktop\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+D:\Desktop\CallPlan2015\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.csprojResolveAssemblyReference.cache
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb

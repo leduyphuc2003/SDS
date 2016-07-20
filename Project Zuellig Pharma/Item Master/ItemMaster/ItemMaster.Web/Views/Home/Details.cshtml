@@ -1,0 +1,193 @@
+﻿@using ItemMaster.Web.Models
+@model ItemMaster.Web.Models.ZppStock
+
+@{
+    ViewBag.Title = "Details Product";
+    int index = 0;
+ 
+}
+
+@*<h2 style="color: #117577">Product Info Database for QA</h2>*@
+<h2 style="color: #117577">Item Details</h2>
+
+<div>
+    
+    <hr/>
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <img class="thumbnail img-responsive" src="@Url.Content(Model.Images[0]?.Url ?? string.Empty)" alt="no image"/>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.ZpItemCode)*@
+                    Item Code
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ZpItemCode)
+                </dd>
+
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.ItemDescription)*@
+                    Item Description
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ItemDescription)
+                </dd>
+
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.ItemStorageCode)*@
+                    Item Storage Code
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ItemStorageCode)
+                </dd>
+
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Template)*@
+                    Temptale
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Template)
+                </dd>
+
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.ControlledTemperture)*@
+                    Controlled Temperature
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ControlledTemperture)
+                </dd>
+
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.DeliveryMode)*@
+                    Delivery Mode
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DeliveryMode)
+                </dd>
+
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.StorageCondition)*@
+                    Storage Condition
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StorageCondition)
+                </dd>
+
+
+                <dt>
+                    Status Active
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.StrActive)
+                </dd>
+
+                <dt>
+                    Principal
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PRNCode)
+                </dd>
+
+                <br/>
+                <dd>
+                    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
+                    @Html.ActionLink("Back to List", "Index")
+                </dd>
+            </dl>
+        </div>
+
+
+
+
+        <div class="col-md-6 col-sm-6">
+            <h3>History</h3>
+            <table class="table table-striped table-bordered table-responsive">
+                <tr>
+                    <th @*style="width: 30px"*@>#</th>
+                    <th @*style="width: 50px"*@>User</th>
+                    <th @*style="width: 150px*@">Date</th>
+                    <th>Reason Code</th>
+                    <th>Reason</th>
+                    <th>File</th>
+                </tr>
+                @foreach (ItemHistory history in Model.Histories)
+                {
+                    <tr>
+                        <th @*style="width: 30px"*@>@(++index)</th>
+                        <th @*style="width: 50px"*@>@history.UserName</th>
+                        <th @*style="width: 150px"*@>@history.UpdatedDate.ToString("dd/MM/yyyy HH:mm:ss")</th>
+                        <th> @history.ReasonCode.ToString()</th>
+                        <th>
+                            @foreach (string item in history.Content.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                @item
+                                <br/>
+                            }
+                        </th>
+
+
+                        <th style="width: 150px">
+                            @{
+                                if ((@history.AttachfileName.ToString() == "") && (@history.UrlAttachFile.ToString() == ""))
+                                {
+
+                                }
+                                else
+                                {
+
+                                    @Html.ActionLink(@history.AttachfileName, "Download", new
+                                    {
+                                        fileName = @history.AttachfileName,
+                                        filePatch = @history.UrlAttachFile
+                                    })
+
+                                }
+                            }
+                        </th>
+                    </tr>
+
+                }
+            </table>
+        </div>
+
+
+
+    </div>
+    @*<div class="row">
+        <div class="col-md-8">
+            <h3>History</h3>
+            <table class="table">
+                <tr>
+                    <th style="width: 50px">#</th>
+                    <th style="width: 150px">User</th>
+                    <th style="width: 150px">Date</th>
+                    <th>Reason</th>
+                </tr>
+                @foreach (ItemHistory history in Model.Histories)
+                {
+                    <tr>
+                        <th style="width: 50px">@(++index)</th>
+                        <th style="width: 150px">@history.UserName</th>
+                        <th style="width: 150px">@history.UpdatedDate.ToString("dd/MM/yyyy HH:mm:ss")</th>
+                        <th>
+                            @foreach (string item in history.Content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                @item <br/>
+                            }
+                        </th>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>*@
+</div>
+
