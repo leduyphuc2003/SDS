@@ -17,6 +17,12 @@
 -	them class SQLConnectionUtility: open, select, insert, closed connection
 -	check trong bảng temp có chưa, 
 -	nếu chưa có thì insert vào bảng tmp và bảng thật
+-	them xu ly try catch cho những trường hợp select ra null hoặc select khong được
+-	set index cho table là whs,psn,pshctn. Khóa chính vẫn là psn 
+	CREATE INDEX index_tempTable
+	ON [ttt].[dbo].[temp] (PSN,WHS,PSHCTN)
+	
+-	thêm cột WHS,ngày,giờ tạo pick vào 2 bảng WCS và temp, thêm cột ngày và giờ vào code luôn
 
 -	tạo installer cho windows service để chạy
 	http://diendan.congdongcviet.com/threads/t19526::tao-ung-dung-windows-service-don-gian-trong-lap-trinh-csharp.cpp
@@ -27,8 +33,34 @@
 	installutil WCS2.exe
 	installutil /u WCS2.exe
 	
-	
-	
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT  *
+  FROM [ttt].[dbo].[temp]
+
+  delete   FROM [ttt].[dbo].[temp]
+
+  select count(*)   FROM [ttt].[dbo].[temp]
+
+    select count(*)   FROM [ttt].[dbo].[temp]
+  where CHK='Y'
+
+    select count(*)   FROM [ttt].[dbo].[temp]
+  where CHK='N'
+  
+ /****** Script for SelectTopNRows command from SSMS  ******/
+SELECT*
+  FROM [ttt].[dbo].[WCS]
+
+  delete   FROM [ttt].[dbo].[WCS]
+
+  
+  select count(*)   FROM [ttt].[dbo].[WCS]
+  where CHK='Y'
+
+    select count(*)   FROM [ttt].[dbo].[WCS]
+  where CHK='N'
+  
+ 
 =======
 -	convert datatable to list c#
 

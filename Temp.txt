@@ -1,22 +1,15 @@
-select *                         
-from psh                         
-where ttype = 'PS' 
-and PSHDEL = '' 
-and PSHDAT = 20160717                 
+SELECT *
+  FROM [CallCard].[dbo].[UserCallPLan]
+  where UserName LIKE '%O09%'
 
-CMTUN$ - Customer Total Unallocated Csh  
- CUST                  CMTUN$   
- S08665        509,508,426.00-  
- 
- Severity	Code	Description	Project	File	Line	Suppression State
-Error	CS0021	Cannot apply indexing with [] to an expression of type 'As400Table'	WcsApp	c:\users\dple\documents\visual studio 2015\Projects\WcsApp\WcsApp\Form1.cs	78	Active
+  UserCode	Password
+O09	247972
 
-
-update ard set arddel='Z'                           
-WHERE ARDDEL='' AND CUST='S08665'                   
-and DOCNO= 73197910                                 
-1 rows updated in ARD in ZPTLIBD.                   
-
+  insert [CallCard].[dbo].[UserCallPLan]
+  values ('O16',920277,null,null)
+  
+  
+P@ssw0rdz
 
 var result = retval.Where(p => !temp2.Any(p2 => p2.PSN == p.PSN && p2.ordr == p.ordr))
 
@@ -32,6 +25,24 @@ item2.CHK == item1.CHK ))
                     CTMCDE = dr["CTMCDE"].ToString(),
                     PSHCTN = Convert.ToInt32(dr["PSHCTN"]),
                     CHK = dr["CHK"].ToString()
+					
+					
+var as400 = new As400ConnectionUtility();
+string slect = string.Format("select ORDR, PSN, CTMCDE,PSHCTN,PSHSTS from psh where ttype = 'PS' and PSHDEL = '' and PSHDAT = 20160719");
+DataTable dataAs400 = as400.GetDataByQuery(slect);
+
+var sqlInsert = new SQLConnectionUtility();
+
+//insert vao temp va wcs
+foreach (var row in dataAs400.Rows)
+{
+ string insertTemp = string.Format("if not exists (select PSN from temp2 where ORDR = '{0}' and PSN = '{1}') begin insert into temp(ORDR, PSN, CTMCDE,PSHCTN,CHK) values ({0}, {1}, '{2}',{3},'{4}') end", dr["ORDR"], dr["PSN"], dr["CTMCDE"], dr["PSHCTN"], dr["CHK"]);
+ string insertWCS = string.Format("if not exists (select PSN from temp2 where ORDR = '{0}' and PSN = '{1}') begin insert into WCS(ORDR, PSN, CTMCDE,PSHCTN,CHK) values ({0}, {1}, '{2}',{3},'{4}') end", dr["ORDR"], dr["PSN"], dr["CTMCDE"], dr["PSHCTN"], dr["CHK"]);
+ sqlInsert.UpdateData(insertTemp);
+ sqlInsert.UpdateData(insertWCS);
+}
+
+
 
 ============================================================
 phyto
