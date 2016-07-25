@@ -1,0 +1,56 @@
+MVC 
+Day 1:
+-	add project
+-	add controller
+-	add action
+-	mọi hàm public đều là action trong controller
+-	muốn khai báo hàm là public nhưng khong phải là action thì dùng NonAction
+	[NonAction]
+	public string SimpleMethod()
+	{
+		return "Hi, I am not action method";
+	}
+
+-	View trong Asp.Net MVC: controller xử lí request của user và gửi phản hồi trả về kết quả. View thì show ra kết quả html
+-	add view
+	=	Tạo hàm action
+		public ActionResult GetView()
+		{
+			return View("MyView");
+		}
+
+	=	Tạo view: chuot phải lên GetView chọn "Add view". Rename lại là MyView. Bỏ chọn “use a layout” rồi chọn add. Chương trình sẽ add “Views/Test” vào folder Views
+	=	Thêm nội dung vào view: mở file MyView.cshtml, và thêm code
+		@{
+			Layout = null;
+		}
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>MyView</title>
+		</head>
+		<body>
+			Welcome to MVC 5 Step by Step learning
+		</body> </html>
+	=	chạy thử
+	
+-	Mỗi controller sẽ có 1 thư mục cùng tên trong thư mục View, và chứa các file .cshtml, mỗi action sẽ tương ứng 1 file .cshtml
+
+-	một action có thể có nhiều view
+	public ActionResult GetView()
+	{
+		if(Some_Condition_Is_Matching)
+		{ 
+		   return View("MyView");
+		}
+		else
+		{
+		   return View("YourView");
+		}
+	}
+
+-	một action có thể có nhiều view, một view có thể được link từ nhiều action
+-	ActionResult là lớp trừu tượng mà ViewResult là lớp con cháu của ActionResult. Vì ViewResult là con của ViewResultBase và ViewResultBase lại là con của ActionResult
+-	ContentResult chỉ là html
+-	có thể gọi view mà không cần truyền tham số. Lúc đó view sẽ có tên “CurrentActionName”

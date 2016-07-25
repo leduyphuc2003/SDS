@@ -1,14 +1,14 @@
 OPS250    
  select cohnor,cohbsy,cohsts,ordr   
  from coh                           
- where ordr=33568270                
+ where ordr= 33568270                
  
      COHNOR   COHBSY  COHSTS        ORDR   
   2973598             5     33,568,270   
   
   select codnor, codsts,ordr         
  from cod                                 
- where ordr=33568270                       
+ where ordr= 33568270                       
        CODNOR   CODSTS        ORDR  
   2973598           33,568,270  
   
@@ -16,7 +16,7 @@ OPS250
 from orb where codnor= 2973598 
   
 update orb set orbbsy=''
-where codnor= 2973598   
+where codnor = 2973598   
 
 Vao release batch 
 

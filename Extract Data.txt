@@ -1,4 +1,4 @@
----Summary report on stocking up customer-Add Route 1 - chi Thai Hang
+----------------------Summary report on stocking up customer-Add Route 1 - chi Thai Hang
 select 
 A.TTYPE, A.ORDR as Order, A.COHDAT as OrderDate, A.CUST as Customer, F.OTSDES as OrderStatus, A.COHSRC as OrderSource, B.CODSTS as DetailStatus, B.PSN as PickingSlip , B.INVNO as Invoice, E.MANFST AS MANIFEST,B.ITEM, B.CODDES as ItemDescription, B.PRNCPL as Princpal, B.WHS as Warehouse, CODOUN as RequestedQty, B.CODUNT as SuppliedQty ,B.CODUBO as BackOrderedQty, B.CODVAL as SuppliedValue, C.COONAM as DeliveryName, C.COOAD1 as DeliveryAddress1, C.COOAD2  as DeliveryAddress2, C.COOAD3  as DeliveryAddress3,  C.COODI1 as DeliveryInstruction1, C.COODI2  as DeliveryInstruction2, C.COODI3  as DeliveryInstruction3,UOPCDE as UrgentOrderCode, ODMK1 as HospitalOrginalDocument, ODPOR As DeliveryDate, C.RTECDE as Route
 ,G.TTYPE,INVNO,GIVINV,GIVBRF 
@@ -43,4 +43,40 @@ AND COHCNL<>'Y' AND A.ORDR=C.ORDR  AND COHSRC = 'SU'     AND COHDAT
 A.TTYPE AND E.ORDR = A.ORDR AND E.OTHSTS = F.OTSSTS  AND B.PSN =    
 E.PSN AND E.OTHSTS <> 'ZZZ' and a.cust in ('S01177')                
 
+--------------------------- bao cao Sanofi - Vo thi minh thi - ho phuong thao
+ZPP Sanofi Customer Rebate Q3 2015
+ /java/SQLS/RBTS27.sql         
 
+ SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3                  
+ ,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,                            
+ A.INCVAL, A.INCDSA, VALUE( B.TTYPE,'') AS                          
+  TTYPE, VALUE(B.DOCNO,0) AS DOCNO, VALUE(B.INSVAL,0) AS INSVAL ,   
+VALUE(B.INSCTD,0) AS INSCTD                                         
+FROM zptlibd/invdsc a left join zptlibd/invdsa b                    
+on A.CUST= B.CUST and A.PRNCPL= B.PRNCPL                            
+and A."GROUP"= B."GROUP" and A.INVNO= B.INSREF left join zptlibd/cm 
+c on a.cust=                                                        
+c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ')    
+AND A.INCCFD >= 20150930 AND INCDEL=''                              
+File TEMP in LDPHUC was replaced.    
+========================================================
+Incident #69697 -  data extract	- Cao Thanh Thuy
+Dear anh/chị,
+Vui lòng extract giúp em data theo template đính kèm và thông tin bên dưới nha.
+
+Product: Tanakan, Smecta, Gastropulgite
+All channel 
+Nationwide
+Sales Period: monthly, Jan'15-Jun'15, Jan'16-Jun'16
+Cám ơn anh/chị
+
+SELECT A.CUST, A.CNAME, A.CADD1, A.CADD2, A.CADD3, A.CMSTAT,       
+A.CMALNM, A.CMALA1, A.CMALA2, A.CMCONT, A.CLASS, A.PLCAR, A.PLCTE, 
+A.CMIMS1, A.CMGRP1, A.CMGRP2, A.CMGRP3, A.CMGRP4, B.TTYPE, B.INVNO,
+B.INHCFD, B.INHOTB, INHSRC,                                        
+ C.STYCDE, C.ITEM, C.INDDES, C.PRNCPL, C.INDCFD,                   
+C.INDUNT, C.INDSEL, C.INDGST, C.INDVAL FROM cm a, inh b, ind c     
+WHERE cmdel='' and inhdel='' and inddel='' and a.cust= b.cust and  
+b.ttype=c.ttype and b.invno=c.invno and c.item in ('B040140',      
+'B040220', 'B040170' , 'B040090' ) and indcfd between 20160101 and 
+20160631   

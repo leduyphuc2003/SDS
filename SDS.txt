@@ -2483,7 +2483,7 @@ WHERE CMDEL='' AND CUST ='M00529'
 3. KIEM TRA XEM FILE BOT NHU SAU CO DATA KO? NEU KO CO THI OK, KHONG CAN KIEM TRA BUOC 4. Neu select ra co thi moi lam buoc 4
 SELECT CUST, SUB, PRNCPL                                          
 FROM BOT                                          
-WHERE BOTDEL='' AND BOTSTS<>'R' AND CUST ='S08176' 
+WHERE BOTDEL='' AND BOTSTS<>'R' AND CUST = 'S08176' 
  
 4. TIEP TUC KIEM TRA SUB KHAC SAN
 SELECT  SUB,ITEM,PRNCPL                           
@@ -10680,8 +10680,8 @@ having count(*)>1
 => ko co nen ko co duplicate. Neu co duplicate thi vao file excel ZSCTPCUST ngoai desktop xoa di dong nao bi duplicate  
                                 
 select count(*)                             
-from ldphuc/ZSCTPCUST b                     
-where exists (select * from ZSCTPCUST a     
+from ZSCTPCUST b                     
+where exists (select * from ldphuc/ZSCTPCUST a     
 where a.SVCDE  = b.SVCDE                    
 and   a.SVNAM  = b.SVNAM                    
 and   a.SLSMN  = b.SLSMN                    
@@ -10699,8 +10699,8 @@ SELECT * FROM ldphuc/ZSCTPCUST
 795 rows inserted in ZSCTPCUST in ZPTLIBD.    
 
 delete                                         
-from  ldphuc/ZSCTPITEM b          
-where exists (select * from ZSCTPITEM a    
+from  ZSCTPITEM b          
+where exists (select * from ldphuc/ZSCTPITEM a    
 where a.INDOIT    = b.INDOIT                   
 and   a.PROGROUP  = b.PROGROUP                 
 and   a.ITEM      = b.ITEM )                   
@@ -12963,6 +12963,25 @@ where
 insert into ssatcp                      
 select * from ldphuc/ssatcp              
 3496 rows inserted in SSATCP in ZPTLIBD.
+============================================================
+Incident #69775 -  Hỗ trợ run data - nttnhan - nguyen thi thanh nhan
+Dear anh,
+Nhờ anh hỗ trợ run giúp em sales data của KH S03643 giai đoạn 04/06/15 - 31/03/16 như form đính kèm.
+Thank anh!
+
+select b.ttype,b.invno,b.CUST,CNAME,CADD1,CADD2,                    
+CADD3,b.CMGRP2,ITEM,b.CMGRP3,b.CMGRP4,                              
+b.SUB,                                                              
+GIVINV,GIVBRF,INDCFD,INDUNT,INDSEL,INDVAL,c.PBHCON,b.ORDR,          
+b.PRNCPL,PBHSDT,                                                    
+       PBHEDT                                                       
+from cm a, inh b, ind c ,pbh d                                      
+where b.ttype in ('IV','CR') and inddel=''                          
+and inhdel='' and a.cust=b.cust                                     
+and b.ttype=c.ttype and b.invno=c.invno                             
+and b.cust='S03643'                                                 
+and c.pbhcon=d.pbhcon and pbhdel=''                                 
+and inhcfd between 20150604 and 20160331                            
 
 ===========================================================
   select *                          
@@ -13562,7 +13581,7 @@ A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
 ------stop rebate
 select * 
 from invdsc 
-where invno = 10029492 
+where invno in 10029492 
 and cust='S15108'  
 
 update invdsc set INCDSA=0,RBHPGM='Stop By CS',
