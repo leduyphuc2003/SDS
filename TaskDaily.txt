@@ -351,6 +351,7 @@ C. CHAY CAU LENH UPDATE CO BAN CUOI NGAY.======================================
 	A.CQHCMB=cust and A.CQHIMB=item and b.ttype in           
 	('OR','PS'))      
 
+	-- co so luong nhung khong co gia tien, ngoai tru san pham bonus, con lai phai bao lai
 	select * from ind where inddel='' and indcfd>=20160701 and  
 	indunt<>0 and indsel=0 and indlty=''  	
 

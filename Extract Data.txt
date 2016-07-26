@@ -80,3 +80,47 @@ WHERE cmdel='' and inhdel='' and inddel='' and a.cust= b.cust and
 b.ttype=c.ttype and b.invno=c.invno and c.item in ('B040140',      
 'B040220', 'B040170' , 'B040090' ) and indcfd between 20160101 and 
 20160631   
+========================================================
+========================================================
+Bao cao stock up - Vo Hieu Phuc
+
+SELECT A.TTYPE, A.ORDERNUMBER, A.ORDERDATE, A.CUSTOMER,           
+A.ORDERSTATUS, A.ORDERSOURCE, A.DETAILSTATUS, A.PICKINGSLIP,      
+A.INVOICE, A.INVOICESEQ, A.MANIFEST, A.ITEM, A.ITEMDESCRIPTION,   
+A.PRINCPAL, A.WAREHOUSE, A.REQUESTEDQTY, A.SUPPLIEDQTY,           
+A.BACKORDEREDQTY, A.SUPPLIEDVALUE, A.DELIVERYNAME,                
+A.DELIVERYADDRESS1, A.DELIVERYADDRESS2, A.DELIVERYADDRESS3,       
+A.DELIVERYINSTRUCTION1, A.DELIVERYINSTRUCTION2,                   
+A.DELIVERYINSTRUCTION3, A.URGENTORDERCODE,                        
+A.HOSPITALORGINALDOCUMENT, A.DELIVERYDATE,                        
+A.DELIVEREDONDATE ,value(-Itqty,0) AS INVOICESUPPLIEDQTY          
+, value(B.ISL#, ''), 0 as EXPIRYDATE,                             
+value(locn,'') as LOCATION,value(itcrtd,0) as INVOICEDATE         
+,value(itcrtt,0) as INVOICETIME,GIVBRF,GIVINV,INDCFD 
+FROM ZPTLIBD/zstockup a left join 	
+ZPTLIBD/it b on INVOICE =batch and INVOICESEQ=bhSEQ AND           
+B.TTYPE='IV'
+
+=========================
+Scorecard theo local group
+
+SELECT A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,                     
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                                
+COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),       
+SUM(A.CODVAL)                                                      
+ FROM cod a,coh b, cm c WHERE coddel='' and cohdel=''              
+and b.cust=c.cust and A.PRNCPL IN ('G03', 'G10') and               
+a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20140101 and  
+20141130 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC                    
+
+============================
+Scorecard – orders taken by
+SELECT A.PRNCPL, B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                
+COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),        
+SUM(A.CODVAL) FROM cod a,coh b WHERE coddel='' and cohdel='' and    
+a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20120201 and   
+20120229 GROUP BY A.PRNCPL,B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC
+================================
+ZPP Suggested Warehouse Stock Transfer Report - Le Phuong Giang
+select * from z9661         

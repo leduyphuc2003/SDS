@@ -1,31 +1,22 @@
+ SUB       INVNO   INHPF       INVNO   WHS  CUST     
+ PN1  73301570     P    73,301,570   WS1  N07423   
+ 
+ 
+ 73301570
+ 
+  TTYPE       INVNO   INDSEQ  INDBT  INDLTY  INDSTS  INDINO  INDLCM      EOHNUM   EODSEQ        ORDR   ODSEQ         PSN  
+  IV    73,210,339       1      0             Z       N       N              0       0   33,477,151      1   60,553,513  
+  
+ 
+ 
+ 
+ 
 
-Incident #69697 -  data extract	- Cao Thanh Thuy
-Dear anh/chị,
-Vui lòng extract giúp em data theo template đính kèm và thông tin bên dưới nha.
+MINUTE	SELECT DATEADD(MINUTE,15,@Date)	2011-09-23 16:03:39
 
-Product: Tanakan, Smecta, Gastropulgite
-All channel 
-Nationwide
-Sales Period: monthly, Jan'15-Jun'15, Jan'16-Jun'16
-Cám ơn anh/chị
-
-SELECT A.CUST, A.CNAME, A.CADD1, A.CADD2, A.CADD3, A.CMSTAT,       
-A.CMALNM, A.CMALA1, A.CMALA2, A.CMCONT, A.CLASS, A.PLCAR, A.PLCTE, 
-A.CMIMS1, A.CMGRP1, A.CMGRP2, A.CMGRP3, A.CMGRP4, B.TTYPE, B.INVNO,
-B.INHCFD, B.INHOTB, INHSRC,                                        
- C.STYCDE, C.ITEM, C.INDDES, C.PRNCPL, C.INDCFD,                   
-C.INDUNT, C.INDSEL, C.INDGST, C.INDVAL FROM cm a, inh b, ind c     
-WHERE cmdel='' and inhdel='' and inddel='' and a.cust= b.cust and  
-b.ttype=c.ttype and b.invno=c.invno and c.item in ('B040140',      
-'B040220', 'B040170' , 'B040090' ) and indcfd between 20160101 and 
-20160631                                                           
-
-
-
-
-
-
-
+select Convert (varchar(8),(SELECT DATEADD(MINUTE,-60,GetDate())))
+select Convert (varchar(8),(SELECT DATEADD(MINUTE,-60,GetDate())), 108)
+select replace(Convert (varchar(8),(SELECT DATEADD(MINUTE,-60,GetDate())), 108),':','') 
 
 
 	
