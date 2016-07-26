@@ -1,0 +1,94 @@
+ SELECT TOP 50 PERCENT ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS
+ INTO temp 
+ FROM AS400.S064BE8R.TSTLIBD.ASLF9725
+
+DROP TABLE temp3
+
+delete from WCS
+delete from temp
+ 
+select * from temp
+
+=========================================	chuong trinh WCS begin
+ -- insert all vao temp
+ insert into temp(ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS)
+ SELECT ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS
+FROM AS400.S064BE8R.TSTLIBD.ASLF9725
+where ttype = 'PS' and whs='WT2' and PSHDEL = ''  and PSHCTD = CONVERT(VARCHAR(8),GETDATE(),112)
+and PSHCTT > (select replace(Convert (varchar(8),(SELECT DATEADD(MINUTE,-500,GetDate())), 108),':','') )
+and PSHCTT <= (select replace(Convert (varchar(8),(SELECT DATEADD(MINUTE,0,GetDate())), 108),':','')) 
+ORDER BY NEWID()
+
+--insert 50% vao temp2  
+delete from temp2
+
+insert into temp2
+ SELECT TOP 50 PERCENT ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS
+ FROM temp ORDER BY NEWID()
+
+ select * from temp2
+
+ update temp2 set pshsts ='Y'
+ 
+ --xoa 50% row trong bang temp  
+		--; WITH CTE AS
+		--(
+		-- SELECT TOP 50 PERCENT ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS
+		-- FROM temp
+		--)
+		--DELETE FROM CTE
+
+; WITH CTE AS
+(
+ SELECT *
+ FROM temp a
+ where exists (select * from temp2 b where a.PSN =b.PSN)
+)
+DELETE FROM CTE
+
+select * from temp
+
+ update temp set pshsts ='N'
+
+ --insert 50% Y va 50% N vao WCS
+  insert into WCS(ORDR, PSN, CTMCDE,PSHCTN,CHK,WHS,PSHCTD,PSHCTT)
+ select ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,WHS,PSHCTD,PSHCTT
+ from temp
+
+  insert into WCS(ORDR, PSN, CTMCDE,PSHCTN,CHK,WHS,PSHCTD,PSHCTT)
+ select ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,WHS,PSHCTD,PSHCTT
+ from temp2
+
+select * from WCS
+
+
+====================================================== SQL note
+select *
+from AS400.S064BE8R.ZPTLIBD.IM
+
+--select data as400 theo ngay hien tai va gio hien tai tru 15 phut va random chuoi
+SELECT ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS
+FROM AS400.S064BE8R.TSTLIBD.ASLF9725
+where ttype = 'PS' and whs='WT2' and PSHDEL = ''  and PSHCTD = CONVERT(VARCHAR(8),GETDATE(),112)
+and PSHCTT > (select replace(Convert (varchar(8),(SELECT DATEADD(MINUTE,-180,GetDate())), 108),':','') )
+and PSHCTT <= (select replace(Convert (varchar(8),(SELECT DATEADD(MINUTE,0,GetDate())), 108),':','')) 
+ORDER BY NEWID()
+
+--SQL SELECT TOP PERCENT Example - get 50% row trong table
+ SELECT TOP 50 PERCENT ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS
+ FROM AS400.S064BE8R.TSTLIBD.ASLF9725
+
+ SELECT *
+INTO newtable [IN externaldb]
+FROM table1;
+
+ SELECT TOP 50 PERCENT ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS
+ INTO temp [IN externaldb]
+ FROM AS400.S064BE8R.TSTLIBD.ASLF9725
+
+--get current date theo ngay hien tai format  112 = yyyymmdd
+select CONVERT(VARCHAR(8),GETDATE(),112)
+--tru 60 phut ra format hh:mm:ss
+select Convert (varchar(8),(SELECT DATEADD(MINUTE,-60,GetDate())), 108)
+--tru 60 phut ra format hhmmss
+select replace(Convert (varchar(8),(SELECT DATEADD(MINUTE,-60,GetDate())), 108),':','') 
