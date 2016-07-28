@@ -75,7 +75,8 @@ A.CMALNM, A.CMALA1, A.CMALA2, A.CMCONT, A.CLASS, A.PLCAR, A.PLCTE,
 A.CMIMS1, A.CMGRP1, A.CMGRP2, A.CMGRP3, A.CMGRP4, B.TTYPE, B.INVNO,
 B.INHCFD, B.INHOTB, INHSRC,                                        
  C.STYCDE, C.ITEM, C.INDDES, C.PRNCPL, C.INDCFD,                   
-C.INDUNT, C.INDSEL, C.INDGST, C.INDVAL FROM cm a, inh b, ind c     
+C.INDUNT, C.INDSEL, C.INDGST, C.INDVAL, b.artrm 
+FROM cm a, inh b, ind c     
 WHERE cmdel='' and inhdel='' and inddel='' and a.cust= b.cust and  
 b.ttype=c.ttype and b.invno=c.invno and c.item in ('B040140',      
 'B040220', 'B040170' , 'B040090' ) and indcfd between 20160101 and 

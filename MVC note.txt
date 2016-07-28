@@ -1,0 +1,61 @@
+MVC note
+
+---	connectionStrings cho file app config. SchoolContext là tên file class SchoolContext: DbContext
+<connectionStrings>
+//connectionStrings không dùng user và password
+<add name="SchoolContext" connectionString="Data Source=VNZPDPLE22;Initial Catalog=SchoolContextDataBase;Integrated Security=true;" providerName="System.Data.SqlClient" />
+
+//connectionStrings có user và password
+<add name="SchoolContext" connectionString="Server=VNZPDPLE22;Database=SchoolContextDataBase;user=sa;password=12345" providerName="System.Data.SqlClient" />
+</connectionStrings>
+
+---	entity framework code first chưa có database ban đầu
+-	khai báo lớp(lớp này tương đương với bảng trong sql)
+	public class Student
+    {
+        public Student()
+        {
+        }
+        public int StudentID { get; set; }
+        public string StudentName { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public byte[] Photo { get; set; }
+        public decimal Height { get; set; }
+        public float Weight { get; set; }
+
+        public Standard Standard { get; set; }
+    }
+	
+	public class Standard
+    {
+        public int StandardId { get; set; }
+        public string StandardName { get; set; }
+
+        public ICollection<Student> Students { get; set; }
+
+    }
+	
+-	khai báo lớp thừa kế từ lớp DbContext và có chứa các lớp ở trên ===> class SchoolContext: DbContext
+    public class SchoolContext: DbContext
+    {
+        public SchoolContext() : base()
+        {
+        }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Standard> Standards { get; set; }
+    }
+-	hàm main gọi 
+	public class HomeController : Controller
+		{
+			public ActionResult Index()
+			{
+				using (var ctx = new SchoolContext())
+				{
+					Student stud = new Student() { StudentName = "New Student" };
+
+					ctx.Students.Add(stud);
+					ctx.SaveChanges();
+				}
+				return View();
+			}
+		}

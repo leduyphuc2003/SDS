@@ -1,15 +1,48 @@
- SUB       INVNO   INHPF       INVNO   WHS  CUST     
- PN1  73301570     P    73,301,570   WS1  N07423   
+  Incident #69836 -  Add A18 vào Price List - Thanh Nhan - Yen Hoa 
+Add A18 vao Price List
+Dear anh Chu,
+Nhờ anh Chu add A18 vào Price List giúp em.
+Thank anh!
+insert into z9510                    
+values ('','A18','BU4')              
+
+
+
+
+
+
+
+
+
+ SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3 ,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,  A.INCVAL, A.INCDSA, VALUE( B.TTYPE,'') AS TTYPE, VALUE(B.DOCNO,0) AS DOCNO, VALUE(B.INSVAL,0) AS INSVAL , VALUE(B.INSCTD,0) AS INSCTD FROM zptlibd.invdsc a left join zptlibd.invdsa b on A.CUST= B.CUST and A.PRNCPL= B.PRNCPL and A."GROUP"= B."GROUP" and A.INVNO= B.INSREF left join zptlibd.cm c on a.cust=
+c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ') AND A.INCCFD >= 20150930 AND INCDEL=''                                      
+
+
+chay tay
+ SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3                  
+ ,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,                            
+ A.INCVAL, A.INCDSA, VALUE( B.TTYPE,'') AS                          
+  TTYPE, VALUE(B.DOCNO,0) AS DOCNO, VALUE(B.INSVAL,0) AS INSVAL ,   
+VALUE(B.INSCTD,0) AS INSCTD 
+                                        
+FROM zptlibd/invdsc a left join zptlibd/invdsa b on A.CUST= B.CUST 
+and A.PRNCPL= B.PRNCPL and A."GROUP"= B."GROUP" and A.INVNO= B.INSREF 
+left join zptlibd/cmc on a.cust=c.cust 
+WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ')    
+AND A.INCCFD >= 20150930 AND INCDEL=''                              
+File TEMP in LDPHUC was replaced.    
  
  
- 73301570
+ 463703/VIEATTV/ATTVB1.        
+463703/VIEATTV/ATTVB1.        
  
-  TTYPE       INVNO   INDSEQ  INDBT  INDLTY  INDSTS  INDINO  INDLCM      EOHNUM   EODSEQ        ORDR   ODSEQ         PSN  
-  IV    73,210,339       1      0             Z       N       N              0       0   33,477,151      1   60,553,513  
-  
- 
- 
- 
+ chay tay
+    COUNT ( * )     
+       172,437     
+	   
+	   bao cao
+	      COUNT ( * )     
+       172,452     
  
 
 MINUTE	SELECT DATEADD(MINUTE,15,@Date)	2011-09-23 16:03:39
@@ -19,7 +52,7 @@ select Convert (varchar(8),(SELECT DATEADD(MINUTE,-60,GetDate())), 108)
 select replace(Convert (varchar(8),(SELECT DATEADD(MINUTE,-60,GetDate())), 108),':','') 
 
 
-	
+===========================================================================================
   ZPTLIBM/QRPGSRC 
            ZPG470 
 

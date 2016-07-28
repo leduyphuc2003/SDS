@@ -3740,7 +3740,7 @@ t? file ja vào
 CO	DIV	BR	GLACCT	GJSUM	MJDKEY	JWDEBJ	JWCRJ	JWNARR
 bên file jw. Sau dó kéo th? copy MJQTYJ,JWDATE,JWMOD,JWRCH 
 xu?ng
--	edit cot  JWDATE theo ngày c?a file ja
+-	edit cot  JWDATE theo ngày c?a file ja  JADATE 
 
 => xóa di nh?ng dòng ja và jw b? sai tuong ?ng v?i batch 89228030. Sau dó upload 2 file t?m ja và jw vào file th?t ja và jw trong sds
 
@@ -8991,8 +8991,8 @@ Tra loi voi user 4 so  SJBTCH bi sai nay va keu user tu tao lai cai moi vi IT ko
 Submit bao cao, submit test
 Goi lai bao cao excel ZIN737 (gui mail cho bao cao)
 
-1/. Xoa record trong SPLR – TTYPE =’TS’
 SELECT statement run complete.              
+1/. Xoa record trong SPLR – TTYPE =’TS’
 delete from splr where ttype='TS'           
 1 rows deleted from SPLR in ZPTLIBX.    
     
@@ -10662,7 +10662,7 @@ SELECT * FROM ldphuc/ZSCTPCUST
 
 =======================================================================================
 Service Request # 33126  
-Update sales matrix to SDS report ( anh Man)
+Update sales matrix to SDS report ( anh Man) - report anh Man - report matrix anh Man
 Dear IT,
 
 Please hlep update sales matrix of SC to report namely:  ZPP GSK Sales SC by Customer-Item.
@@ -14629,42 +14629,12 @@ ORDR		ITEM		CODEPR	CODSEL		CODPAC		CODVAL		  CODUNT
 ======================================================
 bao cao  price off
 wrkjob ars350   
+ 
 ========================================================
-Bao cao stock up - Vo Hieu Phuc
-
-SELECT A.TTYPE, A.ORDERNUMBER, A.ORDERDATE, A.CUSTOMER,           
-A.ORDERSTATUS, A.ORDERSOURCE, A.DETAILSTATUS, A.PICKINGSLIP,      
-A.INVOICE, A.INVOICESEQ, A.MANIFEST, A.ITEM, A.ITEMDESCRIPTION,   
-A.PRINCPAL, A.WAREHOUSE, A.REQUESTEDQTY, A.SUPPLIEDQTY,           
-A.BACKORDEREDQTY, A.SUPPLIEDVALUE, A.DELIVERYNAME,                
-A.DELIVERYADDRESS1, A.DELIVERYADDRESS2, A.DELIVERYADDRESS3,       
-A.DELIVERYINSTRUCTION1, A.DELIVERYINSTRUCTION2,                   
-A.DELIVERYINSTRUCTION3, A.URGENTORDERCODE,                        
-A.HOSPITALORGINALDOCUMENT, A.DELIVERYDATE,                        
-A.DELIVEREDONDATE ,value(-Itqty,0) AS INVOICESUPPLIEDQTY          
-, value(B.ISL#, ''), 0 as EXPIRYDATE,                             
-value(locn,'') as LOCATION,value(itcrtd,0) as INVOICEDATE         
-,value(itcrtt,0) as INVOICETIME FROM ZPTLIBD/zstockup a left join 
-ZPTLIBD/it b on INVOICE =batch and INVOICESEQ=bhSEQ AND           
-B.TTYPE='IV'
-
-=========================
-Scorecard theo local group
-
-SELECT A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,                     
-B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                                
-COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),       
-SUM(A.CODVAL)                                                      
- FROM cod a,coh b, cm c WHERE coddel='' and cohdel=''              
-and b.cust=c.cust and A.PRNCPL IN ('G03', 'G10') and               
-a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20140101 and  
-20141130 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
-B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC                    
-
-============================
-Scorecard – orders taken by
-SELECT A.PRNCPL, B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                
-COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),        
-SUM(A.CODVAL) FROM cod a,coh b WHERE coddel='' and cohdel='' and    
-a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20120201 and   
-20120229 GROUP BY A.PRNCPL,B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC     
+  Incident #69836 -  Add A18 vào Price List - Thanh Nhan - Yen Hoa 
+Add A18 vao Price List
+Dear anh Chu,
+Nhờ anh Chu add A18 vào Price List giúp em.
+Thank anh!
+insert into z9510                    
+values ('','A18','BU4')   
