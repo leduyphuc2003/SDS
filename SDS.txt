@@ -5041,7 +5041,7 @@ WHERE ITEM='N120730UL' AND IMSOH<>0
  dear IT 
  nho IT kiem tra giup em 
  item : A121650 (so wo : 83079)
-            I010220 ( so wo : 83372) 
+        I010220 ( so wo : 83372) 
  2 ITem nay da lam tem va finish wo xong nhung Kho D01 khong tru (do thieu transaction WU chuan ne)
  em kiem tra va chay bao cao theo ITem nhu file ben duoi. IT  kiem tra lai va clear Stock trong kho D01 va  stock tem toa lien quan  giup em ! 
  em cam on nhieu!
@@ -12113,8 +12113,10 @@ N06139 13/02/2014 - 13/10/2014
                'N07726', 'N07727',                                  
                'N06139' )                                           
  and indcfd between 20140213 and 20141013     
- ==================================================================================
---BRANCH TRANSFER BI BTH/BTD -> BRANCH TRANSFER PICK SLIP BP BPH/BPD -> PACKING NOTES PI PKH/PKD
+==================================================================================
+-- BRANCH TRANSFER BI BTH/BTD (ben IC se key hang)
+-> BRANCH TRANSFER PICK SLIP BP BPH/BPD (xuong duoi kho sẽ pick hàng)
+-> PACKING NOTES PI PKH/PKD (sau khi pick xong sẽ tạo packing note)
 ==============================================================================
  Service Request # 37187 
 Request report: CAM Monthly Customer Credit Status

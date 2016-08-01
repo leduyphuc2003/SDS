@@ -1,4 +1,53 @@
-----------------------Summary report on stocking up customer-Add Route 1 - chi Thai Hang
+========================   chi Truc
+Incident #70412 -  extract data Thang 07.2016
+extract data Thang 07.2016
+Dear IT team,
+Vui long extract data Thang 07/2016  nhu thong tin ben duoi nhe. Thanks all
+
+1. PRN scorecard 
+
+2.  Monthly Merck serono :     PRN Code tu M04 den M18  
+
+3.  Monthly report of Menarini cho cac item ben duoi (Data tuong tu nhu monthly Merck serono)
+I010150
+I010220
+I010230
+I010240
+I010280
+I010290
+I010290D
+I010300
+
+---Scorecard theo local group
+SELECT A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,                     
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                                
+COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),       
+SUM(A.CODVAL)                                                      
+ FROM cod a,coh b, cm c WHERE coddel='' and cohdel=''              
+and b.cust=c.cust and A.PRNCPL IN ('G03', 'G10') and               
+a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20140101 and  
+20141130 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC    
+
+---Monthly Merck serono
+select b.WHS,ITEM,b.PRNCPL,CODSEQ,CODUNT,CODVAL,COHDAT,CODOUN      
+from coh a, cod b                                                  
+where a.ttype=b.ttype and a.ordr=b.ordr and cohdel='' and coddel=''
+and A.PRNCPL IN (                                                  
+'M04','M05','M06','M07','M08','M09','M10','M11',                   
+'M12','M13','M14','M15','M16','M17','M18' ) and a.ttype='OR'       
+and cohdat between 20160701 and 20160731                                                
+
+---Monthly report of Menarini cho cac item ben duoi (Data tuong tu nhu monthly Merck serono)
+select b.WHS,ITEM,b.PRNCPL,CODSEQ,CODUNT,CODVAL,COHDAT,CODOUN       
+from coh a, cod b                                                   
+where a.ttype=b.ttype and a.ordr=b.ordr and cohdel='' and coddel='' 
+and a.ttype='OR'                                                    
+and item in ( 'I010150','I010220','I010230','I010240',              
+              'I010280','I010290','I010290D','I010300')             
+and cohdat between 20160701 and 20160731                            
+
+=====================   Summary report on stocking up customer-Add Route 1 - chi Thai Hang
 select 
 A.TTYPE, A.ORDR as Order, A.COHDAT as OrderDate, A.CUST as Customer, F.OTSDES as OrderStatus, A.COHSRC as OrderSource, B.CODSTS as DetailStatus, B.PSN as PickingSlip , B.INVNO as Invoice, E.MANFST AS MANIFEST,B.ITEM, B.CODDES as ItemDescription, B.PRNCPL as Princpal, B.WHS as Warehouse, CODOUN as RequestedQty, B.CODUNT as SuppliedQty ,B.CODUBO as BackOrderedQty, B.CODVAL as SuppliedValue, C.COONAM as DeliveryName, C.COOAD1 as DeliveryAddress1, C.COOAD2  as DeliveryAddress2, C.COOAD3  as DeliveryAddress3,  C.COODI1 as DeliveryInstruction1, C.COODI2  as DeliveryInstruction2, C.COODI3  as DeliveryInstruction3,UOPCDE as UrgentOrderCode, ODMK1 as HospitalOrginalDocument, ODPOR As DeliveryDate, C.RTECDE as Route
 ,G.TTYPE,INVNO,GIVINV,GIVBRF 
@@ -44,8 +93,13 @@ A.TTYPE AND E.ORDR = A.ORDR AND E.OTHSTS = F.OTSSTS  AND B.PSN =
 E.PSN AND E.OTHSTS <> 'ZZZ' and a.cust in ('S01177')                
 
 --------------------------- bao cao Sanofi - Vo thi minh thi - ho phuong thao
+Submit test report rebate
+-	delete from splr where ttype='TS'                       
+-	INSERT INTO SPLR VALUES('','TS','RBTS27')      
+-	SBMEXLRPT TYPE(TS) DTAQ(ZPTAUTORPT) USER('')
+
 ZPP Sanofi Customer Rebate Q3 2015
- /java/SQLS/RBTS27.sql         
+/java/SQLS/RBTS27.sql         
 
  SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3                  
  ,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,                            

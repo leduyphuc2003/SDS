@@ -1,3 +1,10 @@
+Branch transfer (ben bo phan IC)
+pbh pbd ---picking slip (dưới kho sẽ làm)
+pkh pkd ---packing note (sau khi picking slip xong sẽ ra packing note)
+
+
+
+
      Item                  Warehouse                                      
      P040940               WT2                                            
                        Item Warehouse Serial/Lot#                         
