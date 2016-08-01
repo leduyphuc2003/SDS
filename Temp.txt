@@ -1,10 +1,44 @@
-  Incident #69836 -  Add A18 vào Price List - Thanh Nhan - Yen Hoa 
-Add A18 vao Price List
-Dear anh Chu,
-Nhờ anh Chu add A18 vào Price List giúp em.
-Thank anh!
-insert into z9510                    
-values ('','A18','BU4')              
+     Item                  Warehouse                                      
+     P040940               WT2                                            
+                       Item Warehouse Serial/Lot#                         
+    Whs Serial/Lot#     Location     Expiry    On Hand  Avail Suspend Sale
+ 01 WT2 L87605          B35-07-02-02 010417   4032.000                 Y  
+ 
+ 
+ Locn Tfr In       4416.000  Out          4416.000  
+ 
+ LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='P040940' 
+AND LOCN='B35-07-02-02' 
+AND ISL#='L87605' 
+AND WHS='WT2' 
+
+UPDATE LB 
+SET  LBSOA= LBSOA-4032                                    
+WHERE ITEM='P040940' 
+AND LOCN='B35-07-02-02' 
+AND ISL#='L87605' 
+AND WHS='WT2' 
+
+
+ select IWLTQI,IWLTQO,item,whs     
+from IW                           
+where item ='P040940'             
+and WHS='WT2'                     
+        IWLTQI           IWLTQO   ITEM                  WHS   
+    4,416.000        4,416.000   P040940               WT2   
+	
+ update IW set IWLTQI=0,IWLTQO=0      
+ where item ='P040940'                
+ and WHS='WT2'                        
+ 1 rows updated in IW in ZPTLIBD.   
+ 
+ 
+ 
+ 
+ 
 
 
 
@@ -14,6 +48,53 @@ values ('','A18','BU4')
 
 
 
+
+
+
+
+
+
+ 
+
+zin793pf 
+
+ 
+
+  Item                  Warehouse                   
+  L010170               WM1                         
+                    Item Warehouse Serial/Lot#      
+ Whs Serial/Lot#     Location     Expiry    On Hand 
+ WM1 A04064A         F04-01-04-05 010117      1.000 
+
+ 		IW
+		select ITEM, IWSSA, WHS
+		from IW 	
+		where ITEM='L010170' AND WHS='WM1'
+		
+		 UPDATE IW SET IWSSA=IWSSA +1
+		where ITEM='L010170' AND WHS='WM1'
+		
+
+LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='L010170' 
+AND LOCN='F04-01-04-05' 
+AND ISL#='A04064A' 
+AND WHS='WM1' 
+
+UPDATE LB 
+SET  LBSOA= LBSOA-1                                    
+WHERE ITEM='L010170' 
+AND LOCN='F04-01-04-05' 
+AND ISL#='A04064A' 
+AND WHS='WM1' 
+
+
+ 
+ 
+
+=========================================================================
  SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3 ,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,  A.INCVAL, A.INCDSA, VALUE( B.TTYPE,'') AS TTYPE, VALUE(B.DOCNO,0) AS DOCNO, VALUE(B.INSVAL,0) AS INSVAL , VALUE(B.INSCTD,0) AS INSCTD FROM zptlibd.invdsc a left join zptlibd.invdsa b on A.CUST= B.CUST and A.PRNCPL= B.PRNCPL and A."GROUP"= B."GROUP" and A.INVNO= B.INSREF left join zptlibd.cm c on a.cust=
 c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ') AND A.INCCFD >= 20150930 AND INCDEL=''                                      
 

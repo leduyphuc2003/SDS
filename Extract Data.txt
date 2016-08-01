@@ -125,3 +125,6 @@ a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20120201 and
 ================================
 ZPP Suggested Warehouse Stock Transfer Report - Le Phuong Giang
 select * from z9661         
+====================================
+Bao cao asap: ZIN793 Phyto Sales Details     
+=> tao ra file ZIN793PF       
