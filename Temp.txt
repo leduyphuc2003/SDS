@@ -1,72 +1,215 @@
-Branch transfer (ben bo phan IC)
-pbh pbd ---picking slip (dưới kho sẽ làm)
-pkh pkd ---packing note (sau khi picking slip xong sẽ ra packing note)
+
+Incident #70616 -  Sales Report in HCM, Hanoi, Da nang in - ntthuy IC - Nguyen Thanh Thuy - report hang lanh 
+Sales Report in HCM, Hanoi, Da nang in 2014, 2015, 2016
+IT vui lòng hỗ trợ cung cấp sales report của 3 khu vực: Hồ Chí Minh, Hà Nội, Đà Nẵng trong năm 2014, 2015 và 7 tháng đầu năm 2016
+Template theo file đính kèm
+Cảm ơn.
+
+SELECT b.prncpl,b.item, B.IMDBRN||B.IMDFRM|| B.IMDSTR||B.IMDSIZ as     
+ITEM_DESC, substr(char(sasdte),1,4) as YEAR ,plcar,                    
+sum( A.SASSQY+                                                         
+A.SASSBQ+ A.SASRQY+ A.SASRBQ ) as QTY,sum( A.SASSVL+ A.SASRVL ) as     
+VALUE FROM sas a,im b WHERE sasdte between 20140101 and 20160731       
+and sasdel='' and a.item=b.item and B.ISTCDE ='COL' and plcar in       
+('101','201', '302' , '301', '310', '311', '312', '313', '315')        
+GROUP BY b.prncpl,b.item, B.IMDBRN||B.IMDFRM|| B.IMDSTR||B.IMDSIZ,     
+substr(char(sasdte),1,4),plcar                                         
+File TEMP in LDPHUC was replaced.                                      
 
 
-
-
-     Item                  Warehouse                                      
-     P040940               WT2                                            
-                       Item Warehouse Serial/Lot#                         
-    Whs Serial/Lot#     Location     Expiry    On Hand  Avail Suspend Sale
- 01 WT2 L87605          B35-07-02-02 010417   4032.000                 Y  
  
  
- Locn Tfr In       4416.000  Out          4416.000  
+  
+   
+   
+ Incident #70554 -  Location In-Out
+Location In-Out
+Dear IT,
+Kiem tra giup 2 items ben duoi bi allocated stock va location In-Out
+B060560 va P040920
+
+  Item                  Warehouse             
+  B060560               WT2                   
+  
+   IWLTQI 
+ select IWLTQI,IWLTQO,item,whs     
+from IW                           
+where item ='P040920'             
+and WHS='WT2'      
+               
+     IWLTQI           IWLTQO   ITEM                  WHS      
+  7,480.000        7,480.000   P040920               WT2      
+  
+ update IW set IWLTQI=0,IWLTQO=0      
+where item ='P040920'             
+and WHS='WT2'  
+ 
+  ITEM                  LOCN          ISL#             WHS           LBSOA   
+ B060560               B35-06-06-02  5ANNA029         WT2       4080.000   
+ B060560               B14-18-06-02  5ANNA038         WT2         900.000   
+ 
+  ITEM                  LOCN          ISL#             WHS           LBSOA   
+ P040920               B14-10-06-01  151464141        WT2       6800.000   
+ P040920               B14-13-05-01  151464141        WT2         680.000   
  
  LB
 select ITEM, LOCN, ISL#, WHS, LBSOA
 from LB	
-WHERE ITEM='P040940' 
-AND LOCN='B35-07-02-02' 
-AND ISL#='L87605' 
+WHERE ITEM='P040920' 
+AND LOCN='B14-10-06-01' 
+AND ISL#='151464141' 
 AND WHS='WT2' 
 
 UPDATE LB 
-SET  LBSOA= LBSOA-4032                                    
-WHERE ITEM='P040940' 
-AND LOCN='B35-07-02-02' 
-AND ISL#='L87605' 
+SET  LBSOA= LBSOA-6800                                   
+WHERE ITEM='P040920' 
+AND LOCN='B14-10-06-01' 
+AND ISL#='151464141' 
 AND WHS='WT2' 
-
-
- select IWLTQI,IWLTQO,item,whs     
-from IW                           
-where item ='P040940'             
-and WHS='WT2'                     
-        IWLTQI           IWLTQO   ITEM                  WHS   
-    4,416.000        4,416.000   P040940               WT2   
-	
- update IW set IWLTQI=0,IWLTQO=0      
- where item ='P040940'                
- and WHS='WT2'                        
- 1 rows updated in IW in ZPTLIBD.   
- 
- 
- 
- 
  
 
 
 
+=====================================
+26/7 dung
+27/7 bat dau sai
+
+
+ select *                              
+ from zptlibd/zin793pf                 
+ File ZIN793PF in LDPHUC was created.           
+
+ IV  51157069 
+ 
+ 
+ZIN793SAN 
+  ZPP Sang Daily Sales Details  
+ /REPORT/SANG/NW/DAILY/              
+   /java/SQLS/ZIN793SAN.sql                                                                    
+
+
+SELECT A.TTYPE, A.INVNO, A.INHOIN, A.GIVBRF, A.GIVINV, A.CUST,       
+A.CNAME, A.CADD1, A.CADD2, A.CADD3, A.RTECDE, A.CMTAXC, A.ITEM,      
+A.IMDESC, A.ISLEXP, A.ISL#, A.WHS, A.ITDAT, A.$JLEAY,C.INDEPR,       
+ A.$JLEAS,                                                           
+A.$JLEAJ, A.$JLEAK, A.$JLEAI, A.$JLEAL, A.SUB, B.SBDANM ,A.$JLEAA,   
+A.$JLEAB, A.$JLEAC, A.ITCRTD, A.ITCRTT, A.$JLEAD, A.$JLEAM,          
+A.INHSRC, A.STYCDE, A.STYDES, A.$JLEBC, A.$JLEBD FROM                
+zptlibd.zin793pf A,ZPTLIBD.SBD B, ZPTLIBD.IND C                      
+ WHERE A.ITEM=C.ITEM and A.TTYPE=C.TTYPE and A.INVNO=C.INVNO         
+  and                                (A.sub LIKE 'SA%' OR            
+A.SUB='OSH' OR A.sub='PN4' or A.SUB LIKE 'US%' OR A.SUB ='O4E' OR    
+A.SUB ='O4D' or A.sub='PA4' OR A.SUB LIKE 'SP%' OR A.SUB LIKE        
+'SH%' or a.sub like 'SD%' or a.SUB='MH4' OR a.SUB ='PD4' or          
+ a.sub='PAS' or a.sub='PAH') AND A.SUB=B.SUB                         
+
+ZIN793PF
+
+
+==============================
+viet chuong trinh upload return rebate va xuat ra file excel cho user
+Viet icon extract data rebate cho user
+================================
+ SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3                  
+ ,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,                            
+ A.INCVAL, A.INCDSA, coalesce( B.TTYPE,'') AS                          
+  TTYPE, coalesce(B.DOCNO,0) AS DOCNO, coalesce(B.INSVAL,0) AS INSVAL ,   
+coalesce(B.INSCTD,0) AS INSCTD                                         
+FROM AS400.S064BE8R.ZPTLIBD.invdsc a left join AS400.S064BE8R.ZPTLIBD.invdsa b                    
+on A.CUST= B.CUST and A.PRNCPL= B.PRNCPL                            
+and A."GROUP"= B."GROUP" and A.INVNO= B.INSREF left join AS400.S064BE8R.ZPTLIBD.cm 
+c on a.cust=                                                        
+c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ')    
+AND A.INCCFD >= 20150930 AND INCDEL=''
+
+select coalesce(Sub1, '0') as Sub1
+select 'Text String' (VARCHAR(255)) as sub1
+ 
+ 
+ --INNER JOIN kiểu ANSI
+SELECT *
+FROM T1 JOIN T2 ON T1.ID = T2.ID
+--INNER JOIN kiểu cũ
+SELECT *
+FROM T1, T2
+WHERE T1.ID = T2.ID
+ 
+-- LEFT OUTER JOIN kiểu ANSI
+SELECT *
+FROM T1 LEFT JOIN T2 ON T1.ID = T2.ID
+--LEFT OUTER JOIN kiểu cũ
+SELECT *
+FROM T1, T2
+WHERE T1.ID *= T2.ID
+ 
 
 
 
+=================================================================
+SELECT MJDKEY,count(distinct CO) FROM gj WHERE gjdel='' and mjdate 
+between 20160701 and 20160731 GROUP BY mjdkey ORDER BY 2 desc     
 
+ 
+GVL04, là tháng 9,
+GVL05, là tháng 8,
+					GVL06, là tháng 7,
+GVL07, là tháng 6, 
+ 
 
+chay GLS110 de post len GL het
 
+ SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T07              
+ FROM GJ                                                        
+ WHERE MJDATE                                                   
+ BETWEEN 20160701 AND 20160731 GROUP BY CO, DIV, BR, GLACCT     
+File GJ in ldphuc was replaced.                                  
 
+2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T07, B.GVL06   
+FROM ldphuc/GJ a,gm b                                 
+WHERE a.co=b.co and a.div=b.div and                  
+a.br=b.br and a.glacct=b.glacct  and                 
+A.T07<>B.GVL06                                       
+File TEMP in ldphuc was replaced.    
 
+update GM b set b.GVL06 = (SELECT  A.T07           
+FROM ldphuc/GJ a                                   
+WHERE a.co=b.co and a     .div=b.div and           
+a.br=b.br and a.glacct=b.glacct  and               
+A.T07<>B.GVL06 )                                   
+where exists (SELECT A.T07                         
+FROM ldphuc/GJ a                                   
+WHERE a.co=b.co and a.div=b.div and                
+a.br=b.br and a.glacct=b.glacct  and               
+A.T07<>B.GVL06   )                                 
+10 rows updated in GM in ZPTLIBD.                  
 
-
+---- Check lai select lai kiem tra xem con loi ko
+ SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T07, B.GVL06     
+FROM ldphuc/GJ a,gm b                                   
+WHERE a.co=b.co and a.div=b.div and                    
+a.br=b.br and a.glacct=b.glacct  and                   
+A.T07<>B.GVL06  
+ => ko co => dung
+ 
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T07                           
+FROM ldphuc/GJ a where not exists (select * from                      
+ gm b                                                                
+WHERE a.co=b.co and a.div=b.div and                                  
+a.br=b.br and a.glacct=b.glacct  and                                 
+A.T07= B.GVL06)                                                      
+ => ko co => dung     
+                                 
+SELECT * FROM gm a,ac b WHERE GVL06 <>0 and a.glacct=b.glacct and    
+b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
+a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
+c.T07= a.GVL06)                                                      
+ => ko co => dung. 
 
 
  
-
-zin793pf 
-
- 
-
+====================================================================================
+Location In-Out
   Item                  Warehouse                   
   L010170               WM1                         
                     Item Warehouse Serial/Lot#      

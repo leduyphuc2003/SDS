@@ -108,9 +108,8 @@ ZPP Sanofi Customer Rebate Q3 2015
 VALUE(B.INSCTD,0) AS INSCTD                                         
 FROM zptlibd/invdsc a left join zptlibd/invdsa b                    
 on A.CUST= B.CUST and A.PRNCPL= B.PRNCPL                            
-and A."GROUP"= B."GROUP" and A.INVNO= B.INSREF left join zptlibd/cm 
-c on a.cust=                                                        
-c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ')    
+and A."GROUP"= B."GROUP" and A.INVNO= B.INSREF left join zptlibd/cm c 
+on a.cust = c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ')    
 AND A.INCCFD >= 20150930 AND INCDEL=''                              
 File TEMP in LDPHUC was replaced.    
 ========================================================
@@ -182,3 +181,20 @@ select * from z9661
 ====================================
 Bao cao asap: ZIN793 Phyto Sales Details     
 => tao ra file ZIN793PF       
+=============================================================
+Incident #70616 -  Sales Report in HCM, Hanoi, Da nang in - ntthuy IC - Nguyen Thanh Thuy - report hang lanh 
+Sales Report in HCM, Hanoi, Da nang in 2014, 2015, 2016
+IT vui lòng hỗ trợ cung cấp sales report của 3 khu vực: Hồ Chí Minh, Hà Nội, Đà Nẵng trong năm 2014, 2015 và 7 tháng đầu năm 2016
+Template theo file đính kèm
+Cảm ơn.
+
+SELECT b.prncpl,b.item, B.IMDBRN||B.IMDFRM|| B.IMDSTR||B.IMDSIZ as     
+ITEM_DESC, substr(char(sasdte),1,4) as YEAR ,plcar,                    
+sum( A.SASSQY+                                                         
+A.SASSBQ+ A.SASRQY+ A.SASRBQ ) as QTY,sum( A.SASSVL+ A.SASRVL ) as     
+VALUE FROM sas a,im b WHERE sasdte between 20140101 and 20160731       
+and sasdel='' and a.item=b.item and B.ISTCDE ='COL' and plcar in       
+('101','201', '302' , '301', '310', '311', '312', '313', '315')        
+GROUP BY b.prncpl,b.item, B.IMDBRN||B.IMDFRM|| B.IMDSTR||B.IMDSIZ,     
+substr(char(sasdte),1,4),plcar                                         
+File TEMP in LDPHUC was replaced.     

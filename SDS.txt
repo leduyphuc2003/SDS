@@ -201,7 +201,7 @@ Trung Back end
                 App Store - iOS:
 -	eZRx Call-Me-Back for customers: 267
 -	eZRx Call-Me-Back Professional for SC: 48
-3. Total number of views of discounts: 4427 views 
+3. Total number of views of discounts: 4501 views 
 4. Number of discounts loaded into call me back: 78 promos, sent to 1861 customers per each promo
 
 Muc 5,6,7 lay trong file extract
@@ -4361,7 +4361,7 @@ B.SASDTE=C.SASDTE
 
 
 ---- tu lam 
-select a.INVNO,item,cust                      
+select a.INVNO,cust,item                   
  from ind a,inh b                              
  where a.ttype='IV'                            
  and a.INVNO                                   
@@ -12696,8 +12696,7 @@ S270270
 San pham S270270 cung set up pick chan thung - 112 hop/ thung, he thong se pick 6 x 112 = 672 o vi tri ke chan B20-16-01-02, phan con lai 28 hop se lay o ke le M08-06-03-1 (theo luat FEFO - luat FEFO s? l?y hàng date g?n tru?c r?i m?i d?n l?y date xa).
 ======================================================================
 Service Request # 43989 
-G? c? b?n
-Vui lòng g? locn in- out c?a item N131110 giup e nhe.
+Vui lòng go locn in - out cua item N131110 giup e nhe.
 select item,whs , IWLTQI, IWLTQO   
 from iw                            
 where item= 'N131110'              
@@ -12706,7 +12705,48 @@ AND WHS='WH6'
   update iw set  IWLTQI= IWLTQI -1560,IWLTQO =IWLTQO -1560   
 where item= 'N131110'                                       
 AND WHS='WH6'                                               
-1 rows updated in IW in ZPTLIBD.                            
+1 rows updated in IW in ZPTLIBD.     
+
+==============================	Locn in out
+Vao ESC 3, shift F1 roi copy ra phần Avail bên dưới. Ta update lại cho Avail có số lượng để user làm được
+     Item                  Warehouse                                      
+     P040940               WT2                                            
+                       Item Warehouse Serial/Lot#                         
+    Whs Serial/Lot#     Location     Expiry    On Hand  Avail Suspend Sale
+ 01 WT2 L87605          B35-07-02-02 010417   4032.000                 Y  
+ 
+ 
+ Locn Tfr In       4416.000  Out          4416.000  
+ 
+ 
+--	update 5 bang lb il isl iw im 
+ LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='P040940' 
+AND LOCN='B35-07-02-02' 
+AND ISL#='L87605' 
+AND WHS='WT2' 
+
+UPDATE LB 
+SET  LBSOA= LBSOA-4032                                    
+WHERE ITEM='P040940' 
+AND LOCN='B35-07-02-02' 
+AND ISL#='L87605' 
+AND WHS='WT2' 
+
+--	update Locn in out
+ select IWLTQI,IWLTQO,item,whs     
+from IW                           
+where item ='P040940'             
+and WHS='WT2'                     
+        IWLTQI           IWLTQO   ITEM                  WHS   
+    4,416.000        4,416.000   P040940               WT2   
+	
+ update IW set IWLTQI=0,IWLTQO=0      
+ where item ='P040940'                
+ and WHS='WT2'                        
+ 1 rows updated in IW in ZPTLIBD.                          
 =========================================================================
 Truong hop order bi 12.Partl 
 coh: update set coh status 4, cohnor=0
