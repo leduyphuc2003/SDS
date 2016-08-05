@@ -1,71 +1,36 @@
-
-Incident #70616 -  Sales Report in HCM, Hanoi, Da nang in - ntthuy IC - Nguyen Thanh Thuy - report hang lanh 
-Sales Report in HCM, Hanoi, Da nang in 2014, 2015, 2016
-IT vui lòng hỗ trợ cung cấp sales report của 3 khu vực: Hồ Chí Minh, Hà Nội, Đà Nẵng trong năm 2014, 2015 và 7 tháng đầu năm 2016
-Template theo file đính kèm
-Cảm ơn.
-
-SELECT b.prncpl,b.item, B.IMDBRN||B.IMDFRM|| B.IMDSTR||B.IMDSIZ as     
-ITEM_DESC, substr(char(sasdte),1,4) as YEAR ,plcar,                    
-sum( A.SASSQY+                                                         
-A.SASSBQ+ A.SASRQY+ A.SASRBQ ) as QTY,sum( A.SASSVL+ A.SASRVL ) as     
-VALUE FROM sas a,im b WHERE sasdte between 20140101 and 20160731       
-and sasdel='' and a.item=b.item and B.ISTCDE ='COL' and plcar in       
-('101','201', '302' , '301', '310', '311', '312', '313', '315')        
-GROUP BY b.prncpl,b.item, B.IMDBRN||B.IMDFRM|| B.IMDSTR||B.IMDSIZ,     
-substr(char(sasdte),1,4),plcar                                         
-File TEMP in LDPHUC was replaced.                                      
+select a.ttype,a.invno,inhoin,indcfd,                                
+cust,INHDNM,INHDA1,INHDA2,INHDA3,                                    
+sub,GIVINV, GIVBRF, a.STYCDE,ITEM,INDDES,indunt,indsel,indval,       
+INDPPD   ,INDGST ,                                                   
+a.PBHCON, a.PCLLVL, INDPAC,PBHTX1                                    
+from ind a, inh b, pbh c                                             
+where a.ttype in ('IV','CR') and inhdel='' and inddel=''             
+and a.ttype=b.ttype and a.invno=b.invno                              
+and CMGRP2 ='HP1'                                                    
+and indcfd between 20160701 and 20160731                             
+and a.pbhcon=c.pbhcon and pbhdel=''                                  
+File TEMP in LDPHUC was replaced.      
 
 
- 
- 
-  
-   
-   
- Incident #70554 -  Location In-Out
-Location In-Out
-Dear IT,
-Kiem tra giup 2 items ben duoi bi allocated stock va location In-Out
-B060560 va P040920
 
-  Item                  Warehouse             
-  B060560               WT2                   
-  
-   IWLTQI 
- select IWLTQI,IWLTQO,item,whs     
-from IW                           
-where item ='P040920'             
-and WHS='WT2'      
-               
-     IWLTQI           IWLTQO   ITEM                  WHS      
-  7,480.000        7,480.000   P040920               WT2      
-  
- update IW set IWLTQI=0,IWLTQO=0      
-where item ='P040920'             
-and WHS='WT2'  
- 
-  ITEM                  LOCN          ISL#             WHS           LBSOA   
- B060560               B35-06-06-02  5ANNA029         WT2       4080.000   
- B060560               B14-18-06-02  5ANNA038         WT2         900.000   
- 
-  ITEM                  LOCN          ISL#             WHS           LBSOA   
- P040920               B14-10-06-01  151464141        WT2       6800.000   
- P040920               B14-13-05-01  151464141        WT2         680.000   
- 
- LB
-select ITEM, LOCN, ISL#, WHS, LBSOA
-from LB	
-WHERE ITEM='P040920' 
-AND LOCN='B14-10-06-01' 
-AND ISL#='151464141' 
-AND WHS='WT2' 
+select a.ttype,a.invno,inhoin,indcfd,                         
+cust,INHDNM,INHDA1,INHDA2,INHDA3,                             
+sub,GIVINV, GIVBRF, a.STYCDE,ITEM,INDDES,indunt,indsel,indval,
+INDPPD   ,INDGST ,                                            
+a.PBHCON, a.PCLLVL, INDPAC,PBHTX1                             
+from ind a, inh b, pbh c                                      
+where a.ttype in ('IV','CR') and inhdel='' and inddel=''      
+and a.ttype=b.ttype and a.invno=b.invno                       
+and CMGRP2 ='HP1'                                             
+and indcfd between 20160701 and 20160731                      
+and a.pbhcon=c.pbhcon and pbhdel='' and a.pcllvl=c.pcllvl     
+File TEMP2 in LDPHUC was replaced.                                                          
 
-UPDATE LB 
-SET  LBSOA= LBSOA-6800                                   
-WHERE ITEM='P040920' 
-AND LOCN='B14-10-06-01' 
-AND ISL#='151464141' 
-AND WHS='WT2' 
+
+
+
+
+
  
 
 
@@ -74,7 +39,20 @@ AND WHS='WT2'
 26/7 dung
 27/7 bat dau sai
 
-
+SELECT A.TTYPE, A.INVNO, A.INHOIN, A.GIVBRF, A.GIVINV, A.CUST,    
+A.CNAME, A.CADD1, A.CADD2, A.CADD3, A.RTECDE, A.CMTAXC, A.ITEM,   
+A.IMDESC, A.ISLEXP, A.ISL#, A.WHS, A.ITDAT, A.$JLEAY,A.INDEPR,    
+ A.$JLEAS,                                                        
+A.$JLEAJ, A.$JLEAK, A.$JLEAI, A.$JLEAL, A.SUB, B.SBDANM ,A.$JLEAA,
+A.$JLEAB, A.$JLEAC, A.ITCRTD, A.ITCRTT, A.$JLEAD, A.$JLEAM,       
+A.INHSRC, A.STYCDE, A.STYDES, A.$JLEBC, A.$JLEBD FROM             
+zptlibd.zin793pf A,ZPTLIBD.SBD B                                  
+WHERE  (A.sub LIKE 'SA%' OR                                       
+A.SUB='OSH' OR A.sub='PN4' or A.SUB LIKE 'US%' OR A.SUB ='O4E' OR 
+A.SUB ='O4D' or A.sub='PA4' OR A.SUB LIKE 'SP%' OR A.SUB LIKE     
+'SH%' or a.sub like 'SD%' or a.SUB='MH4' OR a.SUB ='PD4' or       
+ a.sub='PAS' or a.sub='PAH') AND A.SUB=B.SUB                      
+ 
  select *                              
  from zptlibd/zin793pf                 
  File ZIN793PF in LDPHUC was created.           

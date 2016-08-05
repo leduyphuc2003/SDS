@@ -2643,6 +2643,19 @@ update issd a set SUB  =(select SUB from ldphuc/temp b
  and a.IVSIMB  =b.IVSIMB )                                  
  75 rows updated in ISSD in ZPTLIBD.  
 
+--select nhung line chua co trong issd va insert vao
+ select *                                     
+from ldphuc/temp b                            
+ where not exists (Select * from issd a       
+ where a.PCLLVL  =b.PCLLVL                    
+ and a.IVSCMB  =b.IVSCMB                      
+ and a.IVSIMB  =b.IVSIMB )                    
+File TEMP2 in LDPHUC was replaced.            
+
+insert into issd                          
+select *                                  
+from ldphuc/temp2                         
+238 rows inserted in ISSD in ZPTLIBD.     
 
 ===============================================================================================================
 Doi Sub Dist SAN => Blank, Invoice Format Type "Z"
@@ -9982,7 +9995,7 @@ where exists (select * from ldphuc/temp b
 where a.cust=b.cust and CMDEL='')                          
 1252 rows updated in CM in ZPTLIBD.      
 ===========================================================================
-Service Request # 32503  vung, quan, phuong 
+Service Request # 32503  vung, quan, phuong - anh Thong - vung mien
 Please help to extract latest State_Area_Territory (SAT) List of SDS.
 Thank you.
 
@@ -11685,7 +11698,52 @@ AND WHS='WH6'
  AND ISL#='F0591-1'
  ITEM                  ISL#                     ISLSOH   
  B060020               F0591-1               1,524.000   
- ===================================================================================================================
+ ===============================================================
+  Incident #70554 -  Location In-Out
+Location In-Out
+Dear IT,
+Kiem tra giup 2 items ben duoi bi allocated stock va location In-Out
+B060560 va P040920
+
+  Item                  Warehouse             
+  B060560               WT2                   
+  
+   IWLTQI 
+ select IWLTQI,IWLTQO,item,whs     
+from IW                           
+where item ='P040920'             
+and WHS='WT2'      
+               
+     IWLTQI           IWLTQO   ITEM                  WHS      
+  7,480.000        7,480.000   P040920               WT2      
+  
+ update IW set IWLTQI=0,IWLTQO=0      
+where item ='P040920'             
+and WHS='WT2'  
+ 
+  ITEM                  LOCN          ISL#             WHS           LBSOA   
+ B060560               B35-06-06-02  5ANNA029         WT2       4080.000   
+ B060560               B14-18-06-02  5ANNA038         WT2         900.000   
+ 
+  ITEM                  LOCN          ISL#             WHS           LBSOA   
+ P040920               B14-10-06-01  151464141        WT2       6800.000   
+ P040920               B14-13-05-01  151464141        WT2         680.000   
+ 
+ LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='P040920' 
+AND LOCN='B14-10-06-01' 
+AND ISL#='151464141' 
+AND WHS='WT2' 
+
+UPDATE LB 
+SET  LBSOA= LBSOA-6800                                   
+WHERE ITEM='P040920' 
+AND LOCN='B14-10-06-01' 
+AND ISL#='151464141' 
+AND WHS='WT2' 
+ ===============================================================================================================
    Service Request # 34709 
   hi anh Chu!
 item B060160 dang bi location in-out 6000 hop nhung khong tim thay duoc so location, nho anh xu li giup em nhe.
@@ -13733,7 +13791,7 @@ Check rebate cua mot chuong trinh
 	SELECT A.CUST, A.PRNCPL, A."GROUP", A.INCCFD, A.INVNO, A.RBHPGM, 
 	A.INCVAL, A.INCDSA, B.DOCNO, B.INSVAL, B.INSDTE FROM invdsc      
 	a,invdsa b WHERE a.invno=10037883 and b.insref=a.invno           
-	SELECT statement run complete.                                   
+                                    
 	update invdsc set INCDSA=INCDSA +17419.4                         
 	WHERE invno=10037883                                             
 	1 rows updated in INVDSC in ZPTLIBD.                             		 
@@ -14680,3 +14738,46 @@ Nhờ anh Chu add A18 vào Price List giúp em.
 Thank anh!
 insert into z9510                    
 values ('','A18','BU4')   
+===========================================================
+Manifest loi - MF loi: manifest dispatch roi nhung hoa don moi van vao 
+ Incident #70621 -  MF 2013 bi loi - thphuoc - Tran Huy Phuoc <thphuoc@zuelligpharma.com>
+MF 2013 bi loi
+Dear IT;
+anh vui long xem giup em truong hop nay
+MF 89030434 da distpatch nhung khi confirm picking slip van ra invoice tren MF cu.
+em cam on!
+
+-	go mzsyu -> 10 -> roi dien vao Warehouse va Route -> enter -> xoa di so manifest cu~ di 
+	Warehouse Code:                             
+	Route Number:                               
+			 
+-	13	54	1 -> shift F8 de tim so manifest cu~ da dispatch -> nói user: số 2 vào so manifest đó rồi enter từng dòng đến cột "NMf" rồi điền vào chữ Y  và cột "Dld"="N" để số invoice đó sẽ next qua số manifest mới
+                                                                               
+ RPG147                        Manifest Manager                                
+    All Warehouses                                                             
+P=Parcel Inquiry                                                               
+2=Maintain 4=Delete 5=Display 6=Close 7=Parcel Maint 8=Print/Reprint 9=Dispatch
+-------------------------------------------------------------------------------
+Sel M/Fest# Whs Route   Description         Date  Doc            Value P Status
+-------------------------------------------------------------------------------
+                                                                              	   
+																			   
+ WHS513       ZPP       Manifest Inquiry                                        
+                                                                               
+Manifest#  MF  89030434                           Create Date   010816         
+                                                  Dispatch Date 020816         
+Warehouse  WD3     New Da Nang Warehouse          Dispatch Time  85443         
+Route      D2013   Thang Binh, Que Son, Duy       Delivery Date 020816         
+Van        RURAL 3 LE QUY                         Delivery Time 10    (HHMM)   
+Completed? N       Cartons   127    Pallets       Parcels                      
+                                 ------ Status ----- ---- Delivery ---  Poison 
+  Seq P/Slip#  Invoice# Ctn  Plt Dld Rtn Rsn NMf Fsh DN   Date   Time  Req Rtn 
+      Customer                                                                 
+    1 60831289 73326752     1    Y           N   Y   Y   020816 10     N   N   
+      C02398    QT So 89- CTy CPTMD Sam Ngoc Linh Quang Nam                    
+    2 60830933 73326763     1    Y      702  N       Y   000000        N   N   
+      C03414    QT So 298- CTy CPTMD Sam Ngoc Linh Quang Nam                   
+    3 60830932 73326770     1    Y      702  N       Y   000000        N   N   
+      C03110    Benh Vien Da Khoa Thang Hoa                                    
+    4 60831288 51171209     1    Y           N   Y   Y   020816 10     N   N   
+      C02398    QT So 89- CTy CPTMD Sam Ngoc Linh Quang Nam       

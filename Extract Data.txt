@@ -30,22 +30,31 @@ a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20140101 and
 B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC    
 
 ---Monthly Merck serono
-select b.WHS,ITEM,b.PRNCPL,CODSEQ,CODUNT,CODVAL,COHDAT,CODOUN      
-from coh a, cod b                                                  
-where a.ttype=b.ttype and a.ordr=b.ordr and cohdel='' and coddel=''
-and A.PRNCPL IN (                                                  
-'M04','M05','M06','M07','M08','M09','M10','M11',                   
-'M12','M13','M14','M15','M16','M17','M18' ) and a.ttype='OR'       
-and cohdat between 20160701 and 20160731                                                
+select b.WHS,ITEM,a.PRNCPL,CODSEQ,COHDAT,SUM(A.CODOUN ) as CODOUN,  
+SUM(A.CODUNT) as CODUNT,                                            
+SUM(A.CODVAL) as CODVAL                                             
+from coh b, cod a                                                   
+where a.ttype=b.ttype and a.ordr=b.ordr and cohdel='' and coddel='' 
+and A.PRNCPL IN (                                                   
+'M04','M05','M06','M07','M08','M09','M10','M11',                    
+'M12','M13','M14','M15','M16','M17','M18' ) and a.ttype='OR'        
+and cohdat between 20160701 and 20160731                            
+GROUP BY b.WHS,ITEM,a.PRNCPL,CODSEQ,COHDAT                          
+File TEMP in LDPHUC was replaced.                                   
 
 ---Monthly report of Menarini cho cac item ben duoi (Data tuong tu nhu monthly Merck serono)
-select b.WHS,ITEM,b.PRNCPL,CODSEQ,CODUNT,CODVAL,COHDAT,CODOUN       
-from coh a, cod b                                                   
+select b.WHS,ITEM,a.PRNCPL,CODSEQ,COHDAT,
+SUM(A.CODOUN ) as CODOUN,  
+SUM(A.CODUNT) as CODUNT,                                            
+SUM(A.CODVAL) as CODVAL                                             
+from coh b, cod a                                                   
 where a.ttype=b.ttype and a.ordr=b.ordr and cohdel='' and coddel='' 
-and a.ttype='OR'                                                    
 and item in ( 'I010150','I010220','I010230','I010240',              
-              'I010280','I010290','I010290D','I010300')             
+              'I010280','I010290','I010290D','I010300')    
+and a.ttype='OR'        
 and cohdat between 20160701 and 20160731                            
+GROUP BY b.WHS,ITEM,a.PRNCPL,CODSEQ,COHDAT                          
+File TEMP in LDPHUC was replaced.                         
 
 =====================   Summary report on stocking up customer-Add Route 1 - chi Thai Hang
 select 
@@ -135,6 +144,23 @@ b.ttype=c.ttype and b.invno=c.invno and c.item in ('B040140',
 'B040220', 'B040170' , 'B040090' ) and indcfd between 20160101 and 
 20160631   
 ========================================================
+  Incident #70634 -  Data sales HCM 07/2016 - vo hieu phuc - vhphuc 
+Data sales HCM 07/2016
+Report Sales - by invoice cua khach hang thuoc Group HP1 tai HCMC
+Hieu luc 01/07/2016 - 31/07/2016
+Form report theo file dinh kem  
+
+
+select a.ttype,a.invno,inhoin,indcfd,                            
+cust,INHDNM,INHDA1,INHDA2,INHDA3,                                
+sub,GIVINV, GIVBRF, a.STYCDE,ITEM,INDDES,indunt,indsel,indval,   
+INDPPD   ,INDGST ,                                               
+PBHCON, PCLLVL, INDPAC                                           
+from ind a, inh b                                                
+where a.ttype in ('IV','CR') and inhdel='' and inddel=''         
+and a.ttype=b.ttype and a.invno=b.invno                          
+and CMGRP2 ='HP1'                                                
+and indcfd between 20160701 and 20160731      
 ========================================================
 Bao cao stock up - Vo Hieu Phuc
 
