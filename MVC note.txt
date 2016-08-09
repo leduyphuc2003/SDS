@@ -1,4 +1,34 @@
 MVC note
+---	chuong trinh freaking match
++ Tạo ngẫu nhiên các phép toán cộng trừ và có hiển thị kết quả ngẫu nhiên
++ Nguời chơi nhấn phím Left - Right trên bàn phím để chọn đúng sai cho biểu thức:
+	-	nếu đúng thì qua câu tiếp và +1 điểm
+	-	nếu sai hoặc hết giờ thì dừng trò chơi và show điểm
++ Sau 1 lần chọn đúng + 1 điểm
++ Có tính thời gian mỗi phép tính
+
+	// tạo số ngẫu nhiên
+		r = new Random();
+		int t = r.Next(1, 5);
+		if (r.Next(0, 9) % 2 == 0 )
+		{
+			lbdau.Text = "-";
+		}
+		else {
+			lbdau.Text = "+";
+		}
+		KiemTraDau();
+		lb_so1.Text = r.Next(0, 9).ToString();
+		lb_so2.Text = r.Next(0, 9).ToString();
+				
+		// chỉnh xác suất ra kết quả đúng
+		if (t % 2 == 0) //(t == 2 || t == 4 ||t==3 )
+		{
+			if (cong) lb_kq.Text = (int.Parse(lb_so1.Text) + int.Parse(lb_so2.Text)).ToString();
+			else if (tru) lb_kq.Text = (int.Parse(lb_so1.Text) - int.Parse(lb_so2.Text)).ToString();
+		}
+		else
+			lb_kq.Text = r.Next(0, 18).ToString();
 
 ---	Entity Framework (EF) Documentation
 https://msdn.microsoft.com/vi-vn/data/ee712907

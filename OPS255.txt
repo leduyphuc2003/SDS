@@ -63,6 +63,21 @@ psh, psd, IA va wpool phai khop nhau thi moi pick sung duoc
 WHERE DQCNAM = 'OPS250'
 
 
+==================================================================
+OPS190			
+SELECT b.EOHNUM,ordr,cust,item,B.EODQTY FROM eoh a, eod b WHERE
+a.EOHNUM=b.EOHNUM                                              
+and  b.EOHNUM in (                                            
+2790434,                                            
+2791289)                                           
+          
+ UPDATE DQC SET DQCENT=DQCENT -1      
+WHERE DQCNAM = 'OPS190'               
+		  
+ delete                                         
+ from DQE                                       
+ where batch in 2790434
+
 ====================================================================
 
   

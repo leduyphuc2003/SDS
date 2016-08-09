@@ -1,3 +1,132 @@
+File  . . . . . .   QRPGSRC               
+  Library . . . .     ZPTLIBM             
+                                          
+Type options, press Enter.                
+ 2=Edit         3=Copy  4=Delete 5=Display
+ 8=Display description  9=Save  13=Change 
+                                          
+Opt Member     Type                       
+ 3  ZZG643     RPG                        
+                                          
+										  
+===>
+From file . . . . . . . :   QRPGSRC                                   
+  From library  . . . . :     ZPTLIBM                                 
+                                                                      
+Type the file name and library name to receive the copied members.    
+                                                                      
+  To file . . . . . . . .   QRPGSRC      Name, F4 for list            
+    To library  . . . . .     ZPTLIBM                                 
+                                                                      
+To rename copied member, type New Name, press Enter.                  
+                                                                      
+Member         New Name                                               
+ZZG643         ZZG643Back                                             										  
+
+====>
+them @EPR duoi @VAL
+0020.06      C                     PARM           @VAL   152     
+0020.07      C                     PARM           @EPR   152     										  
+
+
+===> them AH Tax Exclusive List Price  duoi: RF 'INDVAL'     
+PARM   RF
+
+=============================================================
+
+Dear anh,
+Pls ho tro giup em dieu chinh sub dis KH ben duoi tu PSG thanh SAN, thanks anh
+                            Customer Code               
+                            S09575                      
+                                                                                                                
+Customer Name              Nha Thuoc Ky Hoa             
+         Address           Tret 268 Duong 3/2- P. 12    
+                           Quan 10                      
+                           Ho Chi Minh                  
+
+Sub-Distributor:  PSG=> SAN
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================
+  select *                     
+ from ldphuc/zin793pf         
+ where ttype='IV'             
+ and invno = 30774174         
+ 
+ 
+ 
+ 
+ 
+select *                                     
+from invdsc                                  
+where       INVNO                            
+=      10000000                              
+File TEMP in LDPHUC was replaced.            
+
+update invdsc a set RBHPGM =(Select RBHPGM from ldphuc/temp b   
+                         where                                  
+                               a.INVNO  =  b.INVNO  )           
+ where exists (Select * from ldphuc/temp b                      
+ where                                                          
+       a.INVNO  =  b.INVNO  )                                   
+7399 rows updated in INVDSC in ZPTLIBD.                         
+
+
+
+
+
+
+
+select CPLDTE, SLSMN, SMDESC, PDTCDE, PDTDES, [$JNMAH], [$JNMAR], [$JNMAD], [$JNMAQ], [$JNMAF], [$JNMAI], CUST, CNAME, CMGRP2, CMGRP3, CMGRP4, CADD1, CADD2, ZCMTYP, [$JNMAE], [$JNMAO], [$JNMAP], [$JNMAG], [$JNMAC], [$JNMAK], [$JNMAL], getdate()
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa756pf
+Msg 7322, Level 16, State 2, Line 1
+A failure occurred while giving parameter information to OLE DB provider "IBMDA400" for linked server "ZPVN01".
+
+===> truy van sds from SQL server kho cho phep dung  getdate(). Nen phai xoa di  getdate()
+
+
+delete from zsa756pf
+INSERT INTO dbo.zsa756pf ([CPLDTE],[SLSMN],[SMDESC],[PDTCDE],[PDTDES],[$JNMAH]
+,[$JNMAR],[$JNMAD],[$JNMAQ],[$JNMAF]
+,[$JNMAI],[CUST],[CNAME],[CMGRP2]
+,[CMGRP3],[CMGRP4],[CADD1],[CADD2]
+,[ZCMTYP],[$JNMAE],[$JNMAO],[$JNMAP]
+,[$JNMAG],[$JNMAC],[$JNMAK],[$JNMAL])
+select DISTINCT  CPLDTE, SLSMN, SMDESC, PDTCDE, PDTDES, 
+[$JNMAH], [$JNMAR], [$JNMAD], [$JNMAQ], [$JNMAF], [$JNMAI], CUST, CNAME, CMGRP2, CMGRP3, 
+CMGRP4, CADD1, CADD2, ZCMTYP, [$JNMAE], [$JNMAO], [$JNMAP], [$JNMAG], [$JNMAC], [$JNMAK], [$JNMAL] 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa756pf
+
+
+DELETE FROM dbo.zsa757pf
+
+INSERT INTO dbo.zsa757pf
+SELECT CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNNAD], [$JNNAE],[$JNNAF], [$JNNAA], [$JNNAB], [$JNNAC], getdate() 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa757pf
+
+
+
+select indepr,ttype,invno,item,indunt     
+from ind                                  
+where                                     
+    ttype in ('IV','CR')                  
+and invno in 70033845                     
+SELECT statement run complete.            
+
+
+
+========================================
 select a.ttype,a.invno,inhoin,indcfd,                                
 cust,INHDNM,INHDA1,INHDA2,INHDA3,                                    
 sub,GIVINV, GIVBRF, a.STYCDE,ITEM,INDDES,indunt,indsel,indval,       

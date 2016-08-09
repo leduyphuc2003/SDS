@@ -110,10 +110,10 @@ Submit test report rebate
 ZPP Sanofi Customer Rebate Q3 2015
 /java/SQLS/RBTS27.sql         
 
- SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3                  
- ,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,                            
- A.INCVAL, A.INCDSA, VALUE( B.TTYPE,'') AS                          
-  TTYPE, VALUE(B.DOCNO,0) AS DOCNO, VALUE(B.INSVAL,0) AS INSVAL ,   
+SELECT A.CUST, C.CNAME, C.CADD1, C.CADD2, C.CADD3                  
+,A.PRNCPL, A."GROUP", a.invno,A.RBHPGM,                            
+A.INCVAL, A.INCDSA, VALUE( B.TTYPE,'') AS                          
+TTYPE, VALUE(B.DOCNO,0) AS DOCNO, VALUE(B.INSVAL,0) AS INSVAL ,   
 VALUE(B.INSCTD,0) AS INSCTD                                         
 FROM zptlibd/invdsc a left join zptlibd/invdsa b                    
 on A.CUST= B.CUST and A.PRNCPL= B.PRNCPL                            

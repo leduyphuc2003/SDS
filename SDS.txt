@@ -1,9 +1,18 @@
 VIELDP
 leduyphuc
+===================================================================
+
+select *       
+from asqfp     
 ====================================================================
 13 70 11  xem kho nao 
 ==================================================================
-Back order thi xem file BOT
+Back order thi xem file BOTinsert into invdsc                                        
+SELECT * FROM ldphuc/INVDSC  A                     
+WHERE not EXISTS (SELECT * FROM INVDSC B 
+WHERE A.CUST=B.CUST AND A.PRNCPL=B.PRNCPL AND                   
+A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
+
 
 Man hinh Credit manager 1 51 1, vao bang user vieopr vnzp456 de co quyen xem 
 ===================================================================
@@ -201,8 +210,8 @@ Trung Back end
                 App Store - iOS:
 -	eZRx Call-Me-Back for customers: 267
 -	eZRx Call-Me-Back Professional for SC: 48
-3. Total number of views of discounts: 4501 views 
-4. Number of discounts loaded into call me back: 78 promos, sent to 1861 customers per each promo
+3. Total number of views of discounts: 4616 views 
+4. Number of discounts loaded into call me back: 85 promos, sent to 1861 customers per each promo
 
 Muc 5,6,7 lay trong file extract
 5. Number of app requests to call centre : 
@@ -13684,6 +13693,10 @@ from invdsc
 where invno in 10029492 
 and cust='S15108'  
 
+update invdsc set INCDSA=0,
+INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
+where cust='S15108' and invno =10029492 
+
 update invdsc set INCDSA=0,RBHPGM='Stop By CS',
 INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
 where cust='S15108' and invno =10029492 
@@ -13800,10 +13813,10 @@ Lay them cho chi Huyen field GIVINV, GIVBRF trong file inh
 Chay data cho Finance lam JL	(46 hoa don)	 
 	SELECT A.TTYPE,A.DOCNO, A.PRNCPL, A."GROUP", E.RBHPGM, INSVAL/1.05 
 	 as RBT_BFR_TX, INSVAL*0.05 AS RBT_TX, A.INSVAL AS RBT_AFT_TX,                      
-	 a.iNSDTE ,B.CUST, B.INHDNM, B.INHDA1, B.INHDA2, B.INHDA3,                          
 	 B.MANFST,whS,sub,carte1, D.RTEVAN, D.RTEDRV,batch, GIVINV, GIVBRF                
 	 FROM zptlibd/invdsa                    
 	 a,zptlibd /inh b, zptlibd/ca c,zptlibd/rte d,zptlibd/invdsc e 
+	 a.iNSDTE ,B.CUST, B.INHDNM, B.INHDA1, B.INHDA2, B.INHDA3,                          
 	 WHERE A.INSDEL=''  and a.ttype=b.ttype and                                               
 	 b.cust=c.cust and b.cda=c.cda                                                      
 	 and ((a.docno=b.invno and a.ttype='IV') OR (A.DOCNO=B.INHOIN AND                   
@@ -14781,3 +14794,47 @@ Completed? N       Cartons   127    Pallets       Parcels
       C03110    Benh Vien Da Khoa Thang Hoa                                    
     4 60831288 51171209     1    Y           N   Y   Y   020816 10     N   N   
       C02398    QT So 89- CTy CPTMD Sam Ngoc Linh Quang Nam       
+
+===========================================================================
+Phan Vuong Bao Nguyen - dieu chinh khach hang - edit cust - edit khach hang
+Incident #70887 -  Dieu chinh thong tin KH file dinh kem 
+Dieu chinh thong tin KH file dinh kem
+Dear anh,
+Pls ho tro giup em dieu chinh thong tin cac KH file dinh kem theo gia tri moi (to mau vang), thaks anh! 
+
+select cust,CDA,                               
+CAPHON,CAFAX ,CALIRF,CAEXPD,CASLR,CASLED       
+from ca                                        
+where  CUST                                    
+=     'C00001'                                 
+File TEMP in LDPHUC was replaced. 
+
+
+update ca a set CAPHON =(select CAPHON from ldphuc/temp b         
+                             where a.cust=b.cust and a.cda=b.cda) 
+,CAFAX               =(select CAFAX  from ldphuc/temp b           
+                           where a.cust=b.cust and a.cda=b.cda)   
+,CALIRF             =(select CALIRF from ldphuc/temp b            
+                          where a.cust=b.cust and a.cda=b.cda)    
+,CAEXPD            =(select CAEXPD from ldphuc/temp b             
+                         where a.cust=b.cust and a.cda=b.cda)     
+,CASLR             =(select CASLR  from ldphuc/temp b             
+                         where a.cust=b.cust and a.cda=b.cda)     
+,CASLED           =(select CASLED from ldphuc/temp b              
+                        where a.cust=b.cust and a.cda=b.cda)      
+where exists (Select * from ldphuc/temp b                         
+where a.cust=b.cust and a.cda=b.cda)                              
+385 rows updated in CA in ZPTLIBD. 
+
+
+select cust,CMRESD                      
+from cm                                 
+where CUST                              
+=    'N01830'                           
+File TEMP2 in LDPHUC was replaced.      
+
+update cm a set CMRESD=(select CMRESD  from ldphuc/temp2 b      
+where a.cust=b.cust)                                            
+where exists (Select * from ldphuc/temp2 b                      
+where a.cust=b.cust)                                            
+385 rows updated in CM in ZPTLIBD.                              

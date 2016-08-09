@@ -9,6 +9,10 @@ delete from temp
  
 select * from temp
 
+====================================
+End proccess truy van SQL 
+-	sp_who2 'active'
+-	roi chay kill trong do 60 la so SPID :kill 60
 =========================================	chuong trinh WCS begin
  -- insert all vao temp
  insert into temp(ORDR, PSN, CTMCDE,PSHCTN,PSHSTS,PSHCTD,PSHCTT,WHS)
