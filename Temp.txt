@@ -1,3 +1,8 @@
+
+
+
+
+
 File  . . . . . .   QRPGSRC               
   Library . . . .     ZPTLIBM             
                                           
@@ -46,16 +51,33 @@ Customer Name              Nha Thuoc Ky Hoa
 
 Sub-Distributor:  PSG=> SAN
 
+SELECT SUB                      
+FROM CM                         
+WHERE CMDEL='' AND CUST ='S09575'		 
+ SUB    
+ PSG    
+ 
+2. CAP NHAT LAI THANH SAN
+UPDATE CM SET                   
+SUB='SAN'                       
+, PPUPDD=20160809         
+, CMUPDD=20160809          
+WHERE CMDEL='' AND CUST ='S09575'
+
+Sang HCM(S11252)	SAN	01	Others
+	SAO	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
+	USS	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
+	PAS	05	Pfizer Animal Health (P07)
+
+ CUST    SUB  PRNCPL        ORDR  
+ S09575  ORM   S29    33713658  
 
 
 
 
 
 
-
-
-
-
+        
 
 
 ========================
@@ -64,7 +86,28 @@ Sub-Distributor:  PSG=> SAN
  where ttype='IV'             
  and invno = 30774174         
  
+ SUB	INVNO	CUST	INHPF	ITEM			PRNCPL
+PSG	73358783	C04131	P		A05RCV7C15.03	A05
+
+Phyto HCM(S04893)	PSG	01	Others
+	ORS / ORM	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
+	USP	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
+
+	
+ SUB       INVNO   CUST    
+ PSG  73,358,783   C04131  
  
+ Phyto HCM at Da Nang	PD1	01	Others
+	PD3	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
+	PD4	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
+
+  UPDATE  INH  SET SUB='PD1'                  
+  WHERE TTYPE='IV' AND INVNO =73358783        
+1 rows updated in INH in ZPTLIBD.      
+       
+  UPDATE  sas  SET SUB='PD1'                  
+  WHERE TTYPE='IV' AND INVNO =73358783        
+1 rows updated in SAS in ZPTLIBA.             	
  
  
  
