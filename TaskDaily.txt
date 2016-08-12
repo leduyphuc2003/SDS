@@ -76,7 +76,7 @@ pass: D13Hard3rVN
 SQL đăng nhập vào IP: 192.168.17.252, user: sa, pass: D13Hard3rVN
 Update SQL de gui tin nhan SMS: exec sp_updatestats 
 
-Server only gui tin nhan SMS (khong phai CRM): 192.168.17.160 dung tai khoan administrator/zuelligvietnam
+Server only gui tin nhan SMS (khong phai CRM): 192.168.17.135 dung tai khoan administrator/zuelligvietnam
 
 Neu ko duoc thi thu cai nay: dbcc freeproccache
  ----------------------------------------

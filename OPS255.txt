@@ -97,11 +97,10 @@ OPS240 rieng le
    E     70,343,902   54,673,758   
    E     70,343,902   54,673,759   
   
- select *  from ARD                               
- where  ttype='IV'  and
- docno in 70343902
- CUST         DOCNO   TTYPE  ARSEQ       BATCH   BSEQ 
- N00290  70,343,902    IV       0   29,711,422      0 
+ select *  from ARD           
+ where  ttype='IV'  and       
+ docno in  73364445           
+and cust='S10422'             
  
     select count(distinct MJDKEY)   from JW                      
   where MJDKEY like 'IV70343902%'
@@ -109,8 +108,12 @@ OPS240 rieng le
 			1 
 			
  check trong MFH, MFD roi moi SAS
- 
-        SELECT COUNT (DISTINCT INVNO)                  
+
+ select *                                   
+from mfd                                   
+where ttype='MF' and invno =73364445       
+
+SELECT COUNT (DISTINCT INVNO)                  
 FROM SAS WHERE SASDEL='' AND TTYPE='IV' AND    
 INVNO  in 70343902
 

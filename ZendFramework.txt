@@ -1,0 +1,2482 @@
+﻿cau hinh Zend
+1 - Copy
+	-	copy thu muc bin vao C:\xampp\php
+	-	copy thu muc Zend vao C:\xampp
+2 - Đặt patch cho biến môi trường
+	-	click phải vào computer chọn properties
+	-	chọn advanced system settings
+	-	chọn Environment variable
+	-	Tại System variables:
+		.	chọn Path
+		.	chọn Edit
+		.	Gõ vào tiếp theo sau:	...............;C:\xampp\Zend;C:\xampp\php;C:\xampp\php\bin
+		.	Check lại: chạy cmd gõ vào Path. Nếu thành công sẽ show ra đường dẫn Zend vừa setup
+3 - Vào Xamp Control Panel
+	-	Từ apache chọn Config, vào php.ini (Apache) 
+	-	tìm đến dòng include_path=".;C:\xampp\php\PEAR" : gõ thêm ;C:\xampp\Zend;C:\xampp
+	thành include_path=".;C:\xampp\php\PEAR;C:\xampp\Zend;C:\xampp"
+	-	Stop và start lại Apache
+	
+Zend Tool
+1 - Tạo project:
+	-	run cmd
+	-	chạy lệnh: CD C:\xampp\htdocs
+	-	chạy tiếp: zf create project webzend
+	-	Check lại: vào C:\xampp\htdocs thấy thư mục webzend là đúng
+	-	chạy thử: vào link https://localhost/webzend/
+	
+	
+Trong Zend không có trang con và không có trang index.php , có 2 mô hình: 
+	-	mô hình không module: chạy qua controler, action
+	-	mô hình có module: qua module,controler, action
+	
+	
+	MVC:
+	- M chứa CSDL
+	- V giao diện, Action(View), một action sẽ có 1 view tương ứng
+	- C xử lí
+
+Cut file index.php trong thư mục public đem ra ngoài
+Open file index.php
+Sửa '/../application' thành '/application'
+Chạy lại
+
+2 - Tạo Action
+	- Chạy cmd
+	- CD C:\xampp\htdocs\webzend
+	- Gõ lệnh C:\xampp\htdocs\webzend>zf create action gioithieu index
+	=> tạo action gioithieu trong controler index
+	- chạy thử http://localhost/webzend/index/gioithieu => chạy action gioithieu trong controller index /c/a
+	
+3 - Tạo controller
+	- chạy cmd
+	- CD C:\xampp\htdocs\webzend
+	- chạy lệnh CD C:\xampp\htdocs\webzend>zf create controller tintuc
+	
+=====================================================
+
+Buoi 2 ngay 11/5/2016
+
+- Tạo thêm 2 controller:
+	.	tintuc
+	.	sanpham
+	
+check việc tạo controller: trong thu muc controller co 2 file mới chưa, chạy thử /controller/action xem web chạy được không
+
+- Trong controller tintuc, tạo thêm 2 action: 
+	.	tinmoi
+	.	tinnong
+	
+- Trong controller sanpham, tao thêm 2 action:
+	.	chitietsp	
+	.	giohang
+
+- Trong controller index, tạo thêm 2 action:
+	.	gioithieu
+	.	dangnhap
+
+controller tintuc sẽ có thư mục tintuc bên trong thư mục application\views\scripts
+controller sanpham sẽ có thư mục sanpham bên trong thư mục application\views\scripts
+
+Mỗi action sẽ có 1 view cùng tên action tương ứng có đuôi .phtml 
+
+action chitiet của controller sanpham sẽ có file chitietsp.phtml bên trong thư mục application\views\scripts
+action giohang của controller sanpham sẽ có file giohang.phtml bên trong thư mục application\views\scripts
+
+- Sửa giao diện của action giohang 
+	=> sửa file giohang.phtml trong \application\views\scripts\sanpham
+- Sửa giao diện của action tinmoi
+	=> sửa file tinmoi.phtml trong \application\views\scripts\tintuc
+- Sửa giao diện của action gioitheu
+	=> sửa file tinmoi.phtml trong \application\views\scripts\index
+
+-	Những câu lệnh zf create controller tintuc dùng zendtool chỉ đúng khi mới tạo project.
+Về sau khi code chương trình nhiều thì các lệnh zf này sẽ lúc đúng lúc sai
+
+
+- Tạo project mới webzend1 (dùng lệnh zend tool)
+- Tạo action gioithieu trong controller index (thủ công không dùng lệnh zend tool)
+	. Vào file IndexController trong \application\controllers, tạo một function gioithieu
+	. Tạo view tương ứng trong thư mục \application\views\scripts\index: tạo file gioithieu.phtml trong thư mục \application\views\scripts\index 
+- Tạo controller tintuc (thủ công không dùng lệnh zend tool)
+	. copy file IndexController trong \application\controllers ra file mới và rename lại thành tintucController
+	. open file tintucController đổi tên class IndexController thành tintucController
+	. copy thư mục index trong \application\views\scripts ra thư mục mới và rename lại là tintuc trong thư mục \application\views\scripts
+	=> chạy lại kiểm tra http://localhost/webzend1/tintuc nếu ra là đúng
+	
+- Tạo action tinmoi trong controller tintuc (thủ công)
+	
+=> action là hàm trong controller
+
+
+Đưa css,js(jquery) vào zend
+1 - cách đưa css vào
+	. cách 1:	- trong view dùng css
+	. cách 2: nạp file css dùng chung 
+		- Bước 1: nạp css vào controller 
+			+ Trong function init: khai báo $this (xem trang 24 trong sách)
+		- Bước 2: ở view cần dùng css thì khai báo echo $this->headLink(); (xem trang 25 trong sách)
+
+Bai tap
+- Tạo thư mục css trong public
+- Tạo style.css trong thư mục css
+	p{color: red;} => thẻ p
+	.p{color: blue;} => class p
+	
+Trong view tinmoi tạo 4 line
+<p></p>
+<p class="p"></p>
+<p></p>
+<p></p>
+======================================================
+Buoi 3 ngay 13/5/2016
+
+- Tạo project mới (zend tool)
+- Tạo các controller và action (thủ công)
+
+- /index/gioithieu
+	load 1 tấm hình và 1 liên kết link tới tinmoi
+	
+- /index/lienhe
+	Địa chỉ: số 5 Bà Huyện Thanh Quan
+	
+- /tintuc/tinmoi
+	
+- /tintuc/tinnong
+
+trong thư mục public, tạo 3 thư mục con
+	css: chứa file style.css
+	js: chứa file a.js xuất ra alert "xin chào"
+	images: chứa 1 tấm hình
+
+-	Nạp tự động css và js vào các view (nap tu dong css va js): chép code bên dưới vào file Bootstrap.php ở thư mục \webzend\application như bên dưới
+
+<?php
+class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+{
+	public function _initView()
+	{
+	$view = new Zend_View();
+
+	$view->headMeta()->appendHttpEquiv("Content-Type","text/html; charset=utf-8");
+
+	$view->headScript()->appendFile(HOST_PATH."/public/js/a.js");
+
+	$view->headScript()->offsetSetFile("2",HOST_PATH."/public/js/a.js");
+
+	$view->headLink()->appendStylesheet(HOST_PATH."/public/css/style.css");
+
+	$view->headTitle("Thế giới di động");
+	}
+}	
+
+-	Goi css va goi js chạy trong các view gioithieu.phtml
+	<?php
+		echo $this->headLink();
+		echo $this->headScript();
+	?>
+	
+-	xuat hinh
+	// dung html
+	<img src="http://localhost/webzend/public/images/cat.jpg" alt="cat" >
+	// dung php
+	<img src="<?php echo HOST_PATH;?>/public/images/cat.jpg" alt="cat" >
+
+-	Định nghĩa hằng - dinh nghia hang - thì khai báo trong file index.php ở thư mục ngoài cùng \webzend
+defined('HOST_PATH')
+    || define('HOST_PATH', "http://localhost/webzend");
+
+-	array dạng key 
+	$a=array("key1" => value1,
+			"key2" => value2)
+	key1 có giá trị value1, key2 có giá trị value2
+	key là cố định không đổi
+	
+-	Zend Layout
+	1/ tạo thư mục chứa file layout  \webzend1\application\layouts\scripts\
+	(xem trang 24 trong sách)
+	2/ tạo file layout 
+	layouts.phtml => file này chứa layout của trang web, kèm theo file css (css nạp ở Bootstrap.php)
+	3/ cấu hình layout:
+	trong function init của IndexController, khai báo như bên dưới
+	$option=array(
+			"layout" => "layouts",
+			"layoutPath" => APPLICATION_PATH."/layouts/scripts");
+	Zend_Layout::startMVC($option);
+============================================================
+Buoi 4 ngay 16/5/2016 Layout tiep theo
+
+Bài 1
+1- Tạo project mới có tên webzend
+2- Tạo trang layout có cấu trúc gồm 4 thẻ div: div header, div trái ,div phải, div footer. 
+-	Bên div trái sẽ có 3 liên kết: trangchu, gioithieu, lienhe.
+-	Khi click vào liên kết nào thì div phải sẽ hiện nội dung tương ứng của liên kết đó
+
+3 bước lập trình 
+yeu cau => giai phap(bước này khoan nghĩ đến code như thế nào mà chỉ nghỉ đến các bước phải thực hiện) => code
+		Cách làm
+		Buoc 1: tao project webzend, chay thu
+		Buoc 2: nap css va js dung bootstrap
+			trong thư mục public, tạo 3 thư mục con
+			css: chứa file style.css
+			js: chứa file a.js  
+			images:
+
+		-	Nạp tự động css và js vào các view (nap tu dong css va js): chép code bên dưới vào file Bootstrap.php ở thư mục \webzend\application như bên dưới
+			<?php
+			class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+			{
+				public function _initView()
+				{
+				$view = new Zend_View();
+
+				$view->headMeta()->appendHttpEquiv("Content-Type","text/html; charset=utf-8");
+
+				$view->headScript()->appendFile(HOST_PATH."/public/js/a.js");
+
+				$view->headScript()->offsetSetFile("2",HOST_PATH."/public/js/a.js");
+
+				$view->headLink()->appendStylesheet(HOST_PATH."/public/css/style.css");
+
+				$view->headTitle("Thế giới di động");
+				}
+			}	
+		Buoc 3: cau hinh Zend Layout
+			1/ tạo thư mục chứa file layout  \webzend1\application\layouts\scripts\
+			(xem trang 24 trong sách)
+			2/ tạo file layout 
+			layouts.phtml => file này chứa layout của trang web, kèm theo file css (css nạp ở Bootstrap.php)
+			=> dùng dreamweaver
+			3/ cấu hình layout:
+			trong function init của IndexController, khai báo như bên dưới
+			$option=array(
+					"layout" => "layouts",
+					"layoutPath" => APPLICATION_PATH."/layouts/scripts");
+			Zend_Layout::startMVC($option);
+		Buoc 4: trong file layouts.phtml (gồm 4 thẻ div header, left (sidebar1), right (content), footer), khai báo code thêm 2 dòng <?php include('left.php');?>  
+		và <?php echo $this->layout()->content; ?>  như bên dưới
+			<div class="sidebar1">
+				<?php include('left.php');?>
+			<!-- end .sidebar1 --></div>
+			<div class="content">
+				<?php echo $this->layout()->content; ?>
+			</div>
+		Buoc 5: add link cho file left.php
+			<ul class="nav">
+			  <li><a href="http://localhost/webzend/index/">Trang chủ</a></li>
+			  <li><a href="http://localhost/webzend/index/gioithieu">Giới Thiệu</a></li>
+			  <li><a href="http://localhost/webzend/index/lienhe">Liên Hệ</a></li>
+			</ul>
+		Buoc 6
+			Tạo 3 action tương ứng 3 trang index.phtml,gioithieu.phtml,lienhe.phtml
+			
+		- Tạo action gioithieu trong controller index (thủ công không dùng lệnh zend tool)
+			. Vào file IndexController trong \application\controllers, tạo một function gioithieu
+			. Tạo view tương ứng trong thư mục \application\views\scripts\index: tạo file gioithieu.phtml trong thư mục \application\views\scripts\index 
+
+Yêu cầu tiếp theo
+-	Tại div trái, thêm 1 liên kết tintuc. Khi click vào tintuc sẽ nhảy đến 1 trang tin tức có cấu trúc: header, div left, div content, div right, div footer
+-	Bên thẻ div left có 3 liên kết tintuc, tinmoi, tinnong, trangchu.
+-	Khi click vào liên kết nào thì thẻ div content sẽ hiện nội dung tương ứng của link đó. Khi ấn vào link trangchu sẽ quay về trang chủ ban đầu
+	Giai phap
+	- Tao controller tintuc có 3 action: index, tinmoi, tinnong
+	- tao layout cho action index cua controller tintuc
+	- cau hinh layout
+	- div left: thêm 4 link tintuc, tinmoi, tinnong, trangchu
+	- cấu hình để click vào link nào thì sẽ hiện content tương ứng của link đó vào div content ở giữa
+	- tạo view tương ứng cho các action tintuc, tinmoi, tinnong 
+	- tạo href cho link trangchu để quay về trang chủ
+	
+==================================================================
+nghĩ t2 t4 t6 t2, ngày t4 1/6 học lại
+
+
+Buoi 5 Model, kết nối database 
+
+Buoc 1: ket noi: khai báo Cách 2 (trang 34 trong sách) vào file bootstrap
+	<?php
+
+	class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+	{
+	protected function _initAutoload()
+	{
+	$autoloader = new Zend_Application_Module_Autoloader(array(
+	'namespace' => '',
+	'basePath' => dirname(__FILE__),
+	));
+	return $autoloader;
+
+	}
+
+	protected function _initDB()
+	{
+	$db = Zend_Db::factory('Pdo_Mysql', array(
+										'host' => 'localhost',
+										'username' => 'root',
+										'password' => '',
+										'dbname' => 'zend',
+										'charset' => 'utf8'));
+	$db->setFetchMode(Zend_Db::FETCH_BOTH);
+	Zend_Db_Table::setDefaultAdapter($db);
+	return $db;
+	}
+	}
+	
+	-	vao phpadmin import database zend vào
+Buoc 2: tao model có cấu trúc giống trang 35 trong sách
+	1 file model sẽ đại diện cho 1 table, mỗi model sẽ có nhiều funtion: mỗi function là 1 câu truy vấn; file model sẽ chứa trong thư mục model
+	1 table sẽ có ít nhất 1 model, và 1 table có thể có nhiều model
+	
+	Tạo file hangsx.php trong thư mục models
+	<?php
+	class Model_Hangsx extends Zend_Db_Table_Abstract{
+		public $_name="hangsx";
+		public $_primary="id_hang";
+		
+		public function getAll(){
+			$se = $this->select();
+			return $this->fetchAll($se)->toArray();
+			}
+		}
+	?>
+
+Buoc 3: xu li models: chạy action để xử lí models
+	-	Bật chế độ debug lỗi (bat debug), open file application.ini, đến dòng 2 3 9 chỉnh   lại giá trị là 1
+		phpSettings.display_startup_errors = 1
+		phpSettings.display_errors = 1
+		resources.frontController.params.displayExceptions = 1
+		
+	-	tạo file hangsx.php trong thư mục webzend\application\models với code như bên dưới
+		<?php
+		class Model_Hangsx extends Zend_Db_Table_Abstract{
+			public $_name="hangsx";
+			public $_primary="id_hangsx";
+			
+			public function getAll(){
+				$se = $this->select();
+				return $this->fetchAll($se)->toArray();
+				}
+			}
+		?>
+	-	Trong file indexController, khai báo thêm code vào hàm indexAction
+			public function indexAction()
+		{
+			// action body
+			$hsx = new Model_Hangsx;
+			$kq = $hsx->getAll();
+			print_r($kq);// print ra xem thử
+			$this->view->kq = $kq;// truyền toàn bộ kết quả $kq qua view thông qua biến kq
+		}
+Buoc 4: Xuất kết quả kq ra view
+	-	Xóa hết code cũ trong file index.phtml đi
+	-	Thêm code như sau
+		<?php
+			$k = $this->kq;
+			foreach($k as $item)
+			{
+				echo $item['tenhang']."<br>";
+			}
+		?>
+	-	Chạy thử
+	
+
+Yêu cầu: tạo 1 action sanpham trong controller indexController
+khi chạy đường dẫn http://localhost/webzend/index/sanpham 
+sẽ ra kết quả 
+Hinhsp
+Tên
+Giá
+
+tr 62
+-	tao controller hinh
+-	copy ra model sanpham
+-	
+-	tao view giong trang 62
+	
+	
+-	tạo action sanphamAction
+	public function sanphamAction()
+    {
+        // action body		
+		$sanpham = new Model_Sanpham;
+		$kq = $sanpham->getAll();
+		$this->view->kq = $kq;
+    }
+-	tạo model sanpham.php
+	<?php
+	class Model_Sanpham extends Zend_Db_Table_Abstract{
+		public $_name="sanpham";
+		public $_primary="id_sanpham";
+		
+		public function getAll(){
+			$se = $this->select();
+			return $this->fetchAll($se)->toArray();
+			}
+		}
+	?>
+	
+-	tạo view sanpham.phtml
+	<div style="width:306px; float:left;">
+	<?php
+		foreach($this->kq as $item){?>
+			<div style="width:100px; float:left; border:#06 thin solid">
+			<?php	echo $item['tensp']."<br/>";
+					echo $item['gia']."</br>";
+					echo $item['hinh'];
+			?>
+			</div>
+	<?php }?>
+	</div>
+	
+	show hinh that thi them the srcs
+	<img src="patch/<?php echo $sp[hinh]?>">
+
+=======================================================
+Buoi 6 ngay 1/6/2016
+
+1/ tạo project mới
+2/ tạo thêm action trong controller index
+	nhomhang (link sẽ nhảy đến action sanphamnhom và truyền tham số id nhóm tương ứng)
+	sanpham	  (link sẽ nhảy đến action sanphamnhom và truyền tham số id nhóm tương ứng)		
+	sanphamnhom (link sẽ nhảy đến action sanphamnhom và truyền tham số id nhóm tương ứng)
+
+3/	tạo model sao cho 
+http://localhost/webzend/index/nhomhang
+Sẽ select all nhóm hàng từ database show ra như bên dưới
+
+	nhóm hàng 1
+	nhóm hàng 2
+	nhóm hàng 3
+	
+	-	copy thư mục images vào \webzend\public
+	-	ket noi database
+		=	vao phpadmin import file zend.sql vào database zend  
+		=	ket noi: khai báo Cách 2 (trang 34 trong sách) vào file bootstrap
+			<?php
+			class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+			{
+			protected function _initAutoload()
+			{
+			$autoloader = new Zend_Application_Module_Autoloader(array(
+			'namespace' => '',
+			'basePath' => dirname(__FILE__),
+			));
+			return $autoloader;
+			}
+
+			protected function _initDB()
+			{
+			$db = Zend_Db::factory('Pdo_Mysql', array(
+												'host' => 'localhost',
+												'username' => 'root',
+												'password' => '',
+												'dbname' => 'zend',
+												'charset' => 'utf8'));
+			$db->setFetchMode(Zend_Db::FETCH_BOTH);
+			Zend_Db_Table::setDefaultAdapter($db);
+			return $db;
+			}
+			}
+	-	tạo view cho action nhomhang
+		=	Bật chế độ debug lỗi: open file application.ini, đến dòng 2 3 9 chỉnh lại giá trị là 1
+		=	Vào thư mục models tạo file nhomhang.php  
+			<?php
+			class Model_NhomHang extends Zend_Db_Table_Abstract{
+				public $_name="nhomhang";
+				public $_primary="id_nhom";
+				
+				public function getAll(){
+					$se = $this->select();
+					return $this->fetchAll($se)->toArray();
+					}
+				}
+			?>
+	-	Edit file indexController, khai báo thêm code vào hàm nhomhangAction()
+		public function nhomhangAction()
+		{
+			// action body	
+			$nhomhang = new Model_NhomHang;
+			$kq = $nhomhang->getAll();
+			$this->view->kq = $kq;
+		}
+	-	Xuất kết quả kq ra view
+		=	Xóa hết code cũ trong file nhomhang.phtml đi
+		=	Thêm code như sau
+			<?php
+			$k = $this->kq;
+			foreach($k as $item)
+			{ ?>
+				<a href=""><?php echo $item['tennhom']?>; </a>
+				</br>
+			<?php	} ?>
+			
+http://localhost/webzend/index/sanpham
+	Hình				Hình
+	Tên sản phẩm        Tên sản phẩm
+	Giá                 Giá
+	
+	Hình				Hình
+    Tên sản phẩm        Tên sản phẩm
+    Giá                 Giá
+	
+	-	tao view cho action sanpham
+		=	Vào thư mục models tạo file sanpham.php  
+			<?php
+			class Model_Sanpham extends Zend_Db_Table_Abstract{
+				public $_name="sanpham";
+				public $_primary="id_sanpham";
+				
+				public function getAll(){
+					$se = $this->select();
+					return $this->fetchAll($se)->toArray();
+					}
+				}
+			?>
+	-	Trong file indexController, khai báo thêm code vào hàm sanphamAction()
+		public function sanphamAction()
+		{
+			// action body
+			$sanpham = new Model_Sanpham;
+			$kq = $sanpham->getAll();
+			$this->view->kq = $kq;
+		}
+	
+	-	Xuất kết quả kq ra view
+		=	Xóa hết code cũ trong file sanpham.phtml đi
+		=	Thêm code như sau
+			<div style="width:800px; float:left;">
+			<?php
+				foreach($this->kq as $item){?>
+					<div style="width:200px; float:left; border:#06 thin solid">
+					<img style="width:100px; height=50px" src="http://localhost/webzend/public/images/<?php echo $item['hinh']?>">
+					</br>
+
+					<?php	echo $item['tensp']."<br/>";
+							echo $item['gia']."</br>";
+					?>
+					
+					</div>
+			<?php }?>
+			</div>
+	
+xem đầu trang 39, làm giống getwhere($id) 	
+xem trang 21 phần lấy một tham số $this->_request->getParam("ten tham so")
+
+Xử lí action sanphamnhom
+	-	trong IndexController(), edit hàm action sanphamnhomAction()
+		public function sanphamnhomAction()
+		{
+			// action body
+			$sp = new Model_Sanpham;
+			$id = $this->_request->getParam("id");
+			$kq = $sp->getWhere($id);
+			$this->view->kq = $kq;
+		}
+	-	trong thư mục models chỉnh file sanpham.php them code
+		public function getWhere($id){
+		$se = $this->select();
+		$se->where("id_nhom = ?", $id);
+		return $this->fetchAll($se)->toArray();
+		}
+	-	trong \application\views\scripts\index chỉnh file sanphamnhom.phtml
+		<div style="width:800px; float:left;">
+		<?php
+			foreach($this->kq as $item){?>
+				<div style="width:200px; float:left; border:#06 thin solid">
+				<img style="width:100px; height=50px" src="http://localhost/webzend/public/images/<?php echo $item['hinh']?>">
+				</br>
+
+				<?php	echo $item['tensp']."<br/>";
+						echo $item['gia']."</br>";
+				?>
+				
+				</div>
+		<?php }?>
+		</div>
+============================================================
+Buoi 7 ngay 3/6/2016 tim kiem
+
+-	Tạo models sanpham có
+	function getWhere($id)
+	{
+		$se = $this->select();
+		$se -> where("id_sanpham = $id")
+		return $this->fetchRow($se)->toArray();
+	}
+	=	copy thư mục images vào \webzend\public
+	=	ket noi database -> cấu hình file bootstrap
+	=	tạo file sanpham.php
+		<?php
+			class Model_Sanpham extends Zend_Db_Table_Abstract{
+				public $_name="sanpham";
+				public $_primary="id_sanpham";
+				
+				public function getAll(){
+					$se = $this->select();
+					return $this->fetchAll($se)->toArray();
+					}
+					
+				public function getWhere($id)
+				{
+					$se = $this->select();
+					$se -> where("id_sanpham = $id");
+					return $this->fetchRow($se)->toArray();
+				}
+			}
+		?>
+	
+	=	nếu select where nhiều điều kiện thì 
+		$se -> where(dk1);
+		$se -> where(dk2);
+		$se -> orwhere(dk3);
+-	tạo action index: 
+	function indexAction()
+	{
+		$sp =  new Model_Sanpham;
+		$id = 1;
+		$kq = $sp->getWhere($id);
+		print_r($kq);
+	}
+	
+-	fetchRow() -> trả về array 1 chiều -> không cần dùng for để hiển thị trên view -> nếu truy vấn where là khóa chính của table thì sẽ dùng fetchRow, còn lại thì dùng fetchAll
+-	fetchAll() -> trả về array 2 chiều -> dùng for để hiển thị trên view
+
+---------------
+-	http://localhost/webzend/index/tim
+	= action tìm có form để gõ vào tên sanpham
+	= có nút "tim" để gọi action kqtim
+	====> cách làm
+		.	tao action tim co view la form tìm kiếm có khung nhập có id là tensp, tạo nút tim
+			<html>  
+			<body>
+			<form action="/webzend/index/kqtim" method="post">
+			Name: <input type="text" name="tensp"><br>
+			 <input type="submit" value="Tim San Pham" />
+			</form>
+			</body>
+			</html>
+		.	trong model sanpham.php, tạo hàm tim($tensp)
+			<?php
+			class Model_Sanpham extends Zend_Db_Table_Abstract{
+				public $_name="sanpham";
+				public $_primary="id_sanpham";
+				
+				public function getAll(){
+					$se = $this->select();
+					return $this->fetchRow($se)->toArray();
+					}
+					
+				public function getWhere($id)
+				{
+					$se = $this->select();
+					$se -> where("id_sanpham = $id");
+					return $this->fetchAll($se)->toArray();
+				}
+				
+				public function tim($tensp)
+				{
+					$se = $this->select();
+					$se -> where("tensp like '%$tensp%'");
+					return $this->fetchAll($se)->toArray();
+				}
+			}
+			?>
+		.	ấn nút tim thì sẽ chuyển qua action kqtim
+			<form action="/webzend/index/kqtim" method="post">
+			Name: <input type="text" name="tensp"><br>
+			 <input type="submit" value="Tim San Pham" />
+	
+-	http://localhost/webzend/index/kqtim
+	= action kqtim sẽ show ra kết quả san phẩm tìm được theo dạng
+	Hình				Hình
+	Tên Sản phẩm        Tên Sản phẩm
+	Giá                 Giá
+	=====> cách làm
+		.	tao action kqtim trong IndexController
+			public function kqtimAction()
+			{
+				// action body
+				$sp = new Model_Sanpham;
+				$tensp = $this->_request->getParam('tensp');
+				$kq = $sp->tim($tensp);
+				$this->view->kq =$kq;
+				
+			}
+		.	trong kqtim.phtml 
+			<div style="width:800px; float:left;">
+			<?php
+				foreach($this->kq as $item){?>
+					<div style="width:200px; float:left; border:#06 thin solid">
+					<img style="width:100px; height=50px" src="http://localhost/webzend/public/images/<?php echo $item['hinh']?>">
+					</br>
+					<?php	echo $item['tensp']."<br/>";
+							echo $item['gia']."</br>";
+					?>
+					</div>
+			<?php }?>
+			</div>
+			
+-	yêu cầu: trong view tim, tạo một dropdown list hãng sản xuất. View này sẽ load data từ table hangsx và đổ vào dropdownlist để user chọn
+	<select >
+		<option value="id hang" > ten hang sx </option>
+	</select>
+	
+	=	tạo models hangsx.php: get all hãng và trả về kq cho view
+		<?php
+			class Model_Hangsx extends Zend_Db_Table_Abstract{
+				public $_name="hangsx";
+				public $_primary="id_hangsx";
+				
+				public function getAll(){
+					$se = $this->select();
+					return $this->fetchRow($se)->toArray();
+					}
+			}
+		?>
+	=	trong action timAction() load data từ models hangsx
+		public function timAction()
+		{
+			// action body
+			$hangsx = new Model_Hangsx;
+			$kq = $hangsx->getAll();
+			$this->view->kq = $kq;
+		}
+	=	tại view làm vòng lặp để load kq 
+	
+==========================================================
+Buoi 8: search, select tag, kết bảng
+
+-	thiết kế database ko được có chu trình vòng tròn
+-	khóa chính của table không được dùng quá nhiều id số tự tăng dần
+
+Yêu cầu tiếp theo buổi 7:
+Viết khung search tìm theo tên sản phẩm và hãng sản xuất
+
+-	yêu cầu: trong view tim, tạo một dropdown list hãng sản xuất. View này sẽ load data từ table hangsx và đổ vào dropdownlist để user chọn
+	<select >
+		<option value="id hang" > ten hang sx </option>
+	</select>
+	
+	=	tạo models hangsx.php: get all hãng và trả về kq cho view
+		<?php
+			class Model_Hangsx extends Zend_Db_Table_Abstract{
+				public $_name="hangsx";
+				public $_primary="id_hangsx";
+				
+				public function getAll(){
+					$se = $this->select();
+					return $this->fetchAll($se)->toArray();
+					}
+			}
+		?>
+	=	trong action timAction() load data từ models hangsx
+		public function timAction()
+		{
+			// action body
+			$hangsx = new Model_Hangsx;
+			$kq = $hangsx->getAll();
+			$this->view->kq = $kq;
+		}
+	=	tại view làm vòng lặp để load kq 
+		<html>  
+		<body>
+		<form action="/webzend/index/kqtim" method="post">
+		Name: <input type="text" name="tensp"><br>
+		Hang sx: 
+		<select name="hangsx" > 
+		<option value="all"> Tat Ca</option>
+		<?php foreach($this->kq as $item){ ?>
+			<option value="<?php echo $item['id_hangsx'];?>">
+				<?php echo $item['tenhang']; ?>
+			</option> 
+		<?php } ?>
+		</select>
+
+		</br>
+		 <input type="submit" value="Tim San Pham" />
+		</form>
+		</body>
+		</html>
+
+	=	viết hàm kqtimAction()
+		.	Điền tên và hãng chọn all -> tìm như ban đầu
+		.	Điền tên và chọn hãng -> tìm có điều kiện
+			public function kqtimAction()
+			{
+				// action body
+				$sp = new Model_Sanpham;
+				$tensp = $this->_request->getParam('tensp');
+				$hangsx = $this->_request->getParam('hangsx');
+				if($hangsx=='all')
+				{
+					$kq = $sp->tim($tensp);
+					$this->view->kq =$kq;
+				}
+				else
+				{
+					$kq = $sp->tim1($tensp,$hangsx);
+					$this->view->kq =$kq;
+				}
+			}
+			
+			public function timAction()
+			{
+				// action body
+				$hangsx = new Model_Hangsx;
+				$kq = $hangsx->getAll();
+				$this->view->kq = $kq;
+			}
+				
+	=	file kqtim.phtml
+	<div style="width:800px; float:left;">
+			<?php
+				foreach($this->kq as $item){?>
+					<div style="width:200px; float:left; border:#06 thin solid">
+					<img style="width:100px; height=50px" src="http://localhost/webzend/public/images/<?php echo $item['hinh']?>">
+					</br>
+					<?php	echo $item['tensp']."<br/>";
+							echo $item['gia']."</br>";
+					?>
+					</div>
+			<?php }?>
+	</div>
+	
+tim theo gia1 va gia2 (gia1 từ, gia2 đến)
+Ben ham action kqtim
+	$tensp
+	$hangsx
+	$gia1
+	$gia2
+	$sp=new Model_Sanpham
+	$kq=$sp->tim($tensp,$hangsx,$gia1,$gia2)
+	$this->view->kq =$kq;
+	
+Ben model sanpham
+	function tim($tensp,$hangsx,$gia1,$gia2)
+	{
+		if ($hangsx != 'all')
+		{
+			$se= $this->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
+			$se->setin...(false);
+			$se->join();
+			$se->where("tensp like '%$tensp%' and id_hang='hangsx'")
+		}
+		else
+		{
+			$se=$this->select();
+			$se->where("tensp like '%$tensp%'")
+		}
+		
+		if($gia != "")
+			$se->where("gia >= $gia1");
+		if($gia2 != "")
+			$se->where("gia <= $gia2");
+	}
+	
+=============================================
+Buổi 9: phân trang - phan trang
+xem dau trang 61
+trang 59
+
+- 	copy đoạn code bên dưới vào view cần phân trang
+	<div style='clear:both; text-align:center; '>
+	<?php
+	echo $this->paginationControl($this->all,'All','control.phtml');
+	?>
+	</div>
+	
+-	copy file control.phtml của thầy share vào thư mục application\views\scripts
+-	hàm indexAction() viết như bên dưới (tương tự muốn view nào cần phân trang thì trong action tương ứng view đó ta sẽ viết code bên dưới cho action đó)
+    public function indexAction()
+    {
+        // action body
+		$sp = new Model_Sanpham;
+		$all = $sp->getAll();
+		$pa = Zend_Paginator::factory($all);
+		$pa->setItemCountPerPage(2);
+		$pa->setPageRange(3);
+		$current = $this->_request->getParam("page");
+		$pa->setCurrentPageNumber($current);
+		$this->view->all = $pa;
+    }
+
+-	chạy thử hàm indexAction() để check xem phân trang
+-	Yêu cầu 1: hiện các link những nhóm hàng, click vào link nhóm hàng sẽ chuyển đến trang kết quả sản phẩm tương ứng nhóm hàng và có phân trang cho view đó
+
+-	Làm phân trang cho tìm kiếm: lưu ý: trên url trình duyệt web cần lưu 2 tham số tên san pham và số page 
+-	Yêu cầu 2: search tên sản phẩm -> link đến view kết quả có phân trang cho những sản phẩm có tên được search
+	=	Trong action ta truyền thêm $tensp
+	$tensp=$this->_request->getParam("tensp");
+		=>$tensp sẽ truyền cho $this->view->tensp ở dòng bên dưới
+	..
+	$this->view->tensp=$tensp;
+		=> $this->view->tensp sẽ truyền cho $this->tensp trong array(“tensp”=>$this->tensp)
+	--------
+	=	Trong view ta chèn thêm array("tensp"=>$this->tensp)
+	<div style='clear:both; text-align:center; '>
+	<?php	
+	echo  $this->paginationControl($this->all,'Sliding','control.phtml',array("tensp"=>$this->tensp));
+	?>
+	</div>
+		=> "tensp" sẽ truyền cho $this->tensp trong "tensp"=>$this->tensp
+	-------------
+	=	Trong controll.phtml của thầy share ta chèn thêm "tensp"=>$this->tensp vào 3 chỗ đầu giữa va cuối. Có bao nhiêu tham số search bên view tim thì phải truyền bấy nhiêu tham số vào file controll.phtml. Trường hợp bên dưới ta tìm tensp và hangsx thì truyền 2 tham số
+	<a href="<?php echo $this->url(array('page' => $this->previous, "tensp"=>$this->tensp)); ?>">
+		<<
+	</a> &nbsp;|
+	
+	Ví dụ bên dưới cho truyền 2 tham số tensp và hangsx
+		<?php if ($this->pageCount): ?>
+		<div class="paginationControl">
+		<!-- Previous page link -->
+		<?php if (isset($this->previous)): ?>
+		  <a href="<?php echo $this->url(array('page' => $this->previous,"tensp"=>$this->tensp,"hangsx"=>$this->hangsx)); ?>">
+			<<
+		  </a> &nbsp;|
+		<?php else: ?>
+		  <span class="disabled"><<</span> |
+		<?php endif; ?>
+		 
+		<!-- Numbered page links -->
+		<?php foreach ($this->pagesInRange as $page): ?>
+		  <?php if ($page != $this->current): ?>
+			<a href="<?php echo $this->url(array('page' => $page,"tensp"=>$this->tensp,"hangsx"=>$this->hangsx)); ?>">&nbsp;<?php echo $page; ?>&nbsp;</a> |
+		  <?php else: ?>
+			<span class="selected">&nbsp;<?php echo $page; ?>&nbsp;</span> |
+		  <?php endif; ?>
+		<?php endforeach; ?>
+		 
+		<!-- Next page link -->
+		<?php if (isset($this->next)): ?>
+		  <a href="<?php echo $this->url(array('page' => $this->next,"tensp"=>$this->tensp,"hangsx"=>$this->hangsx)); ?>">
+			>>
+		  </a>
+		<?php else: ?>
+		  <span class="disabled">>></span>
+		<?php endif; ?>
+		</div>
+		<?php endif; 
+		?>
+			=> giá trị này "tensp"=>$this->tensp sẽ được truyền đến cho link web http://../tensp/
+
+==========================================================
+Buoi 10: phân trang tiếp theo, su dung jquery
+
+-	Yêu cầu: search tên sản phẩm -> link đến view kết quả có phân trang cho những sản phẩm có tên được search. Search 4 tham số: tên san pham, hãng sx, giá thấp và giá cao
+
+-	Yeu cau: viet action sp ben dưới lấy 6 sản phẩm có giá giảm dần
+	http://localhost/webzend/index/sp
+xem trang 39: lấy tất cả hãng sản xuất theo thứ tự giảm dần
+	=	trong model sanpham
+		funtion getOrderLimit($order,$count,$offset)
+		{
+			$se = $se->select();
+			$se->order("gia $order");
+			$se->limit($count,$offset);
+			return ...
+		}
+	=	trong controller action
+		function spAction()
+		{
+			$sp = new Model_Sanpham;
+			$kq = $sp->getOrderLimit('DESC',6,0);
+			$this->view->kq = $kq;
+		}
+		
+-	Dùng jquery vào web
+	=	css
+	=	js
+	=	cấu trúc thẻ html mà jquery dùng: phải phân tích cấu trúc 
+	javascript bắt buộc phải có thứ tự
+	xem trang 54 phan B2 tao menu
+	
+	
+Bước làm jquery
+-	tạo thư mục css, js trong thư mục public
+-	copy file 2 css và 3 file js vào thư mục css và js
+	ddsmoothmenu.css và ddsmoothmenu-v.css
+	jquery.min.js và ddsmoothmenu.js và init.js
+-	khai báo đường dẫn sử dụng: dùng bootstrap hoạc khai báo trong hàm function init() trong indexController. Trường hợp này dùng hàm init trong indexController
+	public function init()
+    {
+        /* Initialize action controller here */
+		$base = "http://localhost/webzend3/public/";
+		$this->view->headLink()->appendStylesheet($base."css/ddsmoothmenu.css");
+		$this->view->headLink()->appendStylesheet($base."css/ddsmoothmenu-v.css");
+		$this->view->headScript()->appendFile($base."js/ddsmoothmenu.js");
+		$this->view->headScript()->offsetSetFile("2",$base."js/jquery.min.js");
+		$this->view->headScript()->offsetSetFile("3",$base."js/init.js");		
+    }
+	Sau đó vào view index.phtml khai báo thêm 
+	<?php 
+		echo $this->headTitle("Zend framework");
+		echo $this->headLink();
+		echo $this->headScript();
+		echo $this->headMeta();
+	?>
+	
+-	trong indexController 
+	public function indexAction()
+    {
+        // action body
+		$h = new Model_Hangsx;
+		$nhom = new Model_Nhomhang;
+		$hang = $h->getAll();
+		
+		$nhomhang = array();
+		foreach($hang as $item)
+		{
+			$nhomhang[] = $nhom->getWhere($item["id_hangsx"]);
+		}
+
+		$this->view->hang = $hang;
+		$this->view->nhomhang = $nhomhang;
+    }
+-	trong view menu khai báo vòng lặp for để show tất cả hãng và những nhóm hàng của hãng: xem sach trang 54 phan B2
+	File view index.phtml
+	<div id="smoothmenu2" class="ddsmoothmenu-v"> 
+	<?php 
+		echo $this->headTitle("Zend framework");
+		echo $this->headLink();
+		echo $this->headScript();
+		echo $this->headMeta();
+	?>
+	<ul>
+		<?php 
+			$dem =0;
+			foreach($this->hang as $item){?>
+		<li><a href=""><?php echo $item['tenhang'];?></a>
+			<ul>
+				<?php
+				$n = $this->nhomhang[$dem];
+				foreach($n as $item2){?>
+				<li><a href=""><?php echo $item2['tennhom'];?></a></li>
+				<?php
+				}?>
+			</ul>
+		</li>
+		<?php 
+		$dem++;
+		}?>
+	</ul>
+	<br style="clear: left"/>
+	</div>
+
+Buoi 11 ngày 13/6/2016	jquery tiep theo
+
+-	làm tiếp action http://localhost/webzend/index/spall
+	Khi click vào menu dọc sẽ hiện ra list sản phẩm gồm
+		Hình
+		Tên
+		Giá
+	
+	===> khi click vào hình thì hình sẽ zoom to ra
+	=	click vào nhóm hàng sẽ gọi đến action spAction() và truyền theo tham số nhóm hàngđể tìm tất cả sản phẩm theo nhóm
+	=	truyền kết quả từ action spAction() qua cho view spAction.phtml để show ra
+	=	cấu hình css và js để khi click vào hình sản phẩm sẽ joom to ra
+	
+	
+	
+-	Yêu cầu: tạo project mới
+-	cấu hình layout có các file .php
+	header.php
+	tim.php
+	left.php
+	right.php
+	footer.php
+	
+==============================================	
+Buoi 12 ngày 17/6/2016
+Yeu cau:
+
+-	tao layout: header, footer, left, right, search
+	=	tạo 5 file .phtml: header, footer, left, right, search
+		header.phtml
+		<div style="background-color:#b5dcb3; width:100%">
+			  <h1>Header</h1>
+		</div>
+		
+		footer.phtml
+		<div style="background-color:#b5dcb3;clear:both">
+		  <center>
+			  <h1>Footer </h1>
+		  </center>
+		</div>
+	
+	=	file layout.phtml
+		<?php echo $this->doctype() ?>   
+		<html>   
+		<head>   
+			<?php echo $this->headTitle("Zend framework") ?>   
+			<?php echo $this->headMeta() ?>        
+			<?php echo $this->headLink() ?>   
+			<?php echo $this->headScript() ?>      
+		</head>   
+		<body>  
+			<?php echo $this->render('header.phtml') ?>
+			<?php echo $this->render('left.phtml') ?>
+
+			<?php 
+				echo $this->layout()->content; 
+			?> 
+			<?php echo $this->render('right.phtml') ?> 
+			<?php echo $this->render('footer.phtml') ?>
+		</body>  
+		</html>
+	
+	=	trong function init()
+		public function init()
+		{
+			/* Initialize action controller here */
+			$base = "http://localhost/webzend3/public/";
+			$this->view->headLink()->appendStylesheet($base."css/ddsmoothmenu.css");
+			$this->view->headLink()->appendStylesheet($base."css/ddsmoothmenu-v.css");
+			$this->view->headScript()->appendFile($base."js/ddsmoothmenu.js");
+			$this->view->headScript()->offsetSetFile("2",$base."js/jquery.min.js");
+			$this->view->headScript()->offsetSetFile("3",$base."js/init.js");	
+			
+			$option=array( 
+			"layout" => "layout", 
+			"layoutPath" => APPLICATION_PATH."/layouts/scripts/"
+			  ); 
+			Zend_Layout::startMvc($option); 
+			
+			$h = new Model_Hangsx;
+			$nhom = new Model_Nhomhang;
+			$hang = $h->getAll();
+			$nhomhang = array();
+			foreach($hang as $item)
+			{
+				$nhomhang[] = $nhom->getWhere($item["id_hangsx"]);
+			}
+			$this->view->hang = $hang;
+			$this->view->nhomhang = $nhomhang;
+		}
+		
+-	hàm index: mới vào sẽ show ra 6 sản phẩm giá cao nhất trong center, trong center có phân trang
+-	left: chứa link nhóm sản phẩm, khi click vào link sẽ show ra sản phẩm của nhóm đó
+-	header: search. Có ô tên san pham, hãng sản xuất là dropdown list, giá từ và giá đến, nút tìm. Khi click vào nút tim sẽ show ra các sản phẩm tìm được trong center
+
+	-- post trong php, zend framework chỉ cho phép dùng post để truyền giá trị
+	Post data is accessed with the $_POST array in PHP.
+	<?php
+	   echo("First name: " . $_POST['firstname'] . "<br />\n");
+	   echo("Last name: " . $_POST['lastname'] . "<br />\n");
+	?>
+		
+	<form action="myform5.php" method="post">
+	   <p>First name: <input type="text" name="firstname" /></p>
+	   <p>Last name: <input type="text" name="firstname" /></p>
+	   <input type="submit" name="submit" value="Submit" />
+	</form>
+
+index:	- index
+		- sanpham
+		- kqtim
+		
+	Nhiệm vụ các action
+-	trong hàm init: ta sẽ get data cho thanh menu left, cho dropdownlist của hãng sản xuất
+	=	Menu left: 
+		==	file  left.phtml
+			<div style=" height:200px;width:200px;float:left;">
+			<div><b>Main Menu</b></div>
+			<div id="smoothmenu2" class="ddsmoothmenu-v"> 
+				<?php 
+					echo $this->headTitle("Zend framework");
+					echo $this->headLink();
+					echo $this->headScript();
+					echo $this->headMeta();
+				?>
+				<ul>
+					<?php 
+						$dem =0;
+						foreach($this->hang as $item){?>
+					<li><a href="#"><?php echo $item['tenhang'];?></a>
+						<ul>
+							<?php
+							$n = $this->nhomhang[$dem];
+							foreach($n as $item2){?>
+							<li>
+								<a href="http://localhost:8001/webzend3/index/sp/id/<?php echo $item2['id_nhom'] ?>"/><?php echo $item2['tennhom'];?>
+								</a>
+							</li>
+							<?php
+							}?>
+						</ul>
+					</li>
+					<?php 
+					$dem++;
+					}?>
+				</ul>
+				<br style="clear: left"/>
+				</div>
+			</div>
+		
+		==	code cho hàm init() trong indexController() 
+			public function init()
+			{
+				/* Initialize action controller here */
+				//khai báo css và js
+				$base = "http://localhost:8001/webzend3/public/";
+				$this->view->headLink()->appendStylesheet($base."css/ddsmoothmenu.css");
+				$this->view->headLink()->appendStylesheet($base."css/ddsmoothmenu-v.css");
+				$this->view->headScript()->appendFile($base."js/ddsmoothmenu.js");
+				$this->view->headScript()->offsetSetFile("2",$base."js/jquery.min.js");
+				$this->view->headScript()->offsetSetFile("3",$base."js/init.js");	
+				
+				$this->view->headTitle("QHOnline - Zend Layout");
+				
+				//khai bao layout
+				$option=array( 
+				"layout" => "layout", 
+				"layoutPath" => APPLICATION_PATH."/layouts/scripts/"
+				  ); 
+				Zend_Layout::startMvc($option); 
+				
+				//get data cho menu left
+				$h = new Model_Hangsx;
+				$nhom = new Model_Nhomhang;
+				$hang = $h->getAll();
+				$nhomhang = array();
+				foreach($hang as $item)
+				{
+					$nhomhang[] = $nhom->getWhere($item["id_hangsx"]);
+				}
+				$this->view->hang = $hang;
+				$this->view->nhomhang = $nhomhang;
+				
+			}
+	
+	=	Search dropdownlist
+	
+-	trong action index: load data của 6 sản phẩm giá cao nhất vào center -> view của action index
+	=	trong model sanpham.php viết hàm get 6 sản phẩm giá cao nhất
+		public function getOrderLimit($order,$count,$offset)
+				{
+					$se = $this->select();
+					$se->order("gia $order");
+					$se->limit($count,$offset);
+					return $this->fetchAll($se)->toArray();
+				}
+	=	trong action indexController(): khởi tạo model sanpham, goi hàm get 6 sản phẩm giá cao nhất bên model, trả kq qua cho view, phân trang
+		public function indexAction()
+		{		
+			//khởi tạo model và gọi hàm
+			$sp =  new Model_Sanpham;
+			$all = $sp->getOrderLimit('DESC',6,0);
+			
+			//phan trang
+			$pa = Zend_Paginator::factory($all);
+			$pa->setItemCountPerPage(2);
+			$pa->setPageRange(3);
+			$current = $this->_request->getParam("page");
+			$pa->setCurrentPageNumber($current);
+			
+			// tra ket qua ve view
+			$this->view->all = $pa;
+			
+		}
+	
+	=	trong view index.phtml: get kq từ action index và show ra + phan trang
+		<div style="width:700px; float:left; border-style: thin;">
+			<?php
+				foreach($this->all as $item){?>
+					<div style="width:200px; float:left; border-style: thin;">
+					<img style="width:100px; height=50px" src="http://localhost:8001/webzend3/public/images/<?php echo $item['hinh']?>">
+					</br>
+					<?php	echo $item['tensp']."<br/>";
+							echo $item['gia']."</br>";
+					?>
+					</div>
+			<?php }?>
+			
+			<div style='clear:both; text-align:center; '>
+			<?php
+			echo $this->paginationControl($this->all,'All','control.phtml');
+			?>
+			</div>
+		</div>
+	
+-	trong action sanpham: show ra các sản phẩm theo nhóm vào center -> view của action sanpham
+	=	Code cho action spAction()
+		public function spAction()
+		{
+			// action body
+			$sp = new Model_Sanpham;
+			$id = $this->_request->getParam("id");
+			$all = $sp->getWhere($id);
+			
+			//phan trang
+			$pa = Zend_Paginator::factory($all);
+			$pa->setItemCountPerPage(2);
+			$pa->setPageRange(3);
+			$current = $this->_request->getParam("page");
+			$pa->setCurrentPageNumber($current);
+			$this->view->all = $pa;
+		}
+		
+	=	trong view sp.phtml
+		<div style="width:700px; float:left; border-style: thin;">
+				<?php
+					foreach($this->all as $item){?>
+						<div style="width:200px; float:left; border-style: thin;">
+						<img style="width:100px; height=50px" src="http://localhost:8001/webzend3/public/images/<?php echo $item['hinh']?>">
+						</br>
+						<?php	echo $item['tensp']."<br/>";
+								echo $item['gia']."</br>";
+						?>
+						</div>
+				<?php }?>
+				
+		<div style='clear:both; text-align:center; '>
+		<?php
+		echo $this->paginationControl($this->all,'All','control.phtml');
+		?>
+		</div>
+		</div>
+	
+-	trong action kqtim: sẽ show ra các sản phẩm tìm được vào center -> view của action kqtim
+	
+Đây là các view khác nhau sử dụng cùng layout, ko phải cùng 1 view center
+==================================================
+Buoi 13 ngay 20/6/2016 
+Zend Form
+Xem trang 77 Zend form, xem từ trang 86 đến 91
+
+	Zend Form
+-	Buoc 1: tạo thư mục forms trong application
+-	Buoc 2: tạo form (mỗi form là 1 file .php) trong thư mục forms
+-	Buoc 3: xử lí form ở Action
+-	Buoc 4: hiện form lên view
+
+Yêu cầu: tạo form nhập thông tin user -> check lỗi nhập:-> nếu valid -> insert vào
+														-> nếu invalid -> báo lỗi
+														
+B1: Tọa models thanhvien.php trong models
+	<?php
+		class Model_Thanhvien extends Zend_Db_Table_Abstract{
+			//khai bao table va key of table
+			public $_name = "thanhvien";
+			public $_primary = "id_thanhvien";
+			
+			//ham insert
+			public function insert_thanhvien($data){
+				$kq = $this->insert($data);
+				if($kq)
+					return true;
+				else
+					return false;
+			}
+
+			//ham check loi
+			public function checkUser($username){
+				$se = $this->select();
+				$se->where("username = '$username'");
+				$kq = $this->fetchAll($se)->toArray();
+				if($kq)
+					return false;
+				else
+					return true;
+			}
+		}
+	?>
+
+B2 Tạo thư mục forms trong application, bên trong tạo file thanhvien.php
+	<?php
+		class Form_Thanhvien extends Zend_Form{
+			public function init(){
+				$u = $this->createElement("text", "username", array("size"=>22, "label"=>"Username"));
+				$p = $this->createElement("password", "password", array("size"=>22,"label"=>"Password"));
+				$rp = $this->createElement("password", "repassword", array("size"=>22,"label"=>"Confirm"));
+				$e = $this->createElement("text", "email",array("size"=>22,"label"=>"Email"));
+				$dc = $this->createElement("text", "diachi", array("size"=>22, "label"=>"Dia Chi"));
+				$lv = $this->createElement("select", "level", 
+											array("label"=>"level",
+											"multioptions"=>array("1"=>"Admin",
+																"2"=>"Moderator",
+																"3"=>"guest"),
+											"value"=>"3"));
+											
+				$b = $this->createElement("submit","Submit");
+				$this->addElement($u)
+					->addElement($p)
+					->addElement($rp)
+					->addElement($e)
+					->addElement($dc)
+					->addElement($lv)
+					->addElement($b);
+			}
+		}
+	
+
+B3 Viết validate cho form: trong thư mục forms tạo thư mục valid. Trong valid tạo file InsertUser.php để check hợp lệ của form insert
+	<?php
+		class Form_Valid_InsertUser {
+			public $messages;
+			
+			public function __construct($data){
+				$val = new Zend_Validate_NotEmpty;
+				$val2 = new Zend_Validate_EmailAddress;
+				$tv = new Model_Thanhvien;
+				
+				if($val->isValid($data['username']) == false)
+					$this->messages[] = "Username không được rỗng";
+				if($val->isValid($data['password']) == false)
+					$this->messages[] = "Password không được rỗng";
+					
+				if($data['password'] != $data['repassword'])
+					$this->messages[] = "Password và Confirm phải giống nhau";
+					
+				if($val->isValid($data['email']) == false)
+					$this->messages[] = "Email không được rỗng";
+					
+				if($tv->checkUser($data['username']) == false)
+					$this->messages[] = "Username này đã tồn tại";
+					
+				if($val2->isValid($data['email']) == false)
+					$this->messages[] = "Email không hợp lệ";
+				if($val->isValid($data['diachi']) == false)
+					$this->messages[] = "Địa chỉ không được rỗng";
+			}
+			
+			public function valid(){
+				if($this->messages != "")
+					return FALSE;
+				else 
+					return TRUE;
+			}
+		}
+	?>	
+
+B4 Code cho action insertAction()
+	public function insertAction()
+    {
+        // action body
+		$ftv = new Form_Thanhvien;
+		if($this->_request->isPost()){
+			$param = $this->_request->getParams();
+			$check = new Form_Valid_InsertUser($param);
+			if($check->valid() == false){
+				$this->view->error = $check->messages;
+				$ftv->populate($param);
+			}
+			else {
+				$data = array(
+						"username" => $this->_request->getPost("username"),
+						"password" => $this->_request->getPost("password"),
+						"email" => $this->_request->getPost("email"),
+						"level" => $this->_request->getPost("level"),
+				);
+				$tv = new Model_Thanhvien;
+				$tv->insert_thanhvien($data);
+			}
+		}
+		$this->view->form = $ftv;
+		
+    }
+
+B5 Show form ra view
+	<ul>
+	<?php
+		if(isset($this->error)){
+			foreach($this->error as $loi){ ?>
+				<li><?php echo $loi;?></li>
+		<?php	
+			}
+		}
+	?>
+	</ul>
+	<?php
+		echo $this->form;
+	?>
+		
+====================================================
+Buoi 14 ngay 22/06/2016 
+	Zend form 
+
+Tạo action inserthsx
+Tạo form và model sao cho
+	http://.../index/inserthsx
+	
+	Ma hangsx:
+	Ten hangsx:
+	Submit
+	
+Kiểm tra: 
+-	ma hangsx: không được rỗng, chưa có trong database
+-	ten hangsx: không được rỗng
+	
+Co 2 cach check data tren form: dùng cách thông thường và dung zend form
+
+Tạo form login, validate data bằng zend form
+B1	Tạo form login trong thư mục application\forms
+	<?php
+	class Form_Login extends Zend_Form{
+		public function init(){
+			$username = $this->addElement("text", "username",array("label"=>"Username"));
+			$password = $this->addElement("password", "password",array("label"=>"Password"));
+			$submit = $this->addElement("submit", "Login");
+			
+			$username = $this->getElement('username')
+							->addValidator('alnum')
+							->setRequired(true)
+							->addFilter("StringTrim");
+			$username->getValidator('alnum')->setMessage('username bao gom chu va so');
+		
+			$password = $this->getElement('password')
+							->addValidator('stringLength',true,array(6))
+							->setRequired(true)
+							->addFilter('StringTrim');
+			$password->getValidator('stringLength')->setMessage('password qua ngan');
+			
+		}
+	}
+ 
+ B2 Action loginAction()
+	 public function loginAction()
+		{
+			// action body
+			$form = new Form_Login;
+			if($this->_request->isPost()){
+				if($form->isValid($this->_request->getParams())){
+					 
+				}
+			}
+			else{
+				$form->populate($this->_request->getParams());
+			}
+			$this->view->form = $form;
+		}
+ 
+ B3 Show form ra view: File login.phtml
+	 <?php
+		echo $this->form;
+	?>
+	
+====================================================
+Buoi 15 ngay 24/06/2016
+	Zend form, validate data use zend form	
+	
+Yeu cau:
+Tao zend form insert user, sử dụng validate bằng zend form
+
+B1  Tạo models thanhvien.php trong models => copy 
+	<?php
+		class Model_Thanhvien extends Zend_Db_Table_Abstract{
+			//khai bao table va key of table
+			public $_name = "thanhvien";
+			public $_primary = "id_thanhvien";
+			
+			//ham insert
+			public function insert_thanhvien($data){
+				$kq = $this->insert($data);
+				if($kq)
+					return true;
+				else
+					return false;
+			}
+
+			//ham check loi
+			public function checkUser($username){
+				$se = $this->select();
+				$se->where("username = '$username'");
+				$kq = $this->fetchAll($se)->toArray();
+				if($kq)
+					return false;
+				else
+					return true;
+			}
+		}
+	?>
+B2	Tạo form Form_Thanhvien2
+B3 	Viết validate cho form
+	<?php
+	class Form_Thanhvien2 extends Zend_Form{
+		public function init(){
+			$u = $this->createElement("text", "username", array("size"=>22, "label"=>"Username"));
+			$p = $this->createElement("password", "password", array("size"=>22,"label"=>"Password"));
+			$rp = $this->createElement("password", "repassword", array("size"=>22,"label"=>"Confirm"));
+			$e = $this->createElement("text", "email",array("size"=>22,"label"=>"Email"));
+			$dc = $this->createElement("text", "diachi", array("size"=>22, "label"=>"Dia Chi"));
+			$lv = $this->createElement("select", "level", 
+										array("label"=>"level",
+										"multioptions"=>array("1"=>"Admin",
+															"2"=>"Moderator",
+															"3"=>"guest"),
+										"value"=>"3"));
+										
+			$b = $this->createElement("submit","Submit");
+			$this->addElement($u)
+				->addElement($p)
+				->addElement($rp)
+				->addElement($e)
+				->addElement($dc)
+				->addElement($lv)
+				->addElement($b);
+				
+			$username = $this->getElement('username')
+							->addValidator('alnum')
+							->addValidator('Db_NorecordExists', true, array('table'=>'thanhvien','field'=>'username'))
+							->setRequired(true)
+							->addFilter('StringTrim');
+			$username->getValidator('alnum')->setMessage('username bao gom chu va so');
+			$username->getValidator('Db_NorecordExists')->setMessage('username nay da co roi');
+			
+			$password = $this->getElement('password')
+							->addValidator('stringLength', true, array(6,14))
+							->setRequired(true)
+							->addFilter('StringTrim');
+			$password->getValidator('stringLength')->setMessage('password tu 6-14 ki tu');
+				
+			$repassword = $this->getElement('repassword')
+							->addValidator('Identical', false, array('token' => 'password'))
+							->setRequired(true)
+							->addFilter('StringTrim');
+			$repassword->getValidator('Identical')->setMessage('Hai password phai giong nhau');
+
+			$email= $this->getElement('email')
+						->addValidator('EmailAddress')
+						->setRequired(true)
+						->addFilter('StringTrim');
+			$email->getValidator('EmailAddress')->setMessage(array(
+				Zend_Validate_EmailAddress::INVALID_FORMAT => "Email bi loi",
+				Zend_Validate_Hostname::INVALID_HOSTNAME => "Email bi loi",
+				Zend_Validate_Hostname::LOCAL_NAME_NOT_ALLOWED => "Email bi loi"
+				));			
+
+		}
+	}
+
+
+B4	Code cho action insert2Action()
+	public function insert2Action()
+		{
+			// action body
+			// action body
+			$ftv = new Form_Thanhvien2;
+			if($this->_request->isPost()){
+				$param = $this->_request->getParams();
+				
+				if($ftv->isValid($this->_request->getParams())){
+					$data = array(
+							"username" => $this->_request->getPost("username"),
+							"password" => $this->_request->getPost("password"),
+							"email" => $this->_request->getPost("email"),
+							"level" => $this->_request->getPost("level"),
+					);
+					$tv = new Model_Thanhvien;
+					$tv->insert_thanhvien($data);
+				}
+				else {
+					$ftv->populate($param);
+					print_r("Khong insert duoc");
+				}
+			}
+			$this->view->form = $ftv;
+		}
+B5 	Show form ra view
+	<?php
+		echo $this->form;
+	?>
+===================================================
+Buoi 16 ngay 27/06/2016
+Zend File
+
+Yêu cầu: tạo form upload sản phẩm như trang 94(xem trang 94->98)
+
+B1  Tạo models cần thiết: Tạo models sanpham.php, model nhom.php trong models
+	--sanpham.php
+	<?php
+		class Model_SanPham extends Zend_Db_Table_Abstract{
+			//khai báo table và key of table
+			public $_name = "sanpham";
+			public $_primary = "id_sanpham";
+			
+			//hàm insert
+			public function insert_thanhvien($data){
+				$kq = $this->insert($data);
+				if($kq)
+					return true;
+				else
+					return false;
+			}
+
+		}
+	?>
+
+	--nhom.php
+	<?php
+		class Model_Nhom extends Zend_Db_Table_Abstract{
+			//khai báo table và key of table
+			public $_name = "nhomhang";
+			public $_primary = "id_nhom";
+			
+			//hàm insert
+			public function getAll(){
+				$se = $this->select();
+				return $this->fetchAll($se)->toArray();
+			}
+
+		}
+	?>
+B2	Tạo form Form_SanPham để upload sản phẩm
+	<?php
+		class Form_SanPham extends Zend_Form{
+			public function init(){
+				$tensp = $this->createElement("text", "tensp", array("size"=>30, "label"=>"Tên Sản Phẩm"));
+				
+				$gia = $this->createElement("text", "gia", array("size"=>30, "label"=>"Giá"));
+			
+				$hinh = $this->createElement("file", "hinh", array("label"=>"Hinhf"));
+				
+				$mota = $this->createElement("textarea", "mota", array(
+															"cols"=>"30",
+															"rows"=>"3",
+															"label"=>"Mô tả"));
+				
+				$chitiet = $this->createElement("textarea", "chitiet", array(
+															"cols"=>"30",
+															"rows"=>"7",
+															"label"=>"Chi Tiết"));
+								
+				$nhom = new Model_Nhom;
+				$all = $nhom->gettAll();
+				$arr = array();
+				foreach($all as $n)
+					$arr[$n['id_nhom']] = $n['tennhom'];
+				$nhom = $this->createElement("select", "id_nhom", array("label"=>"Nhóm",
+															"multioptions"=>$arr));
+															
+				$b = $this->createElement("submit","submit");									
+				$this->addElement($tensp)
+					->addElement($gia)
+					->addElement($hinh)
+					->addElement($mota)
+					->addElement($chitiet)
+					->addElement($nhom)
+					->addElement($b);
+					
+				$this->setAttrib('enctype', 'multipart/form-data');
+			}
+		}
+	?>
+
+B3 	Viết validate cho form:	tạo thư mục valid -> tạo file InsertSanpham.php để validate data insert
+	<?php
+		class Form_Valid_InsertSanPham {
+			public $message;
+			
+			//hàm khởi tạo kèm tham số $data,
+			public function __construct($data){
+				// $val check không được rỗng, $val2 check phải là kiểu số
+				$val = new Zend_Validate_NotEmpty;
+				$val2 = new Zend_Validate_Digits;
+				
+				//check ten san pham khong duoc rong
+				if($val->isValid($data['tensp']) == false)
+					$this->message[] = "Tên sản phẩm không được rỗng";
+				//gia phai la so nguyen
+				if($val2->isValid($data['gia']) == false)
+					$this->message[] = "Giá phải là số nguyên";
+				//mô tả không được rỗng
+				if($val->isValid($data['mota']) == false)
+					$this->message[] = "Mô tả không được rỗng";
+				//chi tiet khong duoc rong
+				if($val->isValid($data['chitiet']) == false)
+					$this->message[] = "Chi tiết không được rỗng";
+			}
+			
+			//hàm check valid trả về false khi invalid và true khi valid
+			public function valid(){
+				if($this->message !="")
+					return FALSE;
+				else
+					return TRUE;
+			}
+		}
+	?>
+
+B4	Code cho action indexAction(): tạo form, xử lí data, truyền form qua view
+	public function indexAction()
+		{
+			// action body
+			//tạo form
+			$f = new Form_SanPham;
+			
+			//code xử lí khi form được post
+			if($this->_request->isPost()){
+				$loi = array();
+				$file = new Zend_File_Transfer_Adapter_Http;
+				$file->setDestination('./public/images');
+				$file->setValidators(array(
+											"size"=>array("min"=>"20","max"=>"500000"))
+									)
+				
+			}
+				->addValidator('Extension', false, array("jpg","jpeg","png","gif"));
+				
+			//check lỗi upload
+			if($file->isValid() == false)
+				$loi = $file->getMessages();
+			
+			//lay thong tin upload
+			$info = $file->getFileInfo();
+			
+			//lay thong tin cac doi tuong form
+			$data = $this->_request->getParams();
+			
+			//tạo đối tượng check tính hợp lệ của đối tượng form
+			$valid = new Form_Valid_InsertSanPham($data);
+			
+			//check tính hợp lệ của form
+			if($valid->valid() == false){
+				$loi = array_merge($valid->messages, $loi);
+			}
+			
+			if(count($loi)==0){
+				if($file->receive()){
+					$sp = new Model_SanPham;
+					$data = array(
+						"tensp" 	=>$this->_request->getPost("tensp"),
+						"hinh"  	=>$info['hinh']['name'],
+						"gia"		=>$this->_request->getPost("gia"),
+						"mota"  	=>$this->_request->getPost("mota"),
+						"chitiet" 	=>$this->_request->getPost("chitiet"),
+						"id_nhom" 	=>$this->_request->getPost("id_nhom")
+					);
+					$sp->insert_sp($data);
+				}
+				else
+					$this->view->loi = $loi;
+			
+			}
+			//trả form về view
+			$this->view->form = $f;
+		}	
+
+B5 	Show form ra view
+	<?php
+		echo $this->form;
+	?>
+
+=================================
+Buoi 17: ngay 29/06/2016
+ css template
+
+Thông báo lỗi cho form khi dùng template file .phtml
+<ul>
+<li><?php echo $this->element->username .
+ $this->formErrors($this->element->username->getMessages() ); ?></li> 
+<li><?php echo $this->element->password. 
+$this->formErrors($this->element->password->getMessages() ); ?></li> 
+<li><?php echo $this->element->submit; ?></li>
+</ul>
+
+======================================
+Buoi 18 ngay 1/7/2016
+
+-	Tạo form upload file hình (dùng lại bài webzend Zendform, Validate data use zend form)
+
+Tao project moi
+Yeu cau: viet action Them san pham
+-	kiem tra: tren zend form
+-	dung template
+
+B1  Tạo models cần thiết: Tạo models sanpham.php, model nhom.php trong models
+	<?php
+		class Model_Nhom extends Zend_Db_Table_Abstract{
+			//khai báo table và key of table
+			public $_name = "nhomhang";
+			public $_primary = "id_nhom";
+			
+			//hàm insert
+			public function getAll(){
+				$se = $this->select();
+				return $this->fetchAll($se)->toArray();
+			}
+
+		}
+	?>
+	
+	<?php
+		class Model_SanPham extends Zend_Db_Table_Abstract{
+			//khai báo table và key of table
+			public $_name = "sanpham";
+			public $_primary = "id_sanpham";
+			
+			//hàm insert
+			public function insert_thanhvien($data){
+				$kq = $this->insert($data);
+				if($kq)
+					return true;
+				else
+					return false;
+			}
+
+		}
+	?>	
+	
+	
+B2	Tạo form Form_SanPham để upload sản phẩm
+B3 	Viết validate cho form:	dunng zend form
+B4	Code cho action indexAction(): tạo form, xử lí data, truyền form qua view
+B5 	Show form ra view: dung template_formlogin.phtml
+=================================================
+Buoi 19: ngay 4/7/2016
+Session
+
+Yêu cầu: tạo form login: thành công => qua trang wellcome, thất bại => qua trang index
+
+
+Bước 1:	Tạo from loginSession.php trong Applications/forms
+	<?php
+		class Form_LoginSession extends Zend_Form{
+				public function init(){
+						$username = $this->createElement("text","username", array("label"=>														"Username",	"size"=>"25"));
+						$password = $this->createElement("text","password", array("label"=>"Password",	"size"=>25));
+						$sm = $this->createElement("submit","Dang Nhap");
+						$this->addElement($username)
+							->addElement($password)
+							->addElement($sm);
+					}
+			}
+	?>
+Bước 2:	Tạo user.php trong Application/models
+	<?php
+		class Model_User extends Zend_Db_Table_Abstract{
+				public $_name = "thanhvien";
+				public $_primary = "id_thanhvien";
+				
+				public function getWhere($u, $p){
+						$se = $this->select();
+						$se->where("username = '$u'");
+						$se->where("password = '$p'");
+						return $this->fetchAll($se)->toArray();				
+					}	
+			}
+	?>
+Bước 3:	Tạo IndexController.php
+	<?php
+
+	class IndexController extends Zend_Controller_Action
+	{
+
+		public function init()
+		{
+			/* Initialize action controller here */
+			//$this->view->headMeta()->apeendHttpEquiv('Content-Type','text/html: charset=UTF-8');
+		}
+
+		public function indexAction()
+		{
+			// action body
+			$form = new Form_LoginSession;
+			if($this->_request->isPost()){
+					$u = $this->_request->getPost("username");
+					$p = $this->_request->getPost("password");
+					$muser = new Model_User;
+					$kq = $muser->getWhere($u, $p);
+					print_r($kq);
+					
+					if($kq[0]['username']){
+							$user = new Zend_Session_Namespace("user");
+							$user->username = $kq[0]['username'];
+							$user->level = $kq[0]['level'];
+							$this->_redirect("http://localhost/webzend/index/welcome");
+						}
+
+				}
+			$this->view->form = $form;
+		}
+
+		public function welcomeAction()
+		{
+			// action body
+			$user = new Zend_Session_Namespace("user");
+			if(isset($user->username)){
+					$this->view->user = $user->username;
+				}
+			else{
+					$this->redirect("http://localhost/webzend/index/index");
+				}		
+		}
+	}
+
+Bước 4:	Tạo index.phtml trong Application/Views
+	<?php
+		echo "<h1>Dang Nhap</h1>";
+		echo $this->form;	
+	?>
+
+Tạo welcome.php trong Application/Views
+	<?php
+		echo "Hello ".$this->user."| You are successful";
+	?>
+	
+=====================================================
+Buoi 20 ngay 6/7/2016
+Auth thay cho Session
+
+Xoa session trong zend
+	Zend_Session::destroy(true); //xoa tat ca
+	Zend_Session::namespaceUnset("user"); //xoa 1 namespace session
+
+Xoa Zend_Auth
+	$user=Zend_Auth::getInstance();
+	$user->clearIdentity();
+
+Yeu cau: tao form login -> welcome. Khi logout -> clear all session va quay ve index
+Bước 1:	Tạo form login.php trong Application/forms
+	<?php
+		class Form_Login extends Zend_Form{
+				public function init(){
+						$username = $this->createElement("text","username", array("label"=>														"Username",	"size"=>"25"));
+						$password = $this->createElement("text","password", array("label"=>"Password",	"size"=>25));
+						$sm = $this->createElement("submit","Dang Nhap");
+						$this->addElement($username)
+							->addElement($password)
+							->addElement($sm);
+					}
+			}
+	?>
+
+Bước 2:	Tạo IndexController.php
+	<?php
+	class IndexController extends Zend_Controller_Action
+	{
+
+		public function init()
+		{
+			/* Initialize action controller here */
+		}
+
+		public function preDispatch()
+		{
+				$auth = Zend_Auth::getInstance();
+				if(!$auth->hasIdentity()){
+						if($this->_request->getActionName() != 'index'){
+								$this->_redirect(HOST_PATH."/index/index");
+							}
+					
+					}
+			
+		}
+
+		public function indexAction()
+		{
+			// action body
+			$form = new Form_Login;
+			if($this->_request->isPost()){
+					$authTable = new Zend_Auth_Adapter_Dbtable();
+					$authTable->setTableName("thanhvien")
+								->setIdentityColumn("username")
+								->setCredentialColumn("password");
+							
+					if($this->_request->getPost("username")){
+							$fname = $this->_request->getPost("username");
+						}
+					else{
+							$fname = " ";
+						}
+							
+					if($this->_request->getPost("password")){
+							$fpass = $this->_request->getPost("password");
+						}
+					else {
+							$fpass = " ";
+						}
+
+					$authTable->setIdentity($fname)
+								->setCredential($fpass);
+					$authTable->getDbSelect();
+					
+					$auth = Zend_Auth::getInstance();
+					$result = $auth->authenticate($authTable);
+					if($result->isValid()){
+							$user = $authTable->getResultRowObject(null, array("password"));
+							$auth->getStorage()->write($user);
+							$this->_redirect(HOST_PATH."/index/welcome");					
+						}
+					else{
+							$this->_redirect(HOST_PATH."/index/index");	
+						}
+			}
+			else{
+					$form = new Form_Login;
+					$this->view->loginForm = $form;
+				
+				}
+			$this->view->form = $form;
+		}
+
+		public function welcomeAction()
+		{
+			// action body
+			$user = Zend_Auth::getInstance();
+			$info = $user->getIdentity();
+			$this->view->username = $info->username;
+		}
+
+		public function logoutAction()
+		{
+			// action body
+			$user=Zend_Auth::getInstance();
+			$user->clearIdentity();
+			$this->_redirect(HOST_PATH."/index/index");	
+		}
+	}
+	
+Bước 3:	Tạo các views
+-	View index.phtml
+		<h1>Dang Nhap<h1>
+		<?php
+			echo $this->loginForm;
+		?>
+
+-	VIew welcome.phtml
+		<?
+			echo "Hello".$this->username. "| Your session has been created";
+		?>
+		<form action="http://localhost/webzend/index/" method="post">
+		<input type="submit" value="Dang Xuat">
+		</form>
+ 
+
+ Khi lam quan tri
+ Moi table la 1 controller
+ ============================================================
+ Buoi 21: ngay 8/7/2016 insert update delete
+Tạo project: 
+Có controller hangsx:	-	index
+						-	insert
+						-	update
+						-	delete
+						
+-	tao project
+-	tao controller hangsx
+-	tao action: insert update delete
+-	cau hinh file bootstrap để load database
+-	tao model hangsx: tao file hangsx.php, 
+-	ben trong model hangsx, tao ham getAll, getWhere(id), insert, update, delete
+	<?php
+	class Model_Hangsx extends Zend_Db_Table_Abstract{
+		public $_name = "hangsx";
+		public $_primary = "id_hangsx";
+		
+		public function insert_hangsx($data){
+			$kq = $this->insert($data);
+			if($kq)
+				return true;
+			else
+				return false;
+		}
+		
+		public function update_hangsx($data, $id){
+			$kq = $this->update($data, "id_hangsx = '$id'");
+			if($kq)
+				return true;
+			else
+				return false;
+		}
+		
+		public function xoa_hangsx($id){
+			/*
+			if($this->delete("idCL = $id"))
+				return true;
+			else
+				return false;
+			*/
+			$db= Zend_Db_Table::getDefaultAdapter();
+			$sql1="select id_hangsx from nhomhang where id_hangsx='$id'";
+			//$del=$db->query("delete from chungloaisp where idCL=$id and idCL not in ($sql1)");
+			$del=$db->query($sql1);
+			if ($del->fetch())
+			{
+				return false;
+			}
+			else
+			{
+				$this->delete("id_hangsx = '$id'");
+				return true;
+			}
+
+		}
+		
+		public function getAll(){
+			/*
+			$se = $this->select();
+			return $this->fetchAll($se)->toArray();
+			*/
+			$db= Zend_Db_Table::getDefaultAdapter();
+			$se = $db->query('SELECT * FROM hangsx');
+			return $se->fetchAll();
+		}
+
+		public function get($id){
+			$se = $this->select();
+			$se->where("id_hangsx= ?",$id);
+			return $this->fetchRow($se)->toArray();
+		}
+	}
+	?>
+
+-	tao thu muc form trong application, tao inserthangsx (không đặt tên Form_Insert_Hangsx vì quy ước đặt tên hướng đối tượng vậy có nghĩa là thư mục form/insert/hangsx)
+	<?php
+	class Form_InsertHangsx extends Zend_Form{
+		public function init(){
+			$id = $this->createElement("text", "id_hangsx", array(
+														"size"=>22,
+														"label"=>"ID Hãng Sản Xuất"
+													)
+			);
+			$name = $this->createElement("text", "tenhang", array(
+														"size"=>22,
+														"label"=>"Tên Hảng Sản Xuất"
+													)
+			);
+			
+			$b = $this->createElement("submit", "Submit");
+			$this->addElement($id)
+				 ->addElement($name)
+				 ->addElement($b);
+		}
+	}
+	?>
+	
+-	tạo thư mục form/Valid, tạo file check valid cho form InsertHangSx
+<?php
+class Form_Valid_InsertHangSx{
+	public $messages;
+	
+	public function __construct($data){
+		$val = new Zend_Validate_NotEmpty;
+		$val2 = new Zend_Validate_Digits;
+		if($val->isValid($data['id_hangsx'])==false)
+			$this->messages[] = "ID không được rỗng";
+		if($val->isValid($data['tenhang'])==false)
+			$this->messages[] = "Tên hãng không được rỗng";
+		// if($val2->isValid($data['id_hangsx'])==false)
+			// $this->messages[] = "ID không được là chuỗi";
+	}
+	
+	public function valid(){
+		if($this->messages!="")
+			return FALSE;
+		else
+			return TRUE;
+	}
+}
+
+?>
+
+-	ham insertAction(): tao Form_InsertHangsx, xu li ,tra Form_InsertHangsx ve view
+	public function indexAction()
+    {
+        // action body
+		$user = new Model_Hangsx;
+		$all = $user->getAll();
+		$this->view->all = $all;
+    }
+
+    public function insertAction()
+    {
+        // action body
+		$fcl = new Form_InsertHangsx;
+		if($this->_request->isPost()){
+			$param = $this->_request->getParams();
+			$check = new Form_Valid_InsertHangSx($param);
+			if($check->valid()==false){
+				$this->view->error = $check->messages;
+				$fcl->populate($param);
+			}else{
+				$data = array( 
+						"id_hangsx"=>$this->_request->getPost("id_hangsx"),
+						"tenhang"=>$this->_request->getPost("tenhang"),
+				);
+				$cl = new Model_Hangsx;
+				if ($cl->insert_hangsx($data))
+				{
+					echo "<script>alert('Thêm thành công');
+					 window.location.href='http://localhost/webzend/hangsx/';</script>";
+				}
+				
+			}
+			
+		}
+		$this->view->form =  $fcl;
+    }
+
+Phan update: -------------------------------
+-	tao form update và validate tren form 
+	<?php
+	class Form_Capnhathangsx extends Zend_Form{
+		public function init(){
+			
+		}
+		
+		public function createForm($id_hangsx, $tenhang){
+			$this->addElement("text", "id_hangsx", array(
+														"size"=>22,
+														"label"=>"ID Hãng Sản Xuất",
+														"readonly"=>"readonly",
+														"value"=>$id_hangsx
+													)
+			);
+			$this->addElement("text", "tenhang", array(
+														"size"=>22,
+														"label"=>"Tên Hãng Sản Xuất",
+														"value"=>$tenhang
+													)
+			);
+			$tenhang1 = $this->getElement('tenhang')
+							  ->setRequired(true)
+							  ->addValidator('NotEmpty');
+			$tenhang1->getValidator('NotEmpty')->setMessage("Tên hãng sản xuất không được để trống !");
+			
+			$this->addElement("submit", "Submit");;
+		}
+	}
+	?>
+
+-	ham updateAction(), tạo form update, xử lí, trả form update về view
+	public function updateAction()
+		{
+			// action body
+			$id_hangsx = $this->_request->getParam('id_hangsx');
+			$f = new Form_Capnhathangsx;
+			$mhangsx = new Model_Hangsx;
+			
+			if($this->_request->isPost()){
+				$data1 = $this->_request->getParams();
+				
+				$f->createForm($id_hangsx, $data1['tenhang']);
+				if($f->isValid($data1))
+				{		
+					$tenhang = $this->_request->getPost("tenhang");
+					
+						$data = array(
+									"id_hangsx"=>$this->_request->getPost("id_hangsx"),
+									"tenhang"=>$tenhang,
+						);
+						$hsx = new Model_Hangsx;
+						if($hsx->update_hangsx($data, $id_hangsx))
+						{
+							echo "<script>alert('Sửa thành công');
+							 window.location.href='http://localhost/webzend/hangsx/index/';</script>";	
+						}
+				}
+				else{
+					//echo 'aaaaaaaaaa';die;
+					//print_r($data1);
+					$f->populate($data1);
+					
+				$this->view->form = $f;
+				}
+				
+			}
+			else{
+				$kq = $mhangsx->get($id_hangsx);
+				$f->createForm($id_hangsx, $kq['tenhang']);
+				$this->view->form = $f;
+			}
+		}
+
+-	tao lien ket trong file index.phtml cho nút cập nhật sẽ gọi đến action updateAction()
+-	file view update.phtml
+	<body>
+		<ul>
+			<?php
+				if(isset($this->error)){
+				foreach($this->error as $loi){?>
+					<li><?php echo $loi;?></li>	
+				<?php }
+				}
+			?>
+		</ul>
+			<?php
+				echo $this->form;
+			?>
+	</body>
+	</html>
+
+
+Phan delete
+-	model hangsx.php viết hàm xoa_hangsx($id)
+-	hàm deleteAction()
+	public function deleteAction()
+		{
+			// action body
+			$id = $this->_request->getParam('id_hangsx');
+			$cl = new Model_Hangsx;
+			if($cl->xoa_hangsx($id))
+			{
+				echo "<script>alert('Xóa thành công');
+				 window.location.href='http://localhost/webzend/hangsx/index/';</script>";
+			}
+			else
+			{
+				echo "<script>alert('Xóa không thành công');
+				 window.location.href='http://localhost/webzend/hangsx/index/';</script>";
+			}
+		}
+-	file view delete.phtml để trống
+
+	
+-	Them controller nhomsx: có các acntion index, insert, update, delete nhom
+-	Tao form nhom co ham insert, update và validate trên form
+-	tao model nhomsx: có hàm getAll, getWhere, insert, update, delete
+-	trong mỗi action: tạo form, xử lí form khi post, truyền form qua view
+-	echo form ra view
+===> DONE
+
+-	them controller sanpham: có các action index, insert, update, delete san pham
+-	tao form san pham có insert, update và validate trên form
+-	tao model sanpham: có hàm getAll, getWhere, insert, update, delete
+-	trong mỗi action: tạo form, xử lí form khi post, truyền form qua view
+-	echo form ra view
+===> not DONE
+	
+============================================================
+Buoi 25 Phan quyen Zend_ACL
+Lam bai tap trong sach trang 110 -> 114
+
+Nghi 29/7 va 1/8 ngay thu 4 tuan sau hoc lai
+
+Bai tap ve nha:
+-	Thêm controller Đơn Hàng: có index: show all order, có ô chọn ngày để xem order theo ngày dùng jquery, click vô order sẽ sổ ra detail của order và click vô nữa sẽ thu lại detail
+
+-	controller: phan quyen admin A, mode M, user U
+
+	index:	-	index	A,M,U
+			-	welcome	A,M,U
+			-	logout	A,M,U
+			-	error	A,M,U
+			
+	tintuc:	-	index	U,M
+			-	tinmoi	M
+			-	tinnong	M
+			
+	sanpham:	-	index	U,M
+				-	giohang
+				-	thanhtoan
+
+Khi lap trinh nen gia su tat ca la dung het. Lam xong roi moi tinh den truong hop sai
+=================================================
+
+khi submit thi tat ca phai truyen qua value
+Quan tam name va value
+- để loại trừ nhau thì đặt cùng name
+- để chọn nhiều thì cho name khác nhau
+
+if($this->_request->getParam('x0')=='1')
+
+- type="button": nghĩa là gọi qua action khác nhưng ko truyền tham số
+	type="submit": là gọi qua action khác và có truyền tham số
+
+-	xoa phan tu array va cap nhat lai array
+-	sua giao dien trong giohang.php thanh checkbox. Cho phép chọn nhiều item để xóa. Có nút xóa để xóa các checkbox đã chọn
+
+	
+	
+	
+	

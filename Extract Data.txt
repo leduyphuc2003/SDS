@@ -1,3 +1,12 @@
+======================   chi Truc 
+ select a.CUST,CMSNM,CNAME,CADD1,              
+ CADD2,CADD3,CMGRP1,CMGRP2,WHS,CMCRDT,         
+        CLASS,SUB,CALICD,CARTE1                
+ from cm a,ca b                                
+ where a.cust=b.cust                           
+ and cmdel='' and cadel=''                     
+ File TEMP in LDPHUC was replaced.  
+
 ========================   chi Truc
 Incident #70412 -  extract data Thang 07.2016
 extract data Thang 07.2016
@@ -150,7 +159,21 @@ Report Sales - by invoice cua khach hang thuoc Group HP1 tai HCMC
 Hieu luc 01/07/2016 - 31/07/2016
 Form report theo file dinh kem  
 
+select a.ttype,a.invno,inhoin,indcfd,                            
+cust,INHDNM,INHDA1,INHDA2,INHDA3,                                
+sub,GIVINV, GIVBRF, a.STYCDE,ITEM,INDDES,indunt,indsel,indval,   
+INDPPD   ,INDGST ,                                               
+a.PBHCON, a.PCLLVL, INDPAC,PBHTX1                                
+from ind a, inh b, pbh c                                         
+where a.ttype in ('IV','CR') and inhdel='' and inddel=''         
+and a.ttype=b.ttype and a.invno=b.invno                          
+and CMGRP2 ='HP1'                                                
+and indcfd between 20150601 and 20160731                         
+and a.pbhcon=c.pbhcon and pbhdel='' and a.pcllvl=c.pcllvl        
+and b.cust='S00861'                                              
+File TEMP in LDPHUC was replaced.                                
 
+--- khong co PBHTX1
 select a.ttype,a.invno,inhoin,indcfd,                            
 cust,INHDNM,INHDA1,INHDA2,INHDA3,                                
 sub,GIVINV, GIVBRF, a.STYCDE,ITEM,INDDES,indunt,indsel,indval,   

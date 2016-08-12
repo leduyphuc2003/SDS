@@ -2,7 +2,166 @@
 
 
 
+=======================================================
+Chi Huyen
 
+SELECT CUST, TTYPE,ARPAT,DOCNO,ARVAL,AROWNG                           
+FROM ARD                                                              
+WHERE ARDDEL='' AND CUST='C03156' AND TTYPE='PA' AND ARPAT='PA' AND   
+DOCNO= 97187396                                                       
+
+ CUST    TTYPE  ARPAT       DOCNO                  ARVAL                 AROWNG    
+ C03156   PA     PA    97,187,396             734,111.00-            734,111.00-   
+ 
+update ard set  ARVAL=-867562       ,AROWNG  =0                      
+WHERE ARDDEL='' AND CUST='C03156' AND TTYPE='PA' AND ARPAT='PA' AND  
+DOCNO= 97187396                                                      
+1 rows updated in ARD in ZPTLIBD.                                    
+
+CUST    TTYPE  ARPAT       DOCNO                  ARVAL                 AROWNG 
+C03156   PA     PA    97,187,396             867,562.00-                   .00 
+
+
+SELECT CUST, TTYPE,ARPAT,DOCNO,ARVAL,AROWNG                          
+FROM ARD                                                             
+WHERE ARDDEL='' AND CUST='C03156' AND TTYPE='PA' AND ARPAT='PY' AND  
+DOCNO= 97187396                                                      
+
+CUST    TTYPE  ARPAT       DOCNO                  ARVAL                 AROWNG 
+C03156   PA     PY    97,187,396                    .00                    .00 
+
+update ard set ARVAL = 867562                                       
+WHERE ARDDEL='' AND CUST='C03156' AND TTYPE='PA' AND ARPAT='PY' AND 
+DOCNO= 97187396                                                     
+1 rows updated in ARD in ZPTLIBD.                                   
+
+CUST    TTYPE  ARPAT       DOCNO                  ARVAL                 AROWNG 
+C03156   PA     PY    97,187,396             867,562.00                    .00 
+
+
+==============================================================
+-	truc thu 7,cn,t2 và theo thứ tự
+-	
+
+
+ 
+																			
+=	Chuc nang upload rebate
+	-	load file excel vao temp
+	-	verify cac cot tránh không bị thiếu data và sai format 
+	-	update cot ngày giờ upload theo format SDS yyyyMMdd và hhmmss; update cột user upload thành VIEOPR
+	-	insert from temp vao sds: chay cac lenh SDS 
+	
+=	stop rebate: có ghi ngày giờ và user làm
+=	hen gio upload rebate
+=	extract data 
+=	update load creturn daily 
+
+===============================================================================
+ZTENDER  => auto sync data Tender
+ZCRREBATE 
+
+Tao file trong thu vien ZPTLIBD cho nhung file nay 
+
+Check rebate - Check nhung hoa don nao co Rebate trong thang 		 
+	SELECT A.TTYPE, A.INVNO ,INHOIN,A.CUST,INHCFD FROM inh a ,INVDSA B  
+	WHERE inhdel='' and A.ttype='CR' AND INHCFD = 20160401    
+	AND B.TTYPE='IV' AND A.INHOIN=DOCNO                
+		===> File CR_RBT in ldphuc was created => ZCR_RBT
+
+Tat ca CR chua post len rebate (INVDSA/INVDSC)
+	select * from ldphuc/ZCR_RBT a where not exists 
+	(select * from invdsa b                                                        
+	where a.ttype=b.ttype and a.inhoin=b.docno)                      
+		===> File temp2 in ldphuc was created. ===> Ztemp2
+		
+------------------------------------------		
+upload creturn rebate
+SELECT INSDEL,A.CUST, B.TTYPE, A.DOCNO, INSREF               
+, A.PRNCPL, A."GROUP", BATCH, INSDSC,-INSVAL INSVAL,         
+  DIV, BR, GLACCT, INHCFD, INSNAR, INSRSN, INHCTD,           
+INHCTT, INHCTU,0 INSUPD, 0 INSUPT, '' INSUPU                 
+FROM INVDSA A, INH B                                         
+WHERE A.CUST=B.CUST AND B.TTYPE='CR' AND A.DOCNO=B.INHOIN    
+AND A.DOCNO IN (select inhoin from ldphuc/Ztemp2)
+	=> luu vao File ZINH
+	
+check file INH xem co bi duplicate hay khong
+		select CUST,TTYPE, DOCNO ,INSREF,PRNCPL,GROUP,count(*)     
+		from ldphuc/ZINH                                             
+		group by CUST,TTYPE, DOCNO ,INSREF,PRNCPL,GROUP            
+		having count(*)>1  
+		
+		Neu co duplicate thi xoa trong file tam ldphuc/inh di nhung line CR co gia tri >0
+		delete      from ldphuc/ZINH          
+		where ttype ='CR'                
+		and  insval>0                    
+		7 rows deleted from INH in ldphuc.   
+		
+check xem da co trong INVDSA chua	 
+		select count(*)                                  
+		from INVDSA a                                    
+		where exists (Select * from ldphuc/ZINH b          
+		where a.CUST  =b.CUST                            
+		and   a.TTYPE =b.TTYPE                           
+		and   a.DOCNO =b.DOCNO                           
+		and   a.INSREF=b.INSREF                          
+		and   a.PRNCPL=b.PRNCPL                          
+		and   a.GROUP =b.GROUP )  
+		
+		delete                                       
+	   from            ldphuc/ZINH b                
+	   where exists (Select * from INVDSA a       
+	   where a.CUST  =b.CUST                      
+	   and   a.TTYPE =b.TTYPE                     
+	   and   a.DOCNO =b.DOCNO                     
+	   and   a.INSREF=b.INSREF                    
+	   and   a.PRNCPL=b.PRNCPL                    
+	   and   a.GROUP =b.GROUP )                   
+
+INSERT INTO INVDSA     
+SELECT * FROM ldphuc/ZINH
+
+SELECT CUST,INSREF, SUM(INSVAL) INSVAL                    
+FROM ldphuc/ZINH                                            
+GROUP BY CUST,INSREF                                      
+File ZINH1 in ldphuc was replaced. 
+                         
+UPDATE INVDSC A SET                                       
+a.INCDSA = (select coalesce( A.INCDSA- B.INSVAL,A.INCDSA ) 
+FROM ldphuc/ZINH1 B                                         
+where a.INVNO = B.INSREF)                                 
+where exists (select * from ldphuc/ZINH1 C                  
+where  A.INVNO = C.INSREF and A.CUST=C.CUST)   
+and a.INHOIN =0 
+
+----------------------------------------------
+		
+Check nhung so CR nao chua duoc lam JL ben Finance
+	select * from ldphuc/ZCR_RBT a where not exists (select * from   
+			  ard b  where                                         
+	b.ttype='IV' and a.inhoin=b.docno and arpat='JL' and arval>0 and 
+	upper(arnarr) like '%REBATE%')
+		===> File temp in ldphuc was replaced. ===> Ztemp
+
+Chay data cho Finance lam JL	(46 hoa don)	 
+	SELECT A.TTYPE,A.DOCNO, A.PRNCPL, A."GROUP", E.RBHPGM, INSVAL/1.05 
+	 as RBT_BFR_TX, INSVAL*0.05 AS RBT_TX, A.INSVAL AS RBT_AFT_TX,                      
+	 B.MANFST,whS,sub,carte1, D.RTEVAN, D.RTEDRV,batch, GIVINV, GIVBRF                
+	 FROM zptlibd/invdsa                    
+	 a,zptlibd /inh b, zptlibd/ca c,zptlibd/rte d,zptlibd/invdsc e 
+	 a.iNSDTE ,B.CUST, B.INHDNM, B.INHDA1, B.INHDA2, B.INHDA3,                          
+	 WHERE A.INSDEL=''  and a.ttype=b.ttype and                                               
+	 b.cust=c.cust and b.cda=c.cda                                                      
+	 and ((a.docno=b.invno and a.ttype='IV') OR (A.DOCNO=B.INHOIN AND                   
+	 A.TTYPE='CR'))                                                                     
+	 and c.carte1=d.rtecde and A.INSREF= E.INVNO AND                                    
+	a.docno in  (select inhoin from ldphuc/Ztemp) 		
+		===> File ZJLrebate
+		
+		
+
+====================================================================
 File  . . . . . .   QRPGSRC               
   Library . . . .     ZPTLIBM             
                                           
@@ -37,50 +196,7 @@ them @EPR duoi @VAL
 ===> them AH Tax Exclusive List Price  duoi: RF 'INDVAL'     
 PARM   RF
 
-=============================================================
-
-Dear anh,
-Pls ho tro giup em dieu chinh sub dis KH ben duoi tu PSG thanh SAN, thanks anh
-                            Customer Code               
-                            S09575                      
-                                                                                                                
-Customer Name              Nha Thuoc Ky Hoa             
-         Address           Tret 268 Duong 3/2- P. 12    
-                           Quan 10                      
-                           Ho Chi Minh                  
-
-Sub-Distributor:  PSG=> SAN
-
-SELECT SUB                      
-FROM CM                         
-WHERE CMDEL='' AND CUST ='S09575'		 
- SUB    
- PSG    
- 
-2. CAP NHAT LAI THANH SAN
-UPDATE CM SET                   
-SUB='SAN'                       
-, PPUPDD=20160809         
-, CMUPDD=20160809          
-WHERE CMDEL='' AND CUST ='S09575'
-
-Sang HCM(S11252)	SAN	01	Others
-	SAO	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
-	USS	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
-	PAS	05	Pfizer Animal Health (P07)
-
- CUST    SUB  PRNCPL        ORDR  
- S09575  ORM   S29    33713658  
-
-
-
-
-
-
-        
-
-
-========================
+===================================================================
   select *                     
  from ldphuc/zin793pf         
  where ttype='IV'             

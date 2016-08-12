@@ -2490,7 +2490,7 @@ SUB='SAN'
 WHERE CMDEL='' AND CUST ='M00529'
 
 3. KIEM TRA XEM FILE BOT NHU SAU CO DATA KO? NEU KO CO THI OK, KHONG CAN KIEM TRA BUOC 4. Neu select ra co thi moi lam buoc 4
-SELECT CUST, SUB, PRNCPL                                          
+SELECT CUST, SUB, PRNCPL,ordr                                                    
 FROM BOT                                          
 WHERE BOTDEL='' AND BOTSTS<>'R' AND CUST = 'S08176' 
  
@@ -2589,7 +2589,7 @@ WHERE IVSCMB='S08176' AND ISSPRN ='G10' -- Thuoc Product: Orange line
 -- Day la update company 03
 UPDATE ISSD SET  SUB='SAO'             
 WHERE  ISSPRN IN ('G10','G11','F03','I02','M10','M14',
-'N15','M15','B10','M06','A10','S28','S29','S30','N19','S31')  AND 
+'N15','M15','B10','M06','A10','S28','S29','S30','N19','S31','F05') AND 
 IVSCMB='S15429'
 
 10. -- Thuoc Product: UPI/Sanofi
@@ -2600,7 +2600,7 @@ IVSCMB='S08176'
 -- Day la update company 04
 UPDATE ISSD SET SUB='USS'                        
 WHERE ISSDEL='' AND ISSPRN IN ('U05','S27','J05','T01','B09',
-'J06','A16','N14','E05','M17') 
+'J06','A16','N14','E05','M17','A18','B14')
 AND IVSCMB='S08176'         
 
 ----------------------------  
