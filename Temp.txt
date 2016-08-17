@@ -1,6 +1,339 @@
 
+0183 TTYPE  Prime Transaction Type               
+0183 BATCH  Batch Number                         
+0183 BHSEQ  Batch Number Of Transactions         
+0183 ITEM   Item Code                            
+0183 IAQA   Units Allocated - Stocking           
+0183 IAQAR  Units Allocated - Selling            
+0183 ISL#   Serial/Lot Number                    
+0183 LOCN   Location                             
+0183 WLPSEQ Location Picking Sequence            
+0183 WZONE  Warehouse Zone Code                  
+0183 WHS    Warehouse Code                       
+0183 IAEXPD Expiry Date                          
+0183 IATO#  To Serial/Lot#                       
+0183 IATOL  To Location                          
+0183 CUST   Customer Code                        
+0183 IAALDT Date Of Allocation                   
+0183 IAWPF  Workpool Sequence Number (Cpy)       
+0115 PSHSTS P/Slip Status                        
+0115 PSHDOF Delivery Order                       
+0242 AJDSTS Stock Adjustment Status              
+0004 IMDESC Item Description                     
+0007 WMDESC Warehouse Desc                       
+0191 WZDES  Warehouse Zone Description           
+0238 WLDSEQ Location Drop-off Sequence           
+0183 IAWHS  Warehouse Code (Copy)                
+0241 AJHMVT Inventory Movement Type (Copy)       
+1926 MVTITE Interface Type To EWMS            
+2014 EWDRBN EWMS - Received Batch Number      
+0007 WM3PSC 3rd-Party System Controlled       
+2182 WOHORD Work Order Number                 
+2182 WOHMI# Material Issue Slip Prt Number    
+
+183		ASLF0183
+115		PSH
+242		AJD
+4		IM
+7		WM
+191		WZ
+238		WL
+241		AJH
+1926	MVT
+2014	ASLF2014
+2182	WHO
+
+               
+
+                                                                                                 
+																	
+																	
+Item                |  IM Alloc  Non B/Tfr B/Transfer     P/Note      Total   Variance 
+=======================================================================================
+Principal: M07 Merck Sharp & Dohme (Asia) Ltd                                          
+M070310                  26.000     31.000       .000       .000     31.000      5.000-
+                                                                            ---------- 
+Principal Total:                                                                 5.000-
+                                                                            ========== 
+Selection Total:                                                                 5.000-
+                                                                                       																	
+ 
+================================================================
+select  CURDATE(),CURTIME()    
+from lb                        
+
+AND INHCFD =YEAR(CURDATE()) ||DIGITS(DEC(MONTH(CURDATE()),2)) 
+||DIGITS(DEC(DAY(CURDATE()),2))                               
+
+select  CURDATE(),CURTIME()    
+from lb
+
+ 
+
+===========================================================
+ttype, government invoice: GIVINV, GIVBRF, DELIVERYINSTRUCTION1, DELIVERYINSTRUCTION2, DELIVERYINSTRUCTION3.
+
+select distinct A.TTYPE, A.ORDR as Order, A.COHDAT as OrderDate, A.CUST as   
+Customer, B.PSN as PickingSlip , B.INVNO as Invoice, C.MANFST AS    
+MANIFEST,B.ITEM, B.CODDES as ItemDescription, B.PRNCPL as Princpal, 
+B.WHS as Warehouse, CODOUN as RequestedQty, B.CODUNT as SuppliedQty 
+, B.CODUBO as BackOrderedQty, B.CODVAL as SuppliedValue, D.OTSSTS AS
+OrderStatus, D.OTSSDS AS     StsDescription, A.COHCTT as            
+OrderCreateTime, A.COHCTD as OrCreationDate,A.COHCTU as             
+UserCreateOR, F.GIVINV, F.GIVBRF,E.COODI1,E.COODI2,E.COODI3         
+from ZPTLIBD/COH A, ZPTLIBD/COD B, ZPTLIBD/OTH C, ZPTLIBD/OTS D,ZPTLIBD/COO E,ZPTLIBD/INH F             
+where                                                               
+A.COHDEL='' AND B.CODDEL='' AND C.OTHDEL='' AND D.OTSDEL='' AND     
+A.TTYPE=B.TTYPE AND A.ORDR=B.ORDR AND B.TTYPE=C.TTYPE AND           
+B.ORDR=C.ORDR AND B.PSN=C.PSN  AND B.INVNO=C.INVNO    
+AND C.OTHSTS = D.OTSSTS AND A.ORDR=C.ORDR 
+and F.INVNO=C.INVNO AND F.TTYPE IN ('IV','CR') and A.ORDR=E.ORDR  
+AND COODEL='' AND INHDEL='' AND B.PRNCPL='A05'    
+AND A.COHDAT BETWEEN 20160801 AND 20160814   
+
+===========================================================================
+-	nhập item và get item vào chương trình
+-	select từ IA theo item để get item,whs,locn,isl#,qty: select va luu vao list item 
+-	select từ lb theo item,whs,locn,isl#,qty mà get từ IA: select tu bang LB va luu vao list2 item  
+-	nếu IA và LB bằng nhau thì bỏ qua, nếu khác nhau thì thực hiện update 5 bảng cho allocate và pick theo IA
+-	nếu IA và IW bằng nhau scheduled thì bỏ qua, nếu khác nhau thì update 2 bảng IW và IM theo IA
+-	check lai scheduled, neu IMSSA != IWSSA thi update IMSSA = IWSSA
+		select sum (IMSSA) as IMSSA from IM where item ='N13G0009'                
+		select sum (IWSSA) as IWSSA from IW	where item ='N13G0009'   
+-	check IWSSA những line bị scheduled trong IW mà trong IA không có
+	=	select scheduled <> 0 trong IW của item và all whS
+	=	check line nào không có trong ia
+	=	nếu những line mà không có trong ia có scheduled <>0 thì ta update lại cho nó =0
+
+Xem ICS552 để biet lenh Shift F8
+
+Cach 2:
+-	nhập item và get item vào chương trình
+-	select từ IA ttype in (OR,PS) theo item để get item,whs,locn,isl#,qty: select va luu vao list item
+-	trong mỗi line IA, check:
+	=	nếu locn='Scheduled': update IWSSA, IMSSA cho IW, IM theo item,whs của IA 
+	=	picked locn='PICKED': update LBSPK 5 bảng theo item,whs,locn,isl# IA 
+	=	còn lại là allocate: update LBSOA 5 bảng theo item,whs,locn,isl# IA 
+	
+	
+-	check scheduled locn ='Scheduled' 
+	=	select scheduled <> 0 trong IW của item và all whS
+	=	check line nào có trong IW và IA (điều kiện link là item và whs), update lại scheduled trong IW theo IA 
+	=	check line nào không có trong ia, update lại scheduled trong IW cho nó =0: tức là trừ đi lượng scheduled cho 2 bảng IW và IM 
+	
+-	check allocate ttype in (OR,PS), locn khác 'PICKED' và 'Scheduled' 
+	=	select allocate <> 0 trong LB của item và all whS
+	=	check line allocate có trong LB và IA theo điều kiện (item,whs,locn,isl#): update LBSOA 5 bảng theo IA 
+	=	check line allocate có trong LB mà không có trong IA: update trừ đi phần allocate trong 5 bảng cho nó về 0
+
+-	check picked ttype in (OR,PS), locn ='PICKED' 
+	=	select LBSPK<>0 trong LB của của item và all whS
+	=	line picked có trong LB và IA theo điều kiện (item,whs,locn,isl#):update LBSPK 5 bảng theo IA 
+	(=	line picked có trong LB mà không có trong IA: update trừ đi phần LBSPK trong 5 bảng cho nó về 0)
+
+	  A121010   
+--- Ref# ---  Quantity    Serial/Lot#     Location     Whs 
+OR 33717690       24.000  ZABL            F01-11-03-01 WH6 
+LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='A121010' 
+AND LOCN='F01-11-03-01' 
+AND ISL#='ZABL' 
+AND WHS='WH6' 
+
+ ITEM                  LOCN          ISL#             WHS           LBSOA  
+ A121010               F01-11-03-01  ZABL             WH6          74.000  
+ 
+UPDATE LB 
+SET  LBSOA= LBSOA-74                                    
+WHERE ITEM='A121010' 
+AND LOCN='F01-11-03-01' 
+AND ISL#='ZABL' 
+AND WHS='WH6' 
+
+	
+
+ SELECT ITEM, ISL#, LOCN, WHS ,SUM(IAQA) FROM ia          
+ WHERE ttype in ('OR','PS')                     
+  and item ='N170550'                                  
+group by ITEM, ISL#, LOCN, WHS order by locn 
+
+LOCN     
+PICKED   
+Scheduled 
 
 
+UPDATE LB                     UPDATE LB 
+SET  LBSOA= LBSOA-300         SET  LBSOA= LBSOA + {0}                            
+WHERE ITEM='P070050'          WHERE ITEM='{1}' 
+AND LOCN='C2-P1-1-1'          AND LOCN='{2}' 
+AND ISL#='A300840'            AND ISL#='{3}' 
+AND WHS='AS4'                 AND WHS='{4}'                                                
+
+	UPDATE IL SET ILSOA=ILSOA-300       UPDATE IL SET ILSOA=ILSOA + {0}             
+	WHERE ITEM='P070050'                WHERE ITEM='{1}' 
+	AND LOCN='C2-P1-1-1'                AND LOCN='{2}'
+	AND WHS='AS4'                       AND WHS='{3}'  
+
+		UPDATE ISL                       UPDATE ISL                          
+		SET ISLSOA=ISLSOA-300            SET ISLSOA=ISLSOA + {0}              
+		WHERE ITEM='P070050'             WHERE ITEM='{1}' 
+		AND ISL#='A300840'				 AND ISL#='{2}'						 
+			 
+			UPDATE IW SET IWSOA=IWSOA-300   UPDATE IW SET IWSOA=IWSOA + {0}   
+			WHERE ITEM='P070050'            WHERE ITEM='{1}' 
+			AND WHS='AS4'                   AND WHS='{2}'                              
+
+				UPDATE IM SET IMSOA=IMSOA-300    UPDATE IM SET IMSOA=IMSOA + {0} 
+				WHERE ITEM='P070050'             WHERE ITEM='{1}'    
+
+
+ITEM	WHS	LOCN				ISL#	LBSOA
+A121010	WH6	B13-11-01-01	ZABL	198
+
+LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='A121010' 
+AND LOCN='B13-11-01-01' 
+AND ISL#='ZABL' 
+AND WHS='WH6' 
+
+UPDATE LB 
+SET  LBSOA= LBSOA-5                                    
+WHERE ITEM='A121010' 
+AND LOCN='B13-11-01-01' 
+AND ISL#='ZABL' 
+AND WHS='WH6'    
+
+	select sum(LBSOA) from LB where ITEM='A121010'
+	select sum(ILSOA) from IL where ITEM='A121010'
+	select sum(IWSOA) from IW where ITEM='A121010'
+	select sum(ISLSOA) from ISL where ITEM='A121010'
+	select sum(IMSOA) from IM where ITEM='A121010'
+	
+	select sum (IMSSA)
+from IM where item ='A121010'                
+		  
+select sum (IWSSA)
+from IW	where item ='A121010'   
+
+
+--- update picked
+UPDATE LB 
+SET  LBSPK= LBSPK+300                                    
+WHERE ITEM='A121210' 
+AND LOCN='PICKED' 
+AND ISL#='KE560'
+AND WHS='WH1'
+ 
+		UPDATE ISL                                   
+		SET ISLSPK=ISLSPK + 300                        
+		WHERE ITEM='A121210' 
+		AND ISL#='KE560'
+		
+				UPDATE IL SET ILSPK=ILSPK+300                 
+				WHERE ITEM='A121210' 
+				AND LOCN='PICKED' 
+				AND WHS='WH1' 
+ 
+						UPDATE IW SET IWSPK=IWSPK+100   
+						WHERE ITEM='A121210' 
+						AND WHS='WH1' 
+ 
+			 
+								 UPDATE IM SET IMSPK=IMSPK+100
+								WHERE ITEM='A121210'  
+								
+Item                |  IM Alloc  Non B/Tfr B/Transfer     P/Note      Total   Variance 
+=======================================================================================
+Principal: S29 Sanofi Synthelabo VN                                                    
+S290030              147137.000 106018.000       .000       .000 106018.000  41119.000 
+                                                                            ---------- 
+Principal Total:                                                             41119.000 
+Principal: U05 United Inter Pharma-Sangpharma                                          
+U021340                 847.000    787.000       .000       .000    787.000     60.000 
+                                                                            ---------- 
+
+																			
+Item                |  IM Alloc  Non B/Tfr B/Transfer     P/Note      Total   Variance 
+=======================================================================================
+Principal: S29 Sanofi Synthelabo VN                                                    
+S290030              145224.000 106018.000       .000       .000 106018.000  39206.000 
+                                                                            ---------- 
+Principal Total:                                                             39206.000 
+                                                                            ========== 
+Selection Total:                                                             39206.000 
+
+
+
+
+=======================================================
+Synce data callplan 
+
+--- bang zsa756pf
+delete  from [CallCard].[dbo].zsa756pf
+	
+insert into [CallCard].[dbo].zsa756pf
+SELECT  distinct CPLDTE, SLSMN, SMDESC, PDTCDE, PDTDES, 
+[$JNMAH], [$JNMAR], [$JNMAD], [$JNMAQ], [$JNMAF], 
+[$JNMAI], CUST, CNAME, CMGRP2, CMGRP3, 
+CMGRP4, CADD1, CADD2, ZCMTYP, [$JNMAE], [$JNMAO], [$JNMAP], 
+[$JNMAG], [$JNMAC], [$JNMAK], [$JNMAL], CONVERT(VARCHAR(19),GETDATE())  
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa756pf
+
+--- bang zsa757pf
+delete from [CallCard].[dbo].[zsa757pf]
+
+insert into [CallCard].[dbo].[zsa757pf]
+SELECT distinct
+CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNNAD], [$JNNAE],[$JNNAF], [$JNNAA], [$JNNAB], [$JNNAC], CONVERT(VARCHAR(19),GETDATE()) 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa757pf
+
+--- bang zsa757pf3
+delete  FROM [CallCard].[dbo].[zsa757pf3]
+
+insert into [CallCard].[dbo].[zsa757pf3]
+SELECT distinct
+CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNNAD], [$JNNAE], [$JNNAF], [$JNNAA], [$JNNAB], [$JNNAC], CONVERT(VARCHAR(19),GETDATE()) 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa757pf3
+
+--- bang zsa758pf
+delete FROM [CallCard].[dbo].[zsa758pf]
+
+insert into [CallCard].[dbo].[zsa758pf]
+SELECT distinct CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNQAD], [$JNQAE], 
+[$JNQAF], [$JNQAA], [$JNQAB], [$JNQAC], CONVERT(VARCHAR(19),GETDATE())
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa758pf
+
+--- bang zlvl
+DELETE FROM [CallCard].[dbo].[zlvl]
+				
+INSERT INTO [CallCard].[dbo].[zlvl] 
+SELECT distinct CMGRP2, CMGRP3, CMGRP4, ZCMTYP, ZLVL1, ZLVL2, CONVERT(VARCHAR(19),GETDATE()) 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zlvl
+
+--- bang ZGOVHOSP2
+DELETE FROM [CallCard].[dbo].[ZGOVHOSP2]
+				
+INSERT INTO [CallCard].[dbo].[ZGOVHOSP2]
+SELECT distinct CUST, CNAME, CADD1, CMPHON, CMCONT, ARTRM, SLSMN, SMDESC, PRNCPL, ZCITYP, ITEM, IMDESC, QUOTA, NET_QTY, CONVERT(VARCHAR(19),GETDATE())  
+FROM ZPVN01.S064BE8R.ZPTLIBD.ZGOVHOSP2
+
+
+	exec [USP_SDS_ZGOVHOSP2] 'admin'
+
+	exec [USP_SDS_zlvl] 'admin'
+
+	
+	exec [USP_SDS_zsa756pf] 'admin'
+
+	exec [USP_SDS_zsa757pf] 'admin'
+
+	exec [USP_SDS_zsa757pf3] 'admin'
+
+	exec [USP_SDS_zsa758pf] 'admin'
 
 =======================================================
 Chi Huyen

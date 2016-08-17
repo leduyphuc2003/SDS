@@ -210,8 +210,8 @@ Trung Back end
                 App Store - iOS:
 -	eZRx Call-Me-Back for customers: 267
 -	eZRx Call-Me-Back Professional for SC: 48
-3. Total number of views of discounts: 4616 views 
-4. Number of discounts loaded into call me back: 85 promos, sent to 1861 customers per each promo
+3. Total number of views of discounts: 4794 views 
+4. Number of discounts loaded into call me back: 90 promos, sent to 1861 customers per each promo
 
 Muc 5,6,7 lay trong file extract
 5. Number of app requests to call centre : 
@@ -676,7 +676,7 @@ Chuyen hoa don tu may nay sang may khac
 	
 In thu hoa don (in hoa don) 7, 80, 14
 -	In hoa don sai PD1: update sub=PSG trong 2 file inh, sas
-	select sub,invno,cust,inhpf    
+	select sub,invno,cust,inhpf,prncpl    
 	from inh                  
 	where ttype='IV'          
 	and invno =	73232775
@@ -8471,7 +8471,7 @@ ENDWTR WTR(PRT11) OPTION(*IMMED)
 - Bat may in vat ly len: 
 STRRMTWTR OUTQ(PRT11)
 ==============================================================================
-Hi guys,  anh Thong
+Hi guys,  anh Thong - khong distpatch duoc 
 
 Cach thuc xu ly manifest khong dispatch duoc, 13 54 1 de dispatch cho MF
 
@@ -13701,6 +13701,26 @@ update invdsc set INCDSA=0,RBHPGM='Stop By CS',
 INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
 where cust='S15108' and invno =10029492 
 
+---stop rebate nhieu line 
+select count(*)                                    
+ from invdsc a                                     
+ where exists (Select * from ldphuc/invdsc b       
+ where a.CUST   =  b.CUST                          
+ and   a.INVNO  =  b.INVNO                         
+ and   a.TTYPE  =  b.TTYPE)                                             
+ 
+ update invdsc a set INCDSA=0,RBHPGM=                            
+(select RBHPGM from ldphuc/invdsc b                              
+ where a.CUST   =  b.CUST                                        
+ and   a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE)                                      
+,INCPDD=20160817,INCPDT=113100,INCPDU='VIEOPR',INHOIN=20160817   
+ where exists (Select * from ldphuc/invdsc b                     
+ where a.CUST   =  b.CUST                                        
+ and   a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE)                                      
+143 rows updated in INVDSC in ZPTLIBD.   
+
 -----stop rebate hang loat  
 Service Request # 63037  
 Stop chuong trinh rebate Sanofi + upload chuong trinh rebate moi
@@ -13813,16 +13833,18 @@ Lay them cho chi Huyen field GIVINV, GIVBRF trong file inh
 Chay data cho Finance lam JL	(46 hoa don)	 
 	SELECT A.TTYPE,A.DOCNO, A.PRNCPL, A."GROUP", E.RBHPGM, INSVAL/1.05 
 	 as RBT_BFR_TX, INSVAL*0.05 AS RBT_TX, A.INSVAL AS RBT_AFT_TX,                      
+	 a.iNSDTE ,B.CUST, B.INHDNM, B.INHDA1, B.INHDA2, B.INHDA3,                          
 	 B.MANFST,whS,sub,carte1, D.RTEVAN, D.RTEDRV,batch, GIVINV, GIVBRF                
 	 FROM zptlibd/invdsa                    
 	 a,zptlibd /inh b, zptlibd/ca c,zptlibd/rte d,zptlibd/invdsc e 
-	 a.iNSDTE ,B.CUST, B.INHDNM, B.INHDA1, B.INHDA2, B.INHDA3,                          
 	 WHERE A.INSDEL=''  and a.ttype=b.ttype and                                               
 	 b.cust=c.cust and b.cda=c.cda                                                      
 	 and ((a.docno=b.invno and a.ttype='IV') OR (A.DOCNO=B.INHOIN AND                   
 	 A.TTYPE='CR'))                                                                     
 	 and c.carte1=d.rtecde and A.INSREF= E.INVNO AND                                    
-	a.docno in  (select inhoin from ldphuc/temp)   
+	a.docno in  (select inhoin from ldphuc/temp)  	
+	
+	
 ====================================================================================
 Service Request # 54748 Nguyen Tuan Loc - Khach hang khong co sales
  List of Active Customer but no sale value since 1 Jul to 30 Sep 2015

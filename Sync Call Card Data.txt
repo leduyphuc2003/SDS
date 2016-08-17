@@ -1,0 +1,45 @@
+DECLARE @run integer
+set @run = 0
+
+if @run = 0
+begin
+	set @run = 1
+	exec [CallCard].dbo.USP_SDS_ZGOVHOSP2 'admin'
+	set @run = 0
+end
+
+if @run = 0
+begin
+	set @run = 1
+	exec [CallCard].dbo.USP_SDS_zlvl 'admin'
+	set @run = 0
+end
+
+if @run = 0
+begin
+	set @run = 1
+	exec [CallCard].dbo.USP_SDS_zsa756pf 'admin'
+	set @run = 0
+end
+
+
+if @run = 0
+begin
+	set @run = 1
+	exec [CallCard].dbo.USP_SDS_zsa757pf3 'admin'
+	set @run = 0
+end
+
+if @run = 0
+begin
+	set @run = 1
+	exec [CallCard].dbo.USP_SDS_zsa758pf 'admin'
+	set @run = 0
+end
+
+if @run = 0
+begin
+	set @run = 1
+	exec [CallCard].dbo.USP_SDS_zsa757pf 'admin'
+	set @run = 0
+end

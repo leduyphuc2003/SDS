@@ -1,3 +1,10 @@
+English + MVC
+==============================================
+Edumall Android
+Email: leduyphuc2003@gmail.com
+Password: 12345678
+(Thông tin này đã được gửi vào email của bạn)
+===================================================
 netsh wlan set hostednetwork mode=allow
 HSBC pass open file  29Jun1987321780
 
@@ -496,30 +503,7 @@ WHERE MJDKEY ='IV70393778000' and (JWDEBJ =0 or JWCRJ=0)
  01  010  001  63211.B04     IV70393778000          1,446,055.00                    .00   Invoice     		
 
 Sau khi update thi chay lai cau lenh check o tren xem con loi ko  
-=========================================================================================================			
-	 select *                        
-	 from OTH                        
-	 where othsts in ('P01','O17')   
-	 and OTHDEL=''         
 
-  TTYPE        ORDR          PSN       
-   OR    29736982   54722593       
-  Bi OPS250, check ben trong pick thi thay bi Full Back Order (Cho Supplied = 0 cho tat ca cac line trong pick)   
-  
-   Line      Ordered    Supplied   B/Ordered         Price   
-    1        5.000        .000       5.000     167517.00   
-    AUGMENTIN BD        TAB   625MG  14'S   S170160        '
-	
-   select *                              
- from OTH where ordr = 29736982          
- and PSN = 54722593                      
- SELECT statement run complete.      
- 
- update OTH set  OTHSTS='B03'            
- where ordr = 29736982                   
- and PSN = 54722593                      
- and ttype='OR'       
- 
 ========================================================================================================   
 Luu y: chung nao ICS661 co loi moi lam                            			
 Them phan kiem tra cuoi ngay, Sau khi Phuc chay call check xong, P chay OPS810,OPS811, OPS812 xong roi moi chay bao cao ICS661. 
@@ -556,7 +540,6 @@ http://vnzpapp07/ISMS/SitePages/Home.aspx
 
 Anh em tham khao truoc de sau nay den minh trien khai cung de dang hon.
 
-=======================================================================================
 
 =====================================================================================
 Dear All,

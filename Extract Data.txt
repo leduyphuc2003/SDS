@@ -1,3 +1,41 @@
+
+BBraun data - Tran Thanh Quynh Mai - Le Phu Tien	
+Dear anh Thong,
+Could you share with us YTD 05/2016 data of BBraun?
+-	# of invoices
+-	# of shipments
+-	# customers
+-	# orders
+-	# returns
+
+select distinct a.ttype,a.invno,indseq,                    
+b.ordr,b.item,b.whs,indunt,indval, IATOL,isl#,indcfd       
+from inh a, ind b, ia c                                    
+where inhdel='' and inddel='' and a.ttype in ('IV','CR')   
+and a.ttype=b.ttype and a.invno=b.invno                    
+and   a.prncpl in ('B09','B07')                            
+and indcfd between 20160101 and 20160531                   
+and a.ttype =c.ttype and a.invno =c.batch                  
+and iadel='' and b.indseq=c.BHSEQ
+
+--- Check number of CBM of BBraun -Tran Thanh Quynh Mai - Le Phu Tien	
+select prncpl,sum(INDVOL) from ind            
+where ttype in ('IV','CR')                    
+and indcfd between 20160101 and 20160531      
+and inddel=''                                 
+and prncpl in ('B09','B07')                   
+group by prncpl  
+
+================================================
+Incident #71146 -  Du lieu G031200 dau nam 2009 - Nguyen Thanh Thuy IC
+Du lieu G031200 dau nam 2009
+Vui lòng cung cấp dữ liệu/ số tồn đầu kỳ năm 2009 của Hepsera (Item code: G031200) để làm báo cáo cho GSK
+Cảm ơn
+
+So ton dau ky O/Bal là stock có từ đầu năm, còn stock tại thời điểm hiện tại là On Hand
+
+Send user bao cao ZPP G03 Item Movement Summary-YTD (XL) (NW) Friday, January 1, 2010
+
 ======================   chi Truc 
  select a.CUST,CMSNM,CNAME,CADD1,              
  CADD2,CADD3,CMGRP1,CMGRP2,WHS,CMCRDT,         
