@@ -2477,6 +2477,10 @@ if($this->_request->getParam('x0')=='1')
 -	sua giao dien trong giohang.php thanh checkbox. Cho phép chọn nhiều item để xóa. Có nút xóa để xóa các checkbox đã chọn
 
 	
+-	Ajack thông qua javascript: nạp data nhanh ko cần load (không cần submit) lại trang web nhưng sẽ gặp khó khăn khi làm SEO. Vì vậy tùy trường hợp mới chọn làm ajack 
+-	Mô hình làm việc của ajack:
+	
+	
 	
 	
 	

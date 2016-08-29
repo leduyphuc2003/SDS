@@ -1,0 +1,8 @@
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Release\HotLineMobile.exe.config
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Release\HotLineMobile.exe
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Release\HotLineMobile.pdb
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Release\HotLineMobile.Form1.resources
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Release\HotLineMobile.Properties.Resources.resources
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Release\HotLineMobile.csproj.GenerateResource.Cache
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Release\HotLineMobile.exe
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Release\HotLineMobile.pdb

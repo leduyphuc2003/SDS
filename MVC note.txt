@@ -1,3 +1,125 @@
+
+
+chuong trinh xep lich
+-	theo thu tu A B C D E F G
+-		
+
+
+-	giao diện có calendar chọn start date và end date chạy report
+-	có edit text để gõ tên nhân viên vào
+-	class nhanvien: ten, số lượng ngày trực, list ngay truc, cờ check trực CN 
+-	get list tên nhân viên vào list nhanvien xử lí 
+-	vòng lặp mỗi ngày check trên all nhân viên:
+-	lấy min của all nhân viên
+-	khai báo list nhanvien có ít ngày trực nhất
+-	lưu all nhân viên có min vào list
+-	lấy phần tử đầu tiên gán vào ngày trực
+-	check ngày hiện tại có phải là thứ 7 không 
+-	nếu ngày hiện tại là t7 thì gán 3 ngày T7 CN T2 vào người đó, không phải thì thôi
+-	
+
+-	lặp chạy all ngày:
+	-	check nếu là t7 thì set vào nhan vien
+	-	gán đến đâu thì xóa ngày thứ 7 vừa gán đó ra khỏi list date trực
+-	lặp cho list ngày còn lại đã bỏ all t7 cn t2 
+	-	Chỉ check trong từng tháng, không check all vì nếu check all 12 tháng sẽ sai => 1 người sẽ trực 6 ngày, có người cả tháng chỉ trực 2 ngày 
+	-	khai báo list nhanvien có ít ngày trực nhất
+	-	lưu all nhân viên có min vào list
+	-	lấy  ngày trực gán vào phần tử đầu tiên(đổi thành phần tử random) cửa list 
+-	xắp xếp ngày trực của 1 nhân viên theo thứ tự đều 
+-	xuất ra file 
+-	lưu tất cả vào 1 tháng có thứ tự
+	=	tạo biến list<Nhanvien>
+	=	lưu tất cả ngày và tên người trực vào biến đó
+	=	xắp xếp theo ngày tăng dần
+	=	xuất ra kết quả theo từng tháng:
+
+
+-	nếu ngày làm việc là ngày nghĩ thì người cầm trước đó sẽ cầm luôn:
+	=	check nếu ngày tiếp theo là ngày nghĩ thì làm bên dưới 
+	=	người hiện tại sẽ cầm hotline tiếp ngày đó
+	=	số ngày trực tăng lên
+	=	i trong vòng lặp tăng lêncv
+	
+-	nếu là 30/4 va 1/5 thi nguoi đó sẽ trực 2 ngày liên tục và được cộng thêm ngày
+
+-	
+
+
+
+
+
+
+	
+------------------------------
+-	Getting all DateTimes between two 'DateTime's in C#
+public void GetAllDatesAndInitializeTickets(DateTime startingDate, DateTime endingDate)
+    {
+        List<DateTime> allDates = new List<DateTime>();
+
+        int starting = startingDate.Day;
+        int ending = endingDate.Day;
+
+        for (int i = starting; i <= ending; i++)
+        {
+            allDates.Add(new DateTime(startingDate.Year, startingDate.Month, i));
+        }
+
+for (DateTime date = startingDate; date <= endingDate; date = date.AddDays(1))
+    allDates.Add(date);
+
+	
+-	check thu 7 CN
+if (startdate.DayOfWeek == DayOfWeek.Saturday)
+    startdate = startdate.AddDays(2);
+else if (startdate.DayOfWeek == DayOfWeek.Sunday)
+    startdate = startdate.AddDays(1);
+
+
+-	c# remove item from list
+var itemToRemove = resultlist.Single(r => r.Id == 2);
+resultList.Remove(itemToRemove);
+
+-	Find element in List<> that contains value
+var value = MyList.First(item => item.name == "foo").value;
+var value = MyList.Find(item => item.name == "foo").value;
+
+
+-	sort list object c#
+List<Leg> legs = GetLegs()
+                .OrderBy(o=>o.Day)
+                .ThenBy(o=>o.Hour)
+                .ThenBy(o=>o.Min).ToList();
+List<Order> SortedList = objListOrder.OrderBy(o=>o.OrderDate).ToList();
+
+
+-	compare month
+var yourDate = ...;
+var lowerBoundYear = 2011;
+var lowerBoundMonth = 1;
+var upperBoundYear = 2012;
+var upperBoundMonth = 4;
+if(((yourDate.Year == lowerBoundYear && yourDate.Month >= lowerBoundMonth) || 
+    yourDate.Year > lowerBoundYear
+   ) &&
+   ((yourDate.Year == upperBoundYear && yourDate.Month <= upperBoundMonth) ||
+    yourDate.Year < lowerBoundYear
+   ))
+{
+
+
+-	select from list 
+using System.Data.Linq;
+var result = from i in list
+             where i.age > 45
+             select i;
+// Find all the people older than 30
+var query1 = list.Where(person => person.Age > 30);
+
+// Find each persons name
+var query2 = list.Select(person => person.Name);
+
+==================================================================
 MVC note
 ---	chuong trinh freaking match
 + Tạo ngẫu nhiên các phép toán cộng trừ và có hiển thị kết quả ngẫu nhiên
@@ -23,7 +145,7 @@ MVC note
 				
 		// chỉnh xác suất ra kết quả đúng
 		if (t % 2 == 0) //(t == 2 || t == 4 ||t==3 )
-		{
+		{	
 			if (cong) lb_kq.Text = (int.Parse(lb_so1.Text) + int.Parse(lb_so2.Text)).ToString();
 			else if (tru) lb_kq.Text = (int.Parse(lb_so1.Text) - int.Parse(lb_so2.Text)).ToString();
 		}

@@ -14,7 +14,7 @@ End proccess truy van SQL
 -	sp_who2 'active'
 -	roi chay kill trong do 60 la so SPID :kill 60
 =========================================	chuong trinh WCS begin
-Remote vao may 192.168.227.91
+Remote vao may 192.168.227.74     Trí dưới kho: 0902648982 
 user A CHAU
 pass 1234
 

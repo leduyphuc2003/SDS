@@ -285,3 +285,23 @@ and sasdel='' and a.item=b.item and B.ISTCDE ='COL' and plcar in
 GROUP BY b.prncpl,b.item, B.IMDBRN||B.IMDFRM|| B.IMDSTR||B.IMDSIZ,     
 substr(char(sasdte),1,4),plcar                                         
 File TEMP in LDPHUC was replaced.     
+===============================================================
+Huynh, Thi Ngoc Hanh <htnhanh@zuelligpharma.com>
+Chạy giúp báo cáo của 2 sản phẩm ngày 23/08/2016, 24/08/2016
+Dear anh Thông và các anh IT,
+
+Vui lòng chạy giúp em báo cáo chi tiết transaction của tất cả đơn hàng của 2 mặt hàng G030560 (ZINNAT TAB   250MG  10'S) và G030600 (ZINNAT SUS SAC   125MG/5ML 10'S) ra hóa đơn vào ngày 23/04/2016 và 24/08/2016 nhé.
+
+SELECT distinct                                                   
+A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ, A.MANFST, A.CUST,      
+A.WHS,A.OTDDAT, A.OTDTIM,A.OTDSTS,OTSDES,c.item,c.indcfd,cohsrc   
+FROM OTD a, inh b, ind c, coh d, OTS e                            
+WHERE                                                             
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and         
+a.ordr=b.ordr and                                                 
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')   
+and a.ttype=d.ttype and cohdel='' and otddel=''                   
+and a.ordr=d.ordr                                                 
+and a.OTDSTS=e.OTSSTS                                             
+and c.item in ('G030560','G030600')                               
+and indcfd in (20160423,20160824)        

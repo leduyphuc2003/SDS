@@ -42,7 +42,7 @@ Neu Ref# la RG thi cho allocate = 0 het, tuong tu cho scheduled neu co ttype la 
 --------------------------------------------------------------------------------------------- allocate
  SELECT ITEM, ISL#, LOCN, WHS ,SUM(IAQA) FROM ia          
  WHERE ttype in ('OR','PS')                     
-  and item ='N170550'                                  
+  and item ='N170550' and IAQA<>0                                     
 group by ITEM, ISL#, LOCN, WHS order by locn              
                                                        
 LB
@@ -106,11 +106,11 @@ select sum(LBSOA) from LB where ITEM='A121210' AND WHS='WH1'
 select sum(ILSOA) from IL where ITEM='A121210' AND WHS='WH1' 
 select sum(IWSOA) from IW where ITEM='A121210' AND WHS='WH1' 
 
-select sum(LBSOA) from LB where ITEM='A121210'
-select sum(ILSOA) from IL where ITEM='A121210'
-select sum(IWSOA) from IW where ITEM='A121210'
-select sum(ISLSOA) from ISL where ITEM='A121210'
-select sum(IMSOA) from IM where ITEM='A121210'
+select sum(LBSOA) from LB where ITEM= 'A121210'
+select sum(ILSOA) from IL where ITEM= 'A121210'
+select sum(IWSOA) from IW where ITEM= 'A121210'
+select sum(ISLSOA) from ISL where ITEM= 'A121210'
+select sum(IMSOA) from IM where ITEM= 'A121210'
 
 all RG
 update lb set lbsoa =0          

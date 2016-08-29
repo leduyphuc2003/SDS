@@ -1,0 +1,86 @@
+
+
+-	tạo ngẫu nhiên số A,B,+,-,Ketqua
+-	xác suất 50-50 ra dấu + -
+-	xác suất 50-50 ra ketqua đúng và ketqua sai 
+-	xuất ra view A,B,+,-,Ketqua
+-	tính biểu thức + - và lưu vào biến kqTinhToan
+-	hàm: public void check(bool tt, kqTinhToan, ketqua){
+		if(kqTinhToan != ketqua)
+			tt = false;
+		else
+			tt = true;
+	}
+-	click đúng: gọi hàm check và gọi hàm randomSoVaPhepToan()
+-	click sai: gọi hàm check và gọi hàm randomSoVaPhepToan()
+-	trong 2s:	=	nếu không có kết quả user chọn thì xuất ra điểm và stop chương trình
+				=	nếu ketqua   với ketqua user chọn thì xuất ra điểm và stop chương trình 
+				=	nếu biến tt=true thì tiếp tục gọi hàm randomSoVaPhepToan()
+
+				
+
+
+
+				
+
+================================================================
+- 	Vào activity_main.xml:
+	=	chỉnh layout lại thành LinearLayout
+	=	Thêm android:orientation="vertical"
+	
+-	tạo giao diện 2 edit text A B và 1 button +.
+-	add sự kiện cho button: vào file activity_main.xml và thêm android:onClick="xuLyPhepCong" cho button +
+-	Hàm setContentView(R.layout.activity_main); chạy xong thì mới load được tất cả giao diện và sự kiện lên. Vì vậy code phải viết sau hàm này.
+
+
+-	khi làm cần phân biệt đâu là lấy giao diện, đâu là xử lí sự kiện nghiệp vụ bằng cách tách ra 2 hàm: addControlls() trước rồi mới đến  addEvents() vì có controll rồi mình mới gán sự kiện được      
+		addControlls();
+        addEvents();
+	=	gõ tên hàm rồi dùng phím Alf + Enter để tự sinh ra hàm 
+	=	tự động cash về kiểu nào đó thì dùng phím Alf + Enter để tự cash về
+	
+-	Toast
+-	findViewById
+-	txtA.getText().toString();
+-	in
+========================================================
+1/	OnClick XML sử dụng khi các controll kéo thả vào giao diện được. Còn nếu các controll phát sinh khi chạy thì không dùng được 
+-	new project 
+- 	Vào activity_main.xml:
+	=	chỉnh layout lại thành LinearLayout
+	=	Thêm android:orientation="vertical"
+-	tạo giao diện 2 edit text A B và 1 button +.
+-	đặt tên txtA, txtB
+-	add sự kiện cho button: vào file activity_main.xml và thêm android:onClick="xuLyPhepCong" cho button +
+-	thêm hàm public void xuLyPhepCong(View v) vào MainActivity.java để định nghĩa hàm xử lý cộng 
+-	tạo đối tượng EditText txtA,txtB để lưu data nhập vào từ view. Lưu ý: EditText txtA,txtB khác với 2 edit text bên giao diện activity_main.xml
+-	Hàm setContentView(R.layout.activity_main); chạy xong thì mới load được tất cả giao diện và sự kiện lên. Vì vậy tất cả code phải viết sau hàm này.
+-	khi làm cần phân biệt đâu là lấy giao diện, đâu là xử lí sự kiện nghiệp vụ bằng cách tách ra 2 hàm addControlls() và addEvents(). Hàm addControlls() trước rồi mới đến  addEvents() vì có controll rồi mình mới gán sự kiện được      
+		addControlls();=> khởi tạo các controll
+        addEvents();   => xử lí sự kiện 
+	=	gõ tên hàm rồi dùng phím Alf + Enter để tự sinh ra hàm 
+	=	tự động cash về kiểu nào đó thì dùng phím Alf + Enter để tự cash về
+-	get giá trị từ edit text của view vào biến txtA để xử lí
+		private void addControlls() {
+			txtA= (EditText) findViewById(R.id.txtA);
+			txtB= (EditText) findViewById(R.id.txtB);
+		}
+-	tính tổng và show kết quả sử dụng Toast, code cho hàm xuLyPhepCong()
+    public void xuLyPhepCong(View v)
+    {
+        int a = Integer.parseInt(txtA.getText().toString());
+        int b = Integer.parseInt(txtB.getText().toString());
+        int c = a+b;
+        Toast.makeText(MainActivity.this,"Tổng = "+c,Toast.LENGTH_SHORT).show();
+    }
+	
+	
+2/	anomous listener
+Sử dụng được cho cả controll kéo thả vào giao diện và controll sinh ra khi chạy (run time). Trong khi onClick XML chỉ sử dụng cho controll nào kéo thả vào view mà thôi 
+
+-	khai báo button btnTru
+-	vào addControlls() findViewById
+
+	
+	
+	

@@ -1,62 +1,169 @@
+A122160
+A020620
+B060130
+G030450
+U010080
+G100130
+M040290
+M070780
+N170580
+N170640
+S290030
 
-0183 TTYPE  Prime Transaction Type               
-0183 BATCH  Batch Number                         
-0183 BHSEQ  Batch Number Of Transactions         
-0183 ITEM   Item Code                            
-0183 IAQA   Units Allocated - Stocking           
-0183 IAQAR  Units Allocated - Selling            
-0183 ISL#   Serial/Lot Number                    
-0183 LOCN   Location                             
-0183 WLPSEQ Location Picking Sequence            
-0183 WZONE  Warehouse Zone Code                  
-0183 WHS    Warehouse Code                       
-0183 IAEXPD Expiry Date                          
-0183 IATO#  To Serial/Lot#                       
-0183 IATOL  To Location                          
-0183 CUST   Customer Code                        
-0183 IAALDT Date Of Allocation                   
-0183 IAWPF  Workpool Sequence Number (Cpy)       
-0115 PSHSTS P/Slip Status                        
-0115 PSHDOF Delivery Order                       
-0242 AJDSTS Stock Adjustment Status              
-0004 IMDESC Item Description                     
-0007 WMDESC Warehouse Desc                       
-0191 WZDES  Warehouse Zone Description           
-0238 WLDSEQ Location Drop-off Sequence           
-0183 IAWHS  Warehouse Code (Copy)                
-0241 AJHMVT Inventory Movement Type (Copy)       
-1926 MVTITE Interface Type To EWMS            
-2014 EWDRBN EWMS - Received Batch Number      
-0007 WM3PSC 3rd-Party System Controlled       
-2182 WOHORD Work Order Number                 
-2182 WOHMI# Material Issue Slip Prt Number    
 
-183		ASLF0183
-115		PSH
-242		AJD
-4		IM
-7		WM
-191		WZ
-238		WL
-241		AJH
-1926	MVT
-2014	ASLF2014
-2182	WHO
 
+
+
+
+SELECT distinct                                                  
+A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ, A.MANFST, A.CUST,     
+A.WHS,A.OTDDAT, A.OTDTIM,A.OTDSTS,OTSDES,c.item,c.indcfd         
+FROM OTD a, inh b, ind c, coh d, OTS e                           
+WHERE                                                            
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
+a.ordr=b.ordr and a.psn=b.psn and a.invno=b.invno and            
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
+and a.ttype=d.ttype and cohdel='' and otddel=''                  
+and a.ordr=d.ordr                                                
+and a.OTDSTS=e.OTSSTS                                            
+and c.item in ('G030560','G030600')                              
+and indcfd in (20160423,20160824)                                
+
+
+SELECT distinct                                                  
+A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ, A.MANFST, A.CUST,     
+A.WHS,A.OTDDAT, A.OTDTIM,A.OTDSTS,OTSDES ,c.indcfd,cohsrc,       
+b.cust,INHDNM,c.item,indunt,COHCTU                                      
+FROM OTD a, inh b, ind c, coh d, OTS e                           
+WHERE                                                            
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
+a.ordr=b.ordr and                                                
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
+and a.ttype=d.ttype and cohdel='' and otddel=''                  
+and a.ordr=d.ordr                                                
+and a.OTDSTS=e.OTSSTS                                            
+and c.item in ('G030560','G030600')                              
+and indcfd in (20160823,20160824)                                
+                         
+                                                                                               
+
+
+
+
+OTS OTD 
+
+COH OTH OTD OTS INH 
+
+
+from ZPTLIBD/COH A, ZPTLIBD/COD B, ZPTLIBD/OTH C, ZPTLIBD/OTS D,ZPTLIBD/COO E,ZPTLIBD/INH F
+A.COHDEL='' AND B.CODDEL='' AND C.OTHDEL='' AND D.OTSDEL='' AND     A.TTYPE=B.TTYPE AND A.ORDR=B.ORDR AND B.TTYPE=C.TTYPE AND           B.ORDR=C.ORDR AND B.PSN=C.PSN  AND B.INVNO=C.INVNO    AND C.OTHSTS = D.OTSSTS AND A.ORDR=C.ORDR and F.INVNO=C.INVNO AND F.TTYPE IN ('IV','CR') and A.ORDR=E.ORDR  AND COODEL='' AND INHDEL='' AND B.PRNCPL='A05'    AND A.COHDAT BETWEEN 20160801 AND 20160814
+
+
+
+==========================================================
+SELECT distinct *                         
+FROM zsa757pf3                            
+File TEMP2 in LDPHUC was replaced.        
+
+select cust,slsmn,item,count(*)         
+from  ldphuc/temp2                      
+group by  cust,slsmn,item               
+having count(*)>1                       
+File TEMP3 in LDPHUC was replaced.      
+
+
+delete   from                                                     
+ldphuc/temp2 a WHERE exists (Select * from ldphuc/temp3 b where   
+a.cust=b.cust and a.slsmn=b.slsmn and a.item=b.item)              
+and $JNNAD=0 and  $JNNAE =0 and  $JNNAF=0  and $JNNAA=0 and       
+$JNNAB=0                                                          
+and    $JNNAC=0                                                   
+33325 rows deleted from TEMP2 in LDPHUC.                          
+
+select cust,slsmn,item,count(*)      
+from  ldphuc/temp2                   
+group by  cust,slsmn,item            
+having count(*)>1                    
+CUST    SLSMN  ITEM                    COUNT ( * )         
+M00607   G41   G030350                           2         
+M00607   G41   G030810                           2         
+M01364   G41   G030980                           2         
+M01364   G41   G031850                           2         
+M01364   G41   G031860                           2         	
+	
+
+	
+
+
+
+ 
+
+Msg 2627, Level 14, State 1, Line 23
+Violation of PRIMARY KEY constraint 'PK_zsa757pf3'. Cannot insert duplicate key in object 'dbo.zsa757pf3'. The duplicate key value is (C00009, G56, G030350).
+
+SELECT distinct
+CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNNAD], [$JNNAE], [$JNNAF], [$JNNAA], [$JNNAB], [$JNNAC], CONVERT(VARCHAR(19),GETDATE()) 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa757pf3
+where cust='C00009' and slsmn ='G56' and item='G030350'
+
+(C00009, G56, G030350).
+
+ SELECT distinct                                                     
+ CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN,   
+ SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC,  $JNNAD ,  $JNNAE ,  $JNNAF , 
+  $JNNAA ,  $JNNAB ,  $JNNAC                                         
+ FROM                         zsa757pf3                              
+ where cust='C00009' and slsmn ='G56' and item='G030350'             
+ 
+
+--delete duplicate rows in sql server?
+WITH CTE AS(
+   SELECT [col1], [col2], [col3], [col4], [col5], [col6], [col7],
+       RN = ROW_NUMBER()OVER(PARTITION BY col1 ORDER BY col1)
+   FROM dbo.Table1
+)
+DELETE FROM CTE WHERE RN > 1
+
+
+
+
+
+====================================================
+ 
+
+SELECT ttype,ITEM, ISL#, LOCN, WHS ,SUM(IAQA) FROM ia         
+WHERE ttype in ('OR','PS','BP','RP')                          
+and item ='M040290' and IAQA<>0                              
+group by ttype,ITEM, ISL#, LOCN, WHS order by locn             
+                                
+																
+
+0183		ASLF0183
+	0115		PSH neu ttype PS va PSHSTS <> ' ' va PSHDOF = 'Y' thi khong lay  
+	0242		AJD	neu ttype LT va AJDSTS = '2' thi khong lay     
+	0241		AJH ttype AJ thi khong lay. Neu ttype RG va RW thi ko xu li 
+	
+	0007		WM
+	2014	ASLF2014
+	2182	WHO
+	1926	MVT
+
+
+0004		IM
+0191		WZ
+0238		WL
                
+select a.ttype,a.batch,AJDSTS,a.item           
+from ASLF0183 a, AJD b                         
+where a.item='M070310'                         
+and a.ttype ='LT'                              
+and a.ttype =b.ttype and a.batch=b.batch       
+and AJDDEL='' and  IADEL=''                                 
+and AJDSTS <> '2'                              
+and a.bhseq=b.bhseq          
 
-                                                                                                 
-																	
-																	
-Item                |  IM Alloc  Non B/Tfr B/Transfer     P/Note      Total   Variance 
-=======================================================================================
-Principal: M07 Merck Sharp & Dohme (Asia) Ltd                                          
-M070310                  26.000     31.000       .000       .000     31.000      5.000-
-                                                                            ---------- 
-Principal Total:                                                                 5.000-
-                                                                            ========== 
-Selection Total:                                                                 5.000-
-                                                                                       																	
+                  
+         		
  
 ================================================================
 select  CURDATE(),CURTIME()    
@@ -68,6 +175,8 @@ AND INHCFD =YEAR(CURDATE()) ||DIGITS(DEC(MONTH(CURDATE()),2))
 select  CURDATE(),CURTIME()    
 from lb
 
+HOUR(CURTIME()) ||DIGITS(DEC(MINIUS(CURTIME()),2)) 
+||DIGITS(DEC(DAY(CURTIME()),2))   
  
 
 ===========================================================
@@ -106,6 +215,21 @@ AND A.COHDAT BETWEEN 20160801 AND 20160814
 	=	nếu những line mà không có trong ia có scheduled <>0 thì ta update lại cho nó =0
 
 Xem ICS552 để biet lenh Shift F8
+select a.ttype,a.batch,AJDSTS,a.item           
+from ASLF0183 a, AJD b                         
+where a.item='M070310'                         
+and a.ttype ='LT'                              
+and a.ttype =b.ttype and a.batch=b.batch       
+and AJDDEL='' and  IADEL=''                                 
+and AJDSTS <> '2'                              
+and a.bhseq=b.bhseq          
+
+select a.ttype,a.batch,AJDSTS,a.item 
+from AS400.S064BE8R.ZPTLIBD.ASLF0183 a, AS400.S064BE8R.ZPTLIBD.AJD b                         
+where a.item='M070310' and a.ttype ='LT'                              
+and a.ttype =b.ttype and a.batch=b.batch       
+and AJDDEL='' and  IADEL='' and AJDSTS <> '2'                              
+and a.bhseq=b.bhseq
 
 Cach 2:
 -	nhập item và get item vào chương trình
@@ -131,39 +255,46 @@ Cach 2:
 	=	line picked có trong LB và IA theo điều kiện (item,whs,locn,isl#):update LBSPK 5 bảng theo IA 
 	(=	line picked có trong LB mà không có trong IA: update trừ đi phần LBSPK trong 5 bảng cho nó về 0)
 
-	  A121010   
---- Ref# ---  Quantity    Serial/Lot#     Location     Whs 
-OR 33717690       24.000  ZABL            F01-11-03-01 WH6 
-LB
-select ITEM, LOCN, ISL#, WHS, LBSOA
-from LB	
-WHERE ITEM='A121010' 
-AND LOCN='F01-11-03-01' 
-AND ISL#='ZABL' 
-AND WHS='WH6' 
+Cach 3
+-	nhập item và get item vào chương trình
+-	select từ IA ttype in (OR,PS) theo item để get item,whs,locn,isl#,qty: select va luu vao list item
+-	select từ IA ttype in LT theo item câu lệnh mới để get item,whs,locn,isl#,qty: select va luu vao list item
+-	check allocate 
+	=	select allocate <> 0 trong LB của item và all whS
+	=	mass update allocate <> 0 cua item đó về 0
+-	check picked
+	=	select LBSPK<>0 trong LB của của item và all whS
+	=	mass update PICKED <>0 của item đó về 0
+-	check scheduled 
+	=	select scheduled <> 0 trong IW của item và all whS
+	=	mas update scheduled<>0 của item đó trong file IW về 0
+-	lặp trên all line của list item:
+	=	nếu locn='Scheduled': update IWSSA cho IW item,whs của IA. Rồi update IMSSA = sum(IWSSA) của item đó
+	=	picked locn='PICKED': update LBSPK 5 bảng theo item,whs,locn,isl# IA 
+	=	còn lại là allocate: update LBSOA 5 bảng theo item,whs,locn,isl# IA 
 
- ITEM                  LOCN          ISL#             WHS           LBSOA  
- A121010               F01-11-03-01  ZABL             WH6          74.000  
+Check them type BI 
+
+ Item                  Warehouse                                   
+ S300260               WM1                                         
+                    Item Warehouse Allocations                     
+      --- Ref# ---  Quantity    Serial/Lot#     Location     Whs   
+  01  BI 88271863     9119.000                  Scheduled    WM1   
+  02  BP 61013156     1350.000  6S088           B14-07-03-02 WM1 
+
+select ITEM, WHS, IWTIN,IWTOUT
+			from IW 
+			WHERE ITEM='S300260'
+			AND WHS='WM1'
+
+ ITEM                  WHS           IWTIN           IWTOUT  
+ S300260               WM1            .000       10469.000  
  
-UPDATE LB 
-SET  LBSOA= LBSOA-74                                    
-WHERE ITEM='A121010' 
-AND LOCN='F01-11-03-01' 
-AND ISL#='ZABL' 
-AND WHS='WH6' 
-
+ update IW set IWTOUT=IWTOUT-10469
+	WHERE ITEM='S300260'
+	AND WHS='WM1' 
 	
-
- SELECT ITEM, ISL#, LOCN, WHS ,SUM(IAQA) FROM ia          
- WHERE ttype in ('OR','PS')                     
-  and item ='N170550'                                  
-group by ITEM, ISL#, LOCN, WHS order by locn 
-
-LOCN     
-PICKED   
-Scheduled 
-
-
+	
 UPDATE LB                     UPDATE LB 
 SET  LBSOA= LBSOA-300         SET  LBSOA= LBSOA + {0}                            
 WHERE ITEM='P070050'          WHERE ITEM='{1}' 
@@ -245,28 +376,6 @@ AND WHS='WH1'
 			 
 								 UPDATE IM SET IMSPK=IMSPK+100
 								WHERE ITEM='A121210'  
-								
-Item                |  IM Alloc  Non B/Tfr B/Transfer     P/Note      Total   Variance 
-=======================================================================================
-Principal: S29 Sanofi Synthelabo VN                                                    
-S290030              147137.000 106018.000       .000       .000 106018.000  41119.000 
-                                                                            ---------- 
-Principal Total:                                                             41119.000 
-Principal: U05 United Inter Pharma-Sangpharma                                          
-U021340                 847.000    787.000       .000       .000    787.000     60.000 
-                                                                            ---------- 
-
-																			
-Item                |  IM Alloc  Non B/Tfr B/Transfer     P/Note      Total   Variance 
-=======================================================================================
-Principal: S29 Sanofi Synthelabo VN                                                    
-S290030              145224.000 106018.000       .000       .000 106018.000  39206.000 
-                                                                            ---------- 
-Principal Total:                                                             39206.000 
-                                                                            ========== 
-Selection Total:                                                             39206.000 
-
-
 
 
 =======================================================

@@ -210,7 +210,7 @@ Trung Back end
                 App Store - iOS:
 -	eZRx Call-Me-Back for customers: 267
 -	eZRx Call-Me-Back Professional for SC: 48
-3. Total number of views of discounts: 4794 views 
+3. Total number of views of discounts: 4875 views 
 4. Number of discounts loaded into call me back: 90 promos, sent to 1861 customers per each promo
 
 Muc 5,6,7 lay trong file extract
@@ -676,7 +676,7 @@ Chuyen hoa don tu may nay sang may khac
 	
 In thu hoa don (in hoa don) 7, 80, 14
 -	In hoa don sai PD1: update sub=PSG trong 2 file inh, sas
-	select sub,invno,cust,inhpf,prncpl    
+	select sub,invno,cust,inhpf,prncpl,whs    
 	from inh                  
 	where ttype='IV'          
 	and invno =	73232775
@@ -12810,7 +12810,7 @@ and WHS='WT2'
         IWLTQI           IWLTQO   ITEM                  WHS   
     4,416.000        4,416.000   P040940               WT2   
 	
- update IW set IWLTQI=0,IWLTQO=0      
+ update IW set IWLTQI=IWLTQI - 4416,IWLTQO=IWLTQO - 4416          
  where item ='P040940'                
  and WHS='WT2'                        
  1 rows updated in IW in ZPTLIBD.                          
@@ -13693,13 +13693,15 @@ from invdsc
 where invno in 10029492 
 and cust='S15108'  
 
+update invdsc set INCDSA=0,RBHPGM='Stop By CS',
+INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
+where cust='S15108' and invno =10029492
+
 update invdsc set INCDSA=0,
 INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
 where cust='S15108' and invno =10029492 
 
-update invdsc set INCDSA=0,RBHPGM='Stop By CS',
-INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
-where cust='S15108' and invno =10029492 
+ 
 
 ---stop rebate nhieu line 
 select count(*)                                    
@@ -14860,3 +14862,49 @@ where a.cust=b.cust)
 where exists (Select * from ldphuc/temp2 b                      
 where a.cust=b.cust)                                            
 385 rows updated in CM in ZPTLIBD.                              
+==================================================================================
+Pham Quoc Bao (KAM) <pquocbao@zuelligpharma.com>
+SELECT *                                                              
+FROM ZPTLIBD.ZSCTPCUST1                                               
+WHERE SLSMN in ('AH1','AH2','AH3','AH4','AH5','AN1','AN2','AN3')      
+and item like 'A17%'                                                  
+
+
+SC Code
+AH2
+AN2
+AH5
+
+ Columns . . . :    1  71           Browse                      ZPTLIBM/QRPGSRC
+ SEU==>                                                                  ZPG470
+ FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 
+0017.00      C/EXEC SQL                                                        
+0018.00      C+ DELETE FROM ZSCTPCUST1                                         
+0019.00      C/END-EXEC                                                        
+0020.00      C*                                                                
+0021.00      C* ZPP GSK SALES SC BY CUSTOMER-ITEM FOR MR. TRAN MINH MAN        
+
+FROM ZSCTPCUST A,INH C,IND D,CM E,SM F,SV G   
+
+
+ select * from ZSCTPCUST              
+ where slsmn = 'AH2'                  
+
+  select * from SM                    
+ where slsmn='AH2'                   
+
+
+delete    from ZSCTPCUST                            
+ where slsmn = 'AN2'  and cust in                   
+('N04006',                                          
+ 'N00063' )                                         
+2 rows deleted from ZSCTPCUST in ZPTLIBD.           
+
+
+insert into ZSCTPCUST                   
+select * from ldphuc/temp               
+5 rows inserted in ZSCTPCUST in ZPTLIBD.
+=======================================================================
+Sales Type Code        
+ select *        
+ from sty     

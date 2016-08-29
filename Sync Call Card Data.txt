@@ -1,3 +1,52 @@
+--- bang zsa756pf
+delete  from [CallCard].[dbo].zsa756pf
+	
+insert into [CallCard].[dbo].zsa756pf
+SELECT  distinct CPLDTE, SLSMN, SMDESC, PDTCDE, PDTDES, 
+[$JNMAH], [$JNMAR], [$JNMAD], [$JNMAQ], [$JNMAF], 
+[$JNMAI], CUST, CNAME, CMGRP2, CMGRP3, 
+CMGRP4, CADD1, CADD2, ZCMTYP, [$JNMAE], [$JNMAO], [$JNMAP], 
+[$JNMAG], [$JNMAC], [$JNMAK], [$JNMAL], CONVERT(VARCHAR(19),GETDATE())  
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa756pf
+
+--- bang zsa757pf
+delete from [CallCard].[dbo].[zsa757pf]
+
+insert into [CallCard].[dbo].[zsa757pf]
+SELECT distinct
+CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNNAD], [$JNNAE],[$JNNAF], [$JNNAA], [$JNNAB], [$JNNAC], CONVERT(VARCHAR(19),GETDATE()) 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa757pf
+
+--- bang zsa757pf3
+delete  FROM [CallCard].[dbo].[zsa757pf3]
+
+insert into [CallCard].[dbo].[zsa757pf3]
+SELECT distinct
+CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNNAD], [$JNNAE], [$JNNAF], [$JNNAA], [$JNNAB], [$JNNAC], CONVERT(VARCHAR(19),GETDATE()) 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa757pf3
+
+--- bang zsa758pf
+delete FROM [CallCard].[dbo].[zsa758pf]
+
+insert into [CallCard].[dbo].[zsa758pf]
+SELECT distinct CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN, SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC, [$JNQAD], [$JNQAE], 
+[$JNQAF], [$JNQAA], [$JNQAB], [$JNQAC], CONVERT(VARCHAR(19),GETDATE())
+FROM ZPVN01.S064BE8R.ZPTLIBD.zsa758pf
+
+--- bang zlvl
+DELETE FROM [CallCard].[dbo].[zlvl]
+				
+INSERT INTO [CallCard].[dbo].[zlvl] 
+SELECT distinct CMGRP2, CMGRP3, CMGRP4, ZCMTYP, ZLVL1, ZLVL2, CONVERT(VARCHAR(19),GETDATE()) 
+FROM ZPVN01.S064BE8R.ZPTLIBD.zlvl
+
+--- bang ZGOVHOSP2
+DELETE FROM [CallCard].[dbo].[ZGOVHOSP2]
+				
+INSERT INTO [CallCard].[dbo].[ZGOVHOSP2]
+SELECT distinct CUST, CNAME, CADD1, CMPHON, CMCONT, ARTRM, SLSMN, SMDESC, PRNCPL, ZCITYP, ITEM, IMDESC, QUOTA, NET_QTY, CONVERT(VARCHAR(19),GETDATE())  
+FROM ZPVN01.S064BE8R.ZPTLIBD.ZGOVHOSP2
+===============================================================
 DECLARE @run integer
 set @run = 0
 
@@ -43,3 +92,4 @@ begin
 	exec [CallCard].dbo.USP_SDS_zsa757pf 'admin'
 	set @run = 0
 end
+
