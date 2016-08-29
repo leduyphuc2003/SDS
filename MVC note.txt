@@ -22,10 +22,17 @@ chuong trinh xep lich
 	-	check nếu là t7 thì set vào nhan vien
 	-	gán đến đâu thì xóa ngày thứ 7 vừa gán đó ra khỏi list date trực
 -	lặp cho list ngày còn lại đã bỏ all t7 cn t2 
-	-	Chỉ check trong từng tháng, không check all vì nếu check all 12 tháng sẽ sai => 1 người sẽ trực 6 ngày, có người cả tháng chỉ trực 2 ngày 
-	-	khai báo list nhanvien có ít ngày trực nhất
-	-	lưu all nhân viên có min vào list
+	-	Chỉ check trong từng tháng, không check all vì nếu check all 12 tháng sẽ sai => 1 người sẽ trực 6 ngày, có người cả tháng chỉ trực 2 ngày:
+		=	lấy nhan vien có ngày trực >5 lưu vào listNhieu và <4 lưu vào listIt ra
+		=	trừ số ngày trực của nhan vien listNhieu >5 về =5
+		=	lưu số ngày trừ ra đó vào listThua ngày
+		=	Cộng listThua vào list nhan vien listIt ngày đến =4 thì dừng 
+	-	split ra n list tương ứng từng tháng 
+	-	lặp tren từng tháng 
+	-	khai báo list nhanvien có ít ngày trực nhất trong từng tháng đang xử lí 
+	-	lưu all nhân viên có min vào list: lấy tổng ngày trực của từng nhân viên trong tháng, lấy giá trị min, lấy những nhân viên có ngày trực trong tháng đó là min, lưu all nhân viên đó vào list 
 	-	lấy  ngày trực gán vào phần tử đầu tiên(đổi thành phần tử random) cửa list 
+	-	lặp lại cho tháng kế tiếp, reset gán lại số ngày trực hiện tại 
 -	xắp xếp ngày trực của 1 nhân viên theo thứ tự đều 
 -	xuất ra file 
 -	lưu tất cả vào 1 tháng có thứ tự

@@ -71,6 +71,51 @@ namespace HotLineMobile
             }
         }
 
+        public static void getMinDateTrucHotlineByMonth(List<NhanVien> nvList, List<NhanVien> aaa, DateTime aTime)
+        {
+            int month = aTime.Month;
+            int ngayTrucCuaMotNhanVienTheoThang=0;
+            List<int> ngayTrucList = new List<int>();
+            List<NhanVien> temp = new List<NhanVien>();
+            foreach (NhanVien i in nvList)
+            {
+                int count = 0;
+                for (int j = 0; j < i.NgayTrucList.Count; j++)
+                {
+                    //ngayTrucCuaMotNhanVienTheoThang = (from n in i.NgayTrucList
+                    //    where (i.NgayTrucList[j].Month == month)
+                    //    select n).Count();
+                    if (i.NgayTrucList[j].Month == month)
+                    {
+                        count++;
+                    }
+                }
+                ngayTrucList.Add(count);
+
+                temp.Add(new NhanVien
+                {
+                    ten = i.ten,
+                    soNgayTrucHotline = count
+                });
+            }
+            int minDay = ngayTrucList.Min();
+
+            //lấy all nhan vien có min ngày trực trong từng tháng vào list a
+            foreach (NhanVien i in temp)
+            {
+                if (minDay == i.soNgayTrucHotline)
+                {
+                    //aaa.Add(i);
+                    aaa.Add(new NhanVien
+                    {
+                        ten = i.ten,
+                        soNgayTrucHotline = i.soNgayTrucHotline,
+                    });
+                }
+            }
+        }
+
+
         public static void WriteTsv<T>(this List<T> data, TextWriter output)
         {
             PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(T));

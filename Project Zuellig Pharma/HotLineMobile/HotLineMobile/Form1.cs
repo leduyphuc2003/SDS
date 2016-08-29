@@ -31,13 +31,13 @@ namespace HotLineMobile
             NhanVien Tu = new NhanVien {ten = "Tu", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
             NhanVien Binh = new NhanVien {ten = "Bình", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
 
-            a.Add(Hai);
-            a.Add(Phuc);
-            a.Add(Phuong);
-            a.Add(Nhat);
             a.Add(Hoan);
             a.Add(Tu);
+            a.Add(Nhat);
+            a.Add(Hai);
             a.Add(Binh);
+            a.Add(Phuong);
+            a.Add(Phuc);
 
             //get start date va end date
             DateTime startDateTime = dateTimePicker1.Value;
@@ -47,7 +47,7 @@ namespace HotLineMobile
             List<DateTime> allDates = new List<DateTime>();
             allDates= GetDate.GetAllDatesAndInitializeTickets(startDateTime,endDateTime);
 
-            
+            #region 
 
             //for (int i = 0; i < allDates.Count-1; i++)
             //{
@@ -94,8 +94,11 @@ namespace HotLineMobile
             //    }
             //}
 
+            #endregion 
+
+
             //lặp get all T7 CN T2 
-            for (int i = 0; i < allDates.Count - 1; i++)
+            for (int i = 0; i < allDates.Count; i++)
             {
                 if ((allDates[i].DayOfWeek == DayOfWeek.Saturday) &&(allDates[i].Year != 2000))
                 {
@@ -104,24 +107,31 @@ namespace HotLineMobile
                         thuTuTrucCN = 0;
                     }
 
-                    a[thuTuTrucCN].NgayTrucList.Add(allDates[i]);
-                    a[thuTuTrucCN].soNgayTrucHotline++;
-                    //allDates.Remove(allDates[i]);
-                    allDates[i] = new DateTime(2000,01,01);
-                    i++;
-                    
+                    try
+                    {
+                        a[thuTuTrucCN].NgayTrucList.Add(allDates[i]);
+                        a[thuTuTrucCN].soNgayTrucHotline++;
+                        //allDates.Remove(allDates[i]);
+                        allDates[i] = new DateTime(2000, 01, 01);
+                        i++;
 
-                    a[thuTuTrucCN].NgayTrucList.Add(allDates[i]);
-                    a[thuTuTrucCN].soNgayTrucHotline++;
-                    //allDates.Remove(allDates[i]);
-                    allDates[i] = new DateTime(2000, 01, 01);
-                    i++;
-                    
 
-                    a[thuTuTrucCN].NgayTrucList.Add(allDates[i]);
-                    a[thuTuTrucCN].soNgayTrucHotline++;
-                    //allDates.Remove(allDates[i]);
-                    allDates[i] = new DateTime(2000, 01, 01);
+                        a[thuTuTrucCN].NgayTrucList.Add(allDates[i]);
+                        a[thuTuTrucCN].soNgayTrucHotline++;
+                        //allDates.Remove(allDates[i]);
+                        allDates[i] = new DateTime(2000, 01, 01);
+                        i++;
+
+
+                        a[thuTuTrucCN].NgayTrucList.Add(allDates[i]);
+                        a[thuTuTrucCN].soNgayTrucHotline++;
+                        //allDates.Remove(allDates[i]);
+                        allDates[i] = new DateTime(2000, 01, 01);
+
+                    }
+                    catch
+                    {
+                    }
 
                     a[thuTuTrucCN].checkCN = true;
                     thuTuTrucCN++;
@@ -130,43 +140,92 @@ namespace HotLineMobile
 
 
             List<NhanVien> minDayNhanViensList = new List<NhanVien>();
-            foreach (DateTime i in allDates)
+            //split list allDates gồm những ngày thường ra từng tháng 
+            List<List<DateTime>> result = allDates.Where(x => x.Year!=2000).GroupBy(p => p.Month)
+            .Select(g => g.ToList()).Distinct()
+            .ToList();
+            //lặp trên 12 tháng trong result 
+            foreach (List<DateTime> i in result)
             {
-                if (i.Year != 2000)
+                foreach (DateTime ii in i)
                 {
-                    //lưu all nhân viên có min ngay truc vào list
-                    GetDate.getMinDateTrucHotline2(a, minDayNhanViensList);
-                    NhanVien minNhanVien = new NhanVien();
-
-                    minNhanVien = minDayNhanViensList.First();
-                    minDayNhanViensList.Clear();
-
-                    minNhanVien.soNgayTrucHotline++;
-                    minNhanVien.NgayTrucList.Add(i);
-
-                    a.Where(d => d.ten == minNhanVien.ten).First().soNgayTrucHotline = minNhanVien.soNgayTrucHotline;
-                    //a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Add(i);
-
-                    bool alreadyExist = a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Contains(i);
-                    if (alreadyExist == false)
+                    if (ii.Year != 2000)
                     {
-                        a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Add(i);
+                        //lưu all nhân viên có min ngay truc vào list
+                        //GetDate.getMinDateTrucHotline2(a, minDayNhanViensList);
+                        GetDate.getMinDateTrucHotlineByMonth(a, minDayNhanViensList, ii);
+                        NhanVien minNhanVien = new NhanVien();
+
+                        //Random rnd = new Random();
+                        //int sttNhanVien = rnd.Next(0, minDayNhanViensList.Count-1);
+                        //minNhanVien = minDayNhanViensList[sttNhanVien];
+                        minNhanVien = minDayNhanViensList.First();
+                        minDayNhanViensList.Clear();
+
+                        minNhanVien.soNgayTrucHotline++;
+                        minNhanVien.NgayTrucList.Add(ii);
+
+                        a.Where(d => d.ten == minNhanVien.ten).First().soNgayTrucHotline = minNhanVien.soNgayTrucHotline;
+                        //a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Add(i);
+
+                        bool alreadyExist = a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Contains(ii);
+                        if (alreadyExist == false)
+                        {
+                            a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Add(ii);
+                        }
                     }
                 }
-
-
             }
 
+            //xử lí cho ngày thường lặp trên allDates
+            //List<NhanVien> minDayNhanViensList = new List<NhanVien>();
+            //foreach (DateTime i in allDates)
+            //{
+            //    if (i.Year != 2000)
+            //    {
+            //        //lưu all nhân viên có min ngay truc vào list
+            //        GetDate.getMinDateTrucHotline2(a, minDayNhanViensList);
+            //        NhanVien minNhanVien = new NhanVien();
+
+            //        //Random rnd = new Random();
+            //        //int sttNhanVien = rnd.Next(0, minDayNhanViensList.Count-1);
+            //        //minNhanVien = minDayNhanViensList[sttNhanVien];
+            //        minNhanVien = minDayNhanViensList.First();
+            //        minDayNhanViensList.Clear();
+
+            //        minNhanVien.soNgayTrucHotline++;
+            //        minNhanVien.NgayTrucList.Add(i);
+
+            //        a.Where(d => d.ten == minNhanVien.ten).First().soNgayTrucHotline = minNhanVien.soNgayTrucHotline;
+            //        //a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Add(i);
+
+            //        bool alreadyExist = a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Contains(i);
+            //        if (alreadyExist == false)
+            //        {
+            //            a.Where(d => d.ten == minNhanVien.ten).First().NgayTrucList.Add(i);
+            //        }
+            //    }
+            //}
+
+
+            //lưu kết quả xuất ra file 
             List<String> kq = new List<string>(a.Count);
             for (int i = 0; i < a.Count; i++)
             {
                 String s = a[i].ten + "\n";
-                foreach (DateTime ii in a[i].NgayTrucList)
+
+                List<DateTime> list = a[i].NgayTrucList.OrderBy(x => x.Date).ToList();
+                foreach (DateTime ii in list)
                 {
-                    s = s + ii.ToString() + "\n";
+                    s = s + ii.ToString("dd/MM/yyyy") + "\n";
                 }
+
+                //foreach (DateTime ii in a[i].NgayTrucList)
+                //{
+                //    s = s + ii.ToString("dd/MM/yyyy") + "\n";
+                //}
                 kq.Add(s);
-                s = "";
+                //s = "";
             }
 
             String ketqua = "";
@@ -176,17 +235,177 @@ namespace HotLineMobile
             }
 
 
+            //---------------------------------------------------
+            //lưu all kết quả nhân viên gồm tên và ngày trực vào list2
+            List<NhanVienNgayTruc> nhanVienNgayTrucs = new List<NhanVienNgayTruc>();
+            foreach (NhanVien i in a)
+            {
+                foreach (DateTime ii in i.NgayTrucList)
+                {
+                    nhanVienNgayTrucs.Add(new NhanVienNgayTruc
+                    {
+                       ten = i.ten,
+                       ngayTruc = ii
+                    });
+                }
+            }
+            //xắp xếp theo ngày tăng dần
+            List<NhanVienNgayTruc> nhanVienNgayTrucs2 = nhanVienNgayTrucs.OrderBy(o => o.ngayTruc).ToList();
+            //var lowerBoundMonth8 = 8;
+            //var query = from p in nhanVienNgayTrucs2
+            //            where(p.ngayTruc.Month == lowerBoundMonth8)  
+            //            select p;
+            //string ss = "";
+            //foreach (NhanVienNgayTruc i in query)
+            //{
+            //    ss = ss + i.ngayTruc.ToLongDateString() + "--->" + i.ten.ToString() + " " + "\n";
+            //}
 
+            String t1= "January \n", t2= "February \n", t3= "March \n", t4= "April \n", t5= "May \n", t6= "June \n", t7= "July \n", t8= "August \n", t9= "September \n", t10= "October \n", t11= "November \n", t12= "December \n";
+            for (var i = 1; i < 13; i++)
+            {
+                //var lowerBoundMonth8 = 8;
+                var query = from p in nhanVienNgayTrucs2
+                            where (p.ngayTruc.Month == i)
+                            select p;
+                switch (i)
+                {
+                    case 1:
+                    {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t1 = t1 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t1 += "================================================ \n";
+                            break;
+                    }
+                    case 2:
+                    {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t2 = t2 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t2 += "================================================ \n";
+                            break;
+                    }
+                    case 3:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t3 = t3 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t3 += "================================================ \n";
+                            break;
+                        }
+                    case 4:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t4 = t4 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t4 += "================================================ \n";
+                            break;
+                        }
+                    case 5:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t5 = t5 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t5 += "================================================ \n";
+                            break;
+                        }
+                    case 6:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t6 = t6 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t6 += "================================================ \n";
+                            break;
+                        }
+                    case 7:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t7 = t7 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t7 += "================================================ \n";
+                            break;
+                        }
+                    case 8:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t8 = t8 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t8 += "================================================ \n";
+                            break;
+                        }
+                    case 9:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t9 = t9 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t9 += "================================================ \n";
+                            break;
+                        }
+                    case 10:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t10 = t10 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t10 += "================================================ \n";
+                            break;
+                        }
+                    case 11:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t11 = t11 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t11 += "================================================ \n";
+                            break;
+                        }
+                    case 12:
+                        {
+                            foreach (NhanVienNgayTruc ii in query)
+                            {
+                                t12 = t12 + ii.ngayTruc.ToLongDateString() + "--->" + ii.ten.ToString() + " " + "\n";
+                            }
+                            t12 += "================================================ \n";
+                            break;
+                        }
+                }   
+            }
+            //--------------------------------------------------------------
+
+
+            //xuat report
             using (TextWriter writer = File.CreateText("D:\\hotline.txt"))
             {
                 //
                 // Write one line.
                 //
-                writer.WriteLine("First line");
+                writer.WriteLine("Lịch Trực hotline");
                 //
                 // Write two strings.
                 //
-                writer.Write(ketqua);
+                //writer.Write(ketqua);
+                writer.Write(t1);
+                writer.Write(t2);
+                writer.Write(t3);
+                writer.Write(t4);
+                writer.Write(t5);
+                writer.Write(t6);
+                writer.Write(t7);
+                writer.Write(t8);
+                writer.Write(t9);
+                writer.Write(t10);
+                writer.Write(t11);
+                writer.Write(t12);
                 //writer.Write("B ");
                 //
                 // Write the default newline.

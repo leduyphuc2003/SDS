@@ -1,8 +1,9 @@
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.exe.config
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.exe
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.pdb
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.Form1.resources
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.Properties.Resources.resources
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.csproj.GenerateResource.Cache
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.exe
-C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.pdb
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.exe.config
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.exe
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.pdb
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.Form1.resources
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.Properties.Resources.resources
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.csproj.GenerateResource.Cache
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.exe
+C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.pdb
+C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.csprojResolveAssemblyReference.cache

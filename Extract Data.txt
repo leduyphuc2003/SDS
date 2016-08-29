@@ -305,3 +305,25 @@ and a.ordr=d.ordr
 and a.OTDSTS=e.OTSSTS                                             
 and c.item in ('G030560','G030600')                               
 and indcfd in (20160423,20160824)        
+==============================================================
+Incident #71774 -  Data Sales cua ACC 200 SUS 200MG(N -Nguyen Dinh Tuan
+Data Sales cua ACC 200 SUS 200MG(N160010)
+Dear anh,
+Nho anh chay giup em data sales cua ACC 200 SUS 200MG
+- Item Code: N160010
+- Period: 01/01/2014 - 22/08/2016
+Theo template dinh kem nha.
+
+Em cam on anh.
+
+select a.ttype,a.invno,b.item,b.indunt,indval,a.cust,INHDA1,INHDA1,
+CMGRP2,IATOL,ISL#,IAEXPD,indcfd                                    
+from inh a, ind b, ia c                                            
+where inhdel='' and inddel='' and iadel=''                         
+and a.ttype=b.ttype and a.invno=b.invno                            
+and b.ttype=c.ttype and b.invno=c.batch and b.indseq=c.BHSEQ       
+and b.item=c.item                                                  
+and a.ttype in ('IV','CR')                                         
+and b.item ='N160010'                                              
+and indcfd between 20140101 and 20160822                           
+File TEMP in LDPHUC was replaced.                                  

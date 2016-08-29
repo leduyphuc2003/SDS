@@ -12,5 +12,13 @@ namespace HotLineMobile
         public int soNgayTrucHotline;
         public List<DateTime> NgayTrucList;
         public bool checkCN;
+
+        public NhanVien()
+        {
+            ten = "";
+            soNgayTrucHotline = 0;
+            NgayTrucList = new List<DateTime>();
+            checkCN = false;
+        }
     }
 }
