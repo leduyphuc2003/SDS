@@ -111,7 +111,7 @@ and cust='S10422'
 
  select *                                   
 from mfd                                   
-where ttype='MF' and invno =73364445       
+where ttype='MF' and invno = 73364445       
 
 SELECT COUNT (DISTINCT INVNO)                  
 FROM SAS WHERE SASDEL='' AND TTYPE='IV' AND    

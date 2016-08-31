@@ -169,6 +169,55 @@ on a.cust = c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ')
 AND A.INCCFD >= 20150930 AND INCDEL=''                              
 File TEMP in LDPHUC was replaced.    
 ========================================================
+Incident #72239 -  Extract order report - Ho Phuong Thao <hpthao@zuelligpharma.com>
+Dear IT team, 
+Nho cac anh extract tat ca cac order cua tat ca cac PRN co value < 500 000 voi noi dung:
+- Cus/ Name/ channel/order date/ OR number/ IV date/ IV number/ item code/ item description/ supply quantity/ order value
+- Chi extract don hang cua tung PRN 
+  VD: Don hang chi co san pham cua E05 co gia tri < 500 000
+         Don hang chi co san pham cua G03 co gia tri < 500 000
+Thanks all
+
+--- all order có value<500000
+select *                                        
+from coh a,cod b                                
+where   COHRDT between 20160101 and 20160631    
+and cohdel='' and a.ttype='OR' and coddel=''    
+and cohval <500000                              
+and a.ttype=b.ttype and a.ordr=b.ordr           
+File TEMP in LDPHUC was replaced. 
+
+---link file temp với file principal master
+select ordr, b.PMMAST                            
+from ldphuc/temp a,z9443 b                       
+where a.prncpl=b.prncpl                          
+File TEMP11 in LDPHUC was created.               
+
+---lấy order nào có 1 prncpl
+select ordr,   PMMAST,count(*)                      
+from ldphuc/temp11                                  
+group by ordr,   PMMAST                             
+having count(*)=1                                   
+File TEMP12 in LDPHUC was created.                                 
+
+--- lấy data
+select c.cust,INHDNM,CMGRP2, COHCTD,c.ordr,inhcfd,c.invno,item,    
+CODDES,codunt,codval,b.COHSRC,cohsts,c.psn,c.invno                  
+from ldphuc/temp12 a, ldphuc/temp b,inh c                          
+where a.ordr=b.ordr and b.ttype='OR'                               
+and b.ordr=c.ordr and inhdel=''                                     
+and c.ttype in ('IV','CR')                                          
+File TEMP17 in LDPHUC was created. 
+
+--- thêm cột OTSSTS, OTSDES ,OTDDAT,OTDTIM 
+SELECT DISTINCT A.CUST, A.INHDNM, A.CMGRP2, A.COHCTD, A.ORDR,    
+A.INHCFD, A.INVNO, A.ITEM, A.CODDES, A.CODUNT, A.CODVAL, A.COHSRC, 
+A.COHSTS, A.PSN, A.INVNO01 ,OTSSTS, OTSDES ,OTDDAT,OTDTIM          
+FROM ldphuc/TEMP17 a, OTS b,OTD c WHERE                            
+a.ordr=c.ordr and b.OTSSTS=c.OTDSTS and otsdel='' and otddel='' and
+ttype='OR'and a.invno=c.invno and a.psn=c.psn                      
+File TEMP20 in LDPHUC was created.                   
+============================================================
 Incident #69697 -  data extract	- Cao Thanh Thuy
 Dear anh/chị,
 Vui lòng extract giúp em data theo template đính kèm và thông tin bên dưới nha.
@@ -327,3 +376,19 @@ and a.ttype in ('IV','CR')
 and b.item ='N160010'                                              
 and indcfd between 20140101 and 20160822                           
 File TEMP in LDPHUC was replaced.                                  
+=======================================================================
+Huynh Thi Ngoc Hanh <htnhanh@zuelligpharma.com> - IC
+SELECT distinct                                                  
+A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ, A.MANFST, A.CUST,     
+A.WHS,A.OTDDAT, A.OTDTIM,A.OTDSTS,OTSDES ,c.indcfd,cohsrc,       
+b.cust,INHDNM,c.item,indunt,COHCTU                                      
+FROM OTD a, inh b, ind c, coh d, OTS e                           
+WHERE                                                            
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
+a.ordr=b.ordr and                                                
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
+and a.ttype=d.ttype and cohdel='' and otddel=''                  
+and a.ordr=d.ordr                                                
+and a.OTDSTS=e.OTSSTS                                            
+and c.item in ('G030560','G030600')                              
+and indcfd in (20160823,20160824)   

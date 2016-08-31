@@ -33,6 +33,7 @@ chuong trinh xep lich
 	-	lưu all nhân viên có min vào list: lấy tổng ngày trực của từng nhân viên trong tháng, lấy giá trị min, lấy những nhân viên có ngày trực trong tháng đó là min, lưu all nhân viên đó vào list 
 	-	lấy  ngày trực gán vào phần tử đầu tiên(đổi thành phần tử random) cửa list 
 	-	lặp lại cho tháng kế tiếp, reset gán lại số ngày trực hiện tại 
+	-	chạy theo nhiều năm: tách khoảng cách năm ra từng năm, sau đó chạy code cho mỗi năm riêng biệt
 -	xắp xếp ngày trực của 1 nhân viên theo thứ tự đều 
 -	xuất ra file 
 -	lưu tất cả vào 1 tháng có thứ tự
@@ -50,7 +51,10 @@ chuong trinh xep lich
 	
 -	nếu là 30/4 va 1/5 thi nguoi đó sẽ trực 2 ngày liên tục và được cộng thêm ngày
 
--	
+-	nếu ai trực lễ rồi thì không trực lần 2 nữa
+-	ai trực lễ thì +2, 
+-	làm động cho phép add ngày nghĩ vào
+-	xuất ra báo cáo dạng excel hoặc calendar cho phép check số ngày
 
 
 

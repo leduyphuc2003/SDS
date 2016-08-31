@@ -1,10 +1,134 @@
 
+ Columns . . . :    1  71           Browse                       CAMLIBM/QCLSRC 
+ SEU==>                                                                  CAMREP 
+ FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7  
+1879.00                                                                         
+1880.00 /* CAM16A */ CHGVAR     VAR(&FORM) VALUE('ZIC732P01K') /*V13 ADD*/      
+1881.00              CHGDTAARA  DTAARA(*LDA (603 10)) VALUE(&FORM) /*V13 ADD*/  
+1882.00                                                                         
+		
+=====================================================================================
+ Sang HCM(S11252)	SAN	01	Others
+	SAO	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
+	USS	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
+	PAS	05	Pfizer Animal Health (P07)
+
+	
+	S30
+ 
+  PRNCPL       INVNO   SUB    
+	S30    73330148   SAN    
+  
+   PRNCPL       INVNO   SUB 
+		S30    88485722   SAN 
+  
+Duong dan  3 60 5 
+ 
+ 
+Type  IV  Batch Number  73330148                                              
+                                                                              
+Co Div Br  Account      Date     Ref          Debit Amount     Credit Amount  
+GL Description                   Narration                     Rch            
+                                                                              
+01 000 000 13111         1/08/16                7959798.00               .00  
+Trade Receivable-HCM             Invoice                        N             
+01 000 000 1561.S30      1/08/16                       .00        7319240.00  
+Direct Invt - Sanofi SPC         Invoice                        N             
+01 000 000 33311.S30     1/08/16                       .00         379038.00  
+VAT Output-Sanofi SPC            Invoice                        N             
+01 010 001 51111.S30     1/08/16                       .00        7580760.00  
+Sales - Sanofi SPC               Invoice                        N             
+01 010 001 63211.S30     1/08/16                7319240.00               .00  
+COGS - Sanofi SPC                Invoice                        N             
 
 
+
+===============================================================================
+--- all order có value<500000
+select *                                        
+from coh a,cod b                                
+where   COHRDT between 20160101 and 20160631    
+and cohdel='' and a.ttype='OR' and coddel=''    
+and cohval <500000                              
+and a.ttype=b.ttype and a.ordr=b.ordr           
+File TEMP in LDPHUC was replaced.               
+
+select ordr,       item,prncpl           
+from ldphuc/temp                         
+File TEMP2 in LDPHUC was replaced.       
+
+--- table chứa all order chỉ gồm 1 prncpl
+select ordr,prncpl,count(*)        
+from ldphuc/temp2                  
+group by ordr,prncpl               
+having count(*)=1                  
+File TEMP3 in LDPHUC was replaced.              
+
+	---lấy kết quả cho user 
+	select *                              
+	from ldphuc/temp3 a, ldphuc/temp b    
+	where a.ordr=b.ordr                   
+	File TEMP4 in LDPHUC was replaced.   
+
+	         
+	 select c.cust,INHDNM,CMGRP2, COHCTD,c.ordr,inhcfd,c.invno,item,  
+	CODDES,codunt,codval,b.COHSRC,cohsts                                             
+	 from ldphuc/temp3 a, ldphuc/temp b,inh c                         
+	 where a.ordr=b.ordr and b.ttype='OR'                                               
+	and b.ordr=c.ordr and inhdel='' and b.prncpl ='G10'               
+	and c.ttype in ('IV','CR')    
+	File TEMP6 in LDPHUC was replaced.             
+	
+		SELECT A.CUST, A.INHDNM, A.CMGRP2, A.COHCTD, A.ORDR, A.INHCFD,  
+		A.INVNO, A.ITEM, A.CODDES, A.CODUNT, A.CODVAL ,b.COHSRC FROM    
+		ldphuc/temp6 a,ldphuc/temp b WHERE a.ordr=b.ordr                
+		File TEMP7 in LDPHUC was created.                               
+  
+---- sanofi
+select ordr,prncpl,count(*)                    
+from ldphuc/temp2                              
+WHERE prncpl in ('S27','S28','S29','S30','S31')
+group by ordr,prncpl                           
+having count(*)>1                              
+File TEMP5 in LDPHUC was replaced.             
+
+      
+
+---
+               
+ 
+===============================
+  select c.cust,INHDNM,CMGRP2, COHCTD,c.ordr,inhcfd,c.invno,item,  
+ CODDES,codunt,codval,b.COHSRC,cohsts, OTSSTS, OTSDES              
+  from ldphuc/temp12 a, ldphuc/temp b,inh c,OTS d,OTD e            
+  where a.ordr=b.ordr and b.ttype='OR'                             
+ and b.ordr=c.ordr and inhdel=''                                   
+ and c.ttype in ('IV','CR')                                        
+ and b.ttype = e.ttype and b.ordr=e.ordr                           
+and d.OTSSTS=e.OTDSTS and OTDDEL='' and OTSDEL=''                                 
+File TEMP14 in LDPHUC was created
 
 
   
   
+
+-	lấy all order có value<500k
+-	check xem all item cùng thuộc 1 principal: 
+	=	select distinct prncpl,item from IM where item in ()
+	=	Hoặc kiểm tra mỗi đơn hàng xem all item đó có thuộc cùng 1 prncpl hay không 
+		===	lấy all line của 1 order lưu vào list: gồm có item, prncpl,ordr
+		===	check xem all item đó có cùng 1 prncpl hay không
+		===	nếu cùng 1 prncpl thì OK còn không thì bỏ đi
+	
+
+	
+-	select all order có value <500k
+-	slect ra file temp: ordr,item,prncpl
+-	select prncpl count(*) from temp group by prncpl=1
+
+	
+ 
+ 
 
 
 SELECT distinct                                                  
@@ -22,20 +146,9 @@ and c.item in ('G030560','G030600')
 and indcfd in (20160423,20160824)                                
 
 
-SELECT distinct                                                  
-A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ, A.MANFST, A.CUST,     
-A.WHS,A.OTDDAT, A.OTDTIM,A.OTDSTS,OTSDES ,c.indcfd,cohsrc,       
-b.cust,INHDNM,c.item,indunt,COHCTU                                      
-FROM OTD a, inh b, ind c, coh d, OTS e                           
-WHERE                                                            
-otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
-a.ordr=b.ordr and                                                
-b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
-and a.ttype=d.ttype and cohdel='' and otddel=''                  
-and a.ordr=d.ordr                                                
-and a.OTDSTS=e.OTSSTS                                            
-and c.item in ('G030560','G030600')                              
-and indcfd in (20160823,20160824)                                
+
+
+                             
                          
                                                                                                
 

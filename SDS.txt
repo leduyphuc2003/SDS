@@ -210,7 +210,7 @@ Trung Back end
                 App Store - iOS:
 -	eZRx Call-Me-Back for customers: 267
 -	eZRx Call-Me-Back Professional for SC: 48
-3. Total number of views of discounts: 4875 views 
+3. Total number of views of discounts: 4920 views 
 4. Number of discounts loaded into call me back: 90 promos, sent to 1861 customers per each promo
 
 Muc 5,6,7 lay trong file extract
@@ -14908,3 +14908,36 @@ select * from ldphuc/temp
 Sales Type Code        
  select *        
  from sty     
+=======================================================================
+Tran, Thi Hong Xuyen <tthxuyen@zuelligpharma.com>
+Incident #71879 -  HD DA HUY NHUNG K THE HIEN RET - hoa don da huy nhung khong the hien - tthxuyen 
+HD DA HUY NHUNG K THE HIEN RETURN
+Dear anh,
+Anh kiem tra gium em khong biet HD nay co bi loi gi khong? vi HD nay thuc te em da huy nhung he thong khong the hien CR va k tru tren he thong.
+Thanks anh.
+
+INS501       ZPP       Invoice Inquiry                                         
+Invoice  IV  73401921  Ext#               Warehouse WD3  Delivery   1          
+Customer C00450    Sub-Dist  SD1          Nha Thuoc Nam Thanh                  
+         Nha Thuoc Nam Thanh              441 Hung Vuong- P. Tran Phu          
+         441 Hung Vuong- P. Tran Phu      Quang Ngai                           
+         Quang Ngai                       Quang Ngai                           
+ Line      Ordered     Supplied   B/Ordered         Price                Value 
+    1        20.000      20.000        .000     160816.32          3,216,326.00
+   AUGMENTIN BD        TAB   625MG  14'S    S170160              BOX           
+    2        10.000      10.000        .000     157660.95          1,576,610.00
+   NOOTROPIL           TAB   800MG  3x15'S  G032030              BOX           
+    3        10.000      10.000        .000      76004.75            760,048.00
+   VENTOLIN            INH   100MCG 200DOSE G030350              BOX       
+   
+SELECT * FROM crn WHERE ttype='IV' and invno =73401921      
+                           
+update crn set  CRNDEL =''                                  
+WHERE ttype='IV' and invno =73401921                        
+1 rows updated in CRN in ZPTLIBD.                           
+
+Sau khi update CRNDEL ='' , nó sẽ show ra 
+Vao ESC 20 -> Shift F3 -> Invoice Credit History     
+                         Invoice Credit History                          
+     Inv#  Attempt  Crd#                  Value                    Tax   
+ 01 73401921   1 88488811          5,552,984.00-            277,649.00-  
