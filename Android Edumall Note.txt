@@ -80,7 +80,90 @@ Sử dụng được cho cả controll kéo thả vào giao diện và controll 
 
 -	khai báo button btnTru
 -	vào addControlls() findViewById
+============================================================
+**************	Listview cơ bản, nguồn data cố định
+Listview: nguồn dữ liệu => adapter => listview
+	-	xác định nguồn dữ liệu có kiểu gì: 
+		=	cố định thì dùng array
+		=	thay đổi thì dùng arrayList
+	-	đổ dữ liệu vào adapter cùng kiểu với nguồn dữ liệu
+	-	đổ adapter lên listview
+	-	xử lí sự kiện nhấn trên listview
 
+Các bước làm listview
+-	new project, đặt tên ListViewCoBan,
+-	vào giao diện layout activity_main.xml, chỉnh LinearLayout và android:orientation="vertical"
+-	kéo listview vào, rename là lvThu
+-	vào values/string.xml và định nghĩa dữ liệu cố định (trường hợp này là các thứ trong tuần)
+	<string-array name="arrThu">
+        <item>Thứ 2</item>
+        <item>Thứ 3</item>
+        <item>Thứ 4</item>
+        <item>Thứ 5</item>
+        <item>Thứ 6</item>
+        <item>Thứ 7</item>
+        <item>Chủ Nhật</item>
+    </string-array>
+-	vào MainActivity.java: khai báo  nguồn,adapter,listview,
+	String []arrThu;
+    ArrayAdapter<String>adapterThu;
+    ListView lvThu;
+-	tạo 2 hàm: addControlls(); và addEvents();
+-	Vào addControlls() khởi tạo: 
+	=	Xác định nguồn dữ liệu có kiểu gì: get data từ string.xml bằng hàm: arrThu = getResources().getStringArray(R.array.arrThu);
+	=	Adapter: tạo adapter có cùng kiểu dữ liệu với nguồn và gán nguồn cho adapter:
+		===> adapterThu=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,arrThu);
+		===> đối số 1: MainActivity.this là màn hình muốn sử dụng adapter
+			đối số 2: từng dòng vẽ lên giao diện là gì -> trường hợp này là những dòng cơ bản
+			đối số 3: nguồn dữ liệu gán cho adapter
+	=	Listview: lvThu = (ListView) findViewById(R.id.lvThu);
+	=	truyền adapter vào listview:	lvThu.setAdapter(adapterThu);
+	=	code đầy đủ 
+			private void addControlls() {
+			arrThu = getResources().getStringArray(R.array.arrThu);
+			adapterThu=new ArrayAdapter<String>(MainActivity.this,
+					android.R.layout.simple_list_item_1,
+					arrThu);
+			lvThu = (ListView) findViewById(R.id.lvThu);
+			lvThu.setAdapter(adapterThu);
+		}
+-	xử lí sự kiện cho việc chọn dòng dữ liệu listview: public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) quan tam doi so thu 3 int i la vi tri chon 
+	private void addEvents() {
+        lvThu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this,"Bạn chọn [" + arrThu[i] +"]",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 	
-	
-	
+
+**************	Listview cơ bản data thay đổi theo thời gian
+-	Dùng collection để quản lý nguồn dữ liệu, cụ thể là arrayList  
+-	listSelector: hiển thị màu ngay line nào được chọn 
+
+-	tạo project, đặt tên, vào giao diện kéo edit text, button, listview 
+-	vào MainActivity.java: khai báo đối tượng nguồn dữ liệu, adapter, listview
+    ArrayList<String>arrTen;
+    ArrayAdapter<String>adapterTen;
+    ListView lvTen;
+
+    EditText txtTen;
+    Button btnLuu;
+-	khai bao 2 hàm addcontroll và addEvents
+    private void addControlls() {
+        arrTen=new ArrayList<String>();//khởi tạo nguồn data
+                adapterTen=new ArrayAdapter<String>(
+                MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                arrTen);
+        lvTen= (ListView) findViewById(R.id.lvTen);//map listview trong MainActivity và layout
+        lvTen.setAdapter(adapterTen);//gán adapter vào listview
+		
+		txtTen= (EditText) findViewById(R.id.txtTen);
+        btnLuu= (Button) findViewById(R.id.btnLuuDuLieu);
+    }
+
+-	khi data thay đổi thì listview tự động đổi
+
+

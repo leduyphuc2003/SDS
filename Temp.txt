@@ -1,4 +1,188 @@
 
+SELECT MJDKEY,count(distinct CO) FROM gj WHERE gjdel='' and mjdate 
+between 20160801 and 20160831 GROUP BY mjdkey ORDER BY 2 desc      
+
+ SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T08              
+ FROM GJ                                                        
+ WHERE MJDATE                                                   
+ BETWEEN 20160801 AND 20160831 GROUP BY CO, DIV, BR, GLACCT     
+File GJ in ldphuc was replaced.                                  
+
+GVL01, là tháng 12,
+GVL02, là tháng 11,
+GVL03, là tháng 10,
+GVL04, là tháng 9,
+					GVL05, là tháng 8,
+GVL06, là tháng 7,
+GVL07, là tháng 6, 
+GVL08, là tháng 5, 
+GVL09, là tháng 4, 
+GVL10	  tháng 3
+
+2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T08, B.GVL05   
+FROM ldphuc/GJ a,gm b                                 
+WHERE a.co=b.co and a.div=b.div and                  
+a.br=b.br and a.glacct=b.glacct  and                 
+A.T08<>B.GVL05                                       
+File TEMP in ldphuc was replaced.                                                                            
+ 
+
+update GM b set b.GVL05 = (SELECT  A.T08         
+FROM ldphuc/GJ a                                 
+WHERE a.co=b.co and a     .div=b.div and         
+a.br=b.br and a.glacct=b.glacct  and             
+A.T08<>B.GVL05 )                                 
+where exists (SELECT A.T08                       
+FROM ldphuc/GJ a                                 
+WHERE a.co=b.co and a.div=b.div and              
+a.br=b.br and a.glacct=b.glacct  and             
+A.T08<>B.GVL05   )                               
+19 rows updated in GM in ZPTLIBD.                                           
+   
+---- Check lai select lai kiem tra xem con loi ko
+ SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T08, B.GVL05     
+FROM ldphuc/GJ a,gm b                                   
+WHERE a.co=b.co and a.div=b.div and                    
+a.br=b.br and a.glacct=b.glacct  and                   
+A.T08<>B.GVL05  
+ => ko co => dung
+ 
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T08                           
+FROM ldphuc/GJ a where not exists (select * from                      
+ gm b                                                                
+WHERE a.co=b.co and a.div=b.div and                                  
+a.br=b.br and a.glacct=b.glacct  and                                 
+A.T08= B.GVL05)                                                      
+ => ko co => dung     
+                                 
+SELECT * FROM gm a,ac b WHERE GVL05 <>0 and a.glacct=b.glacct and    
+b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
+a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
+c.T08= a.GVL05)                                                      
+ => ko co => dung. 
+
+
+
+
+
+SELECT distinct                                                  
+a.TTYPE,a.ORDR,a.PSN,a.INVNO,OTDSEQ,a.MANFST,b.CUST,c.WHS,OTDDAT,
+OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU     
+FROM OTD a, inh b, ind c, coh d, OTS e                           
+WHERE                                                            
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
+a.ordr=b.ordr and                                                
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
+and a.ttype=d.ttype and cohdel=''                                
+and a.OTDSTS=e.OTSSTS                                            
+and c.item in ('G030560','G030600')                              
+and indcfd in (20160823,20160824)                                
+and b.ordr=d.ordr                                                
+File TEMP3 in LDPHUC was replaced.
+
+
+
+
+
+
+ OR   33885299       5/09/16  15:46:18   VIEMTT        
+
+
+
+
+
+
+
+
+
+
+
+SELECT        a.CPLDTE, a.SLSMN, a.SMDESC, a.PDTCDE, a.PDTDES, a.CUST, a.CNAME, a.CMGRP2, a.CMGRP3, a.CMGRP4, a.CADD2, a.ZCMTYP, ISNULL(b.CPLUPD, 0) AS CPLUPD, ISNULL(b.CPLUPT, 0) AS CPLUPT
+FROM            dbo.zsa756pf AS a LEFT OUTER JOIN
+                         dbo.ZCPLD AS b ON a.SLSMN = b.SLSMN AND a.CUST = b.CUST AND a.CPLDTE = b.CPLUPD
+WHERE        (a.PDTCDE NOT IN ('ADC', 'BCC', 'EVP', 'GMA', 'MCC', 'OTC')) 
+AND (a.CPLDTE 20160828 and 20160831) 
+AND (b.CPLUPD <> 0)
+
+
+
+
+
+  
+-	lấy hóa đơn có Zinat và ngày tương ứng lưu vào temp
+-	link với OTS OTD lấy all line có order lưu vào temp2
+-	vào temp2 remove những line hóa đơn không có zinat: xóa line invoice<>0 và invoice not in temp
+
+SELECT distinct                                                   
+A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ, A.MANFST, A.CUST,      
+A.WHS,A.OTDDAT, A.OTDTIM,A.OTDSTS,OTSDES,c.item,c.indcfd,cohsrc   
+FROM OTD a, inh b, ind c, coh d, OTS e                            
+WHERE                                                             
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and         
+a.ordr=b.ordr and a.psn=b.psn and a.invno=b.invno and                                               
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')   
+and a.ttype=d.ttype and cohdel=''                                                               
+and a.OTDSTS=e.OTSSTS                                             
+and c.item in ('G030560','G030600')                               
+and indcfd in (20160823,20160824) 
+and b.ordr=d.ordr
+
+
+TTYPE,ORDR,PSN,INVNO,OTDSEQ,MANFST,CUST,WHS,OTDDAT,OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU
+
+--- lan 1
+SELECT distinct                                                   
+TTYPE,ORDR,PSN,INVNO,OTDSEQ,MANFST,CUST,WHS,OTDDAT,
+OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU  
+FROM OTD a, inh b, ind c, coh d, OTS e                            
+WHERE                                                             
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and         
+a.ordr=b.ordr                                               
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')   
+and a.ttype=d.ttype and cohdel=''                                                               
+and a.OTDSTS=e.OTSSTS                                             
+and c.item in ('G030560','G030600')                               
+and indcfd in (20160823,20160824) 
+and b.ordr=d.ordr
+
+---- lan 2 ko dung 
+SELECT distinct                                                  
+a.TTYPE,a.ORDR,a.PSN,a.INVNO,OTDSEQ,a.MANFST,b.CUST,c.WHS,OTDDAT,
+OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU     
+FROM OTD a, inh b, ind c, coh d, OTS e                           
+WHERE                                                            
+otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
+a.ordr=b.ordr and                                                
+b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
+and a.ttype=d.ttype and cohdel=''                                
+and a.OTDSTS=e.OTSSTS                                            
+and c.item in ('G030560','G030600')                              
+and indcfd in (20160823,20160824)                                
+and b.ordr=d.ordr                                                
+File TEMP3 in LDPHUC was replaced.                                                                                                                 
+===
+ select *                                                 
+from inh a, ind b                                        
+where a.ttype=b.ttype and a.invno=b.invno                
+and a.ttype in ('IV','CR') and inhdel='' and inddel=''   
+and b.item in ('G030560','G030600')                      
+and indcfd in (20160823,20160824)                        
+File TEMP in LDPHUC was replaced.                        
+ 
+
+SELECT distinct                                                   
+a.TTYPE,a.ORDR,a.PSN,a.INVNO,OTDSEQ,a.MANFST,c.CUST,c.WHS,OTDDAT, 
+OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU      
+from otd a, ots b, ldphuc/temp c, coh d                           
+where     a.OTDSTS=b.OTSSTS and otddel='' and otsdel=''           
+and a.ttype='OR' and a.ordr=c.ordr                                
+and a.ordr=d.ordr and cohdel='' and d.ttype='OR'                  
+File TEMP2 in LDPHUC was replaced.                                                 
+
+  33802805                           
+ 
+ 
  Columns . . . :    1  71           Browse                       CAMLIBM/QCLSRC 
  SEU==>                                                                  CAMREP 
  FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7  
@@ -8,19 +192,24 @@
 1882.00                                                                         
 		
 =====================================================================================
+ Incident #72355 -  Sai Sub Dist SAO thanh SAN
+ Sai Sub Dist SAO thanh SAN
+Dear anh Phuc,
+Hien tai hoa don IV 73330148 bi sai sub dist do Principal S30 phai vao Co 03 chu khong phai Co 01.
+Hoa don moi da xuat lai  IV 511182731. tuy nhien Cr 88485722 lai khong tuong ung voi Co 01 ma la Co 03.
+Anh coi xu ly giup em nhe.
+Thanks Anh.
+
  Sang HCM(S11252)	SAN	01	Others
 	SAO	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
 	USS	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
 	PAS	05	Pfizer Animal Health (P07)
 
-	
-	S30
- 
   PRNCPL       INVNO   SUB    
-	S30    73330148   SAN    
+	S30    73330148   SAN    => Co 01 
   
    PRNCPL       INVNO   SUB 
-		S30    88485722   SAN 
+		S30    88485722   SAN  => cung phai len Co 01, Hiện tại nó lên Co 03 
   
 Duong dan  3 60 5 
  
@@ -42,7 +231,73 @@ Sales - Sanofi SPC               Invoice                        N
 COGS - Sanofi SPC                Invoice                        N             
 
 
+ RPG149                   Journals By Batch Number         31/08/16   17:24:38  
+                                                                                
+  Type  CR  Batch Number  88485722                                              
+                                                                                
+  Co Div Br  Account      Date     Ref          Debit Amount     Credit Amount  
+  GL Description                   Narration                     Rch            
+                                                                                
+  03 000 000 13111         4/08/16                       .00        7959798.00  
+  Trade Receivable-HCM             Credit Note                    N             
+  03 000 000 1561.S30      4/08/16                7319240.00               .00  
+  Direct Invt - Sanofi SPC         Credit Note                    N             
+  03 000 000 33311.S30     4/08/16                 379038.00               .00  
+  VAT Output-Sanofi SPC            Credit Note                    N             
+  03 010 001 51111.S30     4/08/16                7580760.00               .00  
+  Sales - Sanofi SPC               Credit Note                    N             
+  03 010 001 63211.S30     4/08/16                       .00        7319240.00  
+  COGS - Sanofi SPC                Credit Note                    N             
+                                                                                
+select *                              
+from GJ                               
+where mjdkey like 'CR88485722%'       
 
+update GJ set  CO ='01'                   
+where mjdkey like 'CR88485722%'           
+5 rows updated in GJ in ZPTLIBD.          
+
+=> 01 vua them 7959798, 03 vua mat 7959798
+=> vao GM vào tháng 8: 01 và +7959798, 03 và -7959798
+
+GVL01, là tháng 12,
+GVL02, là tháng 11,
+GVL03, là tháng 10,
+GVL04, là tháng 9,
+						GVL05, là tháng 8,
+GVL06, là tháng 7,
+GVL07, là tháng 6, 
+GVL08, là tháng 5, 
+GVL09, là tháng 4, 
+GVL10	  tháng 3
+
+SELECT CO, DIV, BR, GLACCT, GMDESC,GVL05 FROM GM WHERE CO='01' and  
+div= '000' and br= '000' and GLACCT ='13111'                        
+ CO  DIV  BR   GLACCT        GMDESC                                         GVL05  
+ 01  000  000  13111         Trade Receivable-HCM              203,979,848,142.20  
+ 
+  update GM set   GVL05 =  GVL05 +7959798          
+ WHERE CO='01' and                                
+ div= '000' and br= '000' and GLACCT ='13111'     
+ 1 rows updated in GM in ZPTLIBD.                 
+  CO  DIV  BR   GLACCT        GMDESC                                         GVL05
+ 01  000  000  13111         Trade Receivable-HCM              203,987,807,940.20
+ 
+ 
+SELECT CO, DIV, BR, GLACCT, GMDESC,GVL05 FROM GM WHERE CO='03' and 
+div= '000' and br= '000' and GLACCT ='13111'                       
+  CO  DIV  BR   GLACCT        GMDESC                                         GVL05  
+ 03  000  000  13111         Trade Receivable-HCM               39,189,354,014.16  
+ 
+update gm set    GVL05 =   GVL05  -7959798          
+WHERE CO='03' and                                   
+div= '000' and br= '000' and GLACCT ='13111'        
+1 rows updated in GM in ZPTLIBD.                    
+  CO  DIV  BR   GLACCT        GMDESC                                         GVL05  
+ 03  000  000  13111         Trade Receivable-HCM               39,181,394,216.16  
+ 
+ 
+ 
 ===============================================================================
 --- all order có value<500000
 select *                                        

@@ -13501,7 +13501,42 @@ update cm a set CMTMD1 =(select CMTMD1 from ldphuc/temp b
                         where a.cust=b.cust)                
 where  exists (select * from ldphuc/temp b                   
 where a.cust=b.cust)                                        
-543 rows updated in CM in ZPTLIBD.                          
+543 rows updated in CM in ZPTLIBD.      
+
+
+Phan Vuong Bao Nguyen - update khach hang - update cust 
+select CUST,CDA,CAPHON,CAFAX,CALIRF,CAEXPD,CASLR,CASLED     
+from ca                                                     
+where CUST                                                  
+ =   'C00001'                                               
+File TEMP in LDPHUC was replaced.                           
+
+update ca a set                                        
+CAPHON  = (Select CAPHON     from ldphuc/temp b        
+           where a.cust=b.cust and a.cda=b.cda)        
+,CAFAX  = (Select CAFAX      from ldphuc/temp b        
+           where a.cust=b.cust and a.cda=b.cda)        
+,CALIRF = (Select  CALIRF    from ldphuc/temp b        
+           where a.cust=b.cust and a.cda=b.cda)        
+,CAEXPD = (Select CAEXPD     from ldphuc/temp b        
+           where a.cust=b.cust and a.cda=b.cda)        
+,CASLR = (Select  CASLR     from ldphuc/temp b         
+          where a.cust=b.cust and a.cda=b.cda)         
+,CASLED= (Select CASLED     from ldphuc/temp b         
+          where a.cust=b.cust and a.cda=b.cda)         
+where exists (Select * from ldphuc/temp b              
+where a.cust=b.cust and a.cda=b.cda)                   
+
+select cust,CMRESD                 
+from cm                            
+where  CUST                        
+=     'N03052'                     
+File TEMP in LDPHUC was replaced.                                                  
+
+update cm a set CMRESD=(select CMRESD From ldphuc/temp b       
+where a.cust=b.cust)                                           
+where exists (Select * From ldphuc/temp b                      
+where a.cust=b.cust)                              
 ========================================================================================
 edtlibl line 70 va go asap roi 11/2 Default Retrievals Library: S63LIBR 
 2 thu vien nay cau hinh phai giong nhau la ZPT hoac s63 
