@@ -84,25 +84,11 @@ File TEMP3 in LDPHUC was replaced.
 
 
 
-
-
- OR   33885299       5/09/16  15:46:18   VIEMTT        
-
-
-
-
-
-
-
-
-
-
-
 SELECT        a.CPLDTE, a.SLSMN, a.SMDESC, a.PDTCDE, a.PDTDES, a.CUST, a.CNAME, a.CMGRP2, a.CMGRP3, a.CMGRP4, a.CADD2, a.ZCMTYP, ISNULL(b.CPLUPD, 0) AS CPLUPD, ISNULL(b.CPLUPT, 0) AS CPLUPT
 FROM            dbo.zsa756pf AS a LEFT OUTER JOIN
                          dbo.ZCPLD AS b ON a.SLSMN = b.SLSMN AND a.CUST = b.CUST AND a.CPLDTE = b.CPLUPD
 WHERE        (a.PDTCDE NOT IN ('ADC', 'BCC', 'EVP', 'GMA', 'MCC', 'OTC')) 
-AND (a.CPLDTE 20160828 and 20160831) 
+AND (a.CPLDTE between 20160828 and 20160831) 
 AND (b.CPLUPD <> 0)
 
 
