@@ -1,101 +1,90 @@
+      
+                      
 
-SELECT MJDKEY,count(distinct CO) FROM gj WHERE gjdel='' and mjdate 
-between 20160801 and 20160831 GROUP BY mjdkey ORDER BY 2 desc      
 
- SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T08              
- FROM GJ                                                        
- WHERE MJDATE                                                   
- BETWEEN 20160801 AND 20160831 GROUP BY CO, DIV, BR, GLACCT     
-File GJ in ldphuc was replaced.                                  
+SBMJOB
+CALL PGM(ZTENDER) 
 
-GVL01, là tháng 12,
-GVL02, là tháng 11,
-GVL03, là tháng 10,
-GVL04, là tháng 9,
-					GVL05, là tháng 8,
-GVL06, là tháng 7,
-GVL07, là tháng 6, 
-GVL08, là tháng 5, 
-GVL09, là tháng 4, 
-GVL10	  tháng 3
 
-2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
-SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T08, B.GVL05   
-FROM ldphuc/GJ a,gm b                                 
-WHERE a.co=b.co and a.div=b.div and                  
-a.br=b.br and a.glacct=b.glacct  and                 
-A.T08<>B.GVL05                                       
-File TEMP in ldphuc was replaced.                                                                            
+
+
+
+AND INHCFD =YEAR(CURDATE()) ||DIGITS(DEC(MONTH(CURDATE()),2)) 
+||DIGITS(DEC(DAY(CURDATE()),2))                               
+ 
+ 
  
 
-update GM b set b.GVL05 = (SELECT  A.T08         
-FROM ldphuc/GJ a                                 
-WHERE a.co=b.co and a     .div=b.div and         
-a.br=b.br and a.glacct=b.glacct  and             
-A.T08<>B.GVL05 )                                 
-where exists (SELECT A.T08                       
-FROM ldphuc/GJ a                                 
-WHERE a.co=b.co and a.div=b.div and              
-a.br=b.br and a.glacct=b.glacct  and             
-A.T08<>B.GVL05   )                               
-19 rows updated in GM in ZPTLIBD.                                           
+
+
+
+
+ Incident #72331 Escalated -  Batch JL not post to GL
+ 
+ CALL PGM(RPG681) PARM('TOP' 'WH6' 'PS' '61216280' '000' '000' '0' '   ' '
+' ' ' 'OR' '33912755')   
+
+ RPG101                     Order Tracking Manager                             
+                                                                               
+     All Warehouses                      All Customers                         
+     All Branches                                                              
+Inquiries ... 5=Customer 6=Order 7=P/Slip 8=Invoice 9=Tracking Detail E=Errors 
+-------------------------------------------------------------------------------
+Sel Date   Order#  P/Slip#     Inv#  M/Fest# Cust PO  #    Whs Cust#  Status   
+-------------------------------------------------------------------------------
+   90916 33912755 61216280                                 WH6 N14952 14.Rel Pi
+ 
+Dear Phúc
+Theo như trao đổi với LEO (chị Vân Anh), LEO không yêu cầu báo cáo tổng số lượng hàng hóa hết hạn và hư hỏng của Leo L01 trong năm 2015
+LEO cẩn report hàng adjust của LEO trong năm 2015 nên IT cung cấp cho LEO nhé
+Cảm ơn em
+
+select *                                               
+from it                                                
+where prncpl ='L01' and itdel='' and ttype='AJ'        
+and ITDAT between 20150101 and 20151231         
+
+
+sales sup: bang SV 
+
    
----- Check lai select lai kiem tra xem con loi ko
- SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T08, B.GVL05     
-FROM ldphuc/GJ a,gm b                                   
-WHERE a.co=b.co and a.div=b.div and                    
-a.br=b.br and a.glacct=b.glacct  and                   
-A.T08<>B.GVL05  
- => ko co => dung
  
-SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T08                           
-FROM ldphuc/GJ a where not exists (select * from                      
- gm b                                                                
-WHERE a.co=b.co and a.div=b.div and                                  
-a.br=b.br and a.glacct=b.glacct  and                                 
-A.T08= B.GVL05)                                                      
- => ko co => dung     
-                                 
-SELECT * FROM gm a,ac b WHERE GVL05 <>0 and a.glacct=b.glacct and    
-b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
-a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
-c.T08= a.GVL05)                                                      
- => ko co => dung. 
+ 
+===========================================================                                                                          
+-	wrkobj RPG037D                         
+                                                             
+-	Opt  Object      Type      Library     Attribute   Text                        
+	8    RPG037D     *PGM      ZPTLIBL     RPGLE       Delivery Minute - 220909 -  
+ 
+																		  
+ 
+
+SELECT A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,                     
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                                
+COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),       
+SUM(A.CODVAL)                                                      
+ FROM cod a,coh b, cm c WHERE coddel='' and cohdel=''              
+and b.cust=c.cust and              
+a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20160801 and  
+20160831 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC    	
+
+ 
+	
+	
+
+bao cao Tuan callcard
+ZPG334
+
+ZPG231
+ZIN865 -> daily sales
+ZIN866 -> daily return
+ZIN792 -> daily raw data
 
 
+     
+===============
 
-
-
-SELECT distinct                                                  
-a.TTYPE,a.ORDR,a.PSN,a.INVNO,OTDSEQ,a.MANFST,b.CUST,c.WHS,OTDDAT,
-OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU     
-FROM OTD a, inh b, ind c, coh d, OTS e                           
-WHERE                                                            
-otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
-a.ordr=b.ordr and                                                
-b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
-and a.ttype=d.ttype and cohdel=''                                
-and a.OTDSTS=e.OTSSTS                                            
-and c.item in ('G030560','G030600')                              
-and indcfd in (20160823,20160824)                                
-and b.ordr=d.ordr                                                
-File TEMP3 in LDPHUC was replaced.
-
-
-
-
-SELECT        a.CPLDTE, a.SLSMN, a.SMDESC, a.PDTCDE, a.PDTDES, a.CUST, a.CNAME, a.CMGRP2, a.CMGRP3, a.CMGRP4, a.CADD2, a.ZCMTYP, ISNULL(b.CPLUPD, 0) AS CPLUPD, ISNULL(b.CPLUPT, 0) AS CPLUPT
-FROM            dbo.zsa756pf AS a LEFT OUTER JOIN
-                         dbo.ZCPLD AS b ON a.SLSMN = b.SLSMN AND a.CUST = b.CUST AND a.CPLDTE = b.CPLUPD
-WHERE        (a.PDTCDE NOT IN ('ADC', 'BCC', 'EVP', 'GMA', 'MCC', 'OTC')) 
-AND (a.CPLDTE between 20160828 and 20160831) 
-AND (b.CPLUPD <> 0)
-
-
-
-
-
-  
 -	lấy hóa đơn có Zinat và ngày tương ứng lưu vào temp
 -	link với OTS OTD lấy all line có order lưu vào temp2
 -	vào temp2 remove những line hóa đơn không có zinat: xóa line invoice<>0 và invoice not in temp
@@ -113,70 +102,8 @@ and a.OTDSTS=e.OTSSTS
 and c.item in ('G030560','G030600')                               
 and indcfd in (20160823,20160824) 
 and b.ordr=d.ordr
-
-
-TTYPE,ORDR,PSN,INVNO,OTDSEQ,MANFST,CUST,WHS,OTDDAT,OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU
-
---- lan 1
-SELECT distinct                                                   
-TTYPE,ORDR,PSN,INVNO,OTDSEQ,MANFST,CUST,WHS,OTDDAT,
-OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU  
-FROM OTD a, inh b, ind c, coh d, OTS e                            
-WHERE                                                             
-otddel='' and inhdel='' and inddel=''and a.ttype='OR' and         
-a.ordr=b.ordr                                               
-b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')   
-and a.ttype=d.ttype and cohdel=''                                                               
-and a.OTDSTS=e.OTSSTS                                             
-and c.item in ('G030560','G030600')                               
-and indcfd in (20160823,20160824) 
-and b.ordr=d.ordr
-
----- lan 2 ko dung 
-SELECT distinct                                                  
-a.TTYPE,a.ORDR,a.PSN,a.INVNO,OTDSEQ,a.MANFST,b.CUST,c.WHS,OTDDAT,
-OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU     
-FROM OTD a, inh b, ind c, coh d, OTS e                           
-WHERE                                                            
-otddel='' and inhdel='' and inddel=''and a.ttype='OR' and        
-a.ordr=b.ordr and                                                
-b.ttype=c.ttype and b.invno= c.invno and b.ttype in ('IV','CR')  
-and a.ttype=d.ttype and cohdel=''                                
-and a.OTDSTS=e.OTSSTS                                            
-and c.item in ('G030560','G030600')                              
-and indcfd in (20160823,20160824)                                
-and b.ordr=d.ordr                                                
-File TEMP3 in LDPHUC was replaced.                                                                                                                 
-===
- select *                                                 
-from inh a, ind b                                        
-where a.ttype=b.ttype and a.invno=b.invno                
-and a.ttype in ('IV','CR') and inhdel='' and inddel=''   
-and b.item in ('G030560','G030600')                      
-and indcfd in (20160823,20160824)                        
-File TEMP in LDPHUC was replaced.                        
- 
-
-SELECT distinct                                                   
-a.TTYPE,a.ORDR,a.PSN,a.INVNO,OTDSEQ,a.MANFST,c.CUST,c.WHS,OTDDAT, 
-OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU      
-from otd a, ots b, ldphuc/temp c, coh d                           
-where     a.OTDSTS=b.OTSSTS and otddel='' and otsdel=''           
-and a.ttype='OR' and a.ordr=c.ordr                                
-and a.ordr=d.ordr and cohdel='' and d.ttype='OR'                  
-File TEMP2 in LDPHUC was replaced.                                                 
-
-  33802805                           
  
  
- Columns . . . :    1  71           Browse                       CAMLIBM/QCLSRC 
- SEU==>                                                                  CAMREP 
- FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7  
-1879.00                                                                         
-1880.00 /* CAM16A */ CHGVAR     VAR(&FORM) VALUE('ZIC732P01K') /*V13 ADD*/      
-1881.00              CHGDTAARA  DTAARA(*LDA (603 10)) VALUE(&FORM) /*V13 ADD*/  
-1882.00                                                                         
-		
 =====================================================================================
  Incident #72355 -  Sai Sub Dist SAO thanh SAN
  Sai Sub Dist SAO thanh SAN
@@ -547,6 +474,7 @@ AND COODEL='' AND INHDEL='' AND B.PRNCPL='A05'
 AND A.COHDAT BETWEEN 20160801 AND 20160814   
 
 ===========================================================================
+ICS832
 -	nhập item và get item vào chương trình
 -	select từ IA theo item để get item,whs,locn,isl#,qty: select va luu vao list item 
 -	select từ lb theo item,whs,locn,isl#,qty mà get từ IA: select tu bang LB va luu vao list2 item  

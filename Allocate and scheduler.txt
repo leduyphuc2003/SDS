@@ -19,11 +19,9 @@ allocate
 	select sum(IMSOA) from IM where ITEM='A020170'
 
 scheduler
-	select sum (IMSSA)
-	from IM where item ='A020170'
+	select sum (IMSSA) from IM where item ='A020170'
 				 
-	select sum (IWSSA)
-	from IW	where item ='A020170'
+	select sum (IWSSA) from IW	where item ='A020170'
 
 pick
 	select sum(LBSPK) from LB where ITEM='A020170'

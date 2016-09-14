@@ -7,3 +7,12 @@ C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\
 C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.exe
 C:\Users\dple\Documents\Visual Studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.pdb
 C:\Users\dple\documents\visual studio 2015\Projects\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.csprojResolveAssemblyReference.cache
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.exe.config
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.exe
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.exe
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\bin\Debug\HotLineMobile.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.csprojResolveAssemblyReference.cache
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.Form1.resources
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.Properties.Resources.resources
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\HotLineMobile\HotLineMobile\obj\Debug\HotLineMobile.csproj.GenerateResource.Cache

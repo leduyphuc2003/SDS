@@ -1,4 +1,28 @@
-
+  Incident #72660 -  History Sales - nttnhan - nguyen thi thanh nhan
+Dear anh Phuc,
+Nho anh ho tro giup em run sales cua 17 khach hang nhu file template dinh kem.
+Thoi gian: 07/07/2015 - 19/08/2016.
+Thank anh!
+                                                   
+select b.TTYPE,b.INVNO,CUST,INHDNM,                              
+ INHDA1, INHDA2, INHDA1 ,CMGRP2,                          
+ITEM,CMGRP3,CMGRP4,SUB,                                   
+GIVINV,GIVBRF,INDCFD,INDUNT,                              
+INDSEL,INDVAL,b.PBHCON,b.ORDR,                            
+b.PRNCPL,PBHSDT,PBHEDT                                    
+from inh a, ind b, pbh c                                  
+where a.ttype=b.ttype and a.invno=b.invno                 
+and inhdel='' and inddel='' and a.ttype in ('IV','CR')    
+and b.pbhcon=c.pbhcon                                     
+and pbhdel=''                                             
+and cust in (
+'S00485','S00515','S00525','S00538',
+'S00807','S00857','S01174','S01177',
+'S01862','S01980','S02279','S04168',
+'S05121','S05424','S06377','S08156',
+'S09157')
+and indcfd between 20150707 and 20160819
+===============================================================
 BBraun data - Tran Thanh Quynh Mai - Le Phu Tien	
 Dear anh Thong,
 Could you share with us YTD 05/2016 data of BBraun?
@@ -46,7 +70,7 @@ Send user bao cao ZPP G03 Item Movement Summary-YTD (XL) (NW) Friday, January 1,
  File TEMP in LDPHUC was replaced.  
 
 ========================   chi Truc
-Incident #70412 -  extract data Thang 07.2016
+Incident #70412 -  extract data Thang 07.2016 - cao thi thanh truc
 extract data Thang 07.2016
 Dear IT team,
 Vui long extract data Thang 07/2016  nhu thong tin ben duoi nhe. Thanks all
@@ -256,8 +280,7 @@ where a.ttype in ('IV','CR') and inhdel='' and inddel=''
 and a.ttype=b.ttype and a.invno=b.invno                          
 and CMGRP2 ='HP1'                                                
 and indcfd between 20150601 and 20160731                         
-and a.pbhcon=c.pbhcon and pbhdel='' and a.pcllvl=c.pcllvl        
-and b.cust='S00861'                                              
+and a.pbhcon=c.pbhcon and pbhdel='' and a.pcllvl=c.pcllvl                                                   
 File TEMP in LDPHUC was replaced.                                
 
 --- khong co PBHTX1
@@ -341,6 +364,23 @@ Dear anh Thông và các anh IT,
 
 Vui lòng chạy giúp em báo cáo chi tiết transaction của tất cả đơn hàng của 2 mặt hàng G030560 (ZINNAT TAB   250MG  10'S) và G030600 (ZINNAT SUS SAC   125MG/5ML 10'S) ra hóa đơn vào ngày 23/04/2016 và 24/08/2016 nhé.
 
+select b.ordr, COHRDT,  COHSRC,  cust,item,codunt,   
+       b.artrm,psn,invno,COHCTD,COHCTT               
+from coh a, cod b                                    
+where a.ttype=b.ttype and a.ordr=b.ordr              
+and cohdel='' and coddel=''                          
+and a.ttype='OR'                                     
+and b.item in ('G030560','G030600')                  
+and COHCTD in (20160823,20160824)                    
+
+SELECT A.ORDR, A.COHSRC, A.CUST, A.ITEM, A.CODUNT, A.ARTRM, A.PSN, 
+A.INVNO, A.COHCTD, A.COHCTT, B.MANFST,MFHDPD,MFHDPT FROM           
+ldphuc/temp a,mfh b, mfd c WHERE mfhdel='' and mfddel='' and       
+b.ttype=c.ttype and b.manfst=c.manfst and a.psn=c.psn and          
+a.ordr=c.ordr and a.invno=c.invno                                  
+File TEMP2 in LDPHUC was replaced.     
+
+-----------
 SELECT distinct                                                  
 a.TTYPE,a.ORDR,a.PSN,a.INVNO,OTDSEQ,a.MANFST,b.CUST,c.WHS,OTDDAT,
 OTDTIM,OTDSTS,OTSDES,INDCFD,COHSRC,INHDNM,ITEM,INDUNT,COHCTU     
@@ -380,7 +420,24 @@ and b.item ='N160010'
 and indcfd between 20140101 and 20160822                           
 File TEMP in LDPHUC was replaced.                                  
 =======================================================================
-Huynh Thi Ngoc Hanh <htnhanh@zuelligpharma.com> - IC
+Huynh Thi Ngoc Hanh <htnhanh@zuelligpharma.com> - hanh IC
+
+select b.ordr, COHRDT,  COHSRC,  cust,item,codunt,   
+       b.artrm,psn,invno,COHCTD,COHCTT               
+from coh a, cod b                                    
+where a.ttype=b.ttype and a.ordr=b.ordr              
+and cohdel='' and coddel=''                          
+and a.ttype='OR'                                     
+and b.item in ('G030560','G030600')                  
+and COHCTD in (20160823,20160824)                    
+
+SELECT A.ORDR, A.COHSRC, A.CUST, A.ITEM, A.CODUNT, A.ARTRM, A.PSN, 
+A.INVNO, A.COHCTD, A.COHCTT, B.MANFST,MFHDPD,MFHDPT FROM           
+ldphuc/temp a,mfh b, mfd c WHERE mfhdel='' and mfddel='' and       
+b.ttype=c.ttype and b.manfst=c.manfst and a.psn=c.psn and          
+a.ordr=c.ordr and a.invno=c.invno                                  
+File TEMP2 in LDPHUC was replaced.  
+----------------------
 SELECT distinct                                                  
 A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ, A.MANFST, A.CUST,     
 A.WHS,A.OTDDAT, A.OTDTIM,A.OTDSTS,OTSDES ,c.indcfd,cohsrc,       
@@ -395,3 +452,39 @@ and a.ordr=d.ordr
 and a.OTDSTS=e.OTSSTS                                            
 and c.item in ('G030560','G030600')                              
 and indcfd in (20160823,20160824)   
+=======================================================================
+Nguyen Huynh Kim Oanh - bao cao call card chay trong SQL
+SELECT a.CPLDTE, a.SLSMN, a.SMDESC, a.PDTCDE, a.PDTDES, a.CUST, a.CNAME, a.CMGRP2, a.CMGRP3, a.CMGRP4, a.CADD2, a.ZCMTYP, ISNULL(b.CPLUPD, 0) AS CPLUPD, ISNULL(b.CPLUPT, 0) AS CPLUPT
+FROM dbo.zsa756pf AS a LEFT OUTER JOIN
+dbo.ZCPLD AS b ON a.SLSMN = b.SLSMN AND a.CUST = b.CUST AND a.CPLDTE = b.CPLUPD
+WHERE (a.PDTCDE NOT IN ('ADC', 'BCC', 'EVP', 'GMA', 'MCC', 'OTC')) 
+AND (a.CPLDTE between 20160828 and 20160831) 
+AND (b.CPLUPD <> 0)
+======================================================================
+Nguyen Dinh Tuan 
+select a.TTYPE,a.INVNO,indseq,                                       
+a.ITEM,INDUNT,INDVAL,c.CUST,INHDA1,CMGRP2,                           
+IATOL,ISL#,IAEXPD,INDCFD from ind a, ia b, inh c                     
+ where a.ttype=b.ttype and                                           
+a.invno=b.batch and inddel='' and iadel='' and a.ttype in            
+('IV','CR') and a.item ='O010290' and isl#='1207184' and indcfd      
+between 20160101 and 20160831                                        
+and inhdel='' and a.ttype=c.ttype and a.invno=c.invno                
+
+Nguyen Dinh Tuan - data hang lanh 
+Dear anh,
+Nho anh chayj giup em data hang lanh theo template dinh kem nha.
+Period: 01-Jan-16 -> 31-Aug-16
+Cam  on anh.
+
+select a.TTYPE,a.INVNO,indseq,                                      
+a.ITEM,INDUNT,INDVAL,c.CUST,INHDA1,CMGRP2,                          
+IATOL,ISL#,IAEXPD,INDCFD from ind a, ia b, inh c                    
+ where a.ttype=b.ttype and                                          
+a.invno=b.batch and inddel='' and iadel='' and a.ttype in           
+('IV','CR') and indcfd                                              
+between 20160101 and 20160831                                       
+and inhdel='' and a.ttype=c.ttype and a.invno=c.invno               
+and a.item in (select item from im where ISTCDE in ('COL', 'FRE')   
+and imdel='')                                                       
+File TEMP in LDPHUC was replaced.             

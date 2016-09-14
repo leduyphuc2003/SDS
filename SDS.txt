@@ -6,6 +6,8 @@ select *
 from asqfp     
 ====================================================================
 13 70 11  xem kho nao 
+=================================================================
+Hang lanh: ISTCDE = COL FRE
 ==================================================================
 Back order thi xem file BOTinsert into invdsc                                        
 SELECT * FROM ldphuc/INVDSC  A                     
@@ -210,7 +212,7 @@ Trung Back end
                 App Store - iOS:
 -	eZRx Call-Me-Back for customers: 267
 -	eZRx Call-Me-Back Professional for SC: 48
-3. Total number of views of discounts: 4920 views 
+3. Total number of views of discounts: 4946 views 
 4. Number of discounts loaded into call me back: 90 promos, sent to 1861 customers per each promo
 
 Muc 5,6,7 lay trong file extract
@@ -3400,6 +3402,49 @@ and a.IVSIMB  =b.IVSIMB
 and a.ISSSDT  =b.ISSSDT                        
 and a.ISSEDT  =b.ISSEDT)  
 ==============================================================================================================
+-------------------------------------------------------------------
+upload Sales matrix cho Mini POES ( Sales matrix chuan 2 - Mini POES chuan ne) 
+
+SELECT * FROM ldphuc/ZSSATCP           
+ 
+UPDATE  ldphuc/ZSSATCP  SET ITEM  ='' 
+
+SELECT *                                   
+FROM ZPTLIBD/ZSSATCP A                             
+WHERE slsmn in (SELECT slsmn FROM ldphuc/ZSSATCP B)
+ 
+ delete                                                  
+ FROM ZPTLIBD/ZSSATCP A                                  
+ WHERE slsmn in (SELECT slsmn FROM ldphuc/ZSSATCP B)      
+                
+ 
+INSERT INTO ZPTLIBD/ZSSATCP                                              
+SELECT * FROM ldphuc/ZSSATCP   
+
+1.	Kiem tra SLSMN da co trong he thong hay chua.
+SELECT count(*)                                   
+FROM ZPTLIBD/ZSSATCP A                             
+WHERE EXISTS (SELECT * FROM ldphuc/ZSSATCP B
+WHERE A.SLSMN=B.SLSMN and A.CUST=B.CUST and a.PRNCPL=b.PRNCPL)
+
+select slsmn, cust, prncpl, count(*)   
+from       ZSSATCP  where cust<>''     
+group by slsmn, cust, prncpl           
+having count(*)>1   
+
+ select slsmn,PLCAR,PLCTE,CMGRP2,PRNCPL,item,count(*)       
+ from       ZSSATCP  where cust=''                          
+ group by slsmn,PLCAR,PLCTE,CMGRP2,PRNCPL,item              
+ having count(*)>1     
+ 
+2.	Chay update bang cach: wrkjobscde -> tim den job ZPG466  chon so 10 de refresh POES.
+
+3.	Kiem tra trong file EOMRC/ EOMRI de kiem tra thu da co hay chua?
+SELECT * FROM EOMRC                
+WHERE SLSMN in (select slsmn from ldphuc/ZSSATCP) 
+
+
+==========================================================
 Update Sales Matrix cho MiniPOES (upload matrix cho Mini POES)
 Hi Phuc,
 
@@ -3481,46 +3526,7 @@ SELECT * FROM EOMRC
 WHERE SLSMN='Z39' AND CUST='N00115' de kiem tra thu da co hay chua?
 
 
--------------------------------------------------------------------
-upload Sales matrix cho Mini POES ( Sales matrix chuan 2 - Mini POES chuan ne) 
 
-SELECT * FROM ldphuc/ZSSATCP           
- 
-UPDATE  ldphuc/ZSSATCP  SET ITEM  ='' 
-
-SELECT *                                   
-FROM ZPTLIBD/ZSSATCP A                             
-WHERE slsmn in (SELECT slsmn FROM ldphuc/ZSSATCP B)
- 
- delete                                                  
- FROM ZPTLIBD/ZSSATCP A                                  
- WHERE slsmn in (SELECT slsmn FROM ldphuc/ZSSATCP B)      
-                
- 
-INSERT INTO ZPTLIBD/ZSSATCP                                              
-SELECT * FROM ldphuc/ZSSATCP   
-
-1.	Kiem tra SLSMN da co trong he thong hay chua.
-SELECT count(*)                                   
-FROM ZPTLIBD/ZSSATCP A                             
-WHERE EXISTS (SELECT * FROM ldphuc/ZSSATCP B
-WHERE A.SLSMN=B.SLSMN and A.CUST=B.CUST and a.PRNCPL=b.PRNCPL)
-
-select slsmn, cust, prncpl, count(*)   
-from       ZSSATCP  where cust<>''     
-group by slsmn, cust, prncpl           
-having count(*)>1   
-
- select slsmn,PLCAR,PLCTE,CMGRP2,PRNCPL,item,count(*)       
- from       ZSSATCP  where cust=''                          
- group by slsmn,PLCAR,PLCTE,CMGRP2,PRNCPL,item              
- having count(*)>1     
- 
-2.	Chay update bang cach: wrkjobscde -> tim den job ZPG466  chon so 10 de refresh POES.
-
-3.	Kiem tra trong file EOMRC/ EOMRI de kiem tra thu da co hay chua?
-SELECT * FROM EOMRC                
-WHERE SLSMN in (select slsmn from ldphuc/ZSSATCP) 
 
 
 ================================================================
@@ -7346,7 +7352,8 @@ Truoc khi extract thi em phai kiem tra tat ca INDPAC cua CR deu phai giong nhu I
 
 SELECT A.TTYPE, A.INVNO, A.INDSEQ ,b.indpac  FROM ind a,ind  
  b WHERE a.inddel='' and a.indoin=b.invno and b.ttype='IV' and 
-a.indoil=b.indseq and a.indpac<>b.indpac                     
+a.indoil=b.indseq and a.indpac<>b.indpac and a.ttype='CR' and
+a.indcfd>=20160901                    
 File IND in ldphuc was created.                              
 
 update ind a   set                                          
@@ -12837,6 +12844,14 @@ Member:
 -	Monthly: 	CTRMRP: Ch?y tru?c khi dóng s? g?m: Công n?, AR và Inventory.
 CTRMRP2, CTRMRP2A: Ch?y sau khi dóng s?.
 -	Yearly: ZPVYEAR
+-	môi trường CAM:   
+	  CAMLIBM/QCLSRC 
+		   CTRMRPCAM                                                                           
+	  File  . . . . . . . . . .   QCLSRC       Name, F4 for list                
+		Library . . . . . . . .     CAMLIBM    *LIBL, *CURLIB, name              
+	  Member:                                                                 
+		Name  . . . . . . . . .   CTRMRPCAM    *ALL, name, *generic*          
+		Type  . . . . . . . . .   *ALL         *ALL, type, *generic*, *BLANK  
 
 --- Edit bao cao go asap
 So 1 insert, 4 delete
@@ -14976,3 +14991,6 @@ Vao ESC 20 -> Shift F3 -> Invoice Credit History
                          Invoice Credit History                          
      Inv#  Attempt  Crd#                  Value                    Tax   
  01 73401921   1 88488811          5,552,984.00-            277,649.00-  
+ =============================================================
+ Transaction Type Description - file IT mô tả - file IT mo ta - mo ta IT 
+select * from tt

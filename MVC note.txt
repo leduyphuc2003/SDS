@@ -4,7 +4,6 @@ chuong trinh xep lich
 -	theo thu tu A B C D E F G
 -		
 
-
 -	giao diện có calendar chọn start date và end date chạy report
 -	có edit text để gõ tên nhân viên vào
 -	class nhanvien: ten, số lượng ngày trực, list ngay truc, cờ check trực CN 
@@ -23,15 +22,16 @@ chuong trinh xep lich
 	-	gán đến đâu thì xóa ngày thứ 7 vừa gán đó ra khỏi list date trực
 -	lặp cho list ngày còn lại đã bỏ all t7 cn t2 
 	-	Chỉ check trong từng tháng, không check all vì nếu check all 12 tháng sẽ sai => 1 người sẽ trực 6 ngày, có người cả tháng chỉ trực 2 ngày:
-		=	lấy nhan vien có ngày trực >5 lưu vào listNhieu và <4 lưu vào listIt ra
-		=	trừ số ngày trực của nhan vien listNhieu >5 về =5
-		=	lưu số ngày trừ ra đó vào listThua ngày
-		=	Cộng listThua vào list nhan vien listIt ngày đến =4 thì dừng 
+		-- =	lấy nhan vien có ngày trực >5 lưu vào listNhieu và <4 lưu vào listIt ra
+		-- =	trừ số ngày trực của nhan vien listNhieu >5 về =5
+		-- =	lưu số ngày trừ ra đó vào listThua ngày
+		-- =	Cộng listThua vào list nhan vien listIt ngày đến =4 thì dừng 
 	-	split ra n list tương ứng từng tháng 
 	-	lặp tren từng tháng 
-	-	khai báo list nhanvien có ít ngày trực nhất trong từng tháng đang xử lí 
-	-	lưu all nhân viên có min vào list: lấy tổng ngày trực của từng nhân viên trong tháng, lấy giá trị min, lấy những nhân viên có ngày trực trong tháng đó là min, lưu all nhân viên đó vào list 
-	-	lấy  ngày trực gán vào phần tử đầu tiên(đổi thành phần tử random) cửa list 
+		=	khai báo list nhanvien có ít ngày trực nhất trong từng tháng đang xử lí 
+		=	lưu all nhân viên có min vào list: lấy tổng ngày trực của từng nhân viên trong tháng, lấy giá trị min, lấy những nhân viên có ngày trực trong tháng đó là min, lưu all nhân viên đó vào list 
+		=	lấy  ngày trực gán vào phần tử đầu tiên(đổi thành phần tử random) cửa list 
+		=	lặp lại cho all ngày trong tháng cho đến hết tất cả các ngày trong tháng 
 	-	lặp lại cho tháng kế tiếp, reset gán lại số ngày trực hiện tại 
 	-	chạy theo nhiều năm: tách khoảng cách năm ra từng năm, sau đó chạy code cho mỗi năm riêng biệt
 -	xắp xếp ngày trực của 1 nhân viên theo thứ tự đều 
@@ -53,12 +53,261 @@ chuong trinh xep lich
 
 -	nếu ai trực lễ rồi thì không trực lần 2 nữa
 -	ai trực lễ thì +2, 
--	làm động cho phép add ngày nghĩ vào
+-	làm động cho phép add ngày lễ vào
 -	xuất ra báo cáo dạng excel hoặc calendar cho phép check số ngày
 
 
+-	check CN => check ngày lễ => check ngày thường
+-	check lễ: trong từng tháng 
+-	khai báo List<list<ngay>> listNgayLe
+-	gán all ngày lễ vào listNgayLe
+-	sau khi check CN, ta check tiếp ngày lễ: 
+	-	foreach từng phần tử trong listNgayLe
+	-	nếu count(phần tử thứ i trong listNgayLe) là >1 (nếu ngày tiếp theo là ngày lễ)
+		=	nếu trước ngày lễ là ngày làm việc bình thường:
+			==	get all nhan vien không trực CN trong tháng chứa ngày lễ đó ra lưu vào list_Chưa_Trực_CN
+			==	lấy random một nhanvien trong list_Chưa_Trực_CN 
+			==	check nhanvien đó đã trực lễ chưa
+			==	nếu chưa trực lễ thì mới gán ngày trực lễ
+			==	nhan vien nào trực ngày lễ sẽ trực hết list lễ liên tục đó
+			==	mỗi ngày lễ sẽ tính +2
+			==	gán ngày trực vào list ngày trực của nhanvien đó
+			==	gán cờ checkTrucLe = true
+			==	remove ngày lễ đó ra khỏi listNgayLe
+			==	gán một ngày thì i trong vòng lặp ngày tháng tăng 1: i++ 
+		=	nếu trước ngày lễ là CN (ngày lễ là thứ 2) hoặc ngày lễ bắt đầu là thứ 6 
+			==	check người nào trực CN đó
+			==	gán list ngày trực liên tục đó cho người trực nhanvien
+			==	lấy người nhanvien đó ra lưu vào nv
+			-- ==	check nếu nv chưa trực lễ thì:
+				-- ===	gán list ngày trực liên tục đó cho người trực nhanvien
+			-- ==	nếu nv đó đã trực lễ thì ??????
+	-	nếu count(phần tử thứ i trong listNgayLe) =1:
+		=	nếu lễ là thứ 6, thì người trực CN sẽ trực luôn:  
+			==	+2 số ngày trực cho người đó
+			==	gán ngày trực vào list ngày trực của nhanvien đó
+			==	bật cờ checkTrucLe = true 
+			==	remove ngày lễ đó ra khỏi listNgayLe  
+		=	nếu là T7 hoặc CN thì remove ngày đó ra khỏi listNgayLe:
+			==	get ra nhan vien nào đã được set trực CN lễ đó
+			==	bật cờ checkTrucLe=true
+		=	nếu là những ngày còn lại (if else)
+		
+		
+-	lấy phần tử lễ ra (phần tử này là list ngày)
+-	n = count size phantu đó
+-	nếu ngày đầu tiên trong phần tử đó là T6 T7 CN T2 thì người trực CN sẽ trực
+-	
+
+	
+
+-	check ngày trực lễ trước:
+	=	check trong mỗi tháng
+	=	nhanvien nào chưa trực CN thì lấy ra đổ vào lstNhanVienTrucLe
+	=	lấy random trong lstNhanVienTrucLe lưu vào nv 
+	=	gán ngày lễ cho nv đó
+	=	update lại số ngày trực, cờ trực lễ, ngày trực của nv đó
+	=	nếu 
+	
+-	check CN => check ngày lễ => check ngày thường
+-	check lễ:
+	=	check trong mỗi tháng
+	=	
 
 
+
+	
+=======================================================================
+ICS832
+-	nhập item và get item vào chương trình
+-	select từ IA theo item để get item,whs,locn,isl#,qty: select va luu vao list item 
+-	select từ lb theo item,whs,locn,isl#,qty mà get từ IA: select tu bang LB va luu vao list2 item  
+-	nếu IA và LB bằng nhau thì bỏ qua, nếu khác nhau thì thực hiện update 5 bảng cho allocate và pick theo IA
+-	nếu IA và IW bằng nhau scheduled thì bỏ qua, nếu khác nhau thì update 2 bảng IW và IM theo IA
+-	check lai scheduled, neu IMSSA != IWSSA thi update IMSSA = IWSSA
+		select sum (IMSSA) as IMSSA from IM where item ='N13G0009'                
+		select sum (IWSSA) as IWSSA from IW	where item ='N13G0009'   
+-	check IWSSA những line bị scheduled trong IW mà trong IA không có
+	=	select scheduled <> 0 trong IW của item và all whS
+	=	check line nào không có trong ia
+	=	nếu những line mà không có trong ia có scheduled <>0 thì ta update lại cho nó =0
+
+Xem ICS552 để biet lenh Shift F8
+select a.ttype,a.batch,AJDSTS,a.item           
+from ASLF0183 a, AJD b                         
+where a.item='M070310'                         
+and a.ttype ='LT'                              
+and a.ttype =b.ttype and a.batch=b.batch       
+and AJDDEL='' and  IADEL=''                                 
+and AJDSTS <> '2'                              
+and a.bhseq=b.bhseq          
+
+select a.ttype,a.batch,AJDSTS,a.item 
+from AS400.S064BE8R.ZPTLIBD.ASLF0183 a, AS400.S064BE8R.ZPTLIBD.AJD b                         
+where a.item='M070310' and a.ttype ='LT'                              
+and a.ttype =b.ttype and a.batch=b.batch       
+and AJDDEL='' and  IADEL='' and AJDSTS <> '2'                              
+and a.bhseq=b.bhseq
+
+Cach 2:
+-	nhập item và get item vào chương trình
+-	select từ IA ttype in (OR,PS) theo item để get item,whs,locn,isl#,qty: select va luu vao list item
+-	trong mỗi line IA, check:
+	=	nếu locn='Scheduled': update IWSSA, IMSSA cho IW, IM theo item,whs của IA 
+	=	picked locn='PICKED': update LBSPK 5 bảng theo item,whs,locn,isl# IA 
+	=	còn lại là allocate: update LBSOA 5 bảng theo item,whs,locn,isl# IA 
+-	check scheduled locn ='Scheduled' 
+	=	select scheduled <> 0 trong IW của item và all whS
+	=	check line nào có trong IW và IA (điều kiện link là item và whs), update lại scheduled trong IW theo IA 
+	=	check line nào không có trong ia, update lại scheduled trong IW cho nó =0: tức là trừ đi lượng scheduled cho 2 bảng IW và IM 
+	
+-	check allocate ttype in (OR,PS), locn khác 'PICKED' và 'Scheduled' 
+	=	select allocate <> 0 trong LB của item và all whS
+	=	check line allocate có trong LB và IA theo điều kiện (item,whs,locn,isl#): update LBSOA 5 bảng theo IA 
+	=	check line allocate có trong LB mà không có trong IA: update trừ đi phần allocate trong 5 bảng cho nó về 0
+
+-	check picked ttype in (OR,PS), locn ='PICKED' 
+	=	select LBSPK<>0 trong LB của của item và all whS
+	=	line picked có trong LB và IA theo điều kiện (item,whs,locn,isl#):update LBSPK 5 bảng theo IA 
+	(=	line picked có trong LB mà không có trong IA: update trừ đi phần LBSPK trong 5 bảng cho nó về 0)
+
+Cach 3
+-	nhập item và get item vào chương trình
+-	select từ IA ttype in (OR,PS) theo item để get item,whs,locn,isl#,qty: select va luu vao list item
+-	select từ IA ttype in LT theo item câu lệnh mới để get item,whs,locn,isl#,qty: select va luu vao list item
+-	check allocate 
+	=	select allocate <> 0 trong LB của item và all whS
+	=	mass update allocate <> 0 cua item đó về 0
+	=	check nếu sum allocate 3 bảng lb, il, isl =0 thì check tiếp nếu iw có allocate<>0 thì select trong iw xem có allocate<>0 thì update all trừ cho nó = 0; rồi update im allocate=0
+		===	sum allocate 5 bảng
+		===	nếu lb il isl =0 và iw <>0: select allocate from iw wher allocate<>0; update về 0 cho allocate trong iw; update allocate cho im về 0 
+-	check picked
+	=	select LBSPK<>0 trong LB của của item và all whS
+	=	mass update PICKED <>0 của item đó về 0
+	=	check nếu sum picked 3 bảng lb, il, isl =0 thì check tiếp nếu iw có picked<>0 thì select trong iw xem có picked<>0 thì update all trừ cho nó = 0; rồi update im picked=0
+		===	sum picked 5 bảng
+		===	nếu lb il isl =0 và iw <>0: select picked from iw wher picked<>0; update về 0 cho picked trong iw; update picked cho im về 0 
+-	check scheduled 
+	=	select scheduled <> 0 trong IW của item và all whS
+	=	mas update scheduled<>0 của item đó trong file IW về 0
+-	lặp trên all line của list item:
+	=	nếu locn='Scheduled': update IWSSA cho IW item,whs của IA. Rồi update IMSSA = sum(IWSSA) của item đó
+	=	picked locn='PICKED': update LBSPK 5 bảng theo item,whs,locn,isl# IA 
+	=	còn lại là allocate: update LBSOA 5 bảng theo item,whs,locn,isl# IA 
+
+-	sum allocate 5,picked 5, scheduled
+-	check nếu sum allocate 5 bảng = nhau thì xuất ra "allocate đã đúng", nếu 5 bảng không bằng nhau thì xuất ra "allocate 5 bảng không bằng nhau. Fix tay tiếp nhé"
+-	check nếu sum picked 5 bảng = nhau thì xuất ra "picked đã đúng", nếu 5 bảng không bằng nhau thì xuất ra "picked 5 bảng không bằng nhau. Fix tay tiếp nhé"
+-	check nếu sum scheduled 2 bảng IW và IM: nếu bằng nhau thì xuất ra "scheduled đã đúng", nếu 2 bảng không bằng nhau thì xuất ra "scheduled 2 bảng không bằng nhau. Fix tay tiếp nhé"
+
+
+
+Check them type BI 
+
+ Item                  Warehouse                                   
+ S300260               WM1                                         
+                    Item Warehouse Allocations                     
+      --- Ref# ---  Quantity    Serial/Lot#     Location     Whs   
+  01  BI 88271863     9119.000                  Scheduled    WM1   
+  02  BP 61013156     1350.000  6S088           B14-07-03-02 WM1 
+
+select ITEM, WHS, IWTIN,IWTOUT
+			from IW 
+			WHERE ITEM='S300260'
+			AND WHS='WM1'
+
+ ITEM                  WHS           IWTIN           IWTOUT  
+ S300260               WM1            .000       10469.000  
+ 
+ update IW set IWTOUT=IWTOUT-10469
+	WHERE ITEM='S300260'
+	AND WHS='WM1' 
+	
+	
+UPDATE LB                     UPDATE LB 
+SET  LBSOA= LBSOA-300         SET  LBSOA= LBSOA + {0}                            
+WHERE ITEM='P070050'          WHERE ITEM='{1}' 
+AND LOCN='C2-P1-1-1'          AND LOCN='{2}' 
+AND ISL#='A300840'            AND ISL#='{3}' 
+AND WHS='AS4'                 AND WHS='{4}'                                                
+
+	UPDATE IL SET ILSOA=ILSOA-300       UPDATE IL SET ILSOA=ILSOA + {0}             
+	WHERE ITEM='P070050'                WHERE ITEM='{1}' 
+	AND LOCN='C2-P1-1-1'                AND LOCN='{2}'
+	AND WHS='AS4'                       AND WHS='{3}'  
+
+		UPDATE ISL                       UPDATE ISL                          
+		SET ISLSOA=ISLSOA-300            SET ISLSOA=ISLSOA + {0}              
+		WHERE ITEM='P070050'             WHERE ITEM='{1}' 
+		AND ISL#='A300840'				 AND ISL#='{2}'						 
+			 
+			UPDATE IW SET IWSOA=IWSOA-300   UPDATE IW SET IWSOA=IWSOA + {0}   
+			WHERE ITEM='P070050'            WHERE ITEM='{1}' 
+			AND WHS='AS4'                   AND WHS='{2}'                              
+
+				UPDATE IM SET IMSOA=IMSOA-300    UPDATE IM SET IMSOA=IMSOA + {0} 
+				WHERE ITEM='P070050'             WHERE ITEM='{1}'    
+
+
+ITEM	WHS	LOCN				ISL#	LBSOA
+A121010	WH6	B13-11-01-01	ZABL	198
+
+LB
+select ITEM, LOCN, ISL#, WHS, LBSOA
+from LB	
+WHERE ITEM='A121010' 
+AND LOCN='B13-11-01-01' 
+AND ISL#='ZABL' 
+AND WHS='WH6' 
+
+UPDATE LB 
+SET  LBSOA= LBSOA-5                                    
+WHERE ITEM='A121010' 
+AND LOCN='B13-11-01-01' 
+AND ISL#='ZABL' 
+AND WHS='WH6'    
+
+	select sum(LBSOA) from LB where ITEM='A121010'
+	select sum(ILSOA) from IL where ITEM='A121010'
+	select sum(IWSOA) from IW where ITEM='A121010'
+	select sum(ISLSOA) from ISL where ITEM='A121010'
+	select sum(IMSOA) from IM where ITEM='A121010'
+	
+	select sum (IMSSA)
+from IM where item ='A121010'                
+		  
+select sum (IWSSA)
+from IW	where item ='A121010'   
+
+
+--- update picked
+UPDATE LB 
+SET  LBSPK= LBSPK+300                                    
+WHERE ITEM='A121210' 
+AND LOCN='PICKED' 
+AND ISL#='KE560'
+AND WHS='WH1'
+ 
+		UPDATE ISL                                   
+		SET ISLSPK=ISLSPK + 300                        
+		WHERE ITEM='A121210' 
+		AND ISL#='KE560'
+		
+				UPDATE IL SET ILSPK=ILSPK+300                 
+				WHERE ITEM='A121210' 
+				AND LOCN='PICKED' 
+				AND WHS='WH1' 
+ 
+						UPDATE IW SET IWSPK=IWSPK+100   
+						WHERE ITEM='A121210' 
+						AND WHS='WH1' 
+ 
+			 
+								 UPDATE IM SET IMSPK=IMSPK+100
+								WHERE ITEM='A121210'  
+
+
+======================================================================
 
 
 	

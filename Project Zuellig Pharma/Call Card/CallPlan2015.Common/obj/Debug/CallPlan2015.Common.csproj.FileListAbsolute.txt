@@ -39,6 +39,5 @@ D:\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.C
 D:\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb

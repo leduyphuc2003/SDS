@@ -22,22 +22,37 @@ namespace HotLineMobile
         {
             List<NhanVien> a = new List<NhanVien>();
             int thuTuTrucCN = 0;
-                
-            NhanVien Hai = new NhanVien {ten = "Hải",soNgayTrucHotline = 0,NgayTrucList = new List<DateTime>(), checkCN = false};
-            NhanVien Phuc = new NhanVien {ten = "Phúc", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
-            NhanVien Phuong = new NhanVien {ten = "Phương", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
-            NhanVien Nhat = new NhanVien {ten ="Nhật", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
-            NhanVien Hoan = new NhanVien {ten = "Hoàn", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
-            NhanVien Tu = new NhanVien {ten = "Tu", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
-            NhanVien Binh = new NhanVien {ten = "Bình", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
 
-            a.Add(Hoan);
-            a.Add(Tu);
-            a.Add(Nhat);
-            a.Add(Hai);
-            a.Add(Binh);
-            a.Add(Phuong);
-            a.Add(Phuc);
+            //NhanVien Hai = new NhanVien {ten = "Hải",soNgayTrucHotline = 0,NgayTrucList = new List<DateTime>(), checkCN = false};
+            //NhanVien Phuc = new NhanVien {ten = "Phúc", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            //NhanVien Phuong = new NhanVien {ten = "Phương", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            //NhanVien Nhat = new NhanVien {ten ="Nhật", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            //NhanVien Hoan = new NhanVien {ten = "Hoàn", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            //NhanVien Tu = new NhanVien {ten = "Tu", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            //NhanVien Binh = new NhanVien {ten = "Bình", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+
+            //a.Add(Hoan);
+            //a.Add(Tu);
+            //a.Add(Nhat);
+            //a.Add(Hai);
+            //a.Add(Binh);
+            //a.Add(Phuong);
+            //a.Add(Phuc);
+
+            NhanVien A = new NhanVien { ten = "A", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            NhanVien B = new NhanVien { ten = "B", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            NhanVien C = new NhanVien { ten = "C", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            NhanVien D = new NhanVien { ten = "D", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            NhanVien E = new NhanVien { ten = "E", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+            NhanVien F = new NhanVien { ten = "F", soNgayTrucHotline = 0, NgayTrucList = new List<DateTime>(), checkCN = false };
+
+            a.Add(A);
+            a.Add(B);
+            a.Add(C);
+            a.Add(D);
+            a.Add(E);
+            a.Add(F);
+
 
             //get start date va end date
             DateTime startDateTime = dateTimePicker1.Value;

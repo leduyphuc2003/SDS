@@ -10,8 +10,7 @@ using CallPlan2015.WebApp.Common;
 namespace CallPlan2015.WebApp.Forms
 {
 	public partial class CallPlanByCus : BasePage
-	{
-		protected void Page_Load(object sender, EventArgs e)
+	{protected void Page_Load(object sender, EventArgs e)
 		{
 			if (!IsPostBack)
 			{

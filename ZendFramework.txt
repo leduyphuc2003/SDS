@@ -2484,6 +2484,9 @@ if($this->_request->getParam('x0')=='1')
 htaccess
 -	giúp đổi đường link
 -	giúp nhiều chuyện khác: cấm số IP truy cập vào trang web, chuyển error code trang web ...
+==============================================================
+Zend local: đa ngôn ngữ - da ngon ngu
+
 
 
 
