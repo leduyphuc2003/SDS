@@ -95,9 +95,51 @@ chuong trinh xep lich
 		
 		
 -	lấy phần tử lễ ra (phần tử này là list ngày)
--	n = count size phantu đó
--	nếu ngày đầu tiên trong phần tử đó là T6 T7 CN T2 thì người trực CN sẽ trực
--	
+-	n = count size phantu đó (đếm số ngày nghĩ trong lượt đó)
+-	nếu n >= 2 
+	-	nếu ngày đầu tiên trong phần tử đó là T6 T7 CN T2 thì người trực CN sẽ trực
+	-	nếu ngày đầu tiên trong phần tử đó là:
+		=	T3, nếu n<=3 thì bt
+		=	T4, nếu n<=2 thì bt  
+		=	T5, nếu n<=1 thì bt 
+		=	còn lại thì người CN tuần đó sẽ trực 
+	-	lấy list ngày nghĩ so với list ngày còn lại (sau khi check CN: đã bỏ ngày CN): nếu trùng ngày nào thì gán ngày đó cho người trực hotline và remove ngày đó ra khỏi list ngày còn lại và list ngày lễ
+-	nếu còn lại (n=1)
+	=	nếu là T6 T7 CN T2 thì người trực CN sẽ trực
+	=	get ngày chủ nhật của tuần đó
+	=	get nhân viên nào có ngày trực CN đó
+	=	gán ngày lễ vào nhân viên đó
+	=	+2 số ngày trực cho người đó
+	=	remove ngày lễ khỏi list lễ
+	=	remove ngày thường bằng ngày lễ đó  
+	
+	
+--Get the Monday and Sunday for a certain DateTime in C#
+http://stackoverflow.com/questions/4139287/get-the-monday-and-sunday-for-a-certain-datetime-in-c-sharp
+	DateTime d = DateTime.Today;
+	// lastMonday is always the Monday before nextSunday.
+	// When today is a Sunday, lastMonday will be tomorrow.     
+	int offset = d.DayOfWeek - DayOfWeek.Monday;     
+	DateTime lastMonday = d.AddDays(-offset);
+	DateTime nextSunday = lastMonday.AddDays(6);
+	
+--how to check if object already exists in a list
+	---Check if date exist in list of dates
+	DateTime date_1 = new DateTime(2016, 1, 1); 
+	bool exist = dates.Any (d => d.Month == date_1.Month && d.Day == date_1.Day);
+	Console.WriteLine(exist);
+
+	DateTime date_3 = new DateTime(2016, 1, 2); 
+	exist = dates.Any (d => d.Month == date_3.Month && d.Day == date_3.Day);
+	Console.WriteLine(exist);
+
+	Item wonderIfItsPresent = ...
+	bool containsItem = myList.Any(item => item.UniqueProperty == wonderIfItsPresent.UniqueProperty);
+
+	bool alreadyExists = myList.Any(x=> x.Foo=="ooo" && x.Bar == "bat");
+	bool alreadyExist = list.Contains(item);
+		
+	
 
 	
 

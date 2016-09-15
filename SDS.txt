@@ -2,6 +2,37 @@ VIELDP
 leduyphuc
 ===================================================================
 
+--- format ngay yyyyMMdd hhmmss
+YEAR (current timestamp)
+MONTH (current timestamp)
+DAY (current timestamp)
+HOUR (current timestamp)
+MINUTE (current timestamp)
+SECOND (current timestamp)
+
+select                                        
+(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2))),
+(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2))      )   
+from lb         
+
+update  ldphuc/temp set                           
+INCRTT  =                                         
+(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))  
+,	INCRTD = (DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))    
+19635 rows updated in TEMP in LDPHUC.                                     
+
+-	AND INHCFD =YEAR(CURDATE()) ||DIGITS(DEC(MONTH(CURDATE()),2)) 
+||DIGITS(DEC(DAY(CURDATE()),2))  
+=============================================================
+
 select *       
 from asqfp     
 ====================================================================
@@ -13723,6 +13754,15 @@ A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
 
 Neu chua co ton tai thi dung lenh insert nhu ben duoi, neu da co thi loai bo ra va bao voi CS
 
+update ldphuc/INVDSC
+set INCRTD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCRTT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCRTU = 'VIEOPR'
+
 insert into invdsc                                        
 SELECT * FROM ldphuc/INVDSC  A                     
 WHERE not EXISTS (SELECT * FROM INVDSC B 
@@ -13743,6 +13783,19 @@ from invdsc
 where invno in 10029492 
 and cust='S15108'  
 
+update invdsc set INCDSA=0,
+	INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,	INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,	INCPDU='VIEOPR',
+INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+where cust='S15108' and invno =10029492
+
 update invdsc set INCDSA=0,RBHPGM='Stop By CS',
 INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
 where cust='S15108' and invno =10029492
@@ -13761,17 +13814,35 @@ select count(*)
  and   a.INVNO  =  b.INVNO                         
  and   a.TTYPE  =  b.TTYPE)                                             
  
- update invdsc a set INCDSA=0,RBHPGM=                            
+update ldphuc/invdsc a set INCDSA=0,RBHPGM=                            
 (select RBHPGM from ldphuc/invdsc b                              
- where a.CUST   =  b.CUST                                        
- and   a.INVNO  =  b.INVNO                                       
+ where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
  and   a.TTYPE  =  b.TTYPE)                                      
-,INCPDD=20160817,INCPDT=113100,INCPDU='VIEOPR',INHOIN=20160817   
+,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCPDU='VIEOPR',
+INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))   
  where exists (Select * from ldphuc/invdsc b                     
- where a.CUST   =  b.CUST                                        
- and   a.INVNO  =  b.INVNO                                       
- and   a.TTYPE  =  b.TTYPE)                                      
-143 rows updated in INVDSC in ZPTLIBD.   
+ where a.CUST   =  b.CUST and   a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE) 
+ 
+ -- update invdsc a set INCDSA=0,RBHPGM=                            
+-- (select RBHPGM from ldphuc/invdsc b                              
+ -- where a.CUST   =  b.CUST                                        
+ -- and   a.INVNO  =  b.INVNO                                       
+ -- and   a.TTYPE  =  b.TTYPE)                                      
+-- ,INCPDD=20160817,INCPDT=113100,INCPDU='VIEOPR',INHOIN=20160817   
+ -- where exists (Select * from ldphuc/invdsc b                     
+ -- where a.CUST   =  b.CUST                                        
+ -- and   a.INVNO  =  b.INVNO                                       
+ -- and   a.TTYPE  =  b.TTYPE)                                      
+-- 143 rows updated in INVDSC in ZPTLIBD.   
 
 -----stop rebate hang loat  
 Service Request # 63037  

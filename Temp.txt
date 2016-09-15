@@ -1,23 +1,153 @@
-      
-                      
+
+update ldphuc/INVDSC
+set INCRTD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCRTT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCRTU = 'VIEOPR'
 
 
-SBMJOB
-CALL PGM(ZTENDER) 
+
+ INCRTD		INCRTT	INCRTU
+20160914	151000	VIEOPR
 
 
 
 
 
-AND INHCFD =YEAR(CURDATE()) ||DIGITS(DEC(MONTH(CURDATE()),2)) 
-||DIGITS(DEC(DAY(CURDATE()),2))                               
+
+
+
+
+
+
+
+S290170               46131.000  46151.000       .000       .000  46151.000     20.000-  
+
+		
+	 
+		
+allocate
+	select sum(LBSOA) from LB where ITEM='S290170'
+	select sum(ILSOA) from IL where ITEM='S290170'
+	select sum(IWSOA) from IW where ITEM='S290170'
+	select sum(ISLSOA) from ISL where ITEM='S290170'
+	select sum(IMSOA) from IM where ITEM='S290170'
+
+scheduler
+	select sum (IMSSA) from IM where item ='S290170'
+				 
+	select sum (IWSSA) from IW	where item ='S290170'
+
+pick
+	select sum(LBSPK) from LB where ITEM='S290170'
+	select sum(ILSPK) from IL where ITEM='S290170'
+	select sum(ISLSPK) from ISL where ITEM='S290170'
+	select sum(IMSPK) from IM where ITEM='S290170'
+	select sum(IWSPK) from IW where ITEM='S290170'
+
+	
+	
+	  CAMLIBM/QCLSRC 
+		   CTRMRPCAM  
+
+select   INCRTD  , INCRTT                   
+from invdsc                                 
+where      INCRTD                           
+=      20150922                             
+File TEMP in LDPHUC was replaced.           
+
+update invdsc set INCRTT  =                      
+(DIGITS(DEC(HOUR (current time),2)) ||           
+DIGITS(DEC(MINUTE (current time),2))||           
+DIGITS(DEC(SECOND (current time),2))      )      
+where      INCRTD                                
+=      20150922                                  
+19635 rows updated in INVDSC in ZPTLIBD.         
+COUNT ( * )   
+     19,635   
+	 
+ 
+
+
+select                                        
+(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2))),
+(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2))      )   
+from lb         
+
+update  ldphuc/temp set                           
+INCRTT  =                                         
+(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))  
+
+,	INCRTD = (DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))    
+                                  
+
+-	AND INHCFD =YEAR(CURDATE()) ||DIGITS(DEC(MONTH(CURDATE()),2)) 
+||DIGITS(DEC(DAY(CURDATE()),2)) 
+
+
+
+INCRTD		INCRTT
+20160914	151000
+                             
+ ---stop rebate nhieu line 
+select count(*)                                    
+ from invdsc a                                     
+ where exists (Select * from ldphuc/invdsc b       
+ where a.CUST   =  b.CUST                          
+ and   a.INVNO  =  b.INVNO                         
+ and   a.TTYPE  =  b.TTYPE)                                             
+ 
+ update ldphuc/invdsc a set INCDSA=0,RBHPGM=                            
+(select RBHPGM from ldphuc/invdsc b                              
+ where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE)                                      
+,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCPDU='VIEOPR',
+INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))   
+ where exists (Select * from ldphuc/invdsc b                     
+ where a.CUST   =  b.CUST and   a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE)  
  
  
+update invdsc set INCDSA=0,RBHPGM='Stop By CS',
+INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCPDU='VIEOPR',
+INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+where cust='S15108' and invno =10029492
+ 
+ 
+update ldphuc/INVDSC set 
+
+
+
  
 
-
-
-
+============================================
 
  Incident #72331 Escalated -  Batch JL not post to GL
  
