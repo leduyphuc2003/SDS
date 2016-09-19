@@ -13814,10 +13814,32 @@ select count(*)
  and   a.INVNO  =  b.INVNO                         
  and   a.TTYPE  =  b.TTYPE)                                             
  
-update ldphuc/invdsc a set INCDSA=0,RBHPGM=                            
+update invdsc a set INCDSA=0,RBHPGM=                            
 (select RBHPGM from ldphuc/invdsc b                              
  where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
  and   a.TTYPE  =  b.TTYPE)                                      
+,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCPDU='VIEOPR',
+INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))   
+ where exists (Select * from ldphuc/invdsc b                     
+ where a.CUST   =  b.CUST and   a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE) 
+ 
+---	update rebate RBHPGM va INCCFD
+update invdsc a set RBHPGM=                            
+(select RBHPGM from ldphuc/invdsc b                              
+ where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE)
+, INCCFD=(select INCCFD from ldphuc/invdsc b                              
+ where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE)
 ,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
 DIGITS(DEC(MONTH (current timestamp),2))||    
 DIGITS(DEC(DAY (current timestamp),2)))

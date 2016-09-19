@@ -93,27 +93,160 @@ chuong trinh xep lich
 			==	bật cờ checkTrucLe=true
 		=	nếu là những ngày còn lại (if else)
 		
-		
+---	check ngay le 
+-	khai báo thêm cho mỗi nhanvien: cờ checkTrucLe
+-	check lễ: trong từng tháng
+-	làm động cho việc khởi tạo list ngày lễ: cho user chọn add vô từng ngày 	 
+-	khởi tạo list ngày lễ: hiện giờ làm tĩnh 
+-	group by gôm nhóm all ngày lễ liên tục nhau thành một list con 
+-	khai báo List<list<ngay>> listNgayLe:	var groups = new List<List<DateTime>>();
+-	gán all list con ngày lễ vào listNgayLe
+-	check CN => check ngày lễ => check ngày thường
+-	lặp trên all phần tử listNgayLe	 
 -	lấy phần tử lễ ra (phần tử này là list ngày)
 -	n = count size phantu đó (đếm số ngày nghĩ trong lượt đó)
 -	nếu n >= 2 
-	-	nếu ngày đầu tiên trong phần tử đó là T6 T7 CN T2 thì người trực CN sẽ trực
+	-	nếu ngày đầu tiên trong phần tử đó là T6 T7 CN T2 thì người trực CN sẽ trực:
+		=	get ngày CN trong tuần có ngày đầu tiên đó:	=======>>>>>>>> DateTime GetSunday(DateTime i, List<NhanVien> listNhanViens )
+		=	check xem nhanvien nào đang trực ngày CN trên: 
+			===	lặp trên mỗi nhanvien
+			===	lặp trên mỗi ngày trực của List<DateTime> NgayTrucList của một nhanvien
+			===	check nếu ngày trực nào bằng với i thì lấy nhanvien đó 
+				=======>>>>>>>> goi ham NhanVien GetNhanVienDangTrucCnTruyenVao(DateTime i, List<NhanVien> listNhanViens )
+		=	gọi hàm SetTrucLe(nhanvien,listNgayLe,allDateTimes)
 	-	nếu ngày đầu tiên trong phần tử đó là:
-		=	T3, nếu n<=3 thì bt
+		=	T3, nếu n<=3 thì bt: 
+			==	get all người chưa trực lễ ra list: lặp trên all listNhanViens, nếu cờ checkTrucLe= false thì add vào listNhanVienChuaTrucLe
+			==	random trong list đó, 
+			==	gọi hàm SetTrucLe()
 		=	T4, nếu n<=2 thì bt  
 		=	T5, nếu n<=1 thì bt 
 		=	còn lại thì người CN tuần đó sẽ trực 
 	-	lấy list ngày nghĩ so với list ngày còn lại (sau khi check CN: đã bỏ ngày CN): nếu trùng ngày nào thì gán ngày đó cho người trực hotline và remove ngày đó ra khỏi list ngày còn lại và list ngày lễ
 -	nếu còn lại (n=1)
 	=	nếu là T6 T7 CN T2 thì người trực CN sẽ trực
-	=	get ngày chủ nhật của tuần đó
-	=	get nhân viên nào có ngày trực CN đó
-	=	gán ngày lễ vào nhân viên đó
-	=	+2 số ngày trực cho người đó
-	=	remove ngày lễ khỏi list lễ
-	=	remove ngày thường bằng ngày lễ đó  
+		==	get ngày chủ nhật của tuần đó
+		==	get nhân viên nào có ngày trực CN đó
+		==	gán ngày lễ vào nhân viên đó
+		==	+2 số ngày trực cho người đó
+		==	remove ngày lễ khỏi list lễ
+		==	remove ngày thường bằng ngày lễ đó  
+	=	còn lại thì gán trực lễ cho all nhanvien nào chưa trực lễ:
+		==	get all người chưa trực lễ ra list: lặp trên all listNhanViens, nếu cờ checkTrucLe= false thì add vào listNhanVienChuaTrucLe
+		==	random trong list đó, 
+		==	gọi hàm SetTrucLe()
+		
+-	hàm gán nhân vien trực lễ public static void SetTrucLe(NhanVien aNhanVien, List<DateTime> listNgayLe, List<DateTime> allDateTimes):
+	=	lặp trên all phan tử listNgayLe
+		==	gán ngày trực cho nhanvien
+		==	+2 số ngày trực cho nhanvien
+		==	bật cờ checkTrucLe = true
+		==	remove khỏi list allDates(sau khi đã check CN) theo ngày lễ đó: update ngày đó thành eventsInYear[i] = new DateTime(2000, 01, 01): kiếm index của phần tử trong list ngày có giá trị bằng với ngày lễ, update ngày đó thành DateTime(2000, 01, 01) dựa theo index đó 
+		-- ==	tìm trong listNhanViens xem element nhanvien nào bằng với aNhanVien
+		-- ==	update element nhanvien đó theo aNhanVien: cộng dồn số lượng ngày trực, cộng dồn ngày trực, update cờ checkTrucLe 
+		
+-	bị trùng xử lí CN và ngày lễ:
+	=	get index cho list all ngày lễ theo allDates
+	=	sau khi xu li CN
+	=	check xem nếu allDates[index] = năm 2000 thì có nghĩa là CN đã gán rồi
+	=	thì remove ngày lễ đó ra khỏi list ngày lễ
+	=	sau đó mới xử lí lễ 
 	
+-	count,index,list ngày lễ 
+
+-	check lại hàm check nhan vien nao đang trực CN 
+-	sua lai phan update: nếu là t7 cn t2 thì không add thêm ngày vào nữa vì đã được gán cho người trực CN rồi, ngày t6 thì mới gán thêm vào.
+	=	nếu là t7 cn t2 thì chỉ +1 số ngày, gán cờ checkTrucLe=true, không cộng dồn ngày vì đã check CN rồi 
+	=	check lại việc check nhanvien nào trực CN của tuần chứa ngày truyền vào 
 	
+-	check lai ham GetSunday() bi sai 
+
+-	lúc check ngày thường:
+	=	đếm số ngày trực của mỗi người 
+	=	lặp trên mọi người
+	=	đếm số ngày của mỗi người
+	=	nếu là ngày lễ thì: -1 và +2 số lượng ngày 
+	
+-	check lai xem đếm số ngày lễ lúc get nhanvien trực ít nhất ra đúng ko
+-	check lại việc gán lễ luân phiên nhau 
+
+-	ngày nghĩ cuối cùng là 2/9 thì người trực sẽ cầm thêm ngày 3/9 luôn vì 2/9 không đi làm nên không giao ca được, vì vậy sẽ cộng thêm 1 ngày trực nữa vào cuối ngày nghĩ lễ cho ai đang cầm hotline 
+	
+-	check lại aNhanVien.soNgayTrucHotline với số ngày trực trong 1 tháng trong hàm SetTrucLe()
+-	check thử việc nhập khoản thời gian từ ngày 26/9/2016 đến ngày 5/1/2017: tìm cách cho nó ghép được CN cuối giữa 2 năm 2016 và 2017. 
+
+-	Tìm cách gán nếu nhập vào khoản thời gian nhưng ngày đầu tiên của khoản đó là CN T2 => tìm cách nếu có đủ T7 CN t2 thì set bình thường nhưng nếu chỉ có 
+	=	lấy phần tử đầu tiên
+	=	check nếu là ngày 1/1
+		=	trừ 1 ngày
+		=	check xem ngày lùi đó nếu là T7 CN thì:
+			=	get nhanvien nào trực CN đó
+			=	gán cho nhanvien đó
+			=	update thành năm 2000 cho ngày vừa gán cho nhanvien đó 
+			
+			
+-	them co check truc trong tuan: neu trong tuan da truc roi thi no se bo qua: 
+	= 	tạo cờ i check gọi hàm gán ngày trực
+	=	mỗi lần gán ta sẽ +1, và lưu người được gán trực vào list temp
+	=	nếu i<=7 và nhân viên a đã có trong list temp và số lượng nhân viên trong list nhân viên trực ít nhất >=2: 
+		==	thì bỏ qua get nhân viên khác: remove người đó khỏi list nhân viên trực ít nhất, get random bất kì trong list nhân viên trực ít nhất, gán ngày trực cho nhanvien vừa get ra đó 
+		==	nếu else không thỏa điều kiện trên thì gán bình thường 
+	=	nếu i=7 thì reset i=0, clear list temp
+	
+		
+		
+
+---	find index of an int in a list
+	// given list1 {3, 4, 6, 5, 7, 8}
+	list1.FindIndex(x => x==5);  // should return 3, as list1[3] == 5;
+	Or
+	var index = myList.FindIndex(a => a.Prop == oProp);
+---	How do I copy items from list to list without foreach?		
+	You could try this:
+		List<Int32> copy = new List<Int32>(original);
+	
+	or if you are using C# 3 and .NET 3.5, with Linq, you can do this:
+		List<Int32> copy = original.ToList();
+
+--In C#, what is the best way to group consecutive dates in a list?
+http://stackoverflow.com/questions/27393626/in-c-what-is-the-best-way-to-group-consecutive-dates-in-a-list
+	//Dates for testing
+	 List<DateTime> dates = new List<DateTime>()
+	 { 
+		  new DateTime(2013,12,31),
+		  new DateTime(2014,2,2),
+		 new DateTime(2014,1,1),
+		 new DateTime(2014,1,2),
+		 new DateTime(2014,2,1),               
+		 new DateTime(2014,2,16),
+		 new DateTime(2014,3,13),
+	 };
+	 
+	 dates.Sort();
+	 //this will hold the resulted groups
+	 var groups = new List<List<DateTime>>();
+	 // the group for the first element
+	 var group1 = new List<DateTime>(){dates[0]};
+	 groups.Add(group1);
+
+	 DateTime lastDate = dates[0];
+	 for (int i = 1; i < dates.Count; i++)
+	 {
+		 DateTime currDate = dates[i];
+		 TimeSpan timeDiff = currDate - lastDate;
+		 //should we create a new group?
+		 bool isNewGroup = timeDiff.Days > 1;
+		 if (isNewGroup)
+		 {
+			 groups.Add(new List<DateTime>());
+		 }
+		 groups.Last().Add(currDate);
+		 lastDate = currDate;
+	 }
+
+---Combining consecutive dates into ranges
+http://stackoverflow.com/questions/19433189/combining-consecutive-dates-into-ranges
+
 --Get the Monday and Sunday for a certain DateTime in C#
 http://stackoverflow.com/questions/4139287/get-the-monday-and-sunday-for-a-certain-datetime-in-c-sharp
 	DateTime d = DateTime.Today;
@@ -150,11 +283,6 @@ http://stackoverflow.com/questions/4139287/get-the-monday-and-sunday-for-a-certa
 	=	gán ngày lễ cho nv đó
 	=	update lại số ngày trực, cờ trực lễ, ngày trực của nv đó
 	=	nếu 
-	
--	check CN => check ngày lễ => check ngày thường
--	check lễ:
-	=	check trong mỗi tháng
-	=	
 
 
 

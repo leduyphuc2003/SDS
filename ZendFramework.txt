@@ -1,4 +1,7 @@
-﻿cau hinh Zend
+﻿mail thay: nlatuan.gtvt@gmail.com
+			nlatuan@gmail.com 
+
+cau hinh Zend
 1 - Copy
 	-	copy thu muc bin vao C:\xampp\php
 	-	copy thu muc Zend vao C:\xampp
@@ -2487,7 +2490,25 @@ htaccess
 ==============================================================
 Zend local: đa ngôn ngữ - da ngon ngu
 
+===============================================================
+Bảo mật trong Zend 
 
+SQL: user'--
+'
+
+mysql
+user: aaa	
+pass: bbb' or '1'='1
+
+
+cach khac phuc:remove all kí tự đặc biệt ('';/,\ ...) trước khi truy vấn user và pass 
+
+-	tấn công SQL injection 
+-	tấn công XSS(cross site): lợi dụng web tấn công máy của user =======>>>>>>>> chống bằng cách lọc bỏ chữ <script></script>
+-	tấn công blood database(làm ngập cơ sở dữ liệu): submit form đăng kí 1 triệu lần 
+-	upload 
+-	đặt quyền ghi cho file 
+-	require/include php 
 
 
 	

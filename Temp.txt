@@ -1,34 +1,25 @@
+Dear anh,
+Pls ho tro giup em dieu chinh sub dis KH ben duoi tu PSG thanh SAN nhe, thaks anh
+                            Customer Code                                      
+                            S09934                                             
+                                                                                                                                                           
+Customer Name              Nha Thuoc Phong Kham Da Khoa Vu Duong               
+         Address           7 Phan Dinh Phung- KP. Cho- P. Lai Thieu            
+                           Thuan An                                            
+                           Binh Duong              
 
-update ldphuc/INVDSC
-set INCRTD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))
-,INCRTT=(DIGITS(DEC(HOUR (current time),2)) ||            
-DIGITS(DEC(MINUTE (current time),2))||            
-DIGITS(DEC(SECOND (current time),2)))
-,INCRTU = 'VIEOPR'
-
-
-
- INCRTD		INCRTT	INCRTU
-20160914	151000	VIEOPR
+Sub-Distributor:  PSG=> SAN                         
 
 
+ 
+
+ 
+
+ 
+  
 
 
-
-
-
-
-
-
-
-
-S290170               46131.000  46151.000       .000       .000  46151.000     20.000-  
-
-		
-	 
-		
+=========================================================================					 
 allocate
 	select sum(LBSOA) from LB where ITEM='S290170'
 	select sum(ILSOA) from IL where ITEM='S290170'
