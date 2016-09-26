@@ -1,23 +1,65 @@
-Dear anh,
-Pls ho tro giup em dieu chinh sub dis KH ben duoi tu PSG thanh SAN nhe, thaks anh
-                            Customer Code                                      
-                            S09934                                             
-                                                                                                                                                           
-Customer Name              Nha Thuoc Phong Kham Da Khoa Vu Duong               
-         Address           7 Phan Dinh Phung- KP. Cho- P. Lai Thieu            
-                           Thuan An                                            
-                           Binh Duong              
+B060110
+B060180
+G030450
+G030940
 
-Sub-Distributor:  PSG=> SAN                         
+
+
+UPDATE LB SET LBSOA = 0 WHERE ITEM='{0}' AND LBSOA<>0
+UPDATE LB SET LBSPK = 0 WHERE ITEM='{0}' AND LBSPK<>0
+
+
+
+
+
+
+
+========================
+32043336
+
+
+select count(*)           
+from cod                  
+where ttype='OR'          
+and ordr=32043336         
+and coddel=''             
 
 
  
+select ttype,ordr,psn,codsts,       CODOUN,codunt,      CODUBO    
+,codval                                                           
+from cod                                                          
+where ttype='OR'                                                  
+and ordr=32043336                                                 
+and coddel=''                                                     
 
+select ttype,ordr,psn,codsts,item, CODOUN,codunt,      CODUBO  
+,codval  ,invno                                                
+from cod                                                       
+where ttype='OR'                                               
+and ordr=32043336                                              
+and coddel=''                                                  
+File TEMP in LDPHUC was replaced.                              
+
+update oth set othdel='Z'                        
+where ttype='OR'                                 
+and ordr=32043336                                
+and     PSN=0 and  INVNO=0  and   MANFST=0       
+1 rows updated in OTH in ZPTLIBD.                
+
+ Item                  Warehouse                                  
+ S290020               WH6                                        
+                    Item Warehouse Allocations                    
+      --- Ref# ---  Quantity    Serial/Lot#     Location     Whs  
+  01  OR 32043336       30.000  15109           F01-02-02-01 WH6  
+ 
  
 
- 
-  
+  TTYPE        ORDR          PSN        INVNO       MANFST   CUST    WHS  PLCBR  OTHSTS 
+   OR    33,872,286            0            0            0   S01234  WT2   013    O04   
 
+ TTYPE        ORDR          PSN        INVNO       MANFST   CUST    WHS  PLCBR  OTHSTS  
+  OR    34,011,453            0            0            0   S00151  WT2   013    O01       
 
 =========================================================================					 
 allocate

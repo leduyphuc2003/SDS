@@ -1,0 +1,18 @@
+C:\Users\dple\Desktop\ICS832\ICS832\bin\Release\ICS832.exe
+C:\Users\dple\Desktop\ICS832\ICS832\bin\Release\ICS832.exe.config
+C:\Users\dple\Desktop\ICS832\ICS832\bin\Release\ICS832.pdb
+C:\Users\dple\Desktop\ICS832\ICS832\bin\Release\IBM.Data.DB2.iSeries.dll
+C:\Users\dple\Desktop\ICS832\ICS832\obj\Release\ICS832.Form1.resources
+C:\Users\dple\Desktop\ICS832\ICS832\obj\Release\ICS832.Properties.Resources.resources
+C:\Users\dple\Desktop\ICS832\ICS832\obj\Release\ICS832.csproj.GenerateResource.Cache
+C:\Users\dple\Desktop\ICS832\ICS832\obj\Release\ICS832.exe
+C:\Users\dple\Desktop\ICS832\ICS832\obj\Release\ICS832.pdb
+D:\Project Zuellig Pharma\ICS832\ICS832\bin\Release\ICS832.exe.config
+D:\Project Zuellig Pharma\ICS832\ICS832\bin\Release\ICS832.exe
+D:\Project Zuellig Pharma\ICS832\ICS832\bin\Release\ICS832.pdb
+D:\Project Zuellig Pharma\ICS832\ICS832\bin\Release\IBM.Data.DB2.iSeries.dll
+D:\Project Zuellig Pharma\ICS832\ICS832\obj\Release\ICS832.Form1.resources
+D:\Project Zuellig Pharma\ICS832\ICS832\obj\Release\ICS832.Properties.Resources.resources
+D:\Project Zuellig Pharma\ICS832\ICS832\obj\Release\ICS832.csproj.GenerateResource.Cache
+D:\Project Zuellig Pharma\ICS832\ICS832\obj\Release\ICS832.exe
+D:\Project Zuellig Pharma\ICS832\ICS832\obj\Release\ICS832.pdb

@@ -1,5 +1,7 @@
 VIELDP
 leduyphuc
+
+gam http://cuudinh.vieplay.com/: haivl87 phucthuy8788
 ===================================================================
 
 --- format ngay yyyyMMdd hhmmss
@@ -2513,14 +2515,14 @@ Phuc xem cac buoc update Sub-dist nhu ben duoi:
 1. vi du doi voi code='S08176'
 SELECT SUB                      
 FROM CM                         
-WHERE CMDEL='' AND CUST ='S08176'		 
+WHERE CMDEL='' AND CUST = 'S08176'		 
 
 2. CAP NHAT LAI THANH SAN
 UPDATE CM SET                   
 SUB='SAN'                       
 , PPUPDD=20130618           
 , CMUPDD=20130618          
-WHERE CMDEL='' AND CUST ='M00529'
+WHERE CMDEL='' AND CUST = 'M00529'
 
 3. KIEM TRA XEM FILE BOT NHU SAU CO DATA KO? NEU KO CO THI OK, KHONG CAN KIEM TRA BUOC 4. Neu select ra co thi moi lam buoc 4
 SELECT CUST, SUB, PRNCPL,ordr                                                    
@@ -13781,9 +13783,8 @@ A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
 select * 
 from invdsc 
 where invno in 10029492 
-and cust='S15108'  
 
-update invdsc set INCDSA=0,
+update invdsc set INCDSA=0,RBHPGM='...',
 	INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
 DIGITS(DEC(MONTH (current timestamp),2))||    
 DIGITS(DEC(DAY (current timestamp),2)))
@@ -13794,15 +13795,15 @@ DIGITS(DEC(SECOND (current time),2)))
 INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
 DIGITS(DEC(MONTH (current timestamp),2))||    
 DIGITS(DEC(DAY (current timestamp),2)))
-where cust='S15108' and invno =10029492
+where invno = 10029492
 
 update invdsc set INCDSA=0,RBHPGM='Stop By CS',
 INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
-where cust='S15108' and invno =10029492
+where invno =10029492
 
 update invdsc set INCDSA=0,
 INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
-where cust='S15108' and invno =10029492 
+where invno =10029492 
 
  
 
@@ -13833,6 +13834,13 @@ DIGITS(DEC(DAY (current timestamp),2)))
  and   a.TTYPE  =  b.TTYPE) 
  
 ---	update rebate RBHPGM va INCCFD
+select count(*)                                    
+ from invdsc a                                     
+ where exists (Select * from ldphuc/invdsc b       
+ where a.CUST   =  b.CUST                          
+ and   a.INVNO  =  b.INVNO                         
+ and   a.TTYPE  =  b.TTYPE) 
+ 
 update invdsc a set RBHPGM=                            
 (select RBHPGM from ldphuc/invdsc b                              
  where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
@@ -13840,20 +13848,36 @@ update invdsc a set RBHPGM=
 , INCCFD=(select INCCFD from ldphuc/invdsc b                              
  where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
  and   a.TTYPE  =  b.TTYPE)
-,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))
-,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
-DIGITS(DEC(MINUTE (current time),2))||            
-DIGITS(DEC(SECOND (current time),2)))
-,INCPDU='VIEOPR',
-INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))   
- where exists (Select * from ldphuc/invdsc b                     
- where a.CUST   =  b.CUST and   a.INVNO  =  b.INVNO                                       
+	,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+	DIGITS(DEC(MONTH (current timestamp),2))||    
+	DIGITS(DEC(DAY (current timestamp),2)))
+	,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+	DIGITS(DEC(MINUTE (current time),2))||            
+	DIGITS(DEC(SECOND (current time),2)))
+	,INCPDU='VIEOPR',
+	INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+	DIGITS(DEC(MONTH (current timestamp),2))||    
+	DIGITS(DEC(DAY (current timestamp),2)))   
+	 where exists (Select * from ldphuc/invdsc b                     
+	 where a.CUST   =  b.CUST and   a.INVNO  =  b.INVNO                                       
+	 and   a.TTYPE  =  b.TTYPE) 
+ 
+---Hide line rebate on report
+select count(*)                                    
+ from invdsc a                                     
+ where exists (Select * from ldphuc/invdsc b       
+ where a.CUST   =  b.CUST                          
+ and   a.INVNO  =  b.INVNO                         
  and   a.TTYPE  =  b.TTYPE) 
  
+ update invdsc a set  INCDEL ='Z'              
+  where exists (Select * from ldphuc/invdsc b  
+ where a.CUST   =  b.CUST                      
+ and   a.INVNO  =  b.INVNO                     
+ and   a.TTYPE  =  b.TTYPE)                    
+7953 rows updated in INVDSC in ZPTLIBD.        
+
+
  -- update invdsc a set INCDSA=0,RBHPGM=                            
 -- (select RBHPGM from ldphuc/invdsc b                              
  -- where a.CUST   =  b.CUST                                        

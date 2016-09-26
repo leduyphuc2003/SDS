@@ -1,6 +1,37 @@
+--- sbmjob command in as400 from C#
+	public static bool RunCmd(string cmdText, iDB2Connection cn)
+	{
+		bool rc = true;
 
+		// Construct a string which contains the call to QCMDEXC.
+		string pgmParm = String.Format("CALL QSYS/QCMDEXC('{0}', {1})", 
+						 cmdText.Replace("'", "''").Trim(), 
+						 cmdText.Trim().Length.ToString("0000000000.00000"));
 
-chuong trinh xep lich
+		using (cn)
+		{
+			using (iDB2Command cmd = new iDB2Command(pgmParm, cn))
+			{
+				try { cmd.ExecuteNonQuery(); }
+				catch { rc = false; }
+			}
+		}
+
+		// Return success or failure
+		return rc;
+	}
+	
+---	DataRow: Select cell value by a given column name
+	DataRow row = table.Rows[0];
+	string rowValue = row["ColumnName"].ToString();
+
+	hoac 
+
+	row.Field<type>("fieldName");
+	
+
+===================================================================
+chuong trinh xep lich hotline
 -	theo thu tu A B C D E F G
 -		
 
@@ -192,9 +223,137 @@ chuong trinh xep lich
 		==	thì bỏ qua get nhân viên khác: remove người đó khỏi list nhân viên trực ít nhất, get random bất kì trong list nhân viên trực ít nhất, gán ngày trực cho nhanvien vừa get ra đó 
 		==	nếu else không thỏa điều kiện trên thì gán bình thường 
 	=	nếu i=7 thì reset i=0, clear list temp
+	=======>>>>>>>> SAI CMNR
 	
+-	check mỗi ngày
+	=	check CN trước nó và CN sau nó
+	=	get 2 nhanvien trực 2 CN đó ra 
+	=	check trong list nhanvien trực ít nhất, nếu có 2 người CN đó và số người trong list >=3 thì remove ra khỏi list
+	=	sau đó gán bình thường 
+	
+
+-	chia để trị xếp lịch:
+	=	chia thời gian thành n tuần
+	=	mỗi tuần chạy giải thuật gán ngày trực:
+		==	gán ngày thường
+		==	gán chủ nhật
+	=	tổng hợp kết quả của n tuần 
 		
-		
+-	chia để trị dàn trải đều ngày trực:
+	=	chia 1 tháng thành 4 tuần
+		==	chia 1 tháng ra 4 tuần, mỗi phần tử chia ra là 1 list ngày 
+			===	lặp từ ngày đầu tháng đến ngày cuối tháng
+			===	cộng ngày đầu tiên đến ngày CN và lưu kết quả vào list<DateTime> a
+			===	for (i=0; i<=so_ngay_trong_thang-1; i++)
+					-	nếu i là ngày thứ 2 thì n là 7
+										  3 thì n là 6
+										  4 thì n là 5 	
+					-	new list<DateTime> 
+					-	for(j=0; j<n-1;j++)
+							add ngày i vào list<DateTime> 
+							i++
+							addDate(1)
+					-	add list<DateTime> vào list<list<DateTime>> date
+			
+		==	lưu all phần tử vào list<List<DateTime>> dateByWeek
+	=	mỗi tuần gọi hàm dàn trải đều: -- foreach tuần trong dateByWeek 
+		==	check từ thứ 2 đến thứ 7
+		==	1 tuần phải có 6 người khác nhau thì mới đúng 
+		==	trong mỗi tuần, check nhân viên nào trực >=2 lần trong tuần:
+			===	lặp trên mỗi nhân viên 
+			=== int a = select count(*) from listNgayTruc where ngayTruc between dauTuan and CuoiTuan
+			===	nếu a >=2 thì lưu nhanvien đó vào list_NhanVien_duplicate
+		==	lưu all nhanvien đó vào list_NhanVien_duplicate(đây là list nhanvien gồm tên và ngày trực trong tuần đang check)
+		==	nếu count(list_NhanVien_duplicate) >= 1
+			==	lấy ra list_nhanvien_chua_co_trong_tuan(list này là list nhanvien: gồm tên và ngày trực trong tháng đang check) chưa có trực trong tuần đó 
+			==	foreach trong list_NhanVien_duplicate:
+				===	(nếu count>=1)lấy phần tử đầu tiên của list_nhanvien_chua_co_trong_tuan và remove nhân viên đó ra khỏi list_nhanvien_chua_co_trong_tuan 
+				===	get all ngày trực 1 nhanvien trong tháng chỉ định => từ đó get all ngày trực 1 nhanvien không có trong tuần chỉ định: 
+				===	swap ngày trực của 2 nhanvien trong list_NhanVien_duplicate trong vòng foreach và nhanvien trong list_nhanvien_chua_co_trong_tuan(ngày tương ứng trong tháng đang check) vừa get ở bước trên 
+	=	tổng hợp lại kết quả 
+
+-	dàn trải ngày trực cho đều
+	=	tạo listTempNV size = 7 
+	=	lưu tên 7 nhanvien vào listTempNV
+	=	trong vòng lặp mỗi ngày: 
+	=	nếu count(listTempNV) = 0 thì 
+		=	add 7 nhanvien vào listTempNV, trộn listTempNV 
+		foreach listTempNV
+			=	check nếu nhanvien.SoNgayTruc trong tháng đó <= 5 (số ngày trực tối đa trong tháng của 1 nhanvien):
+				==	gán ngày trực cho nhanvien đó
+				==	và remove phần tử đó ra khỏi listTempNV
+				==	break khỏi foreach 
+			=	nếu nhanvien đó > 5:
+				==	thì remove phần tử đó ra khỏi listTempNV, 
+				==	continue foreach		
+	=	nếu count(listTempNV)>=1 thì
+		foreach listTempNV
+			=	check nếu nhanvien.SoNgayTruc trong tháng đó <= 5 (số ngày trực tối đa trong tháng của 1 nhanvien):
+				==	get first() của listTempNV
+				==	get nhanvien from list nhanvien a có name = listTempNV.fist().name
+				==	gán ngày trực cho nhanvien trong list a đó
+				==	và remove phần tử đó ra khỏi listTempNV
+				==	break khỏi foreach 
+			=	nếu nhanvien đó > 5:
+				==	thì remove phần tử đó ra khỏi listTempNV, 
+				==	continue foreach
+			
+
+-	tạo list index kiểu int từ 0 -> count(list nhanvien)-1 
+-	trộn list index đó
+-	nếu count(list index) = 0 thì:
+	=	tạo data cho list đó từ 0->7
+	=	gọi hàm CheckAndSetTruc
+-	nếu count(list index) > 0 thì gọi hàm CheckAndSetTruc
+-	viết hàm CheckAndSetTruc có 3 tham số: list index, list nhanvien, ngày đang gán trực
+	=	lấy phần tử đầu tiên của list index lưu vào int index
+	=	remove phần tử đó ra khỏi list index
+	=	gọi hàm CountNgayTrucByMonth(nhanvien[index],ngày đang gán)
+	=	nếu số ngày làm việc của nhanvien đó >5 thì bỏ qua: return luôn 
+	=	nếu số ngày làm việc của nhanvien đó <=5:
+		=	thì gán ngày trực cho nhanvien[index] đó
+		=	và return hàm luôn 
+-	nếu số ngày trực là 4 thì không làm gì cả và đẩy nhanvien đó vào list2 
+-	nếu all nhanvien đều trực 4 ngày rồi thì mình mới gọi hàm CheckAndSetTruc2 giới hạn thêm 1 ngày nữa 
+	
+-	nếu trực lien tiep thì bỏ qua
+-	nếu chưa trực liên tiếp thì gán vào 
+
+
+-	lặp cho all nhanvien có ít ngày trực nhất 
+	=	check xem nhanvien nào trực lien tiếp rồi thì bỏ ra khỏi list nhanvien trực ít nhất
+		=	lặp từ 1->7
+		=	mỗi lần lặp dday = addDate(-1)
+		=	check ngày dday có nằm trong list ngày trực của nhanvien đang check hay không
+			=	nếu có trong list ngày trực thì remove nhanvien đó khỏi list nhanvien trực ít nhất
+			=	nếu không có thì bỏ qua không làm gì cả 
+-	sau đó gán ngày trực bình thường  
+
+
+---	select from list C# and get 
+if ((lstNhanViensAll.Where(x => x.ten == i.ten).FirstOrDefault().NgayTrucList.Contains(tmpDateTime)) && (lstNhanVienTrucMin.Count>1))
+                        {
+                            lstNhanVienTrucMin.Remove(i);
+                        }
+						
+---	var to List<T> conversion
+var selected = from s in studentCollection
+                           select s;
+
+List<Student> selectedCollection = selected.ToList();
+
+
+---To get First Date
+	public DateTime FirstDayOfMonth(DateTime dateTime)
+	{
+	   return new DateTime(dateTime.Year, dateTime.Month, 1);
+	}
+	---	To get Last Date
+		public DateTime LastDayOfMonth(DateTime dateTime)
+		{
+		   DateTime firstDayOfTheMonth = new DateTime(dateTime.Year, dateTime.Month, 1);
+		   return firstDayOfTheMonth.AddMonths(1).AddDays(-1);
+		}
 
 ---	find index of an int in a list
 	// given list1 {3, 4, 6, 5, 7, 8}
@@ -348,18 +507,22 @@ Cach 3
 -	check allocate 
 	=	select allocate <> 0 trong LB của item và all whS
 	=	mass update allocate <> 0 cua item đó về 0
-	=	check nếu sum allocate 3 bảng lb, il, isl =0 thì check tiếp nếu iw có allocate<>0 thì select trong iw xem có allocate<>0 thì update all trừ cho nó = 0; rồi update im allocate=0
-		===	sum allocate 5 bảng
-		===	nếu lb il isl =0 và iw <>0: select allocate from iw wher allocate<>0; update về 0 cho allocate trong iw; update allocate cho im về 0 
+	=	select allocate <> 0 trong 4 bảng còn lại IL, ISL#, IW, IM 
+	=	mass update allocate <> 0 cua item đó về 0
+	-- =	check nếu sum allocate 3 bảng lb, il, isl =0 thì check tiếp nếu iw có allocate<>0 thì select trong iw xem có allocate<>0 thì update all trừ cho nó = 0; rồi update im allocate=0
+		-- ===	sum allocate 5 bảng
+		-- ===	nếu lb il isl =0 và iw <>0: select allocate from iw wher allocate<>0; update về 0 cho allocate trong iw; update allocate cho im về 0 
 -	check picked
 	=	select LBSPK<>0 trong LB của của item và all whS
 	=	mass update PICKED <>0 của item đó về 0
-	=	check nếu sum picked 3 bảng lb, il, isl =0 thì check tiếp nếu iw có picked<>0 thì select trong iw xem có picked<>0 thì update all trừ cho nó = 0; rồi update im picked=0
-		===	sum picked 5 bảng
-		===	nếu lb il isl =0 và iw <>0: select picked from iw wher picked<>0; update về 0 cho picked trong iw; update picked cho im về 0 
+	=	select PICKED <> 0 trong 4 bảng còn lại IL, ISL#, IW, IM 
+	=	mass update PICKED <> 0 cua item đó về 0
+	-- =	check nếu sum picked 3 bảng lb, il, isl =0 thì check tiếp nếu iw có picked<>0 thì select trong iw xem có picked<>0 thì update all trừ cho nó = 0; rồi update im picked=0
+		-- ===	sum picked 5 bảng
+		-- ===	nếu lb il isl =0 và iw <>0: select picked from iw wher picked<>0; update về 0 cho picked trong iw; update picked cho im về 0 
 -	check scheduled 
-	=	select scheduled <> 0 trong IW của item và all whS
-	=	mas update scheduled<>0 của item đó trong file IW về 0
+	=	select scheduled <> 0 trong IW,IM của item và all whS
+	=	mas update scheduled<>0 của item đó trong file IW,IM về 0
 -	lặp trên all line của list item:
 	=	nếu locn='Scheduled': update IWSSA cho IW item,whs của IA. Rồi update IMSSA = sum(IWSSA) của item đó
 	=	picked locn='PICKED': update LBSPK 5 bảng theo item,whs,locn,isl# IA 
@@ -370,6 +533,36 @@ Cach 3
 -	check nếu sum picked 5 bảng = nhau thì xuất ra "picked đã đúng", nếu 5 bảng không bằng nhau thì xuất ra "picked 5 bảng không bằng nhau. Fix tay tiếp nhé"
 -	check nếu sum scheduled 2 bảng IW và IM: nếu bằng nhau thì xuất ra "scheduled đã đúng", nếu 2 bảng không bằng nhau thì xuất ra "scheduled 2 bảng không bằng nhau. Fix tay tiếp nhé"
 
+
+-	get allocate và picked <> 0 trong IL
+	=	select item,locn,whs,ilsoa,ilspk from il where (ilsoa<>0 or ilspk<>0) and item='A'
+	=	run sql, lưu vào datatable
+	=	lưu vào list<item> il
+	=	lặp trên all list item il 
+	=	update ilsoa,ilspk = 0 theo ITEM,LOCN,WHS của mỗi phần tử trong list il 
+
+-	get allocate và picked <> 0 trong ISL#
+	=	select item,ISL#,ISLsoa,ISLspk from ISL# where (ISLsoa<>0 or ISLspk<>0) and item='A'
+	=	run sql, lưu vào datatable
+	=	lưu vào list<item> ISL 
+	=	lặp trên all list item ISL 
+	=	update ISLsoa,ISLspk = 0 theo ITEM,ISL# của mỗi phần tử trong list ISL 
+	
+-	get allocate và picked <> 0 trong IW
+	=	select item,IW,iwsoa,iwspk from IW where (iwsoa<>0 or iwspk<>0) and item='A'
+	=	run sql, lưu vào datatable
+	=	lưu vào list<item> IW
+	=	lặp trên all list item IW 
+	=	update iwsoa,iwspk = 0 theo ITEM,WHS của mỗi phần tử trong list IW 
+	
+-	get allocate và picked <> 0 trong IM
+	=	select item,imsoa,imspk from IM where (imsoa<>0 or imspk<>0) and item='A'
+	=	run sql, lưu vào datatable
+	=	update imsoa,imspk = 0 theo ITEM của mỗi phần tử trong list IW 
+	
+-	sum allocate trong ia theo item	
+-	sum picked trong ia theo item
+-	sum scheduled trong ia theo item
 
 
 Check them type BI 
@@ -479,7 +672,23 @@ AND WHS='WH1'
 
 ======================================================================
 
-
+-	sum list 
+		int sumAllocate=0, sumScheduled=0, sumPicked =0;
+            foreach (Item item1 in items)
+            {
+                if (item1.LOCN == "Scheduled")
+                {
+                    sumScheduled = sumScheduled + item1.IAQA;
+                }
+                else if (item1.LOCN == "PICKED")
+                {
+                    sumPicked = sumPicked + item1.IAQA;
+                }
+                else
+                {
+                    sumAllocate = sumAllocate + item1.IAQA;
+                }
+            }            
 	
 ------------------------------
 -	Getting all DateTimes between two 'DateTime's in C#

@@ -1,5 +1,6 @@
 ﻿mail thay: nlatuan.gtvt@gmail.com
 			nlatuan@gmail.com 
+Số dien thoai thay: 090 393 2527 
 
 cau hinh Zend
 1 - Copy
@@ -2509,6 +2510,11 @@ cach khac phuc:remove all kí tự đặc biệt ('';/,\ ...) trước khi truy 
 -	upload 
 -	đặt quyền ghi cho file 
 -	require/include php 
+
+web service: la co so du lieu dang web tren internet
+
+
+-	han chót nộp bài: 10/10 
 
 
 	
