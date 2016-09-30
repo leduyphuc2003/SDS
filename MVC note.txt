@@ -1,3 +1,7 @@
+
+
+-	lý thuyết, ví dụ, ứng dụng thực tiễn 
+
 --- sbmjob command in as400 from C#
 	public static bool RunCmd(string cmdText, iDB2Connection cn)
 	{

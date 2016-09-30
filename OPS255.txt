@@ -260,7 +260,7 @@ Dua don hang bi crash va chua tao ra pick  ve lai man hinh Order Manager (anh Th
 update coh set                               
  cohsts='',cohbsy='', COHCPH='', COHCPO=''   
 , COHCPD=0, COHCPT=0, COHCPU=''              
- WHERE ttype='OR' and ordr =29540061          
+ WHERE ttype='OR' and ordr = 29540061          
 1 rows updated in COH in ZPTLIBD.  
 
 delete                                    

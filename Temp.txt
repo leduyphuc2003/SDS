@@ -1,18 +1,63 @@
-B060110
-B060180
-G030450
-G030940
+---Scorecard theo local group
+SELECT A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,                     
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                                
+COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),       
+SUM(A.CODVAL)                                                      
+ FROM cod a,coh b, cm c WHERE coddel='' and cohdel=''              
+and b.cust=c.cust and A.PRNCPL IN ('G03', 'G10') and               
+a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20140101 and  
+20141130 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
+B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC    
+
+
+
+
+
+======================================================================
+CHGUSRPRF USRPRF(ZPDTST1) STATUS(*ENABLED)
+
+
+
+select *                           
+from issd                          
+where  IVSCMB                      
+in ( 'C00395','C00258')            
+and  IVSIMB like 'E05%'            
+
+
+
+SELECT CUST, TTYPE,ARPAT,DOCNO,ARVAL,AROWNG , ARSEQ,batch       
+FROM ARD WHERE                                                  
+ARDDEL='' AND CUST='S08348' AND TTYPE='IV' AND ARPAT='IV' AND   
+DOCNO= 73546816                                                 
+
+update ard set                       AROWNG=0                   
+         WHERE                                                  
+ARDDEL='' AND CUST='S08348' AND TTYPE='IV' AND ARPAT='IV' AND   
+DOCNO= 73546816                                                 
+1 rows updated in ARD in ZPTLIBD.                               
+
+
+
 
 
 
 UPDATE LB SET LBSOA = 0 WHERE ITEM='{0}' AND LBSOA<>0
+UPDATE IL SET ILSOA = 0 WHERE ITEM='{0}' AND ILSOA<>0
+UPDATE ISL SET ISLSOA = 0 WHERE ITEM='{0}' AND ISLSOA<>0
+UPDATE IW SET IWSOA = 0 WHERE ITEM='{0}' AND IWSOA<>0
+UPDATE IM SET IMSOA = 0 WHERE ITEM='{0}' AND IMSOA<>0
+
+
 UPDATE LB SET LBSPK = 0 WHERE ITEM='{0}' AND LBSPK<>0
+UPDATE IL SET ILSPK = 0 WHERE ITEM='{0}' AND ILSPK<>0
+UPDATE ISL SET ISLSPK = 0 WHERE ITEM='{0}' AND ISLSPK<>0
+UPDATE IW SET IWSPK = 0 WHERE ITEM='{0}' AND IWSPK<>0
+UPDATE IM SET IMSPK = 0 WHERE ITEM='{0}' AND IMSPK<>0
 
 
-
-
-
-
+UPDATE IW SET IWSSA =0  WHERE ITEM='{0}' AND IWSSA<>0
+UPDATE IM SET IMSSA =0  WHERE ITEM='{0}' AND IMSSA<>0
 
 ========================
 32043336
