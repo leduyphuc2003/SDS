@@ -1,3 +1,17 @@
+Incident #74757 -  order with sale type: gif - chi Diep - Tran Tu Diep
+Dear IT 
+Em nho anh chay giup em tat ca OR tu nam 2015 den gio co sales type GIF nhe
+chi tiet : customer code/ customer name / sale type/ order date/ invoice date/ order number/ invoice number/ item code/ item description/ quantity/ warehouse
+thanks em 
+
+select d.cust,INHDNM,c.stycde,indcfd,                  
+c.ordr,c.invno,c.item,INDDES,indunt,c.whs              
+from ind c, inh d                                      
+where   c.ttype=d.ttype and c.invno=d.invno            
+and c.stycde ='GIF'                                    
+and indcfd >= 20150101                                 
+File TEMP in LDPHUC in use, cannot be shared.
+=========================================================
   Incident #72660 -  History Sales - nttnhan - nguyen thi thanh nhan
 Dear anh Phuc,
 Nho anh ho tro giup em run sales cua 17 khach hang nhu file template dinh kem.

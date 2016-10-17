@@ -79,6 +79,19 @@ WHERE DQCNAM = 'OPS190'
  where batch in 2790434
 
 ====================================================================
+OPS240
+select indsts from ind              
+where ttype='IV' and invno= 71925700
+•	Neu INDSTS la A , B, AB
+Thoat ve man hinh chinh, go lenh
+	CALL PGM(OPS241CA) PARM('01OPS241CA' 'PS' 'xxxxxxxx')
+	( XXXXXXX : la so pick luc dau tien 57541024 )
+	Check lai bang cach vao lai ESC20 , xem tinh trang  pick , cho den khi nao xuat hien
+ 
+Status la Inv Pri la ok .
+•	Neu INDSTS la E,F,EF
+•	CALL PGM(OPS245CA) PARM('01OPS245CA' 'PS' 'nnnnnnnn')
+
 
   
 OPS240 rieng le  

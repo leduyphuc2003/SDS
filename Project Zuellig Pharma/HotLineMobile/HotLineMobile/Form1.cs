@@ -192,6 +192,8 @@ namespace HotLineMobile
                 }
             }
 
+            #region xử lí cho ngày thường lặp trên allDates
+
             //xử lí cho ngày thường lặp trên allDates
             //List<NhanVien> minDayNhanViensList = new List<NhanVien>();
             //foreach (DateTime i in allDates)
@@ -221,6 +223,9 @@ namespace HotLineMobile
             //        }
             //    }
             //}
+
+            #endregion
+
 
 
             //lưu kết quả xuất ra file 

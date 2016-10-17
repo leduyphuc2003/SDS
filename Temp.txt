@@ -1,16 +1,175 @@
+
+
+ 
+ Dear anh Thông
+Nguyên nhân lúc sync data từ AS400 qua SQL server bị lỗi vì có line bị duplicate trong file zsa757pf3 đó anh.
+
+SELECT 
+CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN,  
+SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC,  $JNNAD ,  $JNNAE ,  $JNNAF ,
+$JNNAA ,  $JNNAB ,  $JNNAC                                        
+FROM                 ZPTLIBD/zsa757pf3                             
+where cust='C00009' and slsmn ='G56' and item='G030350'            
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+	
+====================================
+SELECT 
+PMNAME, CUST, CMSNM, CADD1, ORDR, CODSEQ, COHDAT, a.ITEM,imsell,
+CODDES, CODUNT, "Order Line Value", ARTRM, WHS, SUB, CARTE1       
+ FROM                                                             
+ZPTLIBD/ZPG423AR3 a, ZPTLIBD/im b                                                 
+where a.item=b.item and imdel=''                                  
+
+
+
+select 
+DISTINCT A.CUST as Code,C.CAANAM as Name, C.CARTE1 as Route, B.WHS, A.ORDR, A.COHDAT as Order_Date, B.ITEM as Item,B.CODDES as Description, B.CODUNT as Quantity, B.CODSEL as Selling_Price, B.CODVAL as Line_Values, A.COHOTB as Or_Take_By, A.COHSRC as Or_Source, A.COHCTU as User_Create,A.COHCTT as Creation_Time
+from 
+ZPTLIBD/COH A, ZPTLIBD/COD B, ZPTLIBD/CA C, ZPTLIBD/IA D
+where 
+A.COHDEL='' AND B.CODDEL='' AND A.TTYPE=B.TTYPE AND CADEL='' AND A.ORDR=B.ORDR AND A.CUST=C.CUST AND A.COHHLD='Y' AND COHDAT BETWEEN 20160901 AND 20160930
+and b.ttype=d.ttype and b.ordr=d.batch and iadel='' 
+
+
+select * 
+from ZPTLIBD/ZPG423AR3 a, ZPTLIBD/im b 
+where a.item=b.item and imdel=''
+and 
+
+
+ IMSELL - Item List Price A     
+ 
+ 
+                            System Price                              
+                                                                     
+ Level         All Customers-Item         Contract#  85770106        
+               Line Contract              Approval#  PPO201610000031 
+ Item          G031950                    Terms Code COD0            
+               KEPPRA TAB 250MG 3x10'S                               
+ Currency      VND    Start Date 121016   End Date 141016            
+ List Price A         227619.00                                      
+ List Price B               .00           Price Dsc          .0000   
+ Wholesale Price            .00           Wholesale Prc Dsc        % 
+ Retail Price               .00                                      
+ Excl Price           217376.15           Nett Price Contract    N   
+                                          Prc/Bon One Time Deal      
+ Quantity                10.000           Bon Only One Time Deal     
+ Value               2173762.00           Cust Tax Code VAT1         
+ Term Discount              .00           Item Tax Code F            
+ Tax                  108688.00           Tax Rate           .0500   
+              ------------------          Term Dsc Rate      .0000   
+ Total               2282450.00 '                                     
+                                                                     
+
+=============================
+Dear IT - chi Diep - Tran Tu Diep
+Em nho anh chay giup em tat ca OR tu nam 2015 den gio co sales type GIF nhe
+chi tiet : customer code/ customer name / sale type/ order date/ invoice date/ order number/ invoice number/ item code/ item description/ quantity/ warehouse
+thanks em 
+
+select d.cust,INHDNM,c.stycde,indcfd,                  
+c.ordr,c.invno,c.item,INDDES,indunt,c.whs              
+from ind c, inh d                                      
+where   c.ttype=d.ttype and c.invno=d.invno            
+and c.stycde ='GIF'                                    
+and indcfd >= 20150101                                 
+File TEMP in LDPHUC in use, cannot be shared.          
+
+
+select d.cust,INHDNM,c.stycde,COHCTD,indcfd,                     
+a.ordr,c.invno,c.item,INDDES,indunt,c.whs                        
+from cod a, coh b,ind c, inh d                                   
+where coddel='' and inddel='' and cohdel='' and inhdel=''        
+and a.ttype=b.ttype and a.ordr=b.ordr                            
+and c.ttype=d.ttype and c.invno=d.invno                          
+and a.ttype='OR' and c.ttype in ('IV','CR')                      
+and a.invno=c.invno                                              
+and c.stycde ='GIF'                                              
+and indcfd >= 20150101                                           
+
+-----
+
+Dear anh Thong
+
+Could you please kindly help to run sales data of CTM transactions from 01012016 till now, include also the sub-dist of each transaction: Customer ID, Customer Name –Address, Sub-dis, IV#, IV Date, Credit Term, Item Code, Item Desc, Quantity, Bonus Quantity, Selling Price, order type, warehouse, sub-dis for IV transaction. user keying
+
+		-- select d.cust,INHDNM,c.stycde,indcfd,                  
+		-- c.ordr,c.invno,c.item,INDDES,indunt,c.whs              
+		-- from ind c, inh d                                      
+		-- where   c.ttype=d.ttype and c.invno=d.invno            
+		-- and c.stycde in ('CTM','TDR')                                    
+		-- and indcfd >= 20150101  
+		-- and b.cust like 'CT%'                                                                  
+
+select  a.cust,CAANAM,CAADD1,                                      
+b.sub,a.ttype,invno,cohctd,b.stycde,item,CODDES,codunt,codval,b    
+.whs                                                               
+,b.ordr,b.prncpl,b.ARTRM,COHCTU                                    
+from coh a, cod b, ca c                                            
+where a.ttype=b.ttype and a.ordr=b.ordr                            
+and cohdel='' and coddel=''                                        
+and a.ttype='OR'                                                   
+and cohctd >=20160101                                              
+and a.cust like 'CT%'                                              
+and b.stycde ='CTM'                                                
+and a.cust=c.cust
+
+select  a.cust,CAANAM,CAADD1,              
+b.sub,a.ttype,invno,cohctd,b.stycde,       
+item,CODDES,codunt,codval,b.whs            
+,b.ordr,b.prncpl,b.ARTRM,COHCTU            
+from coh a, cod b, ca c                    
+where a.ttype=b.ttype and a.ordr=b.ordr    
+and cohdel='' and coddel=''                
+and a.ttype='OR'                           
+and cohctd >=20160101                      
+and b.stycde ='TDR'                        
+and a.cust=c.cust                          
+File TEMP2 in LDPHUC was replaced.         
+          
+TRL
+		  
+
+-- select b.cust, INHDNM, INHDA1 ,b.sub,b.ttype,b.invno       
+-- , inhcfd,b.ARTRM ,item,                                    
+-- INDDES,indunt,INDSEL,b.whs,COHCTU                          
+-- from coh a, inh b, ind c                                   
+-- where cohdel='' and inhdel='' and inddel=''                
+-- and a.ordr=b.ordr and a.ttype='OR'                         
+-- and b.ttype=c.ttype and b.invno=c.invno                    
+-- and b.ttype in ('IV','CR')                                 
+-- and b.cust like 'CT%'                                      
+-- and inhcfd >= 20160101                                     
+
+ 
+
+
+ ====================================
+
 ---Scorecard theo local group
 SELECT A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,                     
 B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),                                
 COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),       
 SUM(A.CODVAL)                                                      
  FROM cod a,coh b, cm c WHERE coddel='' and cohdel=''              
-and b.cust=c.cust and A.PRNCPL IN ('G03', 'G10') and               
-a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20140101 and  
-20141130 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
+and b.cust=c.cust and               
+a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20160101 and  
+20160831 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
 B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC    
 
 
+COHOTB-Order Taken By 
 
+Dear anh Hoan,
+
+Vui long giup em bao cao score card moi thang CS yeu cau chay, tuy nhien add them giup em 1 cot COHOTB-Order Taken By Salesperson, BCC yeu cau tach source POES tu exclusive team & SC minh. Va lam bao cao tu Jan den Aug 2016. Vui long giup em bao cao nay.
 
 
 ======================================================================

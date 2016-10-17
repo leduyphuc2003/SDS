@@ -2555,7 +2555,7 @@ AND prncpl in ('U05','S27','T01','J05')
 SELECT CUST, SUB, PRNCPL,ordr                                       
 FROM COH                                          
 WHERE COHDEL='' AND TTYPE='OR' 
-AND COHSTS IN ('','4','5') AND CUST ='S08176' 
+AND COHSTS IN ('','4','5') AND CUST = 'S08176' 
 
 Neu co thi lay so don hang cap nhat Sub-dist trong bang COD theo prncpl
 
@@ -2614,7 +2614,7 @@ WHERE ISSDEL='' AND IVSCMB ='S08176'
 
 select cust, WHS, sub           
 from CM                         
-where cust ='S08176'             
+where cust = 'S08176'             
 
 9. XEM KY TRUOC KHI CAP NHAT, XEM LAI BUOC 8 THEO SUB-DIST
 ------- cau lenh select duoi nay co the ko can lam ma chi viec thuc hien update nhu ben duoi luon cung duoc
@@ -6757,7 +6757,7 @@ File TEMP in ldphuc was replaced.
 
 update GM b set b.GVL09 = (SELECT  A.T04         
 FROM ldphuc/GJ a                                  
-WHERE a.co=b.co and a     .div=b.div and              
+WHERE a.co=b.co and a.div=b.div and              
 a.br=b.br and a.glacct=b.glacct  and             
 A.T04<>B.GVL09 )                                 
 where exists (SELECT A.T04                       
@@ -12224,6 +12224,17 @@ N06139 13/02/2014 - 13/10/2014
 -- BRANCH TRANSFER BI BTH/BTD (ben IC se key hang)
 -> BRANCH TRANSFER PICK SLIP BP BPH/BPD (xuong duoi kho sẽ pick hàng)
 -> PACKING NOTES PI PKH/PKD (sau khi pick xong sẽ tạo packing note)
+
+update pkd set  PKDBSY =''              
+where    TTYPE  ='PI'                   
+and PKN = 88161607                      
+2 rows updated in PKD in ZPTLIBD.     
+  
+select *                                
+from pkD                                
+where    TTYPE  ='PI'                   
+and PKN = 88161607                      
+
 ==============================================================================
  Service Request # 37187 
 Request report: CAM Monthly Customer Credit Status
@@ -14421,12 +14432,12 @@ Many thanks.
 select VCHNO,APIAMT,APOWE,APORIG                        
 from ap                               
 where TTYPE ='VC'                     
-and VCHNO =78143                            
+and VCHNO = 78143                            
  
   update ap set APIAMT=48058423332,APOWE=48058423332  
 , APORIG=48058423332                                  
 where TTYPE ='VC'                                     
-and VCHNO =78143                                      
+and VCHNO = 78143                                      
 1 rows updated in AP in ZPTLIBD.     
 
 ===============================================================
@@ -15111,3 +15122,14 @@ Vao ESC 20 -> Shift F3 -> Invoice Credit History
  =============================================================
  Transaction Type Description - file IT mô tả - file IT mo ta - mo ta IT 
 select * from tt
+===========================================
+Incident #74971 -  Create New Credit term in VIE : 120 days
+lxdai - le xuan dai 
+Create New Credit term in VIE : 120 days 
+Dear all,
+Please kindly help to create a new payment term “120D0” with content /condition is similar to term “4M0”.
+Many thanks anh
+
+Đường dẫn làm ar term (Credit term)
+22 70 20 20 
+22 70 21 
