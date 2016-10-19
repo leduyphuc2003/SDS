@@ -95,7 +95,7 @@ namespace CallPlan2015.WebApp.Forms
 											FROM zsa756pf a left join zlvl b on a.cmgrp2=b.cmgrp2 and           
 											a.cmgrp3=b.cmgrp3 and a.cmgrp4=b.cmgrp4 and a.zcmtyp=b.zcmtyp WHERE 
 											CPLDTE = {0} and a.slsmn='{1}' 
-                                            AND A.CMGRP2 in ('TD1','PH1')	
+                                            AND A.CMGRP2 in ('TD1','PH1','PC1')	
 										", Session[Constants.SESSION_EXCLUSIVE_DATE].ToString(), scCode);
 
             //truy van cau lenh sql bang tham so query o tren roi luu vao mot bang table
