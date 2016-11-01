@@ -223,7 +223,7 @@ on a.cust = c.cust WHERE A.PRNCPL='S27' AND A."GROUP" in ('S27ZZZ','SAZZZZ')
 AND A.INCCFD >= 20150930 AND INCDEL=''                              
 File TEMP in LDPHUC was replaced.    
 ========================================================
-Incident #72239 -  Extract order report - Ho Phuong Thao <hpthao@zuelligpharma.com>
+Incident #72239 -  Extract order report - Ho Phuong Thao <hpthao@zuelligpharma.com> - hoa don 500k 
 Dear IT team, 
 Nho cac anh extract tat ca cac order cua tat ca cac PRN co value < 500 000 voi noi dung:
 - Cus/ Name/ channel/order date/ OR number/ IV date/ IV number/ item code/ item description/ supply quantity/ order value
@@ -270,7 +270,20 @@ A.COHSTS, A.PSN, A.INVNO01 ,OTSSTS, OTSDES ,OTDDAT,OTDTIM
 FROM ldphuc/TEMP17 a, OTS b,OTD c WHERE                            
 a.ordr=c.ordr and b.OTSSTS=c.OTDSTS and otsdel='' and otddel='' and
 ttype='OR'and a.invno=c.invno and a.psn=c.psn                      
-File TEMP20 in LDPHUC was created.                   
+File TEMP20 in LDPHUC was created.            
+
+--- format chỉ gồm các cột ngày tạo order và ngày credit release 
+		SELECT a.ORDR,a.CUST,a.WHS,COHCTD, COHCTT, COHCTU,OTSDES,     
+		OTDDAT,OTDTIM,cohval                                          
+		FROM otd a, ots b,coh c                                       
+		WHERE a.ttype='OR'                                            
+		and OTDSTS =OTSSTS                           
+		and a.ordr=c.ordr and a.ttype=c.ttype                         
+		and otdsts = 'O20'                                          
+		and otddel='' and otsdel='' and cohdel=''                     
+		and a.ordr in (select ORDR from ldphuc/TEMP20)     
+		File TEMP2 in LDPHUC was replaced. 
+
 ============================================================
 Incident #69697 -  data extract	- Cao Thanh Thuy
 Dear anh/chị,

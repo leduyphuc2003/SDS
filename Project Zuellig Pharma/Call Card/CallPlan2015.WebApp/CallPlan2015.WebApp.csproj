@@ -90,9 +90,6 @@
     <Content Include="GLPharmaDateChoose.aspx" />
     <Content Include="GovHosDateChoose.aspx" />
     <Content Include="grid.aspx" />
-    <Content Include="Image\aaa.PNG" />
-    <Content Include="Image\Zp2014.png" />
-    <Content Include="Image\zuellig.PNG" />
     <Content Include="Login.aspx" />
     <Content Include="PriHosDateChoose.aspx" />
     <Content Include="RouteRideObservation.aspx" />

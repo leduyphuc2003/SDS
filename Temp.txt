@@ -1,59 +1,44 @@
 
 
-ZIN602 
-ZIN603
+
+rut bai: them la virus nao~,, dark door,bò cạp rút bài,copy cat để tấn công mặc dù có lá gravity
+
+ 
+go cua trai tim  
+
+SELECT A.OTDDEL, A.TTYPE, A.ORDR, A.PSN, A.INVNO, A.OTDSEQ,         
+A.MANFST, A.CUST, A.WHS, A.OTDSTS, A.OTDDAT, A.OTDTIM, B.OTSSTS,    
+B.OTSDES, B.OTSSDS, B.OTSARX FROM otd a, ots b WHERE ttype='OR' and 
+ordr =30554325 and OTDSTS =OTSSTS
+
+                                   											 
+SELECT ORDR,CUST,WHS,OTDDAT,OTDTIM,OTSDES                           
+FROM otd a, ots b WHERE ttype='OR' and 
+ordr =30554325 and OTDSTS =OTSSTS                                   
+and otdsts in 'O20'                                                
+
+SELECT a.ORDR,a.CUST,a.WHS,COHCTD, COHCTT, COHCTU,OTSDES, 
+OTDDAT,OTDTIM,cohval                                      
+FROM otd a, ots b,coh c                                   
+WHERE a.ttype='OR' and                                    
+a.ordr =30554325 and OTDSTS =OTSSTS                       
+and a.ordr=c.ordr and a.ttype=c.ttype                     
+and otdsts =   'O20'                                      
+and otddel='' and otsdel='' and cohdel=''                               
 
 
-
-SC code	Cus. Code	Day	Hours	Minutes	Team
-R41	S02364	7	8	0	ZPV
-R41	S00546	7	8	20	ZPV
-R41	S00548	7	8	40	ZPV
-R41	S00564	7	9	0	ZPV
-R41	S00572	7	9	20	ZPV
-R41	S00583	7	9	40	ZPV
-							R41	S04889	7	10	0	ZPV
-R41	S01631	7	10	20	ZPV
-R41	S02430	7	10	40	ZPV
-R41	S02446	7	11	0	ZPV
-R41	S02896	7	11	20	ZPV
-R41	S04051	7	14	0	ZPV
-R41	S06740	7	14	20	ZPV
-R41	S06770	7	14	40	ZPV
-R41	S01548	7	15	0	ZPV
-R41	S08513	7	15	20	ZPV
-R41	S10525	7	15	40	ZPV
-R41	S05216	7	16	0	ZPV
-R41	S00557	7	16	20	ZPV
+		SELECT a.ORDR,a.CUST,a.WHS,COHCTD, COHCTT, COHCTU,OTSDES,     
+		OTDDAT,OTDTIM,cohval                                          
+		FROM otd a, ots b,coh c                                       
+		WHERE a.ttype='OR'                                            
+		and OTDSTS =OTSSTS                           
+		and a.ordr=c.ordr and a.ttype=c.ttype                         
+		and otdsts = 'O20'                                          
+		and otddel='' and otsdel='' and cohdel=''                     
+		and a.ordr in (select * from ldphuc/temp)                     
 
 
-1	S00546	Nha Thuoc Nguyen Vo	65 Bui Vien- P. Pham Ngu Lao	Quan 1	B	16,099,011	5,027,217	1,580,723	31.2
-2	S00548	Nha Thuoc Mot Tam Ba	183/5A Bui Vien- P. Pham Ngu Lao	Quan 1	B	56,209,300	9,374,084	689,903	16.7
-3	S00557	CN Cty CPDP Ben Thanh- Hieu Thuoc So 12	122 Bui Thi Xuan- P. Pham Ngu Lao	Quan 1	B	31,672,910	9,204,497	1,656,361	29.1
-4	S00564	Nha Thuoc Nhu Y	282/5A Cong Quynh- P. Pham Ngu Lao	Quan 1	A	86,093,234	42,675,756	6,047,470	49.6
-5	S00572	Nha Thuoc Hong Duc	588 Vo Van Kiet- P. Cau Kho	Quan 1	B	23,280,962	3,381,009	1,735,473	14.5
-6	S00583	Nha Thuoc Duc Khai	601 Tran Hung Dao- P. Cau Kho	Quan 1	A	184,132,109	172,730,295	4,233,952	93.8
-7	S01548	CN Cty CPDP Ben Thanh- Nha Thuoc So 9	103A Bui Thi Xuan- P. Pham Ngu Lao	Quan 1	B	36,377,596	25,436,205	2,786,359	69.9
-8	S01631	Nha Thuoc Duc Huy	202 Nguyen Cu Trinh- P. Nguyen Cu Trinh	Quan 1	A	105,617,001	18,757,994	1,558,564	17.8
-9	S02364	Nha Thuoc Dan Linh	33 Ho Hao Hon- P. Co Giang	Quan 1	A	327,162,651	112,217,455	689,903	34.3
-10	S02430	Nha Thuoc Xuan Hong	154 Bui Vien- P. Pham Ngu Lao	Quan 1	A	51,330,217	10,099,234	1,800,276	19.7
-11	S02446	Nha Thuoc Hong Dai	20 Bui Vien- P. Pham Ngu Lao	Quan 1	A	201,734,120	32,308,280	0	16.0
-12	S02896	HT So 22(214 De Tham)	214 De Tham	Quan 1	A	71,827,123	33,334,637	4,179,361	46.4
-13	S04051	Nha Thuoc Hong Han	1B Ton That Tung- P. Pham Ngu Lao	Quan 1	B	76,253,996	17,791,484	1,642,856	23.3
-14	S05216	Nha Thuoc Son Ha	164A Co Giang- P. Co Giang	Quan 1	A	265,336,880	63,462,503	1,168,245	23.9
-15	S06740	Nha Thuoc Viet Duy	160B Nguyen Cu Trinh- P. Nguyen Cu Trinh	Quan 1	A	97,630,036	45,065,018	2,483,903	46.2
-16	S06770	Nha Thuoc Linh Chi	122B Tran Dinh Xu- P. Nguyen Cu Trinh	Quan 1	A	102,813,875	31,927,148	830,189	31.1
-17	S08513	Nha Thuoc Thien Thanh	345A Nguyen Trai- P. Nguyen Cu Trinh	Quan 1	A	109,659,397	22,259,715	1,884,905	20.3
-18	S10525
-
-select *                                                            
-           FROM zsa756pf a left join zlvl b on a.cmgrp2=b.cmgrp2 and
-           a.cmgrp3=b.cmgrp3 and a.cmgrp4=b.cmgrp4 and              
-a.zcmtyp=b.zcmtyp WHERE                                             
-           CPLDTE = 20161011 and a.slsmn='R41'                      
-                                            AND A.CMGRP2 in         
-('TD1','PH1') AND PDTCDE NOT in ('GSK','AZE')                       
-
+   
 
 ============================== 
  Dear anh Thông

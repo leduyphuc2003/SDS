@@ -190,7 +190,15 @@ namespace CallPlan2015.WebApp.Forms
 	            var pharmacyCustomer = pharmacyCustomerList.FirstOrDefault(x => x.ProCode == ((Label) item.FindControl("lblProCode")).Text);
 	            if (pharmacyCustomer != null)
 	            {
-                    pharmacyCustomer.CheckStock = Convert.ToInt32(((TextBox)item.FindControl("txtStock")).Text);
+	                try
+	                {
+                        pharmacyCustomer.CheckStock = Convert.ToInt32(((TextBox)item.FindControl("txtStock")).Text);
+                    }
+	                catch (Exception)
+	                {
+	                    pharmacyCustomer.CheckStock = 0;
+	                }
+
 	            }
 	        }
 

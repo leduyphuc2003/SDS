@@ -123,20 +123,19 @@ user 103702307
 pass zuelligvietnam
 C:\inetpub\wwwroot\callplan2015
 
-Database SQL server
-192.168.17.230
-tai khoan: sa P@ssw0rdz
-
 Database SQL server Call Card moi
 192.168.17.170
 tai khoan: sa P@ssw0rdz
 
-17.170
+remote gửi báo cáo: 192.168.17.170
 192.168.17.170\administrator
 Keepw@lk1ng
 http://localhost:2015/10_Member/login_page_test_cu.asp
 http://localhost:2015/10_Member/login/login_page_test_moi.asp
 
+Database SQL server cũ (Zeris)
+192.168.17.230
+tai khoan: sa P@ssw0rdz
 
 random pass
 =RANDBETWEEN(111111,999999)
@@ -427,6 +426,11 @@ Item allocate by another user
 Vao go mzsyu, 17, go vao item va so WHS roi xoa co ban no di
 
 6 57 1 -> manifest manager
+
+
+manifest 
+13 54
+
 =============================================================================================
 Doi password SDS (pass SDS, doi pass)
 Các b?n vui lòng tham kh?o nh?ng qui t?c don gi?n d? d?i password m?i trên SDS du?i dây:
@@ -720,10 +724,10 @@ In thu hoa don (in hoa don) 7, 80, 14
 		WHERE TTYPE='IV' AND INVNO = 73161593 
 		 1 rows updated in INH in ZPTLIBD.
 		 
-	select sub,invno,cust   
-	from sas                
-	where ttype='IV'        
-	and invno = 73232775
+		select sub,invno,cust   
+		from sas                
+		where ttype='IV'        
+		and invno = 73232775
 
 		UPDATE  sas  SET SUB='PSG'           
 		WHERE TTYPE='IV' AND INVNO = 73161593
@@ -2760,9 +2764,63 @@ AND B.PRNCPL=C.ISSPRN) AND A.CUST=<CODE KH>
 
 Best regards,
 
+=============================================================
+Bao Cao ISSD Update Audit Report - tao issd - bao cao issd 
+Dear anh,
+Pls chay giup em bao cao code KH ben duoi, thanks anhĂ
+Code	Sub dist	WHS	Complete Date
+C06389	SD1	WD3	31-Oct-2016
+C06390	SD1	WD3	31-Oct-2016
+C06391	SD1	WD3	31-Oct-2016
 
+Sang Da Nang	SD1	01	Others
+	SD3	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
+	SD4	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
+
+company 03
+INSERT INTO ISSD (                                         
+  PCLLVL, IVSCMB, IVSIMB, SUB, ISSPRN, ISSSDT               
+ ,ISSEDT, ISSCRD, ISSCRT, ISSCRU )                          
+ SELECT '01', A.CUST, D.ITEM, 'SD3', B.PRNCPL,              
+ 20080101, 20201231,20161101,113000,'VIEMTC'                                        
+ FROM CM A, IM B, WD2_IM D
+ WHERE A.CMDEL=''    
+ AND B.IMDEL='' AND B.PRNCPL IN 
+ ('G10','G11','F03','I02','M10','M14','N15','M15',
+'B10','M06','A10','S28','S29','S30','N19','S31','F05')
+ AND B.IMTYPE <>'UL' AND A.SUB = 'SD1'                         
+ AND A.WHS='WD3' AND NOT EXISTS (SELECT * FROM ISSD C WHERE   
+ A.CUST=C.IVSCMB AND B.ITEM=C.IVSIMB AND C.PCLLVL='01'        
+ AND C.ISSPRN=B.PRNCPL) 
+ AND A.CUST in 
+('C06389','C06390','C06391')
+AND B.ITEM=D.ITEM
+
+ INSERT INTO ISSD (                              
+   PCLLVL, IVSCMB, IVSIMB, SUB, ISSPRN, ISSSDT   
+  ,ISSEDT, ISSCRD, ISSCRT, ISSCRU )              
+ select * from ldphuc/temp                       
+ 510 rows inserted in ISSD in ZPTLIBD.           
+
+	 
+  2/ Them cho company 04
+INSERT INTO ISSD (                                      
+ PCLLVL, IVSCMB, IVSIMB, SUB, ISSPRN, ISSSDT             
+,ISSEDT, ISSCRD, ISSCRT, ISSCRU )                        
+SELECT '01', A.CUST, D.ITEM, 'SD4', B.PRNCPL             
+, 20080101, 20201231,20161101,113000,'VIEMTC'                                    
+FROM CM A, IM B, WD2_IM D
+WHERE A.CMDEL=''   
+AND B.IMDEL='' AND B.PRNCPL IN 
+('U05','S27','J05','T01','B09','J06','A16','N14','E05','M17','A18','B14')
+AND B.IMTYPE <>'UL' AND A.SUB = 'SD1'        
+AND NOT EXISTS (SELECT * FROM ISSD C WHERE               
+A.CUST=C.IVSCMB AND B.ITEM=C.IVSIMB AND C.PCLLVL='01'                   
+AND B.PRNCPL=C.ISSPRN) AND A.CUST in 
+('C06389','C06390','C06391')
+AND B.ITEM=D.ITEM	 	
 =========================================================
-Bao Cao ISSD Update Audit Report
+Bao Cao ISSD Update Audit Report - tao issd - bao cao issd 
  Dear anh,
 Pls ho tro giup em add cac KH ben duoi vao ISSD Update Audit Report nhe, thaks anh!
 CUST	WHS	SUB 	Date Created
@@ -14434,8 +14492,9 @@ from ap
 where TTYPE ='VC'                     
 and VCHNO = 78143                            
  
-  update ap set APIAMT=48058423332,APOWE=48058423332  
-, APORIG=48058423332                                  
+update ap set APIAMT= 48058423332
+,APOWE= 48058423332  
+,APORIG= 48058423332                                  
 where TTYPE ='VC'                                     
 and VCHNO = 78143                                      
 1 rows updated in AP in ZPTLIBD.     
@@ -15133,3 +15192,25 @@ Many thanks anh
 Đường dẫn làm ar term (Credit term)
 22 70 20 20 
 22 70 21 
+=================================================================
+Incident #75711 -  Cant proccess batch - tthhuong  
+Cant proccess batch
+Vui long go giup batch (JL 305207) tren moi truong VNM do ngay 30/09/2016 da clear JL nhung khong hien len banlance sheet
+ 
+go  MSYUAR   
+	 4. Reset Customer Batch/Seq   
+	 
+ MDET: UTS119    VNM    Update Customer Batch/Seq               Option 2 Change 
+                             Customer Code                                      
+                             SB0007                                             
+                                                                                
+                                                                                
+ Batch Number                      305207                                       
+ Batch Sequence                    1                                            
+ Customer Processing Type                                                       
+                                                                                
+  CUST         DOCNO   TTYPE  ARSEQ       BATCH   BSEQ          PSN  
+  SB0007     131,022    IV       0      132,325      0      230,884  
+  
+     ARTHPY  
+  10,753.20- 
