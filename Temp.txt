@@ -1,6 +1,274 @@
 
 
 
+
+
+
+
+
+
+
+
+CALC   RW                 =RE       
+CALC   RW                 =RW/RH*30 
+*      -------Total Available Hanoi----------
+CALC   RE                 =RL+RN             
+
+
+CALC   UG                 =RH*1.5      
+CALC   UG                 =RE-UG       
+IF     UG     GE 0                     
+Z-ADD  *ZEROS     to UG                
+ELSE                                   
+CALC   UG                 =UG*N/N      
+ENDIF                                  
+
+*      -------Total Available Hanoi----------
+CALC   RE                 =RL+RN             
+*      ----SOH WH6 Inv DaysX---              
+CALC   RW                 =RE/RH*30          
+
+
+
+
+$JGKAW  Total AvailableNW   
+
+
+ $JGKAW  SOH WH6 Inv DaysX     
+
+
+ 
+
+$JGKAN             Z9661              WH7 SOHX   
+ 
+select * from flda      
+where  FLDNM  ='$JGKAW' 
+
+
+RK 'WS1 AvailX' 
+RF 'Avg 3 mos On WS1X'                    
+             
+
+ Field/'Constant' to Field/'Heading' Len.Dec
+Z-ADD  *ZEROS     'WS1 AvailX'        09  0 
+
+ Field/'Constant' to Field/'Heading' Len.DecP
+Z-ADD  *ZEROS     'Avg 3 mos On WS1X' 09  2  
+
+ Field/'Constant' to Field/'Heading' Len.DecP
+Z-ADD  *ZEROS     'SOH WS1 Inv DaysX' 05  0  
+
+         'Heading'/Field       Calculation..
+CALC     TL                  = RK/RF*30     
+
+
+
+RE 'Total Avai Hanoi'       
+RH 'Avg 3 mos On WH6X'  
+ Field/'Constant' to Field/'Heading' Len.DecP
+Z-ADD  *ZEROS     'Total Avai NW'     09  0  
+
+ Field/'Constant' to Field/'Heading' Len.DecP
+Z-ADD  *ZEROS     'Avg 3 mos On WH6X' 09  2  
+
+
+RL 'WH6 AvailX'            
+RN 'WN1 SOHX'   
+ Field/'Constant' to Field/'Heading' Len.DecP
+Z-ADD  *ZEROS     'WH6 AvailX'        09  0  
+Z-ADD  *ZEROS     'WN1 SOHX'          09  0        
+ *      -------Total Available Hanoi-
+CALC   RE                 =RL+RN    
+    
+
+========================================================
+select a.TTYPE,a.INVNO,ITEM,CUST,a.WHS,INDVAL,INDUNT        
+from ind  a,inh b                                           
+where a.ttype in ('IV','CR') and inddel='' and inhdel=''    
+and a.ttype=b.ttype and a.invno=b.invno                     
+and indcfd between 20161001 and 20161031                    
+and cust in ( 'N07568',                                     
+              'N07252' ,                                    
+              'N05117'  ,                                   
+              'N07093'   ,                                  
+              'C01536'    ,                                 
+              'S03825'     ,                                
+              'N07543'      ,                               
+              'N09360'       )                              
+
+======================================================== 
+WS1 Avail
+WH6 Avail
+WT2 AvailX
+AS4 Avail
+WD3 Avail
+
+RI 'AS4 AvailX'  
+RJ 'WD3 AvailX'  
+RK 'WS1 AvailX'  
+RL 'WH6 AvailX'  
+RM 'WT2 AvailX'  
+
+
+																		
+
+AS0023                Copy Retrieval                          8/11/16 16:15:51
+                                                                              
+Type choices, press Enter.                                                    
+                                                                              
+                                                                              
+                                                                              
+                                                                              
+                  Copy from Author :            ZIC                           
+                  Copy from Program No. :       736                           
+                  Copy from Library :           ZPTLIBR                       
+                                                                              
+                  Copy to Author :              ZIC                           
+                  Copy to Password :                                          
+                  Copy to Program No. :         737                           
+                  Copy to Library :             TSTLIBR                       
+				  
+				  
+=> 
+Phien ban goc origin ben ZPT là ZIC756, bên TST là ZIC736
+Phiên bản chỉnh sửa bên ZPT là ZIC736, bên TST là ZIC737 
+
+
+      
+
+
+Z-ADD  *ZEROS     'WD3 Sug.BT/RCartX' 09  0 
+
+
+
+
+
+         'Heading'/Field       Calculation...
+CALC     UG                  = RB-TQ         
+
+ R  Item Stock On Allocation   
+ S  Item Stock Scheduled       
+ T  Item Stock Picked          
+ 
+ Z-ADD  *ZEROS     'WD3 Sug.BT/RCartX' 09  0 
+ 
+
+ 
+L7:	RL 'WH6 AvailX'  
+X7: RN 'WH7 SOHX'  
+
+
+CALC     RX                  = RL+RN    
+
+ CALC     UG                  = UG*N/N    
+ 
+ 
+ZIC736
+
+  SPLID       
+  Z9661XXX    
+  /java/SQLS/Z9661XXX.sql 
+
+select * from ZPTLIBD.Z9661                   
+where IMTYPE IN ('UL','ME','N') AND IMSOH<>0  
+
+
+================================================================
+GVL01, là tháng 12,
+GVL02, là tháng 11,
+					GVL03, là tháng 10,
+GVL04, là tháng 9,
+GVL05, là tháng 8,
+GVL06, là tháng 7,
+GVL07, là tháng 6, 
+GVL08, là tháng 5, 
+GVL09, là tháng 4, 
+GVL10	  tháng 3
+
+chay GLS110 de post len GL het
+
+ SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T10          
+ FROM GJ                                                    
+ WHERE MJDATE                                               
+ BETWEEN 20161001 AND 20161031 GROUP BY CO, DIV, BR, GLACCT 
+File GJ in LDPHUC was created.                              
+    
+
+
+2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
+ SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T10, B.GVL03     
+ FROM ldphuc/GJ a,gm b                                  
+ WHERE a.co=b.co and a.div=b.div and                    
+ a.br=b.br and a.glacct=b.glacct  and                   
+ A.T10<>B.GVL03                                         
+ File TEMP in LDPHUC was replaced.                                                         
+
+  update GM b set b.GVL03 = (SELECT  A.T10  
+ FROM ldphuc/GJ a                          
+ WHERE a.co=b.co and a.div=b.div and       
+ a.br=b.br and a.glacct=b.glacct  and      
+ A.T10<>B.GVL03 )                          
+ where exists (SELECT A.T10                
+ FROM ldphuc/GJ a                          
+ WHERE a.co=b.co and a.div=b.div and       
+ a.br=b.br and a.glacct=b.glacct  and      
+ A.T10<>B.GVL03   )                        
+ 35 rows updated in GM in ZPTLIBD.                                     
+
+
+---- Check lai select lai kiem tra xem con loi ko
+ SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T10, B.GVL03     
+FROM ldphuc/GJ a,gm b                                   
+WHERE a.co=b.co and a.div=b.div and                    
+a.br=b.br and a.glacct=b.glacct  and                   
+A.T10<>B.GVL03  
+ => ko co => dung
+ 
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T10                           
+FROM ldphuc/GJ a where not exists (select * from                      
+ gm b                                                                
+WHERE a.co=b.co and a.div=b.div and                                  
+a.br=b.br and a.glacct=b.glacct  and                                 
+A.T10= B.GVL03)                                                      
+ => ko co => dung     
+                                 
+SELECT * FROM gm a,ac b WHERE GVL03 <>0 and a.glacct=b.glacct and    
+b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
+a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
+c.T10= a.GVL03)                                                      
+ => ko co => dung.
+ 
+ 
+=========================================  
+check trong mỗi tuần
+	=	nếu nhan vien A xuất hiên 2 lần trong 1 tuần
+	=	thì lấy nhân viên đó ra check tiếp các tuần tiếp theo
+		==	nếu đã có A trong tuần đó thì bỏ qua
+		==	nếu chưa có A trong tuần đó thì chọn tuần đó và check tiếp xem nhan viên nào trong tuần đó cũng bị trực 2 lần hoặc (vừa trực ngày thường và vừa trực CN)
+	=	nếu có người trực 2 lần ngày thường trong tuần đó thì đổi
+	=	nếu có người trực ngày thường và CN trong cùng 1 tuần đó thì đổi 
+
+---	Giải thuật chia đều ngày trực hotline 
+-	lưu all kết quả người và ngày trực cuối cùng vào list mới và xử lí trên list mới đó  
+-	chia ra 12 thang
+-	trong mỗi tháng: split ra thành 4 hoặc 5 tuần từ ngày 1 đến ngày CN và T2; rồi từ t3 đến CN và t2 tiếp theo rồi lưu vào các list date con. Mỗi list con sẽ từ ngày thường đến CN 
+-	lặp cho mỗi tháng
+-	trong vòng lặp mỗi tháng: 
+-	lặp trên mỗi tuần vừa split ra 
+	-	get ra nhân viên nào trong tuần đó xuất hiện 2 lần và lưu lại listThua
+	-	get ra nhân viên nào trong tuần đó chưa xuất hiện và lưu lại listThieu
+	-	get phần tử đầu tiên của listThua và get ngày mà nhanvien đó trực 
+	-	
+	-	gọi hàm swap
+		=	trong hàm swap có check những ngày nào được swap: gồm ngày thứ 3,4,5,6 và không phải là lễ 
+		=	nếu là ngày lễ thì bỏ qua nhan viên nào đang trực ngày lễ đó 
+		=	
+
+
+
+
+
+
 rut bai: them la virus nao~,, dark door,bò cạp rút bài,copy cat để tấn công mặc dù có lá gravity
 
  

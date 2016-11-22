@@ -20,7 +20,19 @@ where codnor = 2973598
 
 Vao release batch 
 
-                                                                               
+	select *                                 
+	from ia                                  
+	where ttype='PS'                         
+	and batch in (61880792 ,                 
+				  61880793  )                
+			  
+	select *                                 
+	from wpool                               
+	where ttype='PS'                         
+	and batch in (61880792 ,                 
+				  61880793  )                
+			  
+			  
  RPG101                     Order Tracking Manager                             
                                                                                
      All Warehouses                      All Customers                         
@@ -92,7 +104,8 @@ Status la Inv Pri la ok .
 •	Neu INDSTS la E,F,EF
 •	CALL PGM(OPS245CA) PARM('01OPS245CA' 'PS' 'nnnnnnnn')
 
-
+ UPDATE DQC SET DQCENT=DQCENT -1      
+WHERE DQCNAM = 'OPS240'    
   
 OPS240 rieng le  
  PS 54673757 

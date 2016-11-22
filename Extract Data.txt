@@ -1,3 +1,34 @@
+
+======================================================================
+---- report audit KPMG - Ton Hoang Thai Thao <ttton@kpmg.com.vn>
+ select                                                    
+ a.ORDR,a.PSN,a.ttype,a.INVno,indseq,a.prncpl,             
+ SUB,b.CUST,ITEM,indval,b.MANfst,INDCFD                                      
+ from ind a , inh b                                        
+ where a.ttype=b.ttype and a.invno=b.invno                 
+ and inhdel='' and inddel='' and a.ttype in ('IV','CR')    
+ and indcfd between 20160101 and 20160131                  
+ File TEMP2 in LDPHUC was replaced.                        
+								 
+  SELECT A.ORDR, A.PSN, A.TTYPE, A.INVNO, A.INDSEQ, A.PRNCPL, A.SUB,
+  A.CUST, A.ITEM, A.INDVAL, A.MANFST, A.INDCFD, B.MFDDLV, B.MFDDLD, 
+  B.MFDDLT                                                          
+  FROM ldphuc/temp2 a left join                                     
+ (select distinct ordr,psn,invno,cust,                              
+                     manfst,MFDDLV,MFDDLD,                          
+  MFDDLT from mfd WHERE mfddel='' and ttype='MF'                    
+and MFDCDT between 20160101 and 20160231) b                         
+  on a.manfst=b.manfst                                              
+and a.ordr=b.ordr and a.psn=b.psn and a.invno=b.invno               
+and a.cust=b.cust                                                   
+File TEMP4 in LDPHUC was replaced.                                         
+
+        SUM ( INDVAL )   
+  1,515,152,164,778.00   
+
+        SUM ( INDVAL )   
+  1,515,152,164,778.00     
+========================================================
 Incident #74757 -  order with sale type: gif - chi Diep - Tran Tu Diep
 Dear IT 
 Em nho anh chay giup em tat ca OR tu nam 2015 den gio co sales type GIF nhe
@@ -109,7 +140,7 @@ B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),
 COHSRC,COUNT(DISTINCT A.ORDR),SUM(A.CODOUN ), SUM(A.CODUNT),       
 SUM(A.CODVAL)                                                      
  FROM cod a,coh b, cm c WHERE coddel='' and cohdel=''              
-and b.cust=c.cust and A.PRNCPL IN ('G03', 'G10') and               
+and b.cust=c.cust and               
 a.ttype=b.ttype and a.ordr=b.ordr and cohdat between 20140101 and  
 20141130 GROUP BY A.PRNCPL, C.CMGRP2, C.CMGRP3, C.CMGRP4,          
 B.COHOTB, SUBSTR(CHAR(COHDAT),5,2),COHSRC    
@@ -501,7 +532,7 @@ SELECT a.CPLDTE, a.SLSMN, a.SMDESC, a.PDTCDE, a.PDTDES, a.CUST, a.CNAME, a.CMGRP
 FROM dbo.zsa756pf AS a LEFT OUTER JOIN
 dbo.ZCPLD AS b ON a.SLSMN = b.SLSMN AND a.CUST = b.CUST AND a.CPLDTE = b.CPLUPD
 WHERE (a.PDTCDE NOT IN ('ADC', 'BCC', 'EVP', 'GMA', 'MCC', 'OTC')) 
-AND (a.CPLDTE between 20160828 and 20160831) 
+AND (a.CPLDTE between 20161001 and 20161031) 
 AND (b.CPLUPD <> 0)
 ======================================================================
 Nguyen Dinh Tuan 

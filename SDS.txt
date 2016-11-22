@@ -4,6 +4,18 @@ leduyphuc
 gam http://cuudinh.vieplay.com/: haivl87 phucthuy8788
 ===================================================================
 
+---	update ten cot trong bao cao asap - ten cot bao cao asap 
+select * from flda      
+where  FLDNM  ='$JGKAG' 
+
+- link vao bao cao ZIC736 14 80 88 80 80 9 
+	=> 
+	Phien ban goc origin ben ZPT là ZIC756, bên TST là ZIC736
+	Phiên bản chỉnh sửa bên ZPT là ZIC736, bên TST là ZIC737 
+
+
+===================================================================
+
 --- format ngay yyyyMMdd hhmmss
 YEAR (current timestamp)
 MONTH (current timestamp)
@@ -2504,6 +2516,21 @@ Hoa don khong huy duoc tren he thong-- HD(67205844) dung co ban len khi disconne
 cap nhat lai rchbsy='' va rchdat='ngay hien tai'
 
 ( kiem tra 5 bang INH, IND, ARH, ARD, IA)
+================================================
+phan vuong bao nguyen 
+update ca a set CAPHON =(select CAPHON from ldphuc/temp b     
+                        where a.cust=b.cust and a.cda=b.cda)  
+,CAFAX         =(select CAFAX  from ldphuc/temp b             
+                where a.cust=b.cust and a.cda=b.cda)          
+where exists (Select *                                        
+from ldphuc/temp b                                            
+where a.cust=b.cust and a.cda=b.cda)                          
+
+
+update cm a set CMRESD =(Select CMRESD from ldphuc/temp b   
+where a.cust=b.cust)                                        
+where exists (select * from ldphuc/temp b                   
+where a.cust=b.cust)    
 ======================================================================================================
 Phan Vuong Bao Nguyen
 6 80 88 23 80 80 80 75
@@ -10781,7 +10808,7 @@ SELECT * FROM ldphuc/ZSCTPCUST
 3.	Tuy theo cach Phuc de lam, mien sao la insert vao dung data va ko bi duplicated va khong thieu, vi day la bao cao tinh theo doanh so cua cty va cung de danh gia nhom SC di ban hang.
 
 =======================================================================================
-Service Request # 33126  
+Service Request # 33126  - bao cao anh Man 
 Update sales matrix to SDS report ( anh Man) - report anh Man - report matrix anh Man
 Dear IT,
 
@@ -13284,7 +13311,7 @@ where item='B010430'
 1 rows updated in IM in ZPTLIBD.   
 
 =============================================================================
-Pick xong roi nhung content check khong duoc. Vi bao pick thieu line - khong du line - chua du line - p/s bi loi
+Pick xong roi nhung content check khong duoc. Vi bao pick thieu line - khong du line - chua du line - p/s bi loi - check khong duoc 
 
 Keu user tra lai hang thuc te ve vi tri cu
 
@@ -15214,3 +15241,7 @@ go  MSYUAR
   
      ARTHPY  
   10,753.20- 
+ ====================================================================
+ chuong trinh in hoa don 
+ZPG0375SN   RPGLE       Generate Invoice Work Files - Sang Pharma 
+ZPG03751SN  RPGLE       Invoice Print - Sang Pharma         

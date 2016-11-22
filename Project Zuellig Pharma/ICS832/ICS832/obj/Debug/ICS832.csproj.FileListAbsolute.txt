@@ -28,3 +28,13 @@ D:\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.csproj.GenerateResource
 D:\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.exe
 D:\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.pdb
 C:\Users\dple\Desktop\ICS832\ICS832\obj\Debug\ICS832.csprojResolveAssemblyReference.cache
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\bin\Debug\ICS832.exe.config
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.exe
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\bin\Debug\ICS832.exe
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\bin\Debug\ICS832.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\bin\Debug\IBM.Data.DB2.iSeries.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.csprojResolveAssemblyReference.cache
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.Form1.resources
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.Properties.Resources.resources
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\ICS832\ICS832\obj\Debug\ICS832.csproj.GenerateResource.Cache

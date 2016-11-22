@@ -281,11 +281,11 @@ select sum(IWSPK) from IW where ITEM='A121210' AND WHS='WH1'
 3 cai deu bang 0 va bang nhau nen ok
 
 check 5 bang, select sum ra xem tu san pham do cho 5 bang, neu bang nhau het thi dung
-select sum(LBSPK) from LB where ITEM='A121210'
-select sum(ILSPK) from IL where ITEM='A121210'
-select sum(ISLSPK) from ISL where ITEM='A121210'
-select sum(IMSPK) from IM where ITEM='A121210'
-select sum(IWSPK) from IW where ITEM='A121210'
+	select sum(LBSPK) from LB where ITEM= 'A121210'
+	select sum(ILSPK) from IL where ITEM= 'A121210'
+	select sum(ISLSPK) from ISL where ITEM= 'A121210'
+	select sum(IMSPK) from IM where ITEM= 'A121210'
+	select sum(IWSPK) from IW where ITEM= 'A121210'
 
  Pick Am
 update lb set LBSPK=0        
