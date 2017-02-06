@@ -294,26 +294,26 @@ and b.ordr=c.ordr and inhdel=''
 and c.ttype in ('IV','CR')                                          
 File TEMP17 in LDPHUC was created. 
 
---- thêm cột OTSSTS, OTSDES ,OTDDAT,OTDTIM 
-SELECT DISTINCT A.CUST, A.INHDNM, A.CMGRP2, A.COHCTD, A.ORDR,    
-A.INHCFD, A.INVNO, A.ITEM, A.CODDES, A.CODUNT, A.CODVAL, A.COHSRC, 
-A.COHSTS, A.PSN, A.INVNO01 ,OTSSTS, OTSDES ,OTDDAT,OTDTIM          
-FROM ldphuc/TEMP17 a, OTS b,OTD c WHERE                            
-a.ordr=c.ordr and b.OTSSTS=c.OTDSTS and otsdel='' and otddel='' and
-ttype='OR'and a.invno=c.invno and a.psn=c.psn                      
-File TEMP20 in LDPHUC was created.            
+	--- thêm cột OTSSTS, OTSDES ,OTDDAT,OTDTIM 
+	SELECT DISTINCT A.CUST, A.INHDNM, A.CMGRP2, A.COHCTD, A.ORDR,    
+	A.INHCFD, A.INVNO, A.ITEM, A.CODDES, A.CODUNT, A.CODVAL, A.COHSRC, 
+	A.COHSTS, A.PSN, A.INVNO01 ,OTSSTS, OTSDES ,OTDDAT,OTDTIM          
+	FROM ldphuc/TEMP17 a, OTS b,OTD c WHERE                            
+	a.ordr=c.ordr and b.OTSSTS=c.OTDSTS and otsdel='' and otddel='' and
+	ttype='OR'and a.invno=c.invno and a.psn=c.psn                      
+	File TEMP20 in LDPHUC was created.            
 
---- format chỉ gồm các cột ngày tạo order và ngày credit release 
-		SELECT a.ORDR,a.CUST,a.WHS,COHCTD, COHCTT, COHCTU,OTSDES,     
-		OTDDAT,OTDTIM,cohval                                          
-		FROM otd a, ots b,coh c                                       
-		WHERE a.ttype='OR'                                            
-		and OTDSTS =OTSSTS                           
-		and a.ordr=c.ordr and a.ttype=c.ttype                         
-		and otdsts = 'O20'                                          
-		and otddel='' and otsdel='' and cohdel=''                     
-		and a.ordr in (select ORDR from ldphuc/TEMP20)     
-		File TEMP2 in LDPHUC was replaced. 
+	--- format chỉ gồm các cột ngày tạo order và ngày credit release 
+			SELECT a.ORDR,a.CUST,a.WHS,COHCTD, COHCTT, COHCTU,OTSDES,     
+			OTDDAT,OTDTIM,cohval                                          
+			FROM otd a, ots b,coh c                                       
+			WHERE a.ttype='OR'                                            
+			and OTDSTS =OTSSTS                           
+			and a.ordr=c.ordr and a.ttype=c.ttype                         
+			and otdsts = 'O20'                                          
+			and otddel='' and otsdel='' and cohdel=''                     
+			and a.ordr in (select ORDR from ldphuc/TEMP20)     
+			File TEMP2 in LDPHUC was replaced. 
 
 ============================================================
 Incident #69697 -  data extract	- Cao Thanh Thuy
@@ -370,6 +370,7 @@ and CMGRP2 ='HP1'
 and indcfd between 20160701 and 20160731      
 ========================================================
 Bao cao stock up - Vo Hieu Phuc
+GIVBRF,GIVINV,INDCFD 
 
 SELECT A.TTYPE, A.ORDERNUMBER, A.ORDERDATE, A.CUSTOMER,           
 A.ORDERSTATUS, A.ORDERSOURCE, A.DETAILSTATUS, A.PICKINGSLIP,      
@@ -383,7 +384,7 @@ A.HOSPITALORGINALDOCUMENT, A.DELIVERYDATE,
 A.DELIVEREDONDATE ,value(-Itqty,0) AS INVOICESUPPLIEDQTY          
 , value(B.ISL#, ''), 0 as EXPIRYDATE,                             
 value(locn,'') as LOCATION,value(itcrtd,0) as INVOICEDATE         
-,value(itcrtt,0) as INVOICETIME,GIVBRF,GIVINV,INDCFD 
+,value(itcrtt,0) as INVOICETIME
 FROM ZPTLIBD/zstockup a left join 	
 ZPTLIBD/it b on INVOICE =batch and INVOICESEQ=bhSEQ AND           
 B.TTYPE='IV'
@@ -527,7 +528,7 @@ and a.OTDSTS=e.OTSSTS
 and c.item in ('G030560','G030600')                              
 and indcfd in (20160823,20160824)   
 =======================================================================
-Nguyen Huynh Kim Oanh - bao cao call card chay trong SQL
+ZPP MTD Online Call Card Check - Nguyen Huynh Kim Oanh - bao cao call card chay trong SQL
 SELECT a.CPLDTE, a.SLSMN, a.SMDESC, a.PDTCDE, a.PDTDES, a.CUST, a.CNAME, a.CMGRP2, a.CMGRP3, a.CMGRP4, a.CADD2, a.ZCMTYP, ISNULL(b.CPLUPD, 0) AS CPLUPD, ISNULL(b.CPLUPT, 0) AS CPLUPT
 FROM dbo.zsa756pf AS a LEFT OUTER JOIN
 dbo.ZCPLD AS b ON a.SLSMN = b.SLSMN AND a.CUST = b.CUST AND a.CPLDTE = b.CPLUPD

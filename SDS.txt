@@ -3,6 +3,10 @@ leduyphuc
 
 gam http://cuudinh.vieplay.com/: haivl87 phucthuy8788
 ===================================================================
+user admin cai dat software 
+Administrator
+zuelligvietnam
+===================================================================
 
 ---	update ten cot trong bao cao asap - ten cot bao cao asap 
 select * from flda      
@@ -135,15 +139,20 @@ user 103702307
 pass zuelligvietnam
 C:\inetpub\wwwroot\callplan2015
 
-Database SQL server Call Card moi
-192.168.17.170
-tai khoan: sa P@ssw0rdz
+-	Database SQL server Call Card moi
+		192.168.17.170
+		tai khoan: sa P@ssw0rdz
 
-remote gửi báo cáo: 192.168.17.170
-192.168.17.170\administrator
-Keepw@lk1ng
-http://localhost:2015/10_Member/login_page_test_cu.asp
-http://localhost:2015/10_Member/login/login_page_test_moi.asp
+-	Report call card lịch gửi report mỗi ngày cho sales lưu trong 192.168.17.230
+	=	Server sql Zeris: 192.168.17.230
+	=	Trong database Zeris -> vào store procedures -> [dbo].[Report_Callcard]
+	=	Jobs gửi báo cáo mỗi ngày: Call Card Report 
+
+-	remote gửi báo cáo: 192.168.17.170
+	192.168.17.170\administrator
+	Keepw@lk1ng
+	http://localhost:2015/10_Member/login_page_test_cu.asp
+	http://localhost:2015/10_Member/login/login_page_test_moi.asp
 
 Database SQL server cũ (Zeris)
 192.168.17.230
@@ -163,13 +172,57 @@ You are using an evaluation copy and have opened files exceeding limitation.
 https://ezrx.com.vn/mainstaff.asp	=> trang quan tri
 admin	a1111
 
-
 Team viewer
 193178665
 8136
 phan login sua 2 file: allPage.js, member_p.asp
 
---------
+---------------------------------------
+Check sync data call card
+
+	exec [USP_SDS_	zsa756pf] 'admin'
+ 		select cust,slsmn,CPLDTE,count(*)     
+		from zsa756pf                      
+		group by cust,slsmn,CPLDTE            
+		having count(*)>1   
+		
+	exec [USP_SDS_	zsa757pf] 'admin'
+ 		select cust,slsmn,item,count(*)     
+		from zsa757pf                      
+		group by cust,slsmn,item            
+		having count(*)>1   
+		
+	exec [USP_SDS_ zsa757pf3] 'admin'
+ 		select cust,slsmn,item,count(*)     
+		from zsa757pf3                      
+		group by cust,slsmn,item            
+		having count(*)>1  
+		
+	exec [USP_SDS_	zsa758pf] 'admin'
+  		select cust,slsmn,item,count(*)     
+		from zsa758pf                      
+		group by cust,slsmn,item            
+		having count(*)>1  
+		
+	exec [USP_SDS_	ZGOVHOSP2] 'admin'
+		select cust,slsmn,item,count(*)     
+		from ZGOVHOSP2                      
+		group by cust,slsmn,item            
+		having count(*)>1                   
+
+	exec [USP_SDS_	zlvl] 'admin'
+		select cust,slsmn,item,count(*)     
+		from ZGOVHOSP2                      
+		group by cust,slsmn,item            
+		having count(*)>1   
+ 
+ SELECT 
+CUST, CNAME, CADD1, CMCONT, CMPHON, ARTRM, CMGRP2, PDTCDE, SLSMN,  
+SMDESC, ZCITYP, PRNCPL, ITEM, IMDESC,  $JNNAD ,  $JNNAE ,  $JNNAF ,
+$JNNAA ,  $JNNAB ,  $JNNAC                                        
+FROM                 ZPTLIBD/zsa757pf3                             
+where cust='C00009' and slsmn ='G56' and item='G030350'      
+---------------------------------------
 Server Elearning + CallMeBack + CallPlan
 Gui cac bac them thong tin ve khai bao host domain cua cac web portal nay, de sau nay biet co chinh sua gi thi vao do…con nay cung hoi dac biet 
 IP internal: 192.168.17.31 
@@ -251,11 +304,11 @@ Trung Back end
 
 2. Total number of apps installed on iPhone and android 
                 Google Play - Android: 
-- eZRx Call-Me-Back for customers:590	
+- eZRx Call-Me-Back for customers:599	
 - eZRx Call-Me-Back Professional for SC: 123
                 App Store - iOS:
--	eZRx Call-Me-Back for customers: 267
--	eZRx Call-Me-Back Professional for SC: 48
+-	eZRx Call-Me-Back for customers: 324
+-	eZRx Call-Me-Back Professional for SC: 98
 3. Total number of views of discounts: 4946 views 
 4. Number of discounts loaded into call me back: 90 promos, sent to 1861 customers per each promo
 
@@ -300,7 +353,7 @@ FROM `notifications`
 
 id,	title,	message,	ngay_gio,	is_cust_read 
  
- 
+ http://localhost/phpmyadmin/import.php#PMAURL-5:import.php?db=moodle&table=mdl_user&server=1&target=&token=2173cc55058e7f2ccb94a2c0bb7a77d2
 ==================================
 remote desktop
 Zeris 
@@ -666,6 +719,10 @@ where ttype='IV' and invno=72149189
 
 => bao user tao lai return
 
+=====================================================================
+reset co ban finacne 
+22 54 2 2   ZPT    Clear Supplier Busy Flags 
+ 
 =======================================================================================
 Kiem tra Data Queue Manager
 
@@ -734,7 +791,7 @@ In thu hoa don (in hoa don) 7, 80, 14
 
 		UPDATE  INH  SET SUB='PSG'            
 		WHERE TTYPE='IV' AND INVNO = 73161593 
-		 1 rows updated in INH in ZPTLIBD.
+		 
 		 
 		select sub,invno,cust   
 		from sas                
@@ -743,7 +800,7 @@ In thu hoa don (in hoa don) 7, 80, 14
 
 		UPDATE  sas  SET SUB='PSG'           
 		WHERE TTYPE='IV' AND INVNO = 73161593
-		1 rows updated in SAS in ZPTLIBA.
+ 
 
 Xem hoa don nam trong kho nao 13, 70, 11 roi dien vao WS4 hay WM1 hay WS1
 
@@ -1268,13 +1325,12 @@ Upload chuong trinh khuyen mai tender
 =	$ neu la gia tri thi cot PBHBON se de trong, trong FILE PBD PBDCDM = 0  
 
 ------------------Tao file tam
-select TTYPE,PBHCON,PCLLVL,PBHCMB,PBHIMB,PBHTX1,
-PBHTX2,PBHBAS,PBHBON      
-, PBHSDT,PBHEDT,PBHMIN,PBHPAC,PBHTMS                                 
-from pbh                                                                  
-where   PBHCON                                                            
-=      110101                                                             
-File PBH in ldphuc was created.    
+select TTYPE ,PBHCON ,PCLLVL,PBHCMB,PBHIMB,PBHTX1,PBHTX2,PBHBAS , 
+       PBHBON ,PBHSDT, PBHEDT,PBHMIN,PBHPAC,PBHTMS                
+from pbh                                                          
+where   PBHCON                                                    
+=      110101                                                     
+File PBH in LDPHUC was replaced.                                     
                                         
 select TTYPE,PBHCON,PBDSEQ,PBDBRK,PBDPRC,PBDCDM                           
 from pbd                                                                  
@@ -1347,7 +1403,8 @@ PBHTX2, PBHBAS, PBHBON, PBHSDT, PBHEDT, PBHPAC, PBHMIN)
 SELECT DISTINCT TTYPE, PBHCON, PCLLVL, PBHCMB, PBHIMB, PBHTX1, 
 PBHTX2, PBHBAS, PBHBON, PBHSDT, PBHEDT, PBHPAC, PBHMIN         
 FROM ldphuc/pbhpbd                                                         
---
+--PBHTMS
+
 insert into pbd(TTYPE, PBHCON, PBDSEQ, PBDBRK, PBDPRC, PBDCDM) 
 SELECT TTYPE, PBHCON, PBDSEQ, PBDBRK, PBDPRC, PBDCDM           
 FROM ldphuc/pbhpbd                                               
@@ -1445,7 +1502,8 @@ and item in (
 'S080570',                      
 'S080580',                      
 'S080820'                       
-)                         
+)   
+                      
 SELECT count(*)                                                            
 from cqd a where exists (select * from ldphuc/cqd b                  
 where  a.CQLLVL=b.cqllvl and                                        
@@ -1473,15 +1531,15 @@ a.CQHIMB=b.CQHIMB)
  where not exists (select * from cqh b                             
  where a.CQLLVL=b.CQLLVL and a.CQHCMB=b.CQHCMB and                 
 a.CQHIMB=b.CQHIMB) 
-
+ 
    INSERT INTO CQD(CQLLVL, CQHCMB, CQHIMB, CQDDES, CQDSTD, CQDEND,    
- CQDQTY,CQDSEQ,CQDCTD,CQDCTT,CQDCTU)                                 
+ CQDQTY,CQDSEQ,CQDCTD,CQDCTT,CQDCTU,CQDCOM)                                 
  SELECT A.CQLLVL, A.CQHCMB, A.CQHIMB, A.CQDDES, A.CQDSTD, A.CQDEND,  
- A.CQDQTY, MAX(B.CQDSEQ)+1,A.CQDCTD,A.CQDCTT,A.CQDCTU                
+ A.CQDQTY, MAX(B.CQDSEQ)+1,A.CQDCTD,A.CQDCTT,A.CQDCTU,A.CQDCOM               
  FROM ldphuc/CQD A, CQD B                                             
  WHERE A.CQLLVL=B.CQLLVL and A.CQHCMB=B.CQHCMB and A.CQHIMB=B.CQHIMB 
  GROUP BY A.CQLLVL, A.CQHCMB, A.CQHIMB, A.CQDDES, A.CQDSTD,          
- A.CQDEND, A.CQDQTY,A.CQDCTD,A.CQDCTT,A.CQDCTU                                               
+ A.CQDEND, A.CQDQTY,A.CQDCTD,A.CQDCTT,A.CQDCTU,A.CQDCOM                                              
  
  //lay ra nhung dong con thieu
  SELECT *                                                             
@@ -1980,7 +2038,7 @@ Please help to upload in SDS the cut-off schedule as attached (for period Jun to
 
 Note: the cut-off data based on the cut-off schedule provided from WH and matching with the template requires.
 ---------------------
-Service Request # 37487 	Ha Minh Quang -  Su Thi Thuy Trang
+Service Request # 37487 	Ha Minh Quang -  Su Thi Thuy Trang - Trang Su - Su Trang 
 cut off upload Oct-Dec 14
 route & cut-off time for Order Release Objective
 Hi,
@@ -2361,7 +2419,7 @@ UPDATE MFH SET
 MFHDPD=20130930                                               
 , MFHDPT = 140000                                                 
 WHERE MFHDEL='' AND TTYPE='MF' AND 
-MANFST=88732531        
+MANFST= 88732531        
 
 MFHDPD	MFHDPT
 20130930	140000
@@ -2518,19 +2576,50 @@ cap nhat lai rchbsy='' va rchdat='ngay hien tai'
 ( kiem tra 5 bang INH, IND, ARH, ARD, IA)
 ================================================
 phan vuong bao nguyen 
-update ca a set CAPHON =(select CAPHON from ldphuc/temp b     
-                        where a.cust=b.cust and a.cda=b.cda)  
-,CAFAX         =(select CAFAX  from ldphuc/temp b             
-                where a.cust=b.cust and a.cda=b.cda)          
-where exists (Select *                                        
-from ldphuc/temp b                                            
-where a.cust=b.cust and a.cda=b.cda)                          
+
+select CUST,CDA,CAPHON,CAFAX,CALIRF,CAEXPD           
+from ca                                              
+where CUST                                           
+=    'N03060'                                        
+File TEMP in LDPHUC was replaced.                    
+
+	 select count(*)                             
+	from ca a                                   
+	where exists (Select *                      
+	from ldphuc/temp b                          
+	where a.cust=b.cust and a.cda=b.cda)        
+
+		update ca a set CAPHON =(select CAPHON from ldphuc/temp b         
+								where a.cust=b.cust and a.cda=b.cda)      
+		,CAFAX         =(select CAFAX  from ldphuc/temp b                 
+						where a.cust=b.cust and a.cda=b.cda)              
+		,CALIRF        =(select CALIRF from ldphuc/temp b                 
+						where a.cust=b.cust and a.cda=b.cda)              
+		,CAEXPD        =(select CAEXPD from ldphuc/temp b                 
+						where a.cust=b.cust and a.cda=b.cda)              
+		where exists (Select *                                            
+		from ldphuc/temp b                                                
+		where a.cust=b.cust and a.cda=b.cda)                                                     
 
 
-update cm a set CMRESD =(Select CMRESD from ldphuc/temp b   
-where a.cust=b.cust)                                        
-where exists (select * from ldphuc/temp b                   
-where a.cust=b.cust)    
+select CUST,CMRESD,CMTMPE           
+from cm                             
+where CUST                          
+=    'N03060'                       
+File TEMP in LDPHUC was replaced.   
+
+	select count(*)                               
+	from cm a                                     
+	where exists (select * from ldphuc/temp b     
+	where a.cust=b.cust)                          
+
+		update cm a set CMRESD =(Select CMRESD from ldphuc/temp b 
+								where a.cust=b.cust)                                      
+		,CMTMPE  =(Select CMTMPE from ldphuc/temp b                 
+					where a.cust=b.cust)                                       
+		where exists (select * from ldphuc/temp b                 
+		where a.cust=b.cust)                                      
+ 		
 ======================================================================================================
 Phan Vuong Bao Nguyen
 6 80 88 23 80 80 80 75
@@ -2641,7 +2730,7 @@ Neu co thi lay so PS cap nhat Sub-dist trong bang PSD theo prncpl
 8. TRUONG HOP NAY CAN LUU Y VI LIEN QUAN DEN ISSD THUOC PRODUCT
 SELECT *                                           
 FROM ISSD                                          
-WHERE ISSDEL='' AND IVSCMB ='S08176'
+WHERE ISSDEL='' AND IVSCMB = 'S08176'
 
 select cust, WHS, sub           
 from CM                         
@@ -2700,6 +2789,23 @@ from ldphuc/temp
 group by PCLLVL,IVSCMB,IVSIMB           
 having count(*) >1  
 
+
+
+--select nhung line chua co trong issd va insert vao
+ select *                                     
+from ldphuc/temp b                            
+ where not exists (Select * from issd a       
+ where a.PCLLVL  =b.PCLLVL                    
+ and a.IVSCMB  =b.IVSCMB                      
+ and a.IVSIMB  =b.IVSIMB )                    
+File TEMP2 in LDPHUC was replaced.            
+
+insert into issd                          
+select *                                  
+from ldphuc/temp2                         
+238 rows inserted in ISSD in ZPTLIBD.     
+
+
 update issd a set SUB  =(select SUB from ldphuc/temp b      
                           where a.PCLLVL  =b.PCLLVL         
                           and a.IVSCMB  =b.IVSCMB           
@@ -2717,20 +2823,6 @@ update issd a set SUB  =(select SUB from ldphuc/temp b
  and a.IVSCMB  =b.IVSCMB                                    
  and a.IVSIMB  =b.IVSIMB )                                  
  75 rows updated in ISSD in ZPTLIBD.  
-
---select nhung line chua co trong issd va insert vao
- select *                                     
-from ldphuc/temp b                            
- where not exists (Select * from issd a       
- where a.PCLLVL  =b.PCLLVL                    
- and a.IVSCMB  =b.IVSCMB                      
- and a.IVSIMB  =b.IVSIMB )                    
-File TEMP2 in LDPHUC was replaced.            
-
-insert into issd                          
-select *                                  
-from ldphuc/temp2                         
-238 rows inserted in ISSD in ZPTLIBD.     
 
 ===============================================================================================================
 Doi Sub Dist SAN => Blank, Invoice Format Type "Z"
@@ -3519,8 +3611,8 @@ and a.IVSCMB  =b.IVSCMB
 and a.IVSIMB  =b.IVSIMB                        
 and a.ISSSDT  =b.ISSSDT                        
 and a.ISSEDT  =b.ISSEDT)  
-==============================================================================================================
--------------------------------------------------------------------
+====================================================================
+------------------------------------------------------------------- anh Man 
 upload Sales matrix cho Mini POES ( Sales matrix chuan 2 - Mini POES chuan ne) 
 
 SELECT * FROM ldphuc/ZSSATCP           
@@ -6821,7 +6913,9 @@ GVL06, là tháng 7,
 GVL07, là tháng 6, 
 GVL08, là tháng 5, 
 GVL09, là tháng 4, 
-GVL10	  tháng 3
+GVL10, là tháng 3
+GVL11, là tháng 2
+GVL12, là tháng 1
 
 chay GLS110 de post len GL het
 
@@ -6837,8 +6931,7 @@ FROM ldphuc/GJ a,gm b
 WHERE a.co=b.co and a.div=b.div and                  
 a.br=b.br and a.glacct=b.glacct  and                 
 A.T04<>B.GVL09                                       
-File TEMP in ldphuc was replaced.                                                                            
-10 dong
+File TEMP in ldphuc was replaced. 
 
 update GM b set b.GVL09 = (SELECT  A.T04         
 FROM ldphuc/GJ a                                  
@@ -10851,11 +10944,9 @@ where exists (select * from ldphuc/ZSCTPITEM a
 where a.INDOIT    = b.INDOIT                   
 and   a.PROGROUP  = b.PROGROUP                 
 and   a.ITEM      = b.ITEM )                   
-116 rows deleted from ZSCTPITEM in LDPHUC.                            
-
+ 
  INSERT INTO ZSCTPITEM                               
  SELECT * FROM ldphuc/ZSCTPITEM                       
- 190 rows inserted in ZSCTPITEM in ZPTLIBD.          
  
 ===============================================================================================
 Service Request # 33104     
@@ -12310,6 +12401,8 @@ N06139 13/02/2014 - 13/10/2014
 -> BRANCH TRANSFER PICK SLIP BP BPH/BPD (xuong duoi kho sẽ pick hàng)
 -> PACKING NOTES PI PKH/PKD (sau khi pick xong sẽ tạo packing note)
 
+so PI 
+
 update pkd set  PKDBSY =''              
 where    TTYPE  ='PI'                   
 and PKN = 88161607                      
@@ -13148,7 +13241,7 @@ delete
  and a.GROUP=b.GROUP                        
  and a.GROUP2=b.GROUP2                      
  and a.STYCDE=b.STYCDE)                     
-268 rows deleted from SSATCP in ZPTLIBD.    
+ 
 
 -- dem xem nhung dong nao bi duplicate
 select CMSTAT,PLCAR,PLCTE,CMIMS1,cust,PRNCPL,                      
@@ -13215,7 +13308,7 @@ where
                                        
 insert into ssatcp                      
 select * from ldphuc/ssatcp              
-3496 rows inserted in SSATCP in ZPTLIBD.
+ 
 ============================================================
 Incident #69775 -  Hỗ trợ run data - nttnhan - nguyen thi thanh nhan
 Dear anh,
@@ -13311,6 +13404,7 @@ where item='B010430'
 1 rows updated in IM in ZPTLIBD.   
 
 =============================================================================
+pick khong co trong workpool -  pick workpool
 Pick xong roi nhung content check khong duoc. Vi bao pick thieu line - khong du line - chua du line - p/s bi loi - check khong duoc 
 
 Keu user tra lai hang thuc te ve vi tri cu
@@ -13753,6 +13847,94 @@ Khi nhan yeu cau nhu email dinh kem va them 1cai upload chuong trinh rebate so S
 
 2 ban lam cac buoc  nhu minh da huong dan cho Phuc, va soan cau lenh thuc hien .
 
+
+2. Upload INVDSC - Upload chuong trinh rebate Sanofi lan 3 Ho Phuong Thao -  Service Request # 54428 upload tra thuong sanofi
+Format nhieu cot
+=> upload theo chuong trinh rebate cua hãng và không theo s? hóa don IV hay CR nào
+
+SELECT * FROM ldphuc/INVDSC  A                     
+WHERE EXISTS (SELECT * FROM INVDSC B WHERE                
+A.CUST=B.CUST AND A.PRNCPL=B.PRNCPL AND                   
+A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
+
+Neu chua co ton tai thi dung lenh insert nhu ben duoi, neu da co thi loai bo ra va bao voi CS
+
+update ldphuc/INVDSC
+set INCRTD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCRTT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCRTU = 'VIEOPR'
+
+insert into invdsc                                        
+SELECT * FROM ldphuc/INVDSC  A                     
+WHERE not EXISTS (SELECT * FROM INVDSC B 
+WHERE A.CUST=B.CUST AND A.PRNCPL=B.PRNCPL AND                   
+A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
+
+SELECT * FROM INVDSC  A                     
+WHERE EXISTS (SELECT * FROM ldphuc/INVDSC B WHERE                
+A.CUST=B.CUST AND A.PRNCPL=B.PRNCPL AND                   
+A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
+
+
+---stop rebate nhieu line 
+select count(*)                                    
+ from invdsc a                                     
+ where exists (Select * from ldphuc/invdsc b       
+ where a.CUST   =  b.CUST                          
+ and   a.INVNO  =  b.INVNO                         
+ and   a.TTYPE  =  b.TTYPE)                                             
+ 
+update invdsc a set INCDSA=0,RBHPGM=                            
+(select RBHPGM from ldphuc/invdsc b                              
+ where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE)                                      
+,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,INCPDU='VIEOPR',
+INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))   
+ where exists (Select * from ldphuc/invdsc b                     
+ where a.CUST   =  b.CUST and   a.INVNO  =  b.INVNO                                       
+ and   a.TTYPE  =  b.TTYPE) 
+ 
+
+------stop rebate
+select * 
+from invdsc 
+where invno in 10029492 
+
+update invdsc set INCDSA=0,RBHPGM='...',
+	INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+,	INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
+DIGITS(DEC(MINUTE (current time),2))||            
+DIGITS(DEC(SECOND (current time),2)))
+,	INCPDU='VIEOPR',
+INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
+DIGITS(DEC(MONTH (current timestamp),2))||    
+DIGITS(DEC(DAY (current timestamp),2)))
+where invno = 10029492
+
+update invdsc set INCDSA=0,RBHPGM='Stop By CS',
+INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
+where invno =10029492
+
+update invdsc set INCDSA=0,
+INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
+where invno =10029492 
+
+ 
+---------------------------------------- 
 UPLOAD CHUONG TRINH REBATE
 1. => Upload theo so hoa don goc INHOIN cua hoa don CR 
 Service Request # 54119 	Dear anh Thong/ anh Chu,	- Ho Phuong Thao
@@ -13841,32 +14023,7 @@ and a.INHOIN =0
 	 and c.carte1=d.rtecde and A.INSREF= E.INVNO AND                                    
 	a.docno in  (So_CR) 
 
-2. Upload INVDSC - Upload chuong trinh rebate Sanofi lan 3 Ho Phuong Thao -  Service Request # 54428 upload tra thuong sanofi
-Format nhieu cot
-=> upload theo chuong trinh rebate cua hãng và không theo s? hóa don IV hay CR nào
-
-SELECT * FROM ldphuc/INVDSC  A                     
-WHERE EXISTS (SELECT * FROM INVDSC B WHERE                
-A.CUST=B.CUST AND A.PRNCPL=B.PRNCPL AND                   
-A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
-
-Neu chua co ton tai thi dung lenh insert nhu ben duoi, neu da co thi loai bo ra va bao voi CS
-
-update ldphuc/INVDSC
-set INCRTD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))
-,INCRTT=(DIGITS(DEC(HOUR (current time),2)) ||            
-DIGITS(DEC(MINUTE (current time),2))||            
-DIGITS(DEC(SECOND (current time),2)))
-,INCRTU = 'VIEOPR'
-
-insert into invdsc                                        
-SELECT * FROM ldphuc/INVDSC  A                     
-WHERE not EXISTS (SELECT * FROM INVDSC B 
-WHERE A.CUST=B.CUST AND A.PRNCPL=B.PRNCPL AND                   
-A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
-
+ 
 ----------------------------------
  Key field . . . . . . . . . . . . . . . . :            CUST                          
  Key field . . . . . . . . . . . . . . . . :            PRNCPL                         
@@ -13874,60 +14031,8 @@ A.GROUP=B.GROUP AND A.INCCFD=B.INCCFD AND A.INVNO=B.INVNO AND A.TTYPE=B.TTYPE)
  Key field . . . . . . . . . . . . . . . . :            INCCFD              
  Key field . . . . . . . . . . . . . . . . :            INVNO                         
  Key field . . . . . . . . . . . . . . . . :            TTYPE   
- 
-------stop rebate
-select * 
-from invdsc 
-where invno in 10029492 
 
-update invdsc set INCDSA=0,RBHPGM='...',
-	INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))
-,	INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
-DIGITS(DEC(MINUTE (current time),2))||            
-DIGITS(DEC(SECOND (current time),2)))
-,	INCPDU='VIEOPR',
-INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))
-where invno = 10029492
 
-update invdsc set INCDSA=0,RBHPGM='Stop By CS',
-INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
-where invno =10029492
-
-update invdsc set INCDSA=0,
-INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
-where invno =10029492 
-
- 
-
----stop rebate nhieu line 
-select count(*)                                    
- from invdsc a                                     
- where exists (Select * from ldphuc/invdsc b       
- where a.CUST   =  b.CUST                          
- and   a.INVNO  =  b.INVNO                         
- and   a.TTYPE  =  b.TTYPE)                                             
- 
-update invdsc a set INCDSA=0,RBHPGM=                            
-(select RBHPGM from ldphuc/invdsc b                              
- where a.CUST   =  b.CUST and a.INVNO  =  b.INVNO                                       
- and   a.TTYPE  =  b.TTYPE)                                      
-,INCPDD=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))
-,INCPDT=(DIGITS(DEC(HOUR (current time),2)) ||            
-DIGITS(DEC(MINUTE (current time),2))||            
-DIGITS(DEC(SECOND (current time),2)))
-,INCPDU='VIEOPR',
-INHOIN=(DIGITS(DEC(YEAR (current timestamp),4)) ||   
-DIGITS(DEC(MONTH (current timestamp),2))||    
-DIGITS(DEC(DAY (current timestamp),2)))   
- where exists (Select * from ldphuc/invdsc b                     
- where a.CUST   =  b.CUST and   a.INVNO  =  b.INVNO                                       
- and   a.TTYPE  =  b.TTYPE) 
  
 ---	update rebate RBHPGM va INCCFD
 select count(*)                                    
@@ -14377,6 +14482,11 @@ where a.MRHRTE =b.MRHRTE)
  Service Request # 59556    Nguyen Thi Hanh - ext 240
 SDS doesnt work 
 We can not key invoice in SDS - VNM under customer code VN0017 - the screen capture is this customer in use AR JOB
+
+
+go MSYUAR 
+man hinh Cash Allocate By Selector - ARS446 
+
 
 moi truong VNM 
 22 54 1 4
@@ -14915,7 +15025,7 @@ WHERE TTYPE='IV' AND INVNO = 72995294
 2.	Check thay invoice format type la ‘Z’ cap nhat lai thanh blank de in lai hoa don
  
 UPDATE  CM SET CMITYP = ''                      
-WHERE CUST ='S08625'      
+WHERE CUST = 'S08625'      
 
 3.	Vao 7/80/14 de in hoa don tren may in hold lai de kiem tra nhu ben duoi.
  
@@ -14924,6 +15034,9 @@ WHERE CUST ='S08625'
 UPDATE  CM SET CMITYP = 'Z'                       
 WHERE CUST ='S08625'    
 ===========================================================
+menu check combo
+6 80 88 23 80 80 80 80 17
+
 check combo
 check WD
 SELECT * FROM ZCPBS WHERE ZCPITE in ( 'M040060', 'M040070', 'M040080', 'M040140', 'M040150', 'M040160') ORDER BY ZCPITE  
@@ -15032,13 +15145,23 @@ bao cao  price off
 wrkjob ars350   
  
 ========================================================
-  Incident #69836 -  Add A18 vào Price List - Thanh Nhan - Yen Hoa 
+  Incident #69836 - add item - Add A18 vào Price List - Thanh Nhan - Yen Hoa  
 Add A18 vao Price List
 Dear anh Chu,
 Nhờ anh Chu add A18 vào Price List giúp em.
 Thank anh!
 insert into z9510                    
 values ('','A18','BU4')   
+
+sql = "SELECT IM.ITEM, Z9216.ZIMDES, Z9216.ZSPEC, IM.IMADES, IM.IMHHFG, IM.IMSELL, " _
+                         & " IM.IMSELL*(1+TX.TXRATE),IM.IMSELB*(1+TX.TXRATE) ,  PM.PMNAME as Principal " _
+                         & " ,Current date " _
+                         & " ,Z9510.ZBUCDE,IM.IMOUTQ FROM " & libb & ".im ," & libb & ".z9216," & libb & ".pm ," & libb & ".TX  , " & libb & ".z9510  WHERE " _
+                         & " IM.imdel='' and Ucase(Trim(Z9216.ZMHCLS)) <> '(S)' AND IM.IMSELL>0 AND IM.IMSTSC<>'DIS' AND " _
+                         & " IM.IMBO<>'N' AND IM.ITEM=Z9216.ITEM AND PM.PRNCPL=IM.PRNCPL AND " _
+                         & " IM.IMTX=TX.IMTX AND TX.CMTX ='VAT1' and IM.PRNCPL =Z9510.PRNCPL ORDER BY " _
+                & " PM.PMNAME, Z9216.ZIMDES "
+				
 ===========================================================
 Manifest loi - MF loi: manifest dispatch roi nhung hoa don moi van vao 
  Incident #70621 -  MF 2013 bi loi - thphuoc - Tran Huy Phuoc <thphuoc@zuelligpharma.com>

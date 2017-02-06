@@ -1,3 +1,29 @@
+confiscation -spell
+white magic hat -1k dame
+Robbin -trap
+sangan -1k dame
+slate warrior -1k9 dame 3 la 
+time seal -trap 3 la
+fairy box -trap 
+pot of greed -spell
+goblin -2k3 dame
+grace full -spell
+big shield -100 dame 3 la 
+barrel dragon -2k6 dame 2 la 
+magic drain -trap
+mirror force -trap
+the fiend -2k2 dame
+rigras leever -1k6 dame
+monster reborn -spell
+scapegoat -spell
+the forcefull sentry -spell
+gracefull dice -spell (xi ngau)
+mystical space -spell (loc xoay pha spell)
+whitch of the black -1k1 dame
+call of the haunted -trap (nghia dia)
+summon skull -2k5 dame
+swords of revealing light -spell
+chim canh cut 
 
 
 
@@ -9,77 +35,574 @@
 
 
 
-CALC   RW                 =RE       
-CALC   RW                 =RW/RH*30 
-*      -------Total Available Hanoi----------
-CALC   RE                 =RL+RN             
+GVL01, là tháng 12,
+GVL02, là tháng 11,
+GVL03, là tháng 10,
+GVL04, là tháng 9,
+GVL05, là tháng 8,
+GVL06, là tháng 7,
+GVL07, là tháng 6, 
+GVL08, là tháng 5, 
+GVL09, là tháng 4, 
+GVL10, là tháng 3
+GVL11, là tháng 2
+				GVL12, là tháng 1
 
 
-CALC   UG                 =RH*1.5      
-CALC   UG                 =RE-UG       
-IF     UG     GE 0                     
-Z-ADD  *ZEROS     to UG                
-ELSE                                   
-CALC   UG                 =UG*N/N      
-ENDIF                                  
+chay GLS110 de post len GL het
 
-*      -------Total Available Hanoi----------
-CALC   RE                 =RL+RN             
-*      ----SOH WH6 Inv DaysX---              
-CALC   RW                 =RE/RH*30          
+ SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T01         
+ FROM GJ                                                   
+ WHERE MJDATE                                              
+ BETWEEN 20170101 AND 20170131 GROUP BY CO, DIV, BR, GLACCT
+File GJ in LDPHUC was created.                                                            
+
+2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T01, B.GVL12   
+FROM ldphuc/GJ a,gm b                                 
+WHERE a.co=b.co and a.div=b.div and                  
+a.br=b.br and a.glacct=b.glacct  and                 
+A.T01<>B.GVL12                                       
+File TEMP in ldphuc was replaced. 
+
+update GM b set b.GVL12 = (SELECT  A.T01           
+FROM ldphuc/GJ a                                   
+WHERE a.co=b.co and a.div=b.div and                
+a.br=b.br and a.glacct=b.glacct  and               
+A.T01<>B.GVL12 )                                   
+where exists (SELECT A.T01                         
+FROM ldphuc/GJ a                                   
+WHERE a.co=b.co and a.div=b.div and                
+a.br=b.br and a.glacct=b.glacct  and               
+A.T01<>B.GVL12   )                                 
+15 rows updated in GM in ZPTLIBD.                  
 
 
 
+---- Check lai select lai kiem tra xem con loi ko
+ SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T01, B.GVL12     
+FROM ldphuc/GJ a,gm b                                   
+WHERE a.co=b.co and a.div=b.div and                    
+a.br=b.br and a.glacct=b.glacct  and                   
+A.T01<>B.GVL12  
+ => ko co => dung
+ 
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T01                           
+FROM ldphuc/GJ a where not exists (select * from                      
+ gm b                                                                
+WHERE a.co=b.co and a.div=b.div and                                  
+a.br=b.br and a.glacct=b.glacct  and                                 
+A.T01= B.GVL12)                                                      
+ => ko co => dung     
+  CO  DIV  BR   GLACCT                                              T01 
+ 04                                                                .00 
+                                 
+SELECT * FROM gm a,ac b WHERE GVL12 <>0 and a.glacct=b.glacct and    
+b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
+a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
+c.T01= a.GVL12)                                                      
+ => ko co => dung. 
+                           
+ 
+4. RE-ADD THIS YEAR (Duong dan: 22/54/ 3/ 10. Re-Add G/L Master T/Year Only)
+5. kiem tra lai co con lech blancing account (check balancing): 3/60/8, lan luot kiem tra Company  01 va 05,
+chi can cot  M-T-D Movement bang 0 het la dung
+
+
+
+
+====================================================
+check so luong lech order->pick->invoice 
+
+select ttype,       cust,whs,ordr,psn,invno,manfst  
+from mfd                                            
+where     MANFST                                    
+=     88000000                                      
+and ttype='MF'                                      
+File TEMP in LDPHUC was replaced.                   
+
+select TTYPE,CUST,WHS,ORDR,PSN,INVNO,MANFST                    
+from mfd a                                                     
+where exists (Select * from ldphuc/temp b                      
+where a.ttype=b.ttype and a.psn=b.psn and a.invno=b.invno      
+and a.manfst=b.manfst)                                         
+and mfddel=''                                                  
+File TEMP2 in LDPHUC was replaced.  
+
+
+select a.ttype,a.ordr,codseq,codunt,b.psdunt,(codunt-b.psdunt),    
+b.psdseq, a.item,b.item,b.psn                                      
+from cod a ,psd b                                                  
+where a.ordr=b.ordr and a.psn=b.psn                                
+and a.item=b.item and a.ordr in (select ordr from ldphuc/temp2)    
+File TEMP3 in LDPHUC was replaced.                                 
+
+select a.ttype,a.psn ,a.psdseq,psdunt,b.indunt,(psdunt-b.indunt),    
+ b.invno, b.indseq, a.item,b.item                                    
+from psd a ,ind b                                                    
+where a.psn =b.psn  and a.invno=b.invno                              
+and a.item=b.item and a.psn  in (select psn  from ldphuc/temp)       
+and psddel='' and inddel=''                                          
+File TEMP4 in LDPHUC was replaced.                                   
+
+
+
+=========================
+                             
+
+
+--------------------
+--- extract quota
+SELECT *                                                      
+from cqd a where exists (select * from ldphuc/cqd b           
+where  a.CQLLVL=b.cqllvl and                                  
+a.CQHCMB=b.cqhcmb and  a.CQHIMB=b.cqhimb )                    
+and cqddel='' and cqdend>=  20170119                          
+File TEMP in LDPHUC was replaced.                             
+
+
+SELECT count(*)                                          
+from cqd a where exists (select * from ldphuc/cqd b      
+where  a.CQLLVL=b.cqllvl and                             
+a.CQHCMB=b.cqhcmb and  a.CQHIMB=b.cqhimb )               
+
+ --- delete quota         
+delete                                                   
+from cqd a where exists (select * from ldphuc/cqd b      
+where  a.CQLLVL=b.cqllvl and                             
+a.CQHCMB=b.cqhcmb and  a.CQHIMB=b.cqhimb )               
+	
+ CQDQIN      
+ 
+ SELECT *                                                            
+from ldphuc/cqd a                                                   
+where not exists (select * from cqd b                        
+where  a.CQLLVL=b.cqllvl and                                        
+a.CQHCMB=b.cqhcmb and  a.CQHIMB=b.cqhimb )                          
+              
+	
+===================================================		
+ ZAR116       RPP       Full Screen A/R Statement                               
+ Customer  S01157   Nha Thuoc Thanh Nhu             Period 310117               
+                      Total Bal.      10987185.00   O/Bal        1104705.00     
+ Currency  VND        NYD                     .00   PDC                 .00     
+ A/R Terms COD0       U/A Cash           63403.00   B/C                 .00     
+ Type        Ref#        0  Incl.Paid Y  PDC Y  NYD Y   From 180112  To 180122  
+       Doc# Seq Types  Date  -- References --  Trans Value        Owing ITF Pn  
+   92552967     PA    060312 88528289               228585-           0         
+   
+ ZAR116       RPP       Full Screen A/R Statement                               
+ Customer  S01157   Nha Thuoc Thanh Nhu             Period 310117               
+                      Total Bal.      11992155.00   O/Bal        1104705.00     
+ Currency  VND        NYD                     .00   PDC                 .00     
+ A/R Terms COD0       U/A Cash           63403.00   B/C                 .00     
+ Type        Ref#        0  Incl.Paid Y  PDC Y  NYD Y   From 180112  To 180122  
+       Doc# Seq Types  Date  -- References --  Trans Value        Owing ITF Pn  
+   30033796     IV    020312 26939817 50122144      228585            0     U05 
+   30033796   1 IV PY 020312 92552967               228585-           0     U05 
+   92552967     PA    060312 88528289               228585-           0         
+   
+   
+A/R Terms COD0  
+
+
+
+ARDATS - ARD Date Last Updated 
+   ARUSRS - ARD User Last Updated   
+  ARTRM  - Terms Code  
+  
+ ARTIMS - ARD Time Last Updated     
+  
+
+ TTYPE       INVNO   INDSEQ  PRNCPL  SUB  CUST   
+ IV    	73723989       1    M04    SAN  S00723 
+ 
+       INVNO  
+ 73723989  
+ 
+ select iv batch vao file temp
+ select from ard where docno in (select batch from temp) and PA PA 
+ 
+ 
+ 
+ 
+
+ =======================
+soup tom cua 200
+
+goi cu hu tom thit 								250
+com chien ca man 								250
+tom hap bia 									390 
+ga quay banh bao (ga hap la chanh + xoi trang ) 360
+lau hai san chua cay 							340
+rau cau 										90
+				  
+				  
+		  
+create task and tracking using asp.net
+task management system project in asp net c#
+
+Task Management System
+	https://www.codeproject.com/Articles/36511/Task-Management-System
+
+XAF Tutorial - Simple Project Manager Demo
+	https://www.devexpress.com/support/demos/xaf/?page=1
+
+
+
+=================================
+menu check combo
+6 80 88 23 80 80 80 80 17
+
+
+89077721,89080390,89078871,89079380,
+89079920,89079305,89080250,89080338,
+89080392,89081103,89081283,9079249,
+89078895,89079245,89079380,89079271,
+89079474,89078464
+
+SELECT DISTINCT C.SUB, a.manfst,b.mfhdpd, a.cust,c.cname, C.CADD1, 
+C.CADD2, C.CADD3, a.whs,a.rtecde,a.invno,d.indcfd,                 
+a.mfddld,c.cmstat,d.prncpl,d.item,                                 
+d.inddes,d.indunt,d.indsel,C.ARTRM, D.INDval, D.INDppd, D.INDgst,  
+A.MFDDLV,indseq  FROM mfd a, mfh b, cm c, ind d WHERE              
+a.mfddel='' and b.mfhdel='' and c.cmdel='' and d.inddel='' and     
+a.ttype=b.ttype and a.manfst=b.manfst and a.ttype='MF' and         
+a.cust=c.cust and a.invno=d.invno and d.ttype='IV' and d.indcfd    
+between 20160101 and 20160631 and a.manfst in (                    
+89077721,89080390,89078871,89079380,                               
+89079920,89079305,89080250,89080338,                               
+89080392,89081103,89081283,9079249,                                
+89078895,89079245,89079380,89079271,                               
+89079474,89078464 )                                                
+File TEMP in LDPHUC was replaced. 
+
+SELECT TTYPE, INVNO, INHCFD ,INHOIN,INHARD, CNRCDE FROM inh WHERE 
+TTYPE='CR' AND INHCFD BETWEEN 20160101 AND 20170105               
+File TEMP2 in LDPHUC was replaced.                                
+
+SELECT A.SUB, A.MANFST, A.MFHDPD, A.CUST, A.CNAME, A.CADD1,       
+A.CADD2, A.CADD3, A.WHS, A.RTECDE, A.INVNO, A.INDCFD, A.MFDDLD,   
+A.CMSTAT, A.PRNCPL, A.ITEM, A.INDDES, A.INDUNT, A.INDSEL, A.ARTRM,
+A.INDVAL, A.INDPPD, A.INDGST, A.MFDDLV, A.INDSEQ, B.INHCFD AS     
+RETURN_DATE, B.CNRCDE AS RETURN_REASON,B.invno as RETURN_INVNO    
+FROM ldphuc/temp A LEFT                                           
+JOIN ldphuc/temp2 B ON A.INVNO= B.INHOIN                          
+File TEMP3 in LDPHUC was replaced.                                
+
+----- 
+SELECT MFDDEL, TTYPE, MANFST, MFDSEQ, MFDSTS, MFDFIN,invno,      
+ordr,psn , whs ,                                                 
+mfddld FROM                                                      
+mfd WHERE ttype='MF' and manfst in (
+89079249 ,                   
+89078895 ,                                                       
+89079245,                                                        
+89079380,                                                        
+89079271,                                                        
+89079474,                                                        
+89078464)                                                        
+
+SELECT MFDDEL, TTYPE, MANFST, MFDSEQ, MFDSTS, MFDFIN,invno,   
+ordr,psn , whs ,                                              
+mfddld FROM                                                   
+mfd WHERE ttype='MF' and invno  in (                          
+  73974676 ,                                                  
+  73961582  ,                                                 
+  73954051   ,                                                
+  73967796    ,                                               
+  73970580     ,                                              
+  51518079     )
+  
+
+===========================================================
+select a.ttype,a.invno,indseq,a.whs,item,INDDES,           
+indunt,cust,INHDNM,indcfd                                  
+from inh a, ind b                                          
+where a.ttype=b.ttype and a.invno=b.invno                  
+and inhdel='' and inddel='' and a.ttype in ('IV','CR')     
+and cust='N01160'                                          
+and indcfd between 20130101 and 20131210                   
+File TEMP3 in LDPHUC was replaced.                                  
+
+
+
+=======================================
+SPLID      
+ZSCTPCUST  
+
+ SPLSUB                                    
+ ZPP GSK Sales SC by Customer-Item         
+ 
+SPLSQL                        
+/java/SQLS/ZPG470GSK.sql      
+
+SELECT *                                        
+FROM ZPTLIBD.ZSCTPCUST1                         
+WHERE SVCDE in ('S21','S23','S24','S28','S29')  
+and INDOIT in ('G031','G032','G033')            
+ORDER BY SVCDE                                 
+ 
+************Beginning of data**************         
+SELECT *                                            
+FROM ZPTLIBD.ZSCTPCUST                              
+WHERE SVCDE in ('S21','S23','S24','S28','S29')      
+AND INDOIT like ('G03%')                            
+ORDER BY SVCDE                                      
+************End of Data********************         
+
+SELECT *                                            
+FROM ZPTLIBD.ZSCTPCUST1                              
+WHERE SVCDE in ('S21','S23','S24','S28','S29')      
+AND INDOIT like ('G03%')                            
+ORDER BY SVCDE   
+
+
+                
+ 
+INSERT INTO ZSCTPCUST1                                          
+SELECT G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST, E.CNAME,    
+E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR, E.PLCTE,A.CMSNM,  
+B.INDOIT,B.PROGROUP,D.ITEM,D.INDDES,                            
+SUM(INDUNT), SUM(INDVAL), :@FDTE, :@TDTE                        
+FROM ZSCTPCUST A,ZSCTPITEM B,INH C,IND D,CM E,SM F,SV G         
+ WHERE C.INHDEL='' AND D.INDDEL='' AND C.TTYPE=D.TTYPE AND      
+C.INVNO=D.INVNO AND B.ITEM=D.ITEM AND A.INDOIT=B.INDOIT AND     
+C.CUST=E.CUST AND ( (A.CUST<>'' AND A.CUST=E.CUST) OR (A.CUST=''
+AND A.PLCAR=E.PLCAR AND A.CMGRP2=E.CMGRP2 AND (A.PLCTE='' OR    
+A.PLCTE=E.PLCTE))) AND D.INDCFD BETWEEN :@FDTE AND :@TDTE       
+AND A.SVCDE=G.SVCDE AND A.SLSMN=F.SLSMN 
+GROUP BY G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST,    
+E.CNAME, E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR,   
+E.PLCTE,A.CMSNM, B.INDOIT, B.PROGROUP,D.ITEM, D.INDDES   
+
+
+INSERT INTO ZSCTPCUST                        
+SELECT * FROM ldphuc/ZSCTPCUST               
+228 rows inserted in ZSCTPCUST in ZPTLIBD.   
+
+ INSERT INTO ZSCTPITEM                       
+ SELECT * FROM ldphuc/ZSCTPITEM              
+118 rows inserted in ZSCTPITEM in ZPTLIBD.   
+
+
+
+==============================================
+SELECT G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST, E.CNAME,      
+E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR, E.PLCTE,A.CMSNM,    
+B.INDOIT,B.PROGROUP,D.ITEM,D.INDDES,                              
+SUM(INDUNT), SUM(INDVAL), 20161201, 20161231                      
+FROM ZSCTPCUST A,ZSCTPITEM B,INH C,IND D,CM E,SM F,SV G           
+ WHERE C.INHDEL='' AND D.INDDEL='' AND C.TTYPE=D.TTYPE AND        
+C.INVNO=D.INVNO AND B.ITEM=D.ITEM AND A.INDOIT=B.INDOIT AND       
+C.CUST=E.CUST AND ( (A.CUST<>'' AND A.CUST=E.CUST) OR (A.CUST=''  
+AND A.PLCAR=E.PLCAR AND A.CMGRP2=E.CMGRP2 AND (A.PLCTE='' OR      
+A.PLCTE=E.PLCTE))) AND D.INDCFD BETWEEN 20161201 AND 20161231     
+AND A.SVCDE=G.SVCDE AND A.SLSMN=F.SLSMN                           
+GROUP BY G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST,             
+E.CNAME, E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR,            
+E.PLCTE,A.CMSNM, B.INDOIT, B.PROGROUP,D.ITEM, D.INDDES            
+        
+
+              
+ Columns . . . :    1  71           Browse                      ZPTLIBM/QRPGSRC 
+ SEU==>                                                                  ZPG470 
+ FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7  
+0017.00      C/EXEC SQL                                                         
+0018.00      C+ DELETE FROM ZSCTPCUST1                                          
+0019.00      C/END-EXEC                                                         
+
+
+73995771
+
+
+
+
+2. Total number of apps installed on iPhone and android 
+                Google Play - Android: 
+- eZRx Call-Me-Back for customers:599	
+- eZRx Call-Me-Back Professional for SC: 123
+                App Store - iOS:
+-	eZRx Call-Me-Back for customers: 324
+-	eZRx Call-Me-Back Professional for SC: 98
+3. Total number of views of discounts: 5368 views 
+4. Number of discounts loaded into call me back: 253 promos, sent to 18160 customers per each promo
+
+
+ IWSOB  - Whs Stock On Back Order  
+
+ 
+ ITEM                  WHS           IWSOB   
+ A05RC7D63.21          WH6           1.000   
+
+select item,whs,IWSOB              
+from iw                            
+where item='A05RC7D63.21'          
+and whs=  'WH6'                    
+     
+update iw set   IWSOB= IWSOB -1    
+where item='A05RC7D63.21'          
+and whs=  'WH6'                    
+1 rows updated in IW in ZPTLIBD.   
+	
+		
+
+=====================		
+ Inv#  Attempt  Crd#                  Value                    Tax  
+30650024   1 	90022828            115,735.00-              5,787.00- 
+
+Confirmed Date 060116 
+
+INS501       ZPP       Invoice Inquiry                                      
+Invoice  IV  30650024  Ext#               Warehouse WM1  Delivery   1       
+Customer S11188    Sub-Dist  USS          Nha Thuoc Huu Nghi III            
+         Nha Thuoc Huu Nghi III           296 Khanh Hoi- P. 5               
+         296 Khanh Hoi- P. 5              Quan 4                            
+         Quan 4                           TP. Ho Chi Minh                   
+         Ho Chi Minh                      E. Device Order#                  
+                            Invoice Credit History                          
+        Inv#  Attempt  Crd#                  Value                    Tax   
+    01 30650024   1 90022828            115,735.00-              5,787.00-  
+
+table crn
+Key field . . . . . . . . . . . . . . . . :            TTYPE               
+Key field . . . . . . . . . . . . . . . . :            INVNO                
+Key field . . . . . . . . . . . . . . . . :            INHCNA      
+
+
+1.	Sales cut-off report 
+SELECT E.SUB,  A.MANFST,A.MFHDPD,B.CUST,E.CNAME,E.CADD1,E.CADD2 ,   
+E.CADD3,B.WHS,B.RTECDE,C.TTYPE,                                     
+C.INVNO,C.INHOIN, C.CNRCDE, C.INHRC#,                               
+D.INDCFD,B.MFDDLD,E.CMSTAT,D.PRNCPL,                                
+D.ITEM,D.INDDES,D.INDUNT,D.INDSEL,C.ARTRM,d.INDVAL,d.INDPPD,d.INDGST
+,b.MFDDLV, d.INDSEQ                                                 
+FROM MFH A,MFD B,INH C,IND D,CM E                                   
+WHERE A.MFHDEL='' AND B.MFDDEL='' AND C.INHDEL='' AND D.INDDEL=''   
+AND E.CMDEL='' AND A.TTYPE=B.TTYPE AND A.MANFST=B.MANFST            
+AND C.TTYPE=D.TTYPE AND C.INVNO=D.INVNO                             
+AND B.TTYPE='MF' AND C.TTYPE='IV' AND A.MANFST=C.MANFST             
+AND B.ORDR=D.ORDR AND B.PSN=D.PSN AND B.INVNO=D.INVNO               
+AND C.CUST=E.CUST                                                   
+AND D.INDCFD BETWEEN 20160701 AND 20161131                          
+AND (B.MFDDLD=0 OR B.MFDDLD >=20170101)                             
+
+2.	Return report: 
+SELECT E.SUB,  A.MANFST,A.MFHDPD,B.CUST,E.CNAME,E.CADD1,E.CADD2 ,   
+E.CADD3,B.WHS,B.RTECDE,C.TTYPE,                                     
+C.INVNO,C.INHOIN, C.CNRCDE, C.INHRC#, C.INDCFD,B.MFDDLD,E.CMSTAT,D.PRNCPL,                        
+D.ITEM,D.INDDES,D.INDUNT,D.INDSEL,C.ARTRM,d.INDVAL,d.INDPPD,d.INDGST
+,b.MFDDLV,d.INDSEQ                                                  
+FROM MFH A,MFD B,INH C,IND D,CM E                                   
+WHERE A.MFHDEL='' AND B.MFDDEL='' AND C.INHDEL='' AND D.INDDEL=''         
+AND E.CMDEL='' AND A.TTYPE=B.TTYPE AND A.MANFST=B.MANFST                           
+AND C.TTYPE=D.TTYPE AND C.INVNO=D.INVNO                             
+AND B.TTYPE='MF' AND C.TTYPE='CR' AND B.INVNO=C.INHOIN               
+AND C.CUST=E.CUST                                                   
+AND C.INDCFD BETWEEN 20150101 AND 20151231 
+AND (B.MFDDLD=0 OR B.MFDDLD >= 20150101)
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+SELECT A.SLSMN,A.SMDESC, A.PDTCDE,[$JNMAH],[$JNMAR], [$JNMAD],[$JNMAQ], [$JNMAF],[$JNMAI],A.CUST, 
+A.CNAME, A.CMGRP2, A.CADD1, A.CADD2,A.ZCMTYP, [$JNMAE],[$JNMAO],[$JNMAP], 
+[$JNMAG],B.ZLVL2 ZLVL
+FROM zsa756pf a left join zlvl b on a.cmgrp2=b.cmgrp2 and           
+a.cmgrp3=b.cmgrp3 and a.cmgrp4=b.cmgrp4 and a.zcmtyp=b.zcmtyp WHERE 
+CPLDTE = 20161213 and a.slsmn='R41' 
+AND A.CMGRP2 in ('TD1','PH1','PC1') AND PDTCDE NOT in ('GSK','AZE')		
+
+
+
+
+
+
+
+							
+
+ZIN737	-> file Z9496
+ZIN602, ZIN603 -> chay bao cáo, check workpool file
+
+5688
+ZIN603 -> File Z9585   File Z9585 in library *LIBL not found
+
+
+ZPP Monthly Tender Price -> ZIN953 -> file Z9166 
+	=>	select * from zptlibd.z9166  
+select * from tstlibd/z9166 
+	
+	------
+Delete Author :                     ZIN               
+Delete Program No. :                602               
+                                                      
+Delete Retrieval Specification :    Y                 
+Retrievals Library :                TSTLIBR           
+                                                      
+Delete Retrieval from Libraries :   Y                 
+Source Library :                    S63LIBS           
+Object Library :                    TSTLIBL           
+
+=========================================================
+xuat file csv
+luu vao thu muc 
+lap lich postgres sql chay hang dem
+
+https://www.pgadmin.org/docs/1.4/pgagent.html
+https://www.google.com.vn/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=export%20postgres%20table%20to%20csv
+http://stackoverflow.com/questions/1120109/export-postgres-table-to-csv-file-with-headings
+
+
+
+
+
+ZIN737 
+select *            
+from tstlibd/Z9496  
+
+
+-	nhập list ngày lễ vào listNgayLe
+-	tạo list 7 nhan vien từ A -> G lưu vào listNhanVien 
+-	làm trong từng tháng
+	- 	nếu listNhanVien = 0 thì khởi tạo lại listNhanVien
+	-	get 4 ngày CN trong tháng ra lưu vào lst-cn-trong-thang 
+	-	
+	-	set ngày lễ:
+		=	check nếu ngày hiện tại là ngày lễ
+		=	get phần tử đầu tiên trong list nhanvien ra để gán
+		=	set cờ trucLe = Y cho Nhanvien đó 
+		=	gán ngày trực lễ đó cho nhân viên đó và update lại số ngày 
+	-	set Chủ nhật
+	-	set ngày thường
+
+
+	
+-	nếu cn là ngày lễ: 
+	=	nếu nv chưa trực lễ thì không làm gì cả: nhanvien nào đến lượt trực cn đó thì cứ trực bình thường
+	=	nếu vn đã trực lễ và đến lượt phải trực cn đó: bỏ 1 lượt trực cn cho người đó. Kiếm nhanvien còn lại nào trong tháng đó chưa trực cn và chưa trực lễ thì gán trực 
+		
+			
+-	nếu ngày CN đó là lễ:
+	=	check tiếp nhanvien hiện tại nếu chưa trực lễ và chưa trực CN trong tháng đó thì gán vào
+	=	nếu đã trực lễ hoặc đã trực CN trong tháng đó rồi thì get nhanvien tiếp theo và check tiếp nhanvien đó như bước trên đến khi có người trực lễ thì thôi 
+-	nếu ngày CN đó không là lễ: thì gán bình thường
+
+
+ 
+ 
 
 $JGKAW  Total AvailableNW   
-
-
- $JGKAW  SOH WH6 Inv DaysX     
-
-
- 
-
-$JGKAN             Z9661              WH7 SOHX   
  
 select * from flda      
-where  FLDNM  ='$JGKAW' 
+where  FLDNM  = '$JGKAW' 
 
-
-RK 'WS1 AvailX' 
-RF 'Avg 3 mos On WS1X'                    
-             
-
- Field/'Constant' to Field/'Heading' Len.Dec
-Z-ADD  *ZEROS     'WS1 AvailX'        09  0 
-
- Field/'Constant' to Field/'Heading' Len.DecP
-Z-ADD  *ZEROS     'Avg 3 mos On WS1X' 09  2  
-
- Field/'Constant' to Field/'Heading' Len.DecP
-Z-ADD  *ZEROS     'SOH WS1 Inv DaysX' 05  0  
-
-         'Heading'/Field       Calculation..
-CALC     TL                  = RK/RF*30     
-
-
-
-RE 'Total Avai Hanoi'       
-RH 'Avg 3 mos On WH6X'  
- Field/'Constant' to Field/'Heading' Len.DecP
-Z-ADD  *ZEROS     'Total Avai NW'     09  0  
-
- Field/'Constant' to Field/'Heading' Len.DecP
-Z-ADD  *ZEROS     'Avg 3 mos On WH6X' 09  2  
-
-
-RL 'WH6 AvailX'            
-RN 'WN1 SOHX'   
- Field/'Constant' to Field/'Heading' Len.DecP
-Z-ADD  *ZEROS     'WH6 AvailX'        09  0  
-Z-ADD  *ZEROS     'WN1 SOHX'          09  0        
- *      -------Total Available Hanoi-
-CALC   RE                 =RL+RN    
-    
 
 ========================================================
 select a.TTYPE,a.INVNO,ITEM,CUST,a.WHS,INDVAL,INDUNT        

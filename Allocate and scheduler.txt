@@ -36,7 +36,58 @@ Neu Ref# la RG thi cho allocate = 0 het, tuong tu cho scheduled neu co ttype la 
 
 	update IW set IWSSA=0
 	where item ='A' and IWSSA <> 0 
+==========================================================
 
+Item                |  IM Alloc  Non B/Tfr B/Transfer     P/Note      Total   Variance
+======================================================================================
+Principal: G03 Glaxo Wellcome Singapore Pte                                           
+G03C0100                 78.000       .000       .000       .000       .000     78.000       
+                  
+
+IM D/Order  D/O Alloc    D/O Var|
+=================================
+                                 
+    51.000     78.000     27.000-
+		
+IMSOD  - Item Stock On Delivery Orders
+
+
+Delivery Ord        51.000      
+
+
+
+    IMSOD   ITEM          
+   51.000   G03C0100      
+		
+update im set IMSOD=IMSOD+27           
+where item ='G03C0100'                 
+1 rows updated in IM in ZPTLIBD.       				 
+				 
+		
+allocate
+	select sum(LBSOA) from LB where ITEM='G03C0100'
+	select sum(ILSOA) from IL where ITEM='G03C0100'
+		select sum(IWSOA) from IW where ITEM='G03C0100'
+		select sum(ISLSOA) from ISL where ITEM='G03C0100'
+		select sum(IMSOA) from IM where ITEM='G03C0100'
+ 
+			UPDATE ISL                                   
+		SET ISLSOA= 0               
+		WHERE ITEM='G03C0100' 
+		and ISLSOA<>0
+
+pick
+		select sum(LBSPK) from LB where ITEM='G03C0100'
+		select sum(ILSPK) from IL where ITEM='G03C0100'
+		select sum(ISLSPK) from ISL where ITEM='G03C0100'
+		select sum(IMSPK) from IM where ITEM='G03C0100'
+		select sum(IWSPK) from IW where ITEM='G03C0100'
+
+UPDATE LB 
+SET  LBSPK=  0                             
+WHERE ITEM='G03C0100' 
+ and LBSPK<>0
+================================================================ 
 --------------------------------------------------------------------------------------------- allocate
  SELECT ITEM, ISL#, LOCN, WHS ,SUM(IAQA) FROM ia          
  WHERE ttype in ('OR','PS')                     
@@ -302,7 +353,6 @@ WHERE iwSPK <0
             
 update im set imSPK=0                           
 WHERE imSPK <0   
-
 ===================================================================================
 ZIC986 ICS816 ICS659
 select item,whs,iwsoh              
@@ -488,7 +538,7 @@ IM D/Order  D/O Alloc    D/O Var|
   47.000   S13C0010   
 
    update im set  IMSOD = IMSOD+2    
- where item ='S13C0010'            
+ where item = 'S13C0010'            
  1 rows updated in IM in ZPTLIBD.  
      IMSOD   ITEM             
     49.000   S13C0010			

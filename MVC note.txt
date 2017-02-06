@@ -1,5 +1,13 @@
 
+có 2 cách truyền dữ liều từ controller qua view 
+-	model
+-	viewbag.WelcomString ="chào mừng bạn với ViewBag"
 
+
+
+
+
+=======================================================================
 -	lý thuyết, ví dụ, ứng dụng thực tiễn 
 
 --- sbmjob command in as400 from C#
@@ -236,14 +244,14 @@ chuong trinh xep lich hotline
 	=	sau đó gán bình thường 
 	
 
--	chia để trị xếp lịch:
+/* -	chia để trị xếp lịch:
 	=	chia thời gian thành n tuần
 	=	mỗi tuần chạy giải thuật gán ngày trực:
 		==	gán ngày thường
 		==	gán chủ nhật
-	=	tổng hợp kết quả của n tuần 
+	=	tổng hợp kết quả của n tuần  */
 		
--	chia để trị dàn trải đều ngày trực:
+/* -	chia để trị dàn trải đều ngày trực:
 	=	chia 1 tháng thành 4 tuần
 		==	chia 1 tháng ra 4 tuần, mỗi phần tử chia ra là 1 list ngày 
 			===	lặp từ ngày đầu tháng đến ngày cuối tháng
@@ -274,9 +282,9 @@ chuong trinh xep lich hotline
 				===	(nếu count>=1)lấy phần tử đầu tiên của list_nhanvien_chua_co_trong_tuan và remove nhân viên đó ra khỏi list_nhanvien_chua_co_trong_tuan 
 				===	get all ngày trực 1 nhanvien trong tháng chỉ định => từ đó get all ngày trực 1 nhanvien không có trong tuần chỉ định: 
 				===	swap ngày trực của 2 nhanvien trong list_NhanVien_duplicate trong vòng foreach và nhanvien trong list_nhanvien_chua_co_trong_tuan(ngày tương ứng trong tháng đang check) vừa get ở bước trên 
-	=	tổng hợp lại kết quả 
+	=	tổng hợp lại kết quả  */
 
--	dàn trải ngày trực cho đều
+/* -	dàn trải ngày trực cho đều
 	=	tạo listTempNV size = 7 
 	=	lưu tên 7 nhanvien vào listTempNV
 	=	trong vòng lặp mỗi ngày: 
@@ -300,10 +308,10 @@ chuong trinh xep lich hotline
 				==	break khỏi foreach 
 			=	nếu nhanvien đó > 5:
 				==	thì remove phần tử đó ra khỏi listTempNV, 
-				==	continue foreach
+				==	continue foreach */
 			
 
--	tạo list index kiểu int từ 0 -> count(list nhanvien)-1 
+/* -	tạo list index kiểu int từ 0 -> count(list nhanvien)-1 
 -	trộn list index đó
 -	nếu count(list index) = 0 thì:
 	=	tạo data cho list đó từ 0->7
@@ -321,7 +329,7 @@ chuong trinh xep lich hotline
 -	nếu all nhanvien đều trực 4 ngày rồi thì mình mới gọi hàm CheckAndSetTruc2 giới hạn thêm 1 ngày nữa 
 	
 -	nếu trực lien tiep thì bỏ qua
--	nếu chưa trực liên tiếp thì gán vào 
+-	nếu chưa trực liên tiếp thì gán vào  */
 
 
 -	lặp cho all nhanvien có ít ngày trực nhất 
@@ -857,3 +865,30 @@ https://msdn.microsoft.com/vi-vn/data/ee712907
 				return View();
 			}
 		}
+		
+====================================================================
+Checking Sent Email Messages on SQL Server
+
+SENT MESSAGES LOG
+
+
+	SELECT TOP 20 *
+	FROM [msdb].[dbo].[sysmail_sentitems]
+	ORDER BY [send_request_date] DESC
+
+FAILED MESSAGES LOG
+
+
+	SELECT TOP 20 *
+	FROM [msdb].[dbo].[sysmail_faileditems]
+	ORDER BY [send_request_date] DESC
+
+ALL MESSAGES – REGARDLESS OF STATUS
+
+
+	SELECT TOP 20 *
+	FROM [msdb].[dbo].[sysmail_allitems]
+	ORDER BY [send_request_date] DESC
+===================================================================
+How to configure SQL Server Database Mail to send email using your Windows Live Mail Account or your GMail Account
+https://blogs.msdn.microsoft.com/suhde/2009/07/12/how-to-configure-sql-server-database-mail-to-send-email-using-your-windows-live-mail-account-or-your-gmail-account/
