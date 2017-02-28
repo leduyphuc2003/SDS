@@ -264,6 +264,7 @@ Bao loi tai suspension va Suspension Reason: 003  Level: 1
  thi sua nhu ben duoi 
 imsos=imsoh tai 5 bang
 		
+
 ------------------------------------------------------------------------------------------- pick
 A121210
 
@@ -340,19 +341,46 @@ check 5 bang, select sum ra xem tu san pham do cho 5 bang, neu bang nhau het thi
 
  Pick Am
 update lb set LBSPK=0        
-WHERE LBSPK <0               
+WHERE LBSPK <>0 and item = 'A121210'              
 
 update il set ilSPK=0                           
-WHERE ilSPK <0                                  
+WHERE ilSPK <>0 and item = 'A121210'                                  
                 
 update isl set islSPK=0                         
-WHERE islSPK <0                                 
+WHERE islSPK <>0 and item = 'A121210'                                   
              
 update iw set iwSPK=0                           
-WHERE iwSPK <0                                  
+WHERE iwSPK <>0 and item = 'A121210'                                      
             
 update im set imSPK=0                           
-WHERE imSPK <0   
+WHERE imSPK <>0 and item = 'A121210'
+
+================================================================================
+Var In Chuan ne (neu bao cao chay ra la - thi minh + vao IM, neu bao cao la + thi minh - vao IM; con IW co the de den mai)
+		Var In   Var Out 
+S090110	43.000-	43.000-
+
+update IM set IMTOUT=IMTOUT+43, IMTIN=IMTIN +43   
+			WHERE ITEM='S090110'  
+			
+==========================================================
+S13C0010     
+IMSOD  - Item Stock On Delivery Orders  	
+IM D/Order  D/O Alloc    D/O Var|
+---------------------------------                        
+    47.000     49.000      2.000-
+	
+ select IMSOD,item        
+ from im                  
+ where item ='S13C0010'   	
+   IMSOD   ITEM       
+  47.000   S13C0010   
+
+   update im set  IMSOD = IMSOD+2    
+ where item = 'S13C0010'            
+
+     IMSOD   ITEM             
+    49.000   S13C0010	      
 ===================================================================================
 ZIC986 ICS816 ICS659
 select item,whs,iwsoh              
@@ -490,7 +518,21 @@ and lbsoa <>0
  
  update im set imsoa =0           
     WHERE ITEM ='F020040L01'      
-and imsoa <>0                    
+and imsoa <>0  
+
+
+IMSOD  - Item Stock On Delivery Orders 
+-------- Delivery Orders -------|
+IM D/Order  D/O Alloc    D/O Var|
+=================================
+                                 
+   172.000    131.000     41.000 
+   
+   Neu la +41 thi minh -41 va nguoc lai 
+   
+   update im set  IMSOD = IMSOD -153
+ where item = 'G03C0100'  
+ 
 ======
 pick Am 
  
@@ -516,32 +558,7 @@ and   LBSPK < 0
 								 UPDATE IM SET IMSPK=0
 								WHERE ITEM='A05RC7D73' 
 								and   IMSPK < 0
-================================================================================
-Var In Chuan ne (neu bao cao chay ra la - thi minh + vao IM, neu bao cao la + thi minh - vao IM; con IW co the de den mai)
-		Var In   Var Out 
-S090110	43.000-	43.000-
-
-update IM set IMTOUT=IMTOUT+43, IMTIN=IMTIN +43   
-			WHERE ITEM='S090110'  
-			
-==========================================================
-S13C0010     
-IMSOD  - Item Stock On Delivery Orders  	
-IM D/Order  D/O Alloc    D/O Var|
----------------------------------                        
-    47.000     49.000      2.000-
-	
- select IMSOD,item        
- from im                  
- where item ='S13C0010'   	
-   IMSOD   ITEM       
-  47.000   S13C0010   
-
-   update im set  IMSOD = IMSOD+2    
- where item = 'S13C0010'            
- 1 rows updated in IM in ZPTLIBD.  
-     IMSOD   ITEM             
-    49.000   S13C0010			
+		
 =========================================================
 ICS660:
 SELECT ITEM,ISL#,SUM(LBSOA) LBSOA                   

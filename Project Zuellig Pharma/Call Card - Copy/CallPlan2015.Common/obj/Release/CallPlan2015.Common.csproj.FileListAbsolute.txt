@@ -1,0 +1,4 @@
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\bin\Release\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\bin\Release\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\obj\Release\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\obj\Release\CallPlan2015.Common.pdb

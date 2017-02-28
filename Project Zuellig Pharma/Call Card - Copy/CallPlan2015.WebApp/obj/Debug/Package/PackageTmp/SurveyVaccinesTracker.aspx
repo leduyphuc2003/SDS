@@ -1,0 +1,103 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SurveyVaccinesTracker.aspx.cs" Inherits="CallPlan2015.WebApp.SurveyVaccinesTracker" %>
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="~/Styles/Bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <h3 class="text-center">
+            <span class="label label-primary col-lg-6 col-lg-offset-3 text-center">Survey Vaccines Tracker</span>
+        </h3>
+        <br/>      
+        <br/>         
+       
+        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False"
+            KeyFieldName="Id" OnRowDeleting="ASPxGridView1_RowDeleting"
+            OnRowInserting="ASPxGridView1_RowInserting"
+            OnRowUpdating="ASPxGridView1_RowUpdating" 
+            OnCellEditorInitialize="grid_CellEditorInitialize" Width="100%" Theme="Aqua" Font-Size="10">
+            <Columns>
+                <dx:GridViewCommandColumn VisibleIndex="0" ShowClearFilterButton="True" >
+                    <EditButton Visible="True">
+                    </EditButton>
+<%--                    <NewButton Visible="True">
+                    </NewButton>
+                    <DeleteButton Visible="True">
+                    </DeleteButton>--%>
+                </dx:GridViewCommandColumn>
+                <dx:GridViewDataTextColumn FieldName="Id" Visible="False" VisibleIndex="1">
+                </dx:GridViewDataTextColumn>
+                
+<%--                 //Header nhieu dong   Multi-Row Headers
+                <dx:GridViewBandColumn Caption="Ngay CallPlan" VisibleIndex="1">
+                    <Columns>
+                       <dx:GridViewDataTextColumn FieldName="DateCallplan" Width="150">
+                        </dx:GridViewDataTextColumn>
+                    </Columns>
+                </dx:GridViewBandColumn>--%>    
+<dx:GridViewBandColumn Caption="No." VisibleIndex="1"><Columns><dx:GridViewDataTextColumn FieldName="STT" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Area" VisibleIndex="2"><Columns><dx:GridViewDataTextColumn FieldName="Vung" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Province" VisibleIndex="3"><Columns><dx:GridViewDataTextColumn FieldName="Tinh" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Code" VisibleIndex="4"><Columns><dx:GridViewDataTextColumn FieldName="Code" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Customer" VisibleIndex="5"><Columns><dx:GridViewDataTextColumn FieldName="TenKhachHang" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Total Vaccine Value (YTD SubD)" VisibleIndex="6"><Columns><dx:GridViewDataTextColumn FieldName="DoanhSoVaccineSubd" Width="200"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Total Vaccine Value (YTD ZPV)" VisibleIndex="7"><Columns><dx:GridViewDataTextColumn FieldName="DoanhSoVaccineZPV" Width="200"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Local Co. distribution name" VisibleIndex="8"><Columns><dx:GridViewDataTextColumn FieldName="TenNhaPhanPhoiDiaPhuongHienTai" Width="260"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+    
+    <dx:GridViewBandColumn Caption="Current Distribtuion Model (ZPV/Combination/LPC)" VisibleIndex="9"><Columns><dx:GridViewDataComboBoxColumn FieldName="NhaPhanPhoiHienTai" Width="300"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+    <dx:GridViewBandColumn Caption="Credit " VisibleIndex="10"><Columns><dx:GridViewDataComboBoxColumn FieldName="ThanhToan1" Width="150"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+    <dx:GridViewBandColumn Caption="Credit 2" VisibleIndex="11"><Columns><dx:GridViewDataComboBoxColumn FieldName="ThanhToan2" Width="150"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+    <dx:GridViewBandColumn Caption="Credit 3" VisibleIndex="12"><Columns><dx:GridViewDataComboBoxColumn FieldName="ThanhToan3" Width="150"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+    <dx:GridViewBandColumn Caption="Loyalty" VisibleIndex="13"><Columns><dx:GridViewDataComboBoxColumn FieldName="MucDoThanThiet1" Width="150"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+    <dx:GridViewBandColumn Caption="Loyalty 2" VisibleIndex="14"><Columns><dx:GridViewDataComboBoxColumn FieldName="MucDoThanThiet2" Width="150"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+    <dx:GridViewBandColumn Caption="Loyalty 3" VisibleIndex="15"><Columns><dx:GridViewDataComboBoxColumn FieldName="MucDoThanThiet3" Width="150"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+
+<dx:GridViewBandColumn Caption="Delivery time" VisibleIndex="16"><Columns><dx:GridViewDataTextColumn FieldName="ThoiGianGiaoHang" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Discount" VisibleIndex="17"><Columns><dx:GridViewDataTextColumn FieldName="ChietKhau1" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Discount 2" VisibleIndex="18"><Columns><dx:GridViewDataTextColumn FieldName="ChietKhau2" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Discount 3" VisibleIndex="19"><Columns><dx:GridViewDataTextColumn FieldName="ChietKhau3" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Sponsorship - specific" VisibleIndex="20"><Columns><dx:GridViewDataTextColumn FieldName="TaiTroGhiCuThe" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Other (please describe)" VisibleIndex="21"><Columns><dx:GridViewDataTextColumn FieldName="KhacVuiLongMoTa" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+    
+    <dx:GridViewBandColumn Caption="Who is preferred LPC" VisibleIndex="22"><Columns><dx:GridViewDataComboBoxColumn FieldName="KHNaoThichCtyDuocDiaPhuong" Width="230"></dx:GridViewDataComboBoxColumn></Columns></dx:GridViewBandColumn>
+
+<dx:GridViewBandColumn Caption="Risk of LPC sub-D (low/Med/High)" VisibleIndex="23"><Columns><dx:GridViewDataTextColumn FieldName="RiskOfLPCsubD" Width="240"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="FFM's note" VisibleIndex="24"><Columns><dx:GridViewDataTextColumn FieldName="FFMNote" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="Manager" VisibleIndex="25"><Columns><dx:GridViewDataTextColumn FieldName="Manager" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="SC" VisibleIndex="26"><Columns><dx:GridViewDataTextColumn FieldName="SC" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+<dx:GridViewBandColumn Caption="SCName" VisibleIndex="27"><Columns><dx:GridViewDataTextColumn FieldName="SCName" Width="150"></dx:GridViewDataTextColumn></Columns></dx:GridViewBandColumn>
+
+               
+
+                
+            </Columns>
+
+            <%--<Settings ShowFilterRow="True"></Settings>--%>
+            <Settings ShowFooter="True" ShowHeaderFilterButton="true" />
+            <%--<SettingsEditing Mode="PopupEditForm" EditFormColumnCount="1"></SettingsEditing>--%>
+            <SettingsEditing Mode="Inline" ></SettingsEditing>
+            <Settings VerticalScrollableHeight="300" />
+
+ <%--           edit mode PopupEditForm
+            <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
+            <SettingsPopup>
+            <EditForm Width="800" />
+            </SettingsPopup>--%>
+        </dx:ASPxGridView>
+
+        <dx:ASPxButton ID="btnXlsExport" runat="server" Text="Export to XLS" UseSubmitBehavior="False"
+                    OnClick="btnXlsExport_Click" />
+        <dx:ASPxGridViewExporter ID="gridExport" runat="server" GridViewID="ASPxGridView1"></dx:ASPxGridViewExporter>
+        <dx:ASPxButton ID="btnBackHome" runat="server" Text="Back" UseSubmitBehavior="False"
+                    OnClick="btnBackHome_Click" />
+
+    </div>
+    </form>
+</body>
+</html>

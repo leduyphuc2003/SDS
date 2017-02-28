@@ -1,112 +1,250 @@
-confiscation -spell
-white magic hat -1k dame
-Robbin -trap
-sangan -1k dame
-slate warrior -1k9 dame 3 la 
-time seal -trap 3 la
-fairy box -trap 
-pot of greed -spell
-goblin -2k3 dame
-grace full -spell
-big shield -100 dame 3 la 
-barrel dragon -2k6 dame 2 la 
-magic drain -trap
-mirror force -trap
-the fiend -2k2 dame
-rigras leever -1k6 dame
-monster reborn -spell
-scapegoat -spell
-the forcefull sentry -spell
-gracefull dice -spell (xi ngau)
-mystical space -spell (loc xoay pha spell)
-whitch of the black -1k1 dame
-call of the haunted -trap (nghia dia)
-summon skull -2k5 dame
-swords of revealing light -spell
-chim canh cut 
+select count(*),sum(indval),sum(indunt)            
+from ind                                           
+where ttype in ('IV','CR')                         
+and prncpl='A18' and whs='WS1'                     
+and indcfd between 20161101 and 20161130           
+and inddel=''                                      
+
+
+CMGRP2             INH                Customer Local Group 1    
+
+       
+select PRNCPL,count(*),sum(indval),sum(indunt)                     
+from ind B                                                         
+where ttype in ('IV','CR')                                         
+and inddel=''                                                      
+and exists (Select * from inh a where a.ttype =b.ttype             
+and a.invno=b.invno and inhdel='' and inddel=''                    
+and a.ttype in  ('IV','CR')                                        
+and a.CMGRP2 ='TD1' and prncpl in ('S27','S28','S29','S30','S31')  
+and indcfd between 20161101 and 20161130  )                        
+GROUP BY PRNCPL                                                    
 
 
 
+Dear Phuc,
+Vui long chay giup chi bao cao nam 2016, total IV lines, Total IV lines value theo thang giup chi cua local group TD1, hang Sanofi thoi ( S27, S28, S29, S30, S31)
+Month, Total Invoice line, Total value
+Thanks em
 
+--- check lai 
+select prncpl,count(*),sum(indval),sum(indunt)                     
+from ind                                                           
+where ttype in ('IV','CR')                                         
+and prncpl in ('S27','S28','S29','S30','S31')                      
+and indcfd between 20160101 and 20160131                           
+and inddel=''                                                      
+and invno in (select invno from inh where ttype in ('IV','CR')     
+and inhdel='' and inhcfd between 20160101 and 20160131             
+and prncpl in ('S27','S28','S29','S30','S31') and CMGRP2 ='TD1' )  
+group by prncpl                                                    
+order by prncpl                                                    
+SELECT statement run complete.                                     
 
+-	lay so hoa don cua TD1 va sanofi ca nam 2016 vao file temp 
+	select ttype,invno,CMGRP2                        
+	from inh                                         
+	where ttype in ('IV','CR') and inhdel=''         
+	and prncpl in ('S27','S28','S29','S30','S31')    
+	and CMGRP2 ='TD1'                                
+	and inhcfd between 20160101 and 20161231         
+	File TEMP in LDPHUC was replaced.                
+-	link ind voi file temp 
+	select prncpl,count(*),sum(indval),sum(indunt)                     
+	from ind a                                                         
+	where ttype in ('IV','CR')                                         
+	and indcfd between 20160101 and 20160131                           
+	and inddel='' and prncpl in ('S27','S28','S29','S30','S31')        
+	and exists (Select * from ldphuc/temp b                            
+	where a.ttype=b.ttype and a.invno=b.invno)                         
+	group by prncpl                                                    
 
-
-
-
-
-
-GVL01, là tháng 12,
-GVL02, là tháng 11,
-GVL03, là tháng 10,
-GVL04, là tháng 9,
-GVL05, là tháng 8,
-GVL06, là tháng 7,
-GVL07, là tháng 6, 
-GVL08, là tháng 5, 
-GVL09, là tháng 4, 
-GVL10, là tháng 3
-GVL11, là tháng 2
-				GVL12, là tháng 1
-
-
-chay GLS110 de post len GL het
-
- SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T01         
- FROM GJ                                                   
- WHERE MJDATE                                              
- BETWEEN 20170101 AND 20170131 GROUP BY CO, DIV, BR, GLACCT
-File GJ in LDPHUC was created.                                                            
-
-2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
-SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T01, B.GVL12   
-FROM ldphuc/GJ a,gm b                                 
-WHERE a.co=b.co and a.div=b.div and                  
-a.br=b.br and a.glacct=b.glacct  and                 
-A.T01<>B.GVL12                                       
-File TEMP in ldphuc was replaced. 
-
-update GM b set b.GVL12 = (SELECT  A.T01           
-FROM ldphuc/GJ a                                   
-WHERE a.co=b.co and a.div=b.div and                
-a.br=b.br and a.glacct=b.glacct  and               
-A.T01<>B.GVL12 )                                   
-where exists (SELECT A.T01                         
-FROM ldphuc/GJ a                                   
-WHERE a.co=b.co and a.div=b.div and                
-a.br=b.br and a.glacct=b.glacct  and               
-A.T01<>B.GVL12   )                                 
-15 rows updated in GM in ZPTLIBD.                  
-
-
-
----- Check lai select lai kiem tra xem con loi ko
- SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T01, B.GVL12     
-FROM ldphuc/GJ a,gm b                                   
-WHERE a.co=b.co and a.div=b.div and                    
-a.br=b.br and a.glacct=b.glacct  and                   
-A.T01<>B.GVL12  
- => ko co => dung
+select prncpl,SUBSTR(CHAR(indcfd),5,2),                       
+count(*),sum(indval),sum(indunt)                              
+from ind a                                                    
+where ttype in ('IV','CR')                                    
+and indcfd between 20160101 and 20161231                      
+and inddel='' and prncpl in ('S27','S28','S29','S30','S31')   
+and exists (Select * from ldphuc/temp b                       
+where a.ttype=b.ttype and a.invno=b.invno)                    
+group by prncpl ,SUBSTR(CHAR(indcfd),5,2)                     
+order by SUBSTR(CHAR(indcfd),5,2)                             
+File TEMP2 in LDPHUC was replaced.                            
  
-SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T01                           
-FROM ldphuc/GJ a where not exists (select * from                      
- gm b                                                                
-WHERE a.co=b.co and a.div=b.div and                                  
-a.br=b.br and a.glacct=b.glacct  and                                 
-A.T01= B.GVL12)                                                      
- => ko co => dung     
-  CO  DIV  BR   GLACCT                                              T01 
- 04                                                                .00 
-                                 
-SELECT * FROM gm a,ac b WHERE GVL12 <>0 and a.glacct=b.glacct and    
-b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
-a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
-c.T01= a.GVL12)                                                      
- => ko co => dung. 
-                           
  
-4. RE-ADD THIS YEAR (Duong dan: 22/54/ 3/ 10. Re-Add G/L Master T/Year Only)
-5. kiem tra lai co con lech blancing account (check balancing): 3/60/8, lan luot kiem tra Company  01 va 05,
-chi can cot  M-T-D Movement bang 0 het la dung
+===================================================
+-	thêm dấu hiệu để SC biết cust nào chưa vô xem callplan 
+-	ưu tiên cho callplan chạy sớm hơn 6h 
+-	Goverment Hospital sort theo MTD All sources xắp xếp theo tăng dần 
+-	thêm cột quota còn lại = tổng quota ban đầu - quota đã sử dụng 
+-	thêm line màu đỏ show ra khách hàng còn thiếu bao nhiêu tiền trong 7 ngày 
+
+
+Gov Hostpital 
+SELECT A.SLSMN,A.SMDESC, A.PDTCDE,A.[$JNMAH],[$JNMAR],
+A.[$JNMAD],A.[$JNMAQ], A.[$JNMAF],A.[$JNMAI], A.CUST,                                         
+A.CNAME, A.CMGRP2, A.CADD1, A.CADD2,A.ZCMTYP, A.[$JNMAE],                                        
+A.[$JNMAO],A.[$JNMAP],A.[$JNMAG], B.ZLVL2 as ZLVL                                         
+FROM zsa756pf a left join zlvl b on a.cmgrp2=b.cmgrp2 and                                                   
+a.cmgrp3=b.cmgrp3 and a.cmgrp4=b.cmgrp4 and a.zcmtyp=b.zcmtyp                                         
+WHERE CPLDTE = {0} and a.slsmn='{1}' AND A.CMGRP2 ='HP1'                                        
+AND A.CMGRP3 ='PD2' AND A.CMGRP4 = 'GV3'                                        
+
+
+PRIVATE hospital 
+SELECT A.SLSMN,A.SMDESC, A.PDTCDE,A.[$JNMAH],[$JNMAR], 
+A.[$JNMAD],A.[$JNMAQ], A.[$JNMAF],A.[$JNMAI], A.CUST, A.CNAME,                                         
+A.CMGRP2, A.CADD1, A.CADD2,A.ZCMTYP, A.[$JNMAE],A.[$JNMAO],A.[$JNMAP],                                         
+A.[$JNMAG], B.ZLVL2 as ZLVL                                         
+FROM zsa756pf a left join zlvl b on a.cmgrp2=b.cmgrp2 and                                                   
+a.cmgrp3=b.cmgrp3 and a.cmgrp4=b.cmgrp4 and a.zcmtyp=b.zcmtyp WHERE                                         
+CPLDTE = {0} and a.slsmn='{1}' 		                                        
+AND (A.CMGRP2 in ('CL1','IN1','SP1','HC1') or(A.CMGRP2='HP1' and A.CMGRP3='PD2' and A.CMGRP4='PR3'))                                        
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+
+===========================================================
+  Incident #79507 Escalated -  Bao cao Sales B07 (25/01/17)
+Bao cao Sales B07 (25/01/17->14/02/17)
+Dear IT,
+
+Theo bao cao Sales tu dong IT gui cho B.Braun tu ngay 25/01/17->14/02/17, Item code : B070450, tong so luong sales la: 1,147. Nhung theo report ma ke toan chay lai la 1,247, lech 100 hop
+
+Theo kiem tra chi tiet thay co 02 hoa don so: 74176926, 74176952 duoc book vao ngay 14/02/17, voi so luong la 70+30=100 hop. Vay tai so bao ma PRN nhan lai ko co 100 hop cua 02 hoa don nay, nho IT check va tra loi som de KT doi chieu Sales voi B.Braun.
+
+Cam on.
+ 
+ 
+===========================================================
+
+  ZPP B07 Daily Raw Data (NW)
+/java/SQLS/ZIN792B07W.sql
+ SELECT * FROM ZPTLIBD.ZIN792PF WHERE PRNCPL IN ('B07','B09') 
+
+
+ITND       ZPTLIBD  
+ITNH       ZPTLIBD  
+IM         ZPTLIBD  
+
+	Key field . . . . . . . . . . . . . . . . :            ITEM                  
+	Key field . . . . . . . . . . . . . . . . :            ITNHNT                    
+	Key field . . . . . . . . . . . . . . . . :            ITNDLN         
+	Key field . . . . . . . . . . . . . . . . :            ITEM         
+	Key field . . . . . . . . . . . . . . . . :            ITNHNT   
+  
+
+==============================================================
+-	cuoc doi cua ban duoc tao nen bang nhung suy nghi cua ban 
+Tâm thiện sẽ kéo theo điều tốt
+Tâm ác sẽ kéo theo đau khổ 
+	Tuoi cuoi nguoi hoan hy
+	Nhan nho kho ai ua 
+-	Mọi thứ xuất phát từ TÂM 
+
+
+-	quy luat nhan qua
+-	quy luat nguu tam nguu ma tam ma: muon nguoi gioi thi di voi nguoi gioi, chon moi truong va nhung nguoi ban tot de ma choi 
+-	gieo suy nghĩ thì gặt hành động, gieo hành động thì gặt thói quen, gieo thói quen thì gặt tính cách, gieo tính cách thì gặt số phận. Xuất phát là 1 suy nghĩ nhưng kết quả là cuộc đời số phận 
+-	những gì ta thường xuyên nghĩ thì chắc chắn ta sẽ làm điều đó: 
+-	Nghiệp là hành động lặp đi lặp lại trở thành thói quen, thói quen đó xuất phát từ cái tâm. Check xem trong 1 ngày mình hay nghĩ cái gì nhiều nhất 
+-	Quy luật cuộc đời: si da sa di, da si sa di => cái gì xấu thì tránh xa nó ra đi 
+-	Dục quang
+-	Tuệ quang 
+-	trăm năm ở với người đần không bằng 1 phút ở gần người khôn 
+
+
+===========================================
+PARM06     ZPTLIBD 
+MSECUSR    ZPTLIBD 
+DEPT       ZPTLIBD 
+		CND        ZPTLIBD 
+	CNH        ZPTLIBD 
+	CM         ZPTLIBD 
+PETRIG     ZPTLIBD    
+PFTRIG     ZPTLIBD    
+
+6 70 71 1
+
+select *                
+from CNh                
+where  CUST             
+=     'C00022'          
+and CNHNTE              
+=   7                   
+
+select count(*)                                    
+from CNh a                                         
+where exists (Select * from ldphuc/temp b          
+where a.cust=b.cust and a.CNHNTE=b.CNHNTE)         
+
+	update cnh a set CNHTLE  =''                  
+	where exists (Select * from ldphuc/temp b     
+	where a.cust=b.cust and a.CNHNTE=b.CNHNTE)    
+	384 rows updated in CNH in ZPTLIBD.                                 
+
+
+select *                               
+from CND                               
+where  CUST                            
+=     'S00661'                         
+File TEMP in LDPHUC was replaced.      
+
+select count(*)                                
+from CND a                                     
+where exists (Select * from ldphuc/temp b      
+where a.cust=b.cust and a.CNHNTE=b.CNHNTE      
+AND A.CNDLIN=B.CNDLIN )                        
+
+	update cnd set  CNDTXT=''              
+	where  CUST                            
+	=     'C00022'                         
+	and CNHNTE                             
+	=   7                                  
+	and CNDLIN=1   
+
+	UPDATE CND A SET CNDTXT=''                        
+	where exists (Select * from ldphuc/temp b         
+	where a.cust=b.cust and a.CNHNTE=b.CNHNTE         
+	AND A.CNDLIN=B.CNDLIN )                           
+	390 rows updated in CND in ZPTLIBD.               	
+
+
+ 
+-	tạo giao diện comment: các field và nút comment
+-	hàm save comment vào database và chuyển đến index 
+
+-	hàm index show all comment
+-	định dạng lại hiển thị comment 
+
+P@ssw0rdz
+
+ 
+	
+---report stock up Binh Duong - hoa don in lui ngay - Nguyen Thi Thanh Huong <ntthhuong@zuelligpharma.com>
+select a.ttype,a.invno,indseq,cust,item,indunt,indsel,indval,INDEPR,
+ indcfd,inhcfd,sub                                                  
+from inh a,ind b                                                    
+where a.ttype=b.ttype and a.invno=b.invno                           
+and inhdel='' and inddel=''                                         
+and a.invno in (Select * from ldphuc/temp)                          
+File TEMP2 in LDPHUC was replaced.                                  
+
+
+ IATOL, ISL#,    IAEXPD         
+ 
+ select a.*,IATOL,ISL#,IAEXPD                   
+ from ldphuc/temp2 a, ia b                     
+where a.ttype=b.ttype and a.invno=b.batch      
+and a.indseq=b.BHSEQ                           
+and iadel=''                                   
+File TEMP3 in LDPHUC was created.              
 
 
 

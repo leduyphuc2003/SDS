@@ -235,11 +235,11 @@ II. Check if there is any variances of value and cost for all items on IM file.
 	
 DROP TABLE mtchu/im_var 
 
-CREATE TABLE mtchu/im_var  as (SELECT A.ITEM, e0112, f0112 FROM IM A, S01 B WHERE A.ITEM=B.ITEM AND (IMMTDV<>e0112 OR IMMTDC<>f0112)) with data
+CREATE TABLE mtchu/im_var  as (SELECT A.ITEM, e0111, f0111 FROM IM A, S01 B WHERE A.ITEM=B.ITEM AND (IMMTDV<>e0111 OR IMMTDC<>f0111)) with data
 	
 	Chú ý: File IM_VAR in mtchu was replaced.
 
-update im a   set (a.immtdv, a.immtdC) = (select coalesce( b.e0112, a.immtdv), coalesce( b.f0112, a.immtdC) from mtchu/im_var b where a.item = b.item) where exists (select * from mtchu/im_var c where a.item=c.item)
+update im a   set (a.immtdv, a.immtdC) = (select coalesce( b.e0111, a.immtdv), coalesce( b.f0111, a.immtdC) from mtchu/im_var b where a.item = b.item) where exists (select * from mtchu/im_var c where a.item=c.item)
 
 
 III. Check if there is any variances of value and cost for all items on IW file======================================rrr
@@ -265,12 +265,12 @@ SELECT Item, WHS, IWSOH,IWSOA,IWSSA,IWSPK,IWSKSH,IWSOS FROM IW WHERE (IWSOH-IWSO
 
 DROP TABLE mtchu/iw_var
 
-CREATE TABLE mtchu/iw_var AS (SELECT A.ITEM, A.WHS, e3012, f3012 FROM IW A, S30 B WHERE A.ITEM=B.ITEM AND A.WHS=B.WHS AND (IWMTDV<>e3012 OR IWMTDC<>f3012)) with data
+CREATE TABLE mtchu/iw_var AS (SELECT A.ITEM, A.WHS, e3011, f3011 FROM IW A, S30 B WHERE A.ITEM=B.ITEM AND A.WHS=B.WHS AND (IWMTDV<>e3011 OR IWMTDC<>f3011)) with data
 
      Khi co data duoc tao trong bang nay la binh thuong hay la loi? Bang S30 lay field nao theo thang?
 	Chú ý: File IW_VAR in mtchu was replaced.
 
-update iW a set (a.iWmtdv, a.iWmtdC) = (select coalesce( b.e3012, a.iWmtdv), coalesce( b.f3012, a.iWmtdC) from mtchu/iW_var b where a.item = b.item AND A.WHS=B.WHS) where exists (select * from mtchu/iW_var c where a.item=c.item AND A.WHS=C.WHS) 
+update iW a set (a.iWmtdv, a.iWmtdC) = (select coalesce( b.e3011, a.iWmtdv), coalesce( b.f3011, a.iWmtdC) from mtchu/iW_var b where a.item = b.item AND A.WHS=B.WHS) where exists (select * from mtchu/iW_var c where a.item=c.item AND A.WHS=C.WHS) 
 
 
 IV. Check ARD file: ===================================================================================rrr
@@ -280,29 +280,29 @@ IV. Check ARD file: ============================================================
 	thang 11: 20161101
 	thang 12: 20161201
 	thang 1: 20170101
-	thang 2: 20160201
+	thang 2: 20170201
 	thang 3: 20160301
 	thang 4: 20160401
 	thang 5: 20160501
 	thang 6: 20160601
 	thang 7: 20160701
 	
-SELECT * FROM ARD WHERE TTYPE='IV' AND ARPAT='IV' AND ARCRTD>=20170101 AND ARTRM LIKE 'CO%' AND ARDDIM<>'Y'
+SELECT * FROM ARD WHERE TTYPE='IV' AND ARPAT='IV' AND ARCRTD>=20170201 AND ARTRM LIKE 'CO%' AND ARDDIM<>'Y'
 
      Neu ma co data thi can phai sua nhu the nao?
 
 V. Check IND file:=====================================================================================rrr
 
-SELECT * FROM IND WHERE INDCFD>=20170101 AND INDVAL<>0 AND  (INDSEL=0 OR INDUNT=0) 
+SELECT * FROM IND WHERE INDCFD>=20170201 AND INDVAL<>0 AND  (INDSEL=0 OR INDUNT=0) 
 
      Neu co du lieu can phai lam sua nhu the nao? Neu co thi gui qua CS confirm, sua theo file SAS
 
-SELECT * FROM IND WHERE INDCFD>=20170101 AND INDVAL=0 AND INDUNT<>0 AND INDLTY=''    
+SELECT * FROM IND WHERE INDCFD>=20170201 AND INDVAL=0 AND INDUNT<>0 AND INDLTY=''    
 
  
 DROP TABLE mtchu/inddy
 
-CREATE TABLE mtchu/inddy AS (SELECT TTYPE, INVNO, SUM(INDPPD) as INDPPD FROM IND WHERE INDCFD>=20170101   GROUP BY TTYPE, INVNO)  WITH DATA
+CREATE TABLE mtchu/inddy AS (SELECT TTYPE, INVNO, SUM(INDPPD) as INDPPD FROM IND WHERE INDCFD>=20170201   GROUP BY TTYPE, INVNO)  WITH DATA
 
 	Chú ý: File INDDY in mtchu was replaced.                              
 
@@ -313,26 +313,26 @@ SELECT * FROM INH A, mtchu/INDDY B WHERE A.TTYPE=B.TTYPE AND A.INVNO=B.INVNO AND
 
 DROP TABLE MTCHU/IND_FIX  
  
-CREATE TABLE MTCHU/IND_FIX AS (SELECT A.TTYPE, A.INVNO, A.INDSEQ ,a.indcfd, B.INDPAC  FROM IND A,IND B WHERE A.INDDEL='' AND A.TTYPE='CR' AND A.INDPAC NOT LIKE 'T%' AND A.INDPAC NOT LIKE 'NT%' AND A.INDCFD >=20170101 AND B.TTYPE='IV' AND A.INDOIN = B.INVNO AND A.INDOIL = B.INDSEQ AND (B.INDPAC LIKE 'T%' OR B.INDPAC LIKE 'NT%')) WITH DATA
+CREATE TABLE MTCHU/IND_FIX AS (SELECT A.TTYPE, A.INVNO, A.INDSEQ ,a.indcfd, B.INDPAC  FROM IND A,IND B WHERE A.INDDEL='' AND A.TTYPE='CR' AND A.INDPAC NOT LIKE 'T%' AND A.INDPAC NOT LIKE 'NT%' AND A.INDCFD >=20170201 AND B.TTYPE='IV' AND A.INDOIN = B.INVNO AND A.INDOIL = B.INDSEQ AND (B.INDPAC LIKE 'T%' OR B.INDPAC LIKE 'NT%')) WITH DATA
 
-update iND a set a.iNDPAC= (select coalesce( b.INDPAC,a.INDPAC ) from MTCHU/IND_FIX B where a.TTYPE= b.TTYPE AND A.INVNO=B.INVNO AND A.INDSEQ=B.INDSEQ) where inddel='' and TTYPE='CR' AND INDCFD>=20170101 AND exists (select * from MTCHU/IND_FIX c where a.TTYPE=c.TTYPE AND A.INVNO=C.INVNO AND A.INDSEQ=C.INDSEQ)
+update iND a set a.iNDPAC= (select coalesce( b.INDPAC,a.INDPAC ) from MTCHU/IND_FIX B where a.TTYPE= b.TTYPE AND A.INVNO=B.INVNO AND A.INDSEQ=B.INDSEQ) where inddel='' and TTYPE='CR' AND INDCFD>=20170201 AND exists (select * from MTCHU/IND_FIX c where a.TTYPE=c.TTYPE AND A.INVNO=C.INVNO AND A.INDSEQ=C.INDSEQ)
 
 	Kiem tra thue
 	
-SELECT A.TTYPE, A.INVNO, A.INDSEQ , INDOIN, B.CUST, C.CMTX, A.IMTX, TXRATE, ITEM, INDCFD, INDUNT, INDVAL, INDPPD, INDGST, (INDVAL-INDPPD) * D.TXRATE FROM IND A,INH B,CM C,TX D WHERE INDDEL='' AND INHDEL='' AND A.TTYPE=B.TTYPE AND A.INVNO=B.INVNO AND B.CUST=C.CUST AND C.CMTX=D.CMTX AND A.IMTX=D.IMTX AND (D.IMTX='' OR ABS(((INDVAL-INDPPD) * D.TXRATE) - INDGST) > 10) AND INDCFD >= 20170101 
+SELECT A.TTYPE, A.INVNO, A.INDSEQ , INDOIN, B.CUST, C.CMTX, A.IMTX, TXRATE, ITEM, INDCFD, INDUNT, INDVAL, INDPPD, INDGST, (INDVAL-INDPPD) * D.TXRATE FROM IND A,INH B,CM C,TX D WHERE INDDEL='' AND INHDEL='' AND A.TTYPE=B.TTYPE AND A.INVNO=B.INVNO AND B.CUST=C.CUST AND C.CMTX=D.CMTX AND A.IMTX=D.IMTX AND (D.IMTX='' OR ABS(((INDVAL-INDPPD) * D.TXRATE) - INDGST) > 10) AND INDCFD >= 20170201 
 
 VI. Check IND vs. IT =============================================================================rrr
 
 DROP TABLE mtchu/itdy
 
 CREATE TABLE mtchu/itdy AS (SELECT TTYPE, BATCH, ITEM, BHSEQ, SUM(ITQTY) AS QTY FROM IT WHERE ITDEL='' AND TTYPE IN ('IV','CR') 
-AND ITDAT>=20170101 GROUP BY TTYPE, BATCH, ITEM, BHSEQ) WITH DATA
+AND ITDAT>=20170201 GROUP BY TTYPE, BATCH, ITEM, BHSEQ) WITH DATA
 
 IND co IT co SL= nhau
-SELECT * FROM IND A WHERE A.INDDEL='' AND NOT EXISTS (SELECT * FROM mtchu/ITDY B WHERE A.TTYPE=B.TTYPE AND A.INVNO=B.BATCH AND A.ITEM=B.ITEM AND A.INDSEQ=B.BHSEQ AND A.INDUNT=-B.QTY) AND A.INDUNT<>0 AND A.INDCFD>=20170101
+SELECT * FROM IND A WHERE A.INDDEL='' AND NOT EXISTS (SELECT * FROM mtchu/ITDY B WHERE A.TTYPE=B.TTYPE AND A.INVNO=B.BATCH AND A.ITEM=B.ITEM AND A.INDSEQ=B.BHSEQ AND A.INDUNT=-B.QTY) AND A.INDUNT<>0 AND A.INDCFD>=20170201
 
 IND co va IT ko co
-SELECT * FROM IND A WHERE A.INDDEL='' AND A.INDUNT<>0 AND A.INDCFD>=20170101 AND NOT EXISTS (SELECT * FROM IT B WHERE B.ITDEL='' AND A.TTYPE=B.TTYPE AND A.INVNO=B.BATCH AND A.INDSEQ=B.BHSEQ) 
+SELECT * FROM IND A WHERE A.INDDEL='' AND A.INDUNT<>0 AND A.INDCFD>=20170201 AND NOT EXISTS (SELECT * FROM IT B WHERE B.ITDEL='' AND A.TTYPE=B.TTYPE AND A.INVNO=B.BATCH AND A.INDSEQ=B.BHSEQ) 
 
 IND ko co IT co
 SELECT * FROM mtchu/itdy A WHERE NOT EXISTS (SELECT * FROM IND B WHERE B.INDDEL='' AND A.TTYPE=B.TTYPE AND B.INVNO=A.BATCH AND B.INDSEQ=A.BHSEQ) 
@@ -346,9 +346,9 @@ C. CHAY CAU LENH UPDATE CO BAN CUOI NGAY.======================================
 	UPDATE AJH set AJHbsy='' where AJHbsy='Y'
 	UPDATE cqh set cqhbsy='' where cqhbsy='Y'
 	UPDATE ORB SET ORBBSY='' WHERE ORBBSY='Y'
-	UPDATE COH SET COHBSY='' WHERE TTYPE='OR' AND COHBSY='Y'	and COHCTD >= 20170101
-	UPDATE PSH SET PSHBSY='' WHERE TTYPE='PS' AND PSHBSY='Y'	and PSHCTD >= 20170101 and PSHDEL=''
-	UPDATE INH SET INHBSY='' WHERE TTYPE IN ('IV','CR') AND INHBSY='Y'	and INHCFD >= 20170101 and inhdel=''
+	UPDATE COH SET COHBSY='' WHERE TTYPE='OR' AND COHBSY='Y'	and COHCTD >= 20170201
+	UPDATE PSH SET PSHBSY='' WHERE TTYPE='PS' AND PSHBSY='Y'	and PSHCTD >= 20170201 and PSHDEL=''
+	UPDATE INH SET INHBSY='' WHERE TTYPE IN ('IV','CR') AND INHBSY='Y'	and INHCFD >= 20170201 and inhdel=''
 	DELETE FROM JA WHERE MJDKEY LIKE 'IV4%' AND (GLACCT='' OR GLACCT LIKE '9%')
 	DELETE FROM JW WHERE MJDKEY LIKE 'IV4%' AND (GLACCT='' OR GLACCT LIKE '9%')
 	Update rch set rchbsy='' where rchbsy='Y'
@@ -363,14 +363,14 @@ C. CHAY CAU LENH UPDATE CO BAN CUOI NGAY.======================================
 	('OR','PS'))      
 
 	-- co so luong nhung khong co gia tien, ngoai tru san pham bonus, con lai phai bao lai
-	select * from ind where inddel='' and indcfd>=20170101 and  
+	select * from ind where inddel='' and indcfd>=20170201 and  
 	indunt<>0 and indsel=0 and indlty=''  	
 
 	-- thieu thue
 	SELECT A.TTYPE, A.ORDR, B.CODSEQ, B.PSN, B.INVNO ,cohdat,cohbor,   
 	A.CUST, B.CODINO, B.ITEM, B.WHS, B.CODUNT, codval,B.CODGST, B.IMTX 
 	FROM coh a,cod b WHERE cohdel='' and coddel='' and a.ttype=b.ttype 
-	and a.ordr= b.ordr and codval<>0 and codgst=0 and cohdat>=20170101
+	and a.ordr= b.ordr and codval<>0 and codgst=0 and cohdat>=20170201
 	
 2
 IX. Delete các LT ở trạng thái Entered: =====================================================   	     

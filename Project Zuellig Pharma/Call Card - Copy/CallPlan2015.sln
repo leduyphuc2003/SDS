@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallPlan2015.WebApp", "CallPlan2015.WebApp\CallPlan2015.WebApp.csproj", "{DBBF8A83-9900-46D3-9F3E-A7520ECB5747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallPlan2015.DataModel", "CallPlan2015.DataModel\CallPlan2015.DataModel.csproj", "{FDD75274-5EB4-4804-9704-A744E6174958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallPlan2015.Service", "CallPlan2015.Service\CallPlan2015.Service.csproj", "{A083D2C6-7A79-4DBA-A70D-1AFB1862E225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallPlan2015.Common", "CallPlan2015.Common\CallPlan2015.Common.csproj", "{B18C8D99-E463-4624-9647-6B5384A12B3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBBF8A83-9900-46D3-9F3E-A7520ECB5747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBF8A83-9900-46D3-9F3E-A7520ECB5747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBF8A83-9900-46D3-9F3E-A7520ECB5747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBF8A83-9900-46D3-9F3E-A7520ECB5747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD75274-5EB4-4804-9704-A744E6174958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD75274-5EB4-4804-9704-A744E6174958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD75274-5EB4-4804-9704-A744E6174958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD75274-5EB4-4804-9704-A744E6174958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A083D2C6-7A79-4DBA-A70D-1AFB1862E225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A083D2C6-7A79-4DBA-A70D-1AFB1862E225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A083D2C6-7A79-4DBA-A70D-1AFB1862E225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A083D2C6-7A79-4DBA-A70D-1AFB1862E225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B18C8D99-E463-4624-9647-6B5384A12B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B18C8D99-E463-4624-9647-6B5384A12B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B18C8D99-E463-4624-9647-6B5384A12B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B18C8D99-E463-4624-9647-6B5384A12B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://leduyphuc2003.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CallPlan2015.Common\\CallPlan2015.Common.csproj
+		SccProjectName1 = CallPlan2015.Common
+		SccLocalPath1 = CallPlan2015.Common
+		SccProjectUniqueName2 = CallPlan2015.DataModel\\CallPlan2015.DataModel.csproj
+		SccProjectName2 = CallPlan2015.DataModel
+		SccLocalPath2 = CallPlan2015.DataModel
+		SccProjectUniqueName3 = CallPlan2015.Service\\CallPlan2015.Service.csproj
+		SccProjectName3 = CallPlan2015.Service
+		SccLocalPath3 = CallPlan2015.Service
+		SccProjectUniqueName4 = CallPlan2015.WebApp\\CallPlan2015.WebApp.csproj
+		SccProjectName4 = CallPlan2015.WebApp
+		SccLocalPath4 = CallPlan2015.WebApp
+	EndGlobalSection
+EndGlobal

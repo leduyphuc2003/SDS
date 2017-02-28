@@ -1,0 +1,508 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+
+body   
+{
+	background: #b6b7bc;
+	font-size: .80em;
+	font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+	margin: 0px;
+	padding: 0px;
+	color: #696969;
+}
+
+a:link, a:visited
+{
+	color: #034af3;
+}
+
+a:hover
+{
+	color: #1d60ff;
+	text-decoration: none;
+}
+
+a:active
+{
+	color: #034af3;
+}
+
+p
+{
+	margin-bottom: 10px;
+	line-height: 1.6em;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6
+{
+	font-size: 1.5em;
+	color: #666666;
+	font-variant: small-caps;
+	text-transform: none;
+	font-weight: 200;
+	margin-bottom: 0px;
+}
+
+h1
+{
+	font-size: 1.6em;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+h2
+{
+	font-size: 1.5em;
+	font-weight: 600;
+}
+
+h3
+{
+	font-size: 1.2em;
+}
+
+h4
+{
+	font-size: 1.1em;
+}
+
+h5, h6
+{
+	font-size: 1em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+	margin-top: 0px;
+}
+
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+.page
+{
+	width: 90%;
+	background-color: #fff;
+	margin: 20px auto 0px auto;
+	border: 1px solid #496077;
+}
+
+.header
+{
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	background: #29CBC2;
+	width: 100%;
+}
+
+.header h1
+{
+	font-weight: 700;
+	margin: 0px;
+	padding: 0px 0px 0px 20px;
+	color: #f9f9f9;
+	border: none;
+	line-height: 2em;
+	font-size: 2em;
+}
+
+.main
+{
+	padding: 0px 12px;
+	margin: 12px 8px 8px 8px;
+	min-height: 420px;
+}
+
+.leftCol
+{
+	padding: 6px 0px;
+	margin: 12px 8px 8px 8px;
+	width: 200px;
+	min-height: 200px;
+}
+
+.footer
+{
+	color: #4e5766;
+	padding: 8px 0px 0px 0px;
+	margin: 0px auto;
+	text-align: center;
+	line-height: normal;
+}
+
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+div.hideSkiplink
+{
+	background-color:#E7E7E7;
+	width:100%;
+}
+
+div.menu
+{
+	padding: 4px 0px 4px 8px;
+}
+
+div.menu ul
+{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	width: auto;
+}
+
+div.menu ul li a, div.menu ul li a:visited
+{
+	background-color: #094658;
+	border: 1px white solid;
+	color: #dde4ec;
+	display: block;
+	line-height: 1.35em;
+	padding: 4px 20px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+div.menu ul li a:hover
+{
+	background-color: #29A7A2;
+	color: #465c71;
+	text-decoration: none;
+}
+
+div.menu ul li a:active
+{
+	background-color: #465c71;
+	color: #cfdbe6;
+	text-decoration: none;
+}
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset
+{
+	margin: 1em 0px;
+	padding: 1em;
+	border: 1px solid #ccc;
+}
+
+fieldset p 
+{
+	margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+	display: block;
+}
+
+fieldset label.inline 
+{
+	display: inline;
+}
+
+legend 
+{
+	font-size: 1.1em;
+	font-weight: 600;
+	padding: 2px 4px 8px 4px;
+}
+
+input.textEntry 
+{
+	width: 320px;
+	border: 1px solid #ccc;
+}
+
+input.passwordEntry 
+{
+	width: 320px;
+	border: 1px solid #ccc;
+}
+
+div.accountInfo
+{
+	width: 42%;
+}
+
+/* MISC  
+----------------------------------------------------------*/
+
+.clear
+{
+	clear: both;
+}
+
+.title
+{
+	display: block;
+	float: left;
+	text-align: left;
+	width: auto;
+}
+
+.loginDisplay
+{
+	font-size: 1.1em;
+	display: block;
+	text-align: right;
+	padding: 10px;
+	color: White;
+}
+
+.loginDisplay a:link
+{
+	color: white;
+}
+
+.loginDisplay a:visited
+{
+	color: white;
+}
+
+.loginDisplay a:hover
+{
+	color: white;
+}
+
+.failureNotification
+{
+	font-size: 1.2em;
+	color: Red;
+}
+
+.bold
+{
+	font-weight: bold;
+}
+
+.submitButton
+{
+	text-align: right;
+	padding-right: 10px;
+}
+
+/* Call plan css */
+.space {
+	height: 10px;
+}
+.row-main {
+	min-height: 400px;
+}
+.main-menu {
+	padding-top: 20px;
+}
+.form-inline .form-group {
+	padding-right: 5px;
+}
+
+.list-table
+{
+	width: 100%;
+	border: 1px solid lightgray;
+}
+
+/*mau sac chu trong table*/
+.list-table td
+{
+    /*comment by Phuc: xoa color nay di de lay */
+	/*color: #505050;*/
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	padding-right: 2px;
+	font-size: 11pt;
+	line-height: 120%;
+	font-family: "Times New Roman", Times, serif;
+	border-right: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+}
+.list-title-bg
+{
+	background-color: #e7e7e7;
+	height: 30px;
+}
+.list-item-bg1
+{
+	background-color: white;
+}
+.list-item-bg2
+{
+	background-color: whitesmoke;
+}
+
+.list-item-bg3 {
+    background-color: lightcyan;
+}
+
+.list-item-bg4 {
+    background-color: lightblue;
+    font-weight: bold;
+}
+
+/* mau sac background cho class A B C D*/
+.list-item-bgA
+{
+	background-color: #094658;
+    color: white;
+}
+
+.list-item-bgB
+{
+	background-color: #117577;
+    color: white;
+}
+.list-item-bgC
+{
+	background-color: #719849;
+    color: white;
+}
+.list-item-bgD
+{
+	background-color: #92d050;
+    color: white;
+}
+.list-item-bgE
+{
+	background-color: #ff0000;
+    color: white;
+}
+.list-item-bgF
+{
+ 
+}
+ 
+
+
+/* xu li hover mau sac*/ 
+.list-item-bg1:hover {
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+.list-item-bg2:hover {
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+.list-item-bg3:hover {
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+.list-item-bgA:hover {
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+.list-item-bgB:hover {
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+.list-item-bgC:hover {
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+.list-item-bgD:hover {
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+.list-item-bgE:hover
+{
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+} 
+.list-item-bgF:hover
+{
+	background-color: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+} 
+
+
+.list-item-bg-no-cursor1
+{
+	background-color: white;
+}
+.list-item-bg-no-cursor2
+{
+	background-color: whitesmoke;
+}
+.list-item-bg-no-cursor1:hover {
+	background-color: lightgreen;
+}
+.list-item-bg-no-cursor2:hover {
+	background-color: lightgreen;
+}
+.callplan-text {
+    width: 50px;
+    text-align: right;
+}
+
+
+/* login */
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.foreground-red {
+    color: red;
+}
+
+.foreground-green {
+    color: greenyellow;
+}
+
+.hidden-row {
+    display: none;
+}
+
+.background-green {
+    background-color: greenyellow;
+}

@@ -563,3 +563,27 @@ and inhdel='' and a.ttype=c.ttype and a.invno=c.invno
 and a.item in (select item from im where ISTCDE in ('COL', 'FRE')   
 and imdel='')                                                       
 File TEMP in LDPHUC was replaced.             
+=======================================================================
+Incident #79315 -  Extract data de lam BB nghiem thu theo - Van Thi Trinh
+Extract data  de lam BB nghiem thu theo mau rieng cua BV
+Dear IT,
+
+S00862 BV 30-4 yeu cau lam bien ban nghiem thu theo mau rieng cua Benh vien. Vui long extract giup data nhu sau:
+
+Thong tin can:
+- S00862 BV 30-4.
+- Thoi gian tu thang 11/2016 den 12/2016.
+- Thong tin chi tiet giong nhu file lam mau dinh kem
+Thank you & best regards,
+Van Thi Trinh
+
+select a.cust,INHDNM ,INHDA1,INHDA2,INHDA3,CMSTAT,PLCAR, PLCTE ,  
+b.TTYPE,b.INVNO,                                                  
+GIVBRF,GIVINV,INDCFD,ITEM,INDDES,INDUNT,INDSEL,INDTRD,            
+b.ARTRM,INDVAL ,PBHTX2 ,b.sub,indcfd                              
+from cm a, inh b, ind c, pbh d                                    
+where  a.cust=b.cust and  b.ttype=c.ttype and b.invno=c.invno     
+and b.ttype in ('IV','CR') and c.pbhcon=d.pbhcon                  
+and inhdel='' and inddel='' and pbhdel=''                         
+and b.cust='S00862' and indcfd between 20161101 and 20161231      
+File TEMP in LDPHUC was replaced.   

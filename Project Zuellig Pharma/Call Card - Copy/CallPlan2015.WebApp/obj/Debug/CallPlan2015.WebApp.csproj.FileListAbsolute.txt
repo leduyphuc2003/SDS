@@ -1,0 +1,357 @@
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\obj\Debug\ResolveAssemblyReference.cache
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll.config
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+D:\PH\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+D:\PH\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+D:\PH\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+D:\PH\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll.licenses
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll.licenses
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll.config
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Data.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Office.v15.2.Core.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Printing.v15.2.Core.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.RichEdit.v15.2.Core.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Utils.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Web.ASPxThemes.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Web.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraPrinting.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\IBM.Data.DB2.iSeries.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Core.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Drawing.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraEditors.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraBars.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraTreeList.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraLayout.v15.2.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Sparkline.v15.2.Core.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Data.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Printing.v15.2.Core.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Office.v15.2.Core.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.RichEdit.v15.2.Core.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Utils.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Web.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraPrinting.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\IBM.Data.DB2.iSeries.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Core.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Drawing.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraEditors.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraBars.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraTreeList.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.XtraLayout.v15.2.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\DevExpress.Sparkline.v15.2.Core.xml
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.Data.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.Data.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.Data.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.Data.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.Office.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.Office.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.Office.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.Office.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.Utils.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.Utils.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.Utils.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.Utils.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.Web.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.Web.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.Web.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.Web.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.XtraBars.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.XtraBars.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.XtraBars.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.XtraBars.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\de\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\es\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ja\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\bin\ru\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll.licenses
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll.config
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Data.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Office.v15.2.Core.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Printing.v15.2.Core.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.RichEdit.v15.2.Core.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Utils.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.ASPxThemes.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraPrinting.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\IBM.Data.DB2.iSeries.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Core.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Drawing.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraEditors.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraBars.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraTreeList.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraLayout.v15.2.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Sparkline.v15.2.Core.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Data.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Printing.v15.2.Core.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Office.v15.2.Core.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.RichEdit.v15.2.Core.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Utils.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraPrinting.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\IBM.Data.DB2.iSeries.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Core.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Drawing.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraEditors.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraBars.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraTreeList.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraLayout.v15.2.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Sparkline.v15.2.Core.xml
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Data.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Data.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Data.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Data.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Office.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Office.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Office.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Office.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Utils.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Utils.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Utils.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Utils.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Web.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Web.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Web.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Web.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraBars.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraBars.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraBars.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraBars.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll.licenses
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll.config
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.WebApp.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Data.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Office.v15.2.Core.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Printing.v15.2.Core.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.RichEdit.v15.2.Core.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Utils.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.ASPxThemes.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraPrinting.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\IBM.Data.DB2.iSeries.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Core.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Drawing.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraEditors.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraBars.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraTreeList.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraLayout.v15.2.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Sparkline.v15.2.Core.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Common.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Service.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Data.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Printing.v15.2.Core.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Office.v15.2.Core.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.RichEdit.v15.2.Core.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Utils.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraPrinting.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\IBM.Data.DB2.iSeries.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Core.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Drawing.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraEditors.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraBars.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraTreeList.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraLayout.v15.2.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Sparkline.v15.2.Core.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Data.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Data.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Data.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Data.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Printing.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Office.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Office.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Office.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Office.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.RichEdit.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Utils.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Utils.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Utils.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Utils.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Web.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Web.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Web.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Web.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraPrinting.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Pdf.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraEditors.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraBars.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraBars.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraBars.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraBars.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraTreeList.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.XtraLayout.v15.2.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\de\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\es\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ja\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\ru\DevExpress.Sparkline.v15.2.Core.resources.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.csprojResolveAssemblyReference.cache
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll.licenses
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\obj\Debug\CallPlan2015.WebApp.pdb

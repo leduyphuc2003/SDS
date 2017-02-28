@@ -1,12 +1,93 @@
 
 có 2 cách truyền dữ liều từ controller qua view 
 -	model
--	viewbag.WelcomString ="chào mừng bạn với ViewBag"
+-	Viewbag:	viewbag.WelcomString ="chào mừng bạn với ViewBag"
+
+-	khi tạo database thì nên tạo bảng nào mà không có ai tham chiếu đến nó trước 
+-	ứng với 1 bảng trong database thì nên tạo 1 controller để xử lí riêng cho nó
+
+-	ASP.NET MVC document 
+https://docs.microsoft.com/en-us/aspnet/mvc/
+
+-	How to re-create database for Entity Framework?
+		Enable-Migrations -Force
+		Add-Migration init
+		Update-Database
+
+-	collapse row bootstrap(hiệu ứng co lên và hạ xuống table)
+http://v4-alpha.getbootstrap.com/components/collapse/
+
+-	select from multi table and display in MVC asp.net
+http://www.c-sharpcorner.com/article/display-multiple-tables-data-in-single-view-from-database-in/
+http://stackoverflow.com/questions/4319488/how-do-i-display-data-from-multiple-tables-in-a-single-mvc-view
+http://stackoverflow.com/questions/19538305/mvc-display-multiple-tables-in-one-view
+https://forums.asp.net/t/1700177.aspx?How+to+Display+Data+in+a+single+view+from+Multiple+Tables+in+MVC+3+0+
 
 
+-	update row from view of multi table in MVC asp.net
+http://stackoverflow.com/questions/23429888/best-way-to-insert-data-to-multiple-table-mvc-asp
+http://stackoverflow.com/questions/18261172/save-update-data-into-multiple-tables-using-asp-net-mvc-4
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 
 
+-	Create Simple Comment Box in ASP.NET
+http://www.ittutorialswithexample.com/2015/01/create-simple-comment-box-in-aspnet.html
+http://www.c-sharpcorner.com/forums/how-to-create-a-comment-box-on-a-website-in-asp-net
+http://codeacad.com/2013/07/how-to-make-comment-box-in-aspnet.html
 
+-	gantt chart asp.net MVC
+http://thuyvk.com/article/su-dung-aspnet-chart-control-d-229#
+https://mvc.daypilot.org/gantt/
+https://dhtmlx.com/blog/using-dhtmlx-gantt-chart-asp-net-mvc/
+https://www.codeproject.com/Articles/794978/Gantt-Chart-for-ASP-NET-MVC-with-dhtmlxGantt
+
+=====================================================
+Gui mail - attach file theo mail - 
+
+Enable xp_cmdshell does not work
+Lets try this: Disable it, then re-enbable it.
+--Disable
+Use Master
+
+GO
+EXEC master.dbo.sp_configure 'xp_cmdshell', 0
+RECONFIGURE WITH OVERRIDE
+
+GO
+
+EXEC master.dbo.sp_configure 'show advanced options', 0
+RECONFIGURE WITH OVERRIDE
+GO
+
+-- Enable
+Use Master
+GO
+EXEC master.dbo.sp_configure 'show advanced options', 1
+RECONFIGURE WITH OVERRIDE
+GO
+
+EXEC master.dbo.sp_configure 'xp_cmdshell', 1
+RECONFIGURE WITH OVERRIDE
+GO
+
+----------- tron column va data ra 1 file 
+http://stackoverflow.com/questions/23226847/getting-column-names-with-bcp-queryout
+
+-----------	send attachment in mail from folder SQL server
+https://blogs.msdn.microsoft.com/sqlagent/2010/11/10/sql-database-mail-send-emails-with-attachment/
+http://www.sqlservercentral.com/scripts/Mail/68898/
+
+
+xp_cmdshell select to file with header column
+
+Use sp_send_dbmail to send multiple file attachments
+http://www.sqlservercentral.com/scripts/Mail/68898/
+
+Running a Batch File from Task Scheduler Without User being logged In
+https://www.youtube.com/watch?v=EInOL6D5f3Q
+
+Compress Multiple Folders Into Multiple Zip Files Automatically Using 7ZIP
+https://www.youtube.com/watch?v=MNb2yX8fJVE
 =======================================================================
 -	lý thuyết, ví dụ, ứng dụng thực tiễn 
 

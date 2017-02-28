@@ -2745,7 +2745,7 @@ WHERE IVSCMB='S08176' AND ISSPRN ='G10' -- Thuoc Product: Orange line
 UPDATE ISSD SET  SUB='SAO'             
 WHERE  ISSPRN IN ('G10','G11','F03','I02','M10','M14',
 'N15','M15','B10','M06','A10','S28','S29','S30','N19','S31','F05') AND 
-IVSCMB='S15429'
+IVSCMB ='S15429'
 
 10. -- Thuoc Product: UPI/Sanofi
 SELECT SUB                                                 
@@ -2756,7 +2756,7 @@ IVSCMB='S08176'
 UPDATE ISSD SET SUB='USS'                        
 WHERE ISSDEL='' AND ISSPRN IN ('U05','S27','J05','T01','B09',
 'J06','A16','N14','E05','M17','A18','B14')
-AND IVSCMB='S08176'         
+AND IVSCMB ='S08176'         
 
 ----------------------------  
 Service Request # 43590  upload subdist chi Hanh CS
@@ -4154,6 +4154,22 @@ from PSH where PSN = 53212453
     .000      
 
 CALL PGM(OPS240CA) PARM('01OPS240CA' 'PS' '53212453')
+===================================================================================
+Hi Hai/Phuc, - anh Thong - khong co trong workpool - WCS 
+
+May hom nay, anh thay user o WT2 (da dung WCS) thinh thoang co bao tinh trang don hang OPS250, cach xu ly nhu sau:
+
+Neu pick co so luong (PSHUNT>0), kiem tra so luong trong PSD va IA, neu bang nhau thi goi lenh ben duoi tao entry trong workpool va day qua WCS nhu sau:
+
+Vi du Kho WT2 - order 34931682 – pick 62740931
+
+Tao WPOOL
+CALL PGM(RPG681) PARM('TOP' 'WT2' 'PS' '62740931' '000' '000' '0' '   ' '
+' ' ' 'OR' '34931682')  
+
+Tao WA va day qua WCS
+CALL RPX177 PARM('PS' '62393219')
+
 =====================================================================================================
 Service Request # 33484   (khong co trong workpool manager 13 1)
 Chuyen sang trang thai picked    
@@ -10893,10 +10909,10 @@ INSERT INTO ZSCTPCUST VALUES(
 
 2.	Xoa di file co trong he thong va insert theo file moi cua a Man gui.
 DELETE   FROM ZSCTPCUST                     
-788 rows deleted from ZSCTPCUST in ZPTLIBD. 
+ 
 INSERT INTO ZSCTPCUST                       
 SELECT * FROM ldphuc/ZSCTPCUST               
-789 rows inserted in ZSCTPCUST in ZPTLIBD.  
+ 
 
 3.	Tuy theo cach Phuc de lam, mien sao la insert vao dung data va ko bi duplicated va khong thieu, vi day la bao cao tinh theo doanh so cua cty va cung de danh gia nhom SC di ban hang.
 
@@ -10932,12 +10948,11 @@ and   a.PLCTE  = b.PLCTE
 and   a.CMSNM  = b.CMSNM                    
 and   a.CMGRP2 = b.CMGRP2                   
 and   a.INDOIT = b.INDOIT )                                                             
-790 rows deleted from ZSCTPCUST in ZPTLIBD.        
+        
                  
 INSERT INTO ZSCTPCUST                                               
 SELECT * FROM ldphuc/ZSCTPCUST                                       
-795 rows inserted in ZSCTPCUST in ZPTLIBD.    
-
+ 
 delete                                         
 from  ZSCTPITEM b          
 where exists (select * from ldphuc/ZSCTPITEM a    
@@ -13198,7 +13213,7 @@ Check item nam trong contract ung voi ngay start va end cua combo
 =================================================================================
 Delete & Add Matrix	
 Nh? anh h? tr? delete & add matrix nhu file dính kèm giúp em.
--	Nguyen Thi Thanh Nhan -	Cao Thanh Thuy
+-	Nguyen Thi d -	Cao Thanh Thuy
 ------------------------------------------------------------Territory province
 --  delete 
  select count(*)                          

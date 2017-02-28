@@ -265,14 +265,6 @@ D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\Call
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Common.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.DataModel.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\CallPlan2015.Service.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Data.v15.2.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Office.v15.2.Core.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Printing.v15.2.Core.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.RichEdit.v15.2.Core.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Utils.v15.2.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.ASPxThemes.v15.2.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Web.v15.2.dll
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.XtraPrinting.v15.2.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\IBM.Data.DB2.iSeries.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Core.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.WebApp\bin\DevExpress.Pdf.v15.2.Drawing.dll

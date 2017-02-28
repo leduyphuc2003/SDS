@@ -377,6 +377,43 @@ namespace EmployeeSurvey.Web.Controllers
             var userLogin = db.Users.FirstOrDefault(x => x.Id == id);
 
             // su dung session lu ket qua search de xuat ra file
+            //var result = _dataContext.Users.Include(x => x.Survey)
+            //    .Where(x => x.Country == userLogin.Country && x.Level != "99")
+            //    .Select(x => new
+            //    {
+            //        EmployeeId = x.EmployeeId,
+            //        FullName = x.FullName,
+            //        Department = x.Department,
+            //        PayrollGroup = x.PayrollGroup,
+            //        Level = x.Level,
+            //        Option1 = x.Survey != null ? x.Survey.YesNoOption1 : string.Empty,
+            //        Option2 = x.Survey != null ? x.Survey.YesNoOption2 : string.Empty,
+            //        Option3 = x.Survey != null ? x.Survey.YesNoOption3 : string.Empty,
+            //        Option4 = x.Survey != null ? x.Survey.YesNoOption4 : string.Empty,
+            //        Option5 = x.Survey != null ? x.Survey.YesNoOption5 : string.Empty,
+            //        Option6 = x.Survey != null ? x.Survey.YesNoOption6 : string.Empty,
+            //        Option7 = x.Survey != null ? x.Survey.YesNoOption7 : string.Empty,
+            //        Option8 = x.Survey != null ? x.Survey.YesNoOption8 : string.Empty,
+            //        Option9 = x.Survey != null ? x.Survey.YesNoOption9 : string.Empty,
+            //        Option10 = x.Survey != null ? x.Survey.YesNoOption10 : string.Empty,
+            //        Option11 = x.Survey != null ? x.Survey.YesNoOption11 : string.Empty,
+
+            //        Content1 = x.Survey != null ? x.Survey.Content1 : string.Empty,
+            //        Content2 = x.Survey != null ? x.Survey.Content2 : string.Empty,
+            //        Content3 = x.Survey != null ? x.Survey.Content3 : string.Empty,
+            //        Content4 = x.Survey != null ? x.Survey.Content4 : string.Empty,
+            //        Content5 = x.Survey != null ? x.Survey.Content5 : string.Empty,
+            //        Content6 = x.Survey != null ? x.Survey.Content6 : string.Empty,
+            //        Content7 = x.Survey != null ? x.Survey.Content7 : string.Empty,
+            //        Content8 = x.Survey != null ? x.Survey.Content8 : string.Empty,
+            //        Content9 = x.Survey != null ? x.Survey.Content9 : string.Empty,
+            //        Content10 = x.Survey != null ? x.Survey.Content10 : string.Empty,
+            //        Content11 = x.Survey != null ? x.Survey.Content11 : string.Empty,
+
+            //        SurveyUpdateDate = x.Survey != null ? x.Survey.SurveyUpdateDate.ToString() : string.Empty
+            //    }).ToList();
+
+            // su dung session lu ket qua search de xuat ra file
             var result = _dataContext.Users.Include(x => x.Survey)
                 .Where(x => x.Country == userLogin.Country && x.Level != "99")
                 .Select(x => new
@@ -386,11 +423,11 @@ namespace EmployeeSurvey.Web.Controllers
                     Department = x.Department,
                     PayrollGroup = x.PayrollGroup,
                     Level = x.Level,
-                    Option1 = x.Survey != null ? x.Survey.YesNoOption1 : string.Empty,
-                    Option2 = x.Survey != null ? x.Survey.YesNoOption2 : string.Empty,
-                    Option3 = x.Survey != null ? x.Survey.YesNoOption3 : string.Empty,
-                    Option4 = x.Survey != null ? x.Survey.YesNoOption4 : string.Empty,
-                    Option5 = x.Survey != null ? x.Survey.YesNoOption5 : string.Empty,
+                    Q1_Are_you_currently_a_Government_Official = x.Survey != null ? x.Survey.YesNoOption1 : string.Empty,
+                    Q2_Are_any_of_your_Family_Members_currently_a_Government_Official = x.Survey != null ? x.Survey.YesNoOption2 : string.Empty,
+                    C = x.Survey != null ? x.Survey.YesNoOption3 : string.Empty,
+                    D = x.Survey != null ? x.Survey.YesNoOption4 : string.Empty,
+                    E = x.Survey != null ? x.Survey.YesNoOption5 : string.Empty,
                     Option6 = x.Survey != null ? x.Survey.YesNoOption6 : string.Empty,
                     Option7 = x.Survey != null ? x.Survey.YesNoOption7 : string.Empty,
                     Option8 = x.Survey != null ? x.Survey.YesNoOption8 : string.Empty,
