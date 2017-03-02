@@ -170,6 +170,7 @@
 					<td align="center" style="width: 50px">MTD SC SOURCE</td> 
 					<td align="center" style="width: 50px">AVE6 LAST MONTH</td>-->
 					<td align="center" style="width: 50px">Quota</td>
+                    <td align="center" style="width: 50px">Quota Remain</td>
 					<td align="center" style="width: 50px">MTD All sources</td>
 					<td align="center" style="width: 50px">CHECK STOCK</td>
 				</tr>
@@ -187,6 +188,14 @@
                             <td align="right">
                                 <%# ((PharmacyCustomerData)Container.DataItem).MtdAllSourcesQuantity.ToString() %>
 							</td>
+                            
+                            <%--quota remain--%>
+                              <td align="right">
+                                <%# ((PharmacyCustomerData)Container.DataItem).quotaRemain.ToString() %>
+							</td>
+                            
+                            
+
 							<td align="right">
 							    <%# ((PharmacyCustomerData)Container.DataItem).MtdScSourcesQuantity.ToString() %>
 							</td>

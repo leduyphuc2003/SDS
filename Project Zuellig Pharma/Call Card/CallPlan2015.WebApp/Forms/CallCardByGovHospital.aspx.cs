@@ -95,25 +95,24 @@ namespace CallPlan2015.WebApp.Forms
 
             //tao cau query
             //dung as400
-//            string query = string.Format(@"SELECT A.CUST, A.CNAME, A.CADD1, A.CMPHON, A.CMCONT, A.ARTRM,      
-//                                            A.SLSMN, A.SMDESC, A.PRNCPL, A.ZCITYP, A.ITEM, A.IMDESC, A.QUOTA,  
-//                                            A.NET_QTY, VALUE(B.IMSOH,0) as IMSOH
-//                                            FROM ZGOVHOSP2 A LEFT JOIN ZCMIMSOH B  
-//                                            ON A.CUST=B.CUST AND A.ITEM=B.ITEM 
-//                                            WHERE a.cust= '{0}' and         
-//                                            a.slsmn= '{1}' ORDER BY A.PRNCPL, A.ZCITYP, A.ITEM                  
-//                                            ", custCode, Session[Constants.SESSION_USER_NAME]);
+            //            string query = string.Format(@"SELECT A.CUST, A.CNAME, A.CADD1, A.CMPHON, A.CMCONT, A.ARTRM,      
+            //                                            A.SLSMN, A.SMDESC, A.PRNCPL, A.ZCITYP, A.ITEM, A.IMDESC, A.QUOTA,  
+            //                                            A.NET_QTY, VALUE(B.IMSOH,0) as IMSOH
+            //                                            FROM ZGOVHOSP2 A LEFT JOIN ZCMIMSOH B  
+            //                                            ON A.CUST=B.CUST AND A.ITEM=B.ITEM 
+            //                                            WHERE a.cust= '{0}' and         
+            //                                            a.slsmn= '{1}' ORDER BY A.PRNCPL, A.ZCITYP, A.ITEM                  
+            //                                            ", custCode, Session[Constants.SESSION_USER_NAME]);
 
             //dung SQL thay cho AS400
             string query = string.Format(@"SELECT A.CUST, A.CNAME, A.CADD1, A.CMPHON, A.CMCONT, A.ARTRM,      
                                         A.SLSMN, A.SMDESC, A.PRNCPL, A.ZCITYP, A.ITEM, A.IMDESC, A.QUOTA,  
-                                        A.NET_QTY, B.IMSOH as IMSOH
+                                        A.NET_QTY, B.IMSOH as IMSOH,A.REM_QUOTA
                                         FROM ZGOVHOSP2 A LEFT JOIN ZCMIMSOH B  
                                         ON A.CUST=B.CUST AND A.ITEM=B.ITEM 
                                         WHERE a.cust= '{0}' and         
                                         a.slsmn= '{1}' ORDER BY A.PRNCPL, A.ZCITYP, A.ITEM               
                                         ", custCode, Session[Constants.SESSION_USER_NAME]);
-
 
             //truy van cau lenh sql bang tham so query o tren roi luu vao mot bang table
             //var table = CallPlanService.GetCustomerData(query);
@@ -132,10 +131,16 @@ namespace CallPlan2015.WebApp.Forms
             var originalData = (List<PharmacyCustomerData>)Session[Constants.SESSION_PHARMACY_CUSTOMER_LIST];
             var result = new List<PharmacyCustomerData>();
 
+            //var grouppedData = data.Where(item => item.BestSaleFlag == "B")
+            //                       .OrderBy(item => item.PrnCode)
+            //                       .GroupBy(item => item.PrnCode)
+            //                       .ToDictionary(item => item.Key, item => item.OrderBy(code => code.ProCode).ToList());
+
+            //Group by MTD All sources
             var grouppedData = data.Where(item => item.BestSaleFlag == "B")
-                                   .OrderBy(item => item.PrnCode)
-                                   .GroupBy(item => item.PrnCode)
-                                   .ToDictionary(item => item.Key, item => item.OrderBy(code => code.ProCode).ToList());
+                       .OrderBy(item => item.PrnCode)
+                       .GroupBy(item => item.PrnCode)
+                       .ToDictionary(item => item.Key, item => item.OrderByDescending(code => code.MtdScSourcesQuantity).ToList());
 
             //vòng lặp cho từng principal: key = principal
             foreach (var key in grouppedData.Keys)

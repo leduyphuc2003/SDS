@@ -1,84 +1,107 @@
-select count(*),sum(indval),sum(indunt)            
-from ind                                           
-where ttype in ('IV','CR')                         
-and prncpl='A18' and whs='WS1'                     
-and indcfd between 20161101 and 20161130           
-and inddel=''                                      
-
-
-CMGRP2             INH                Customer Local Group 1    
-
-       
-select PRNCPL,count(*),sum(indval),sum(indunt)                     
-from ind B                                                         
-where ttype in ('IV','CR')                                         
-and inddel=''                                                      
-and exists (Select * from inh a where a.ttype =b.ttype             
-and a.invno=b.invno and inhdel='' and inddel=''                    
-and a.ttype in  ('IV','CR')                                        
-and a.CMGRP2 ='TD1' and prncpl in ('S27','S28','S29','S30','S31')  
-and indcfd between 20161101 and 20161130  )                        
-GROUP BY PRNCPL                                                    
-
-
-
-Dear Phuc,
-Vui long chay giup chi bao cao nam 2016, total IV lines, Total IV lines value theo thang giup chi cua local group TD1, hang Sanofi thoi ( S27, S28, S29, S30, S31)
-Month, Total Invoice line, Total value
-Thanks em
-
---- check lai 
-select prncpl,count(*),sum(indval),sum(indunt)                     
-from ind                                                           
-where ttype in ('IV','CR')                                         
-and prncpl in ('S27','S28','S29','S30','S31')                      
-and indcfd between 20160101 and 20160131                           
-and inddel=''                                                      
-and invno in (select invno from inh where ttype in ('IV','CR')     
-and inhdel='' and inhcfd between 20160101 and 20160131             
-and prncpl in ('S27','S28','S29','S30','S31') and CMGRP2 ='TD1' )  
-group by prncpl                                                    
-order by prncpl                                                    
-SELECT statement run complete.                                     
-
--	lay so hoa don cua TD1 va sanofi ca nam 2016 vao file temp 
-	select ttype,invno,CMGRP2                        
-	from inh                                         
-	where ttype in ('IV','CR') and inhdel=''         
-	and prncpl in ('S27','S28','S29','S30','S31')    
-	and CMGRP2 ='TD1'                                
-	and inhcfd between 20160101 and 20161231         
-	File TEMP in LDPHUC was replaced.                
--	link ind voi file temp 
-	select prncpl,count(*),sum(indval),sum(indunt)                     
-	from ind a                                                         
-	where ttype in ('IV','CR')                                         
-	and indcfd between 20160101 and 20160131                           
-	and inddel='' and prncpl in ('S27','S28','S29','S30','S31')        
-	and exists (Select * from ldphuc/temp b                            
-	where a.ttype=b.ttype and a.invno=b.invno)                         
-	group by prncpl                                                    
-
-select prncpl,SUBSTR(CHAR(indcfd),5,2),                       
-count(*),sum(indval),sum(indunt)                              
-from ind a                                                    
-where ttype in ('IV','CR')                                    
-and indcfd between 20160101 and 20161231                      
-and inddel='' and prncpl in ('S27','S28','S29','S30','S31')   
-and exists (Select * from ldphuc/temp b                       
-where a.ttype=b.ttype and a.invno=b.invno)                    
-group by prncpl ,SUBSTR(CHAR(indcfd),5,2)                     
-order by SUBSTR(CHAR(indcfd),5,2)                             
-File TEMP2 in LDPHUC was replaced.                            
  
+
+
+
+
+
+
+
+
  
+		
+GVL01, là tháng 12,
+GVL02, là tháng 11,
+GVL03, là tháng 10,
+GVL04, là tháng 9,
+GVL05, là tháng 8,
+GVL06, là tháng 7,
+GVL07, là tháng 6, 
+GVL08, là tháng 5, 
+GVL09, là tháng 4, 
+GVL10, là tháng 3
+					GVL11, là tháng 2
+GVL12, là tháng 1
+
+
+ SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T02              
+ FROM GJ                                                        
+ WHERE MJDATE                                                   
+ BETWEEN 20170201 AND 20170228 GROUP BY CO, DIV, BR, GLACCT     
+File GJ in ldphuc was replaced.                                  
+
+2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T02, B.GVL11   
+FROM ldphuc/GJ a,gm b                                 
+WHERE a.co=b.co and a.div=b.div and                  
+a.br=b.br and a.glacct=b.glacct  and                 
+A.T02<>B.GVL11                                       
+File TEMP in ldphuc was replaced. 
+
+update GM b set b.GVL11 = (SELECT  A.T02         
+FROM ldphuc/GJ a                                  
+WHERE a.co=b.co and a.div=b.div and              
+a.br=b.br and a.glacct=b.glacct  and             
+A.T02<>B.GVL11 )                                 
+where exists (SELECT A.T02                       
+FROM ldphuc/GJ a                                  
+WHERE a.co=b.co and a.div=b.div and              
+a.br=b.br and a.glacct=b.glacct  and             
+A.T02<>B.GVL11   )                               
+  21 rows updated in GM in ZPTLIBD.    
+
+
+---- Check lai select lai kiem tra xem con loi ko
+ SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T02, B.GVL11     
+FROM ldphuc/GJ a,gm b                                   
+WHERE a.co=b.co and a.div=b.div and                    
+a.br=b.br and a.glacct=b.glacct  and                   
+A.T02<>B.GVL11  
+ => ko co => dung
+ 
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T02                           
+FROM ldphuc/GJ a where not exists (select * from                      
+ gm b                                                                
+WHERE a.co=b.co and a.div=b.div and                                  
+a.br=b.br and a.glacct=b.glacct  and                                 
+A.T02= B.GVL11)                                                      
+ => ko co => dung     
+                                 
+SELECT * FROM gm a,ac b WHERE GVL11 <>0 and a.glacct=b.glacct and    
+b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
+a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
+c.T02= a.GVL11)                                                      
+ => ko co => dung. 
+
+
+ 
+
+
+-	tạo cột trong database lưu đã thăm cust hay chưa
+-	lúc click vào thì gán giá trị đã thăm vào database : SC, cust, ngày, checked 
+-	giao diện: tại line có item thì add icon check vào 
+-	load lên thì check nếu đã thăm thì show ra xanh còn chưa thì show ra đỏ 
+
+-	load trang lên thì gọi hàm check
+	=	hàm store sql check nếu SC cust và ngày truyền vào (gồm ngày hiện tại và quá khứ) nếu có thì retunr 1
+	=	chương trình gọi hàm check nếu 1 thì show ra icon check xanh ngược lại thì ẩn icon 
+-	click xem chi tiết thì gọi hàm insert 
+	=	cung cấp 4 tham số 
+	=	hàm store SQL insertChecked (SC,cust,DateCurrent,TimeCurrent): sẽ insert vào table SQL giá trị đã check gồm 5 giá trị (SC,cust,DateCurrent,TimeCurrent,1)
+
+	
+	
+	
+
+
+							
+
 ===================================================
 -	thêm dấu hiệu để SC biết cust nào chưa vô xem callplan 
 -	ưu tiên cho callplan chạy sớm hơn 6h 
--	Goverment Hospital sort theo MTD All sources xắp xếp theo tăng dần 
--	thêm cột quota còn lại = tổng quota ban đầu - quota đã sử dụng 
+	-	Goverment Hospital sort theo MTD All sources xắp xếp theo tăng dần => DONE
+	-	thêm cột quota còn lại = tổng quota ban đầu - quota đã sử dụng => Done 
 -	thêm line màu đỏ show ra khách hàng còn thiếu bao nhiêu tiền trong 7 ngày 
-
+-	
 
 Gov Hostpital 
 SELECT A.SLSMN,A.SMDESC, A.PDTCDE,A.[$JNMAH],[$JNMAR],

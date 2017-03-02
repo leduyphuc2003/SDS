@@ -162,7 +162,8 @@ namespace CallPlan2015.Service
                     MtdAllSourcesQuantity = (row[Constants.GOV_HOSPITAL_QUOTA] != DBNull.Value) ? Convert.ToDouble(row[Constants.GOV_HOSPITAL_QUOTA]) : 0.0,
                     MtdScSourcesQuantity = (row[Constants.GOV_HOSPITAL_NET_QTY] != DBNull.Value) ? Convert.ToDouble(row[Constants.GOV_HOSPITAL_NET_QTY]) : 0.0,
                     CheckStock = (row[Constants.PHARMACY_CUSTOMER_CHECK_STOCK] != DBNull.Value) ? Convert.ToInt32(row[Constants.PHARMACY_CUSTOMER_CHECK_STOCK]) : 0,
-                    
+
+                    quotaRemain = (row["REM_QUOTA"] != DBNull.Value) ? Convert.ToInt32(row["REM_QUOTA"]) :0
                 };
 
                 pharmacyCustomerList.Add(data);

@@ -723,6 +723,8 @@ where ttype='IV' and invno=72149189
 reset co ban finacne 
 22 54 2 2   ZPT    Clear Supplier Busy Flags 
  
+MKEY: APS007    ZPT    Clear Supplier Busy Flags
+
 =======================================================================================
 Kiem tra Data Queue Manager
 
@@ -13211,7 +13213,7 @@ and ttype='OR'
 
 Check item nam trong contract ung voi ngay start va end cua combo
 =================================================================================
-Delete & Add Matrix	
+Delete & Add Matrix	- thanh nhan - upload ssatcp
 Nh? anh h? tr? delete & add matrix nhu file dính kèm giúp em.
 -	Nguyen Thi d -	Cao Thanh Thuy
 ------------------------------------------------------------Territory province
@@ -13241,7 +13243,7 @@ delete
  and a.GROUP=b.GROUP                      
  and a.GROUP2=b.GROUP2                    
  and a.STYCDE=b.STYCDE)                   
-1139 rows deleted from SSATCP in ZPTLIBD. 
+ 
 
 --insert
 delete                                      

@@ -104,7 +104,7 @@ namespace CallPlan2015.WebApp.Forms
                                         FROM zsa756pf a left join zlvl b on a.cmgrp2=b.cmgrp2 and           
                                         a.cmgrp3=b.cmgrp3 and a.cmgrp4=b.cmgrp4 and a.zcmtyp=b.zcmtyp WHERE 
                                         CPLDTE = {0} and a.slsmn='{1}' 		
-                                        AND (A.CMGRP2 in ('CL1','IN1','SP1','HC1') or(A.CMGRP2='HP1' and A.CMGRP3='PD2' and A.CMGRP4='PR3'))", 
+                                        AND (A.CMGRP2 in ('CL1','IN1','SP1','HC1','HP1') or(A.CMGRP2='HP1' and A.CMGRP3 in ('PD2','ED2') and A.CMGRP4 in ('PR3','GV3')))", 
                                         Session[Constants.SESSION_PRI_HOS_DATE].ToString(), scCode);
 
 

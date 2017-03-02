@@ -24,5 +24,7 @@
         public double MtdScSourcesQuantity { get; set; }
 		public int CheckStock { get; set; }
         public string BestSaleFlag { get; set; }
+
+        public int quotaRemain { get; set; }
 	}
 }

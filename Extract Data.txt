@@ -587,3 +587,49 @@ and b.ttype in ('IV','CR') and c.pbhcon=d.pbhcon
 and inhdel='' and inddel='' and pbhdel=''                         
 and b.cust='S00862' and indcfd between 20161101 and 20161231      
 File TEMP in LDPHUC was replaced.   
+========================================================
+Nguyen Thi Thuy Tien <ntttien@zuelligpharma.com> 
+Incident #79861 -  Extract data- TD1
+Dear Phuc, 
+Vui long chay giup chi bao cao nam 2016, total IV lines, Total IV lines value theo thang giup chi cua local group TD1, hang Sanofi thoi ( S27, S28, S29, S30, S31)
+Month, Total Invoice line, Total value
+Thanks em
+
+CMGRP2             INH                Customer Local Group 1   
+
+--- check lai 
+Cach 1:
+select prncpl,count(*),sum(indval),sum(indunt)                     
+from ind                                                           
+where ttype in ('IV','CR')                                         
+and prncpl in ('S27','S28','S29','S30','S31')                      
+and indcfd between 20160101 and 20160131                           
+and inddel=''                                                      
+and invno in (select invno from inh where ttype in ('IV','CR')     
+and inhdel='' and inhcfd between 20160101 and 20160131             
+and prncpl in ('S27','S28','S29','S30','S31') and CMGRP2 ='TD1' )  
+group by prncpl                                                    
+order by prncpl                                                    
+SELECT statement run complete.                                     
+
+Cach 2:
+-	lay so hoa don cua TD1 va sanofi ca nam 2016 vao file temp 
+	select ttype,invno,CMGRP2                        
+	from inh                                         
+	where ttype in ('IV','CR') and inhdel=''         
+	and prncpl in ('S27','S28','S29','S30','S31')    
+	and CMGRP2 ='TD1'                                
+	and inhcfd between 20160101 and 20161231         
+	File TEMP in LDPHUC was replaced.                
+-	link ind voi file temp 
+	select prncpl,SUBSTR(CHAR(indcfd),5,2),                       
+	count(*),sum(indval),sum(indunt)                              
+	from ind a                                                    
+	where ttype in ('IV','CR')                                    
+	and indcfd between 20160101 and 20161231                      
+	and inddel='' and prncpl in ('S27','S28','S29','S30','S31')   
+	and exists (Select * from ldphuc/temp b                       
+	where a.ttype=b.ttype and a.invno=b.invno)                    
+	group by prncpl ,SUBSTR(CHAR(indcfd),5,2)                     
+	order by SUBSTR(CHAR(indcfd),5,2)                             
+	File TEMP2 in LDPHUC was replaced.    
