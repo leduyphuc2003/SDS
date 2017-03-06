@@ -56,11 +56,22 @@
     <Reference Include="DevExpress.Web.ASPxThemes.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -75,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Asset\css\font-awesome.css" />
+    <Content Include="Asset\css\font-awesome.min.css" />
+    <Content Include="Asset\fonts\fontawesome-webfont.svg" />
     <Content Include="ExclusiveDateChoose.aspx" />
     <Content Include="Forms\CallCardByExclusiveTeam.aspx" />
     <Content Include="Forms\CallCardByGLPharmacy.aspx" />
@@ -318,10 +332,47 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\fonts\fontawesome-webfont.eot" />
+    <Content Include="Asset\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Asset\fonts\fontawesome-webfont.woff" />
+    <Content Include="Asset\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Asset\fonts\FontAwesome.otf" />
+    <Content Include="Asset\less\animated.less" />
+    <Content Include="Asset\less\bordered-pulled.less" />
+    <Content Include="Asset\less\core.less" />
+    <Content Include="Asset\less\fixed-width.less" />
+    <Content Include="Asset\less\font-awesome.less" />
+    <Content Include="Asset\less\icons.less" />
+    <Content Include="Asset\less\larger.less" />
+    <Content Include="Asset\less\list.less" />
+    <Content Include="Asset\less\mixins.less" />
+    <Content Include="Asset\less\path.less" />
+    <Content Include="Asset\less\rotated-flipped.less" />
+    <Content Include="Asset\less\screen-reader.less" />
+    <Content Include="Asset\less\stacked.less" />
+    <Content Include="Asset\less\variables.less" />
+    <Content Include="Asset\scss\font-awesome.scss" />
+    <Content Include="Asset\scss\_animated.scss" />
+    <Content Include="Asset\scss\_bordered-pulled.scss" />
+    <Content Include="Asset\scss\_core.scss" />
+    <Content Include="Asset\scss\_fixed-width.scss" />
+    <Content Include="Asset\scss\_icons.scss" />
+    <Content Include="Asset\scss\_larger.scss" />
+    <Content Include="Asset\scss\_list.scss" />
+    <Content Include="Asset\scss\_mixins.scss" />
+    <Content Include="Asset\scss\_path.scss" />
+    <Content Include="Asset\scss\_rotated-flipped.scss" />
+    <Content Include="Asset\scss\_screen-reader.scss" />
+    <Content Include="Asset\scss\_stacked.scss" />
+    <Content Include="Asset\scss\_variables.scss" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\CallPlan2015.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

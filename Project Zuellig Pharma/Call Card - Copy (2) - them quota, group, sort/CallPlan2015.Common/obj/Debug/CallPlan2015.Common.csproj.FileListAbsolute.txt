@@ -1,0 +1,44 @@
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Common\obj\Debug\ResolveAssemblyReference.cache
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+D:\Zero\ASP.NET\Project examples\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+D:\PH\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+D:\PH\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+D:\PH\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+D:\PH\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+D:\PH\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015 - Copy\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+C:\Users\dple\Desktop\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+D:\Desktop\CallPlan2015\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+D:\Desktop\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache
+D:\Desktop\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+D:\Desktop\CallPlan2015\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+D:\Recovery GetDataBack\SDS Job\Callplan2015 backup\CallPlan2015_v20_dung_sql_thay_as400\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+D:\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\bin\Debug\CallPlan2015.Common.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Common\obj\Debug\CallPlan2015.Common.csprojResolveAssemblyReference.cache

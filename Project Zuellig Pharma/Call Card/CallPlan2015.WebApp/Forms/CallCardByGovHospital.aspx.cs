@@ -282,10 +282,16 @@ namespace CallPlan2015.WebApp.Forms
             //dung sql thay cho as400
             if ((cust != null) && (ScCode != null) && (date != null) && (time != null))
             {
-                var connection = new SQLConnectionUtility();
-                connection.OpenConnection();
-                CallPlanService.InsertToReportUseSQl(cust, ScCode, date, time, connection);
-                connection.CloseConnection();
+                //var connection = new SQLConnectionUtility();
+                //connection.OpenConnection();
+                //CallPlanService.InsertToReportUseSQl(cust, ScCode, date, time, connection);
+                //connection.CloseConnection();
+
+                CallCardEntities2 cc = new CallCardEntities2();
+                ZCPLD tmp = new ZCPLD() {SLSMN = ScCode,CUST = cust,CPLUPD = date,CPLUPT = time};
+                cc.ZCPLDs.Add(tmp);
+                cc.SaveChanges();
+
             }
         }
     }

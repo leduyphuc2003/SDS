@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CallCardModelStoreContainer" CdmEntityContainer="CallCardEntities">
+    <EntitySetMapping Name="UserCallPLans">
+      <EntityTypeMapping TypeName="CallCardModel.UserCallPLan">
+        <MappingFragment StoreEntitySet="UserCallPLan">
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zcmimsohs">
+      <EntityTypeMapping TypeName="CallCardModel.zcmimsoh">
+        <MappingFragment StoreEntitySet="zcmimsoh">
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="IMSOH" ColumnName="IMSOH" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZCPLDs">
+      <EntityTypeMapping TypeName="CallCardModel.ZCPLD">
+        <MappingFragment StoreEntitySet="ZCPLD">
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+          <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+          <ScalarProperty Name="CHECKED" ColumnName="CHECKED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZGOVHOSP2">
+      <EntityTypeMapping TypeName="CallCardModel.ZGOVHOSP2">
+        <MappingFragment StoreEntitySet="ZGOVHOSP2">
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+          <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+          <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+          <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+          <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+          <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+          <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+          <ScalarProperty Name="QUOTA" ColumnName="QUOTA" />
+          <ScalarProperty Name="NET_QTY" ColumnName="NET_QTY" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+          <ScalarProperty Name="REM_QUOTA" ColumnName="REM_QUOTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zsa756pf">
+      <EntityTypeMapping TypeName="CallCardModel.zsa756pf">
+        <MappingFragment StoreEntitySet="zsa756pf">
+          <ScalarProperty Name="CPLDTE" ColumnName="CPLDTE" />
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+          <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+          <ScalarProperty Name="PDTDES" ColumnName="PDTDES" />
+          <ScalarProperty Name="C_JNMAH" ColumnName="$JNMAH" />
+          <ScalarProperty Name="C_JNMAR" ColumnName="$JNMAR" />
+          <ScalarProperty Name="C_JNMAD" ColumnName="$JNMAD" />
+          <ScalarProperty Name="C_JNMAQ" ColumnName="$JNMAQ" />
+          <ScalarProperty Name="C_JNMAF" ColumnName="$JNMAF" />
+          <ScalarProperty Name="C_JNMAI" ColumnName="$JNMAI" />
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+          <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+          <ScalarProperty Name="CMGRP3" ColumnName="CMGRP3" />
+          <ScalarProperty Name="CMGRP4" ColumnName="CMGRP4" />
+          <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+          <ScalarProperty Name="CADD2" ColumnName="CADD2" />
+          <ScalarProperty Name="ZCMTYP" ColumnName="ZCMTYP" />
+          <ScalarProperty Name="C_JNMAE" ColumnName="$JNMAE" />
+          <ScalarProperty Name="C_JNMAO" ColumnName="$JNMAO" />
+          <ScalarProperty Name="C_JNMAP" ColumnName="$JNMAP" />
+          <ScalarProperty Name="C_JNMAG" ColumnName="$JNMAG" />
+          <ScalarProperty Name="C_JNMAC" ColumnName="$JNMAC" />
+          <ScalarProperty Name="C_JNMAK" ColumnName="$JNMAK" />
+          <ScalarProperty Name="C_JNMAL" ColumnName="$JNMAL" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zsa757pf">
+      <EntityTypeMapping TypeName="CallCardModel.zsa757pf">
+        <MappingFragment StoreEntitySet="zsa757pf">
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+          <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+          <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+          <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+          <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+          <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+          <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+          <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+          <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+          <ScalarProperty Name="C_JNNAD" ColumnName="$JNNAD" />
+          <ScalarProperty Name="C_JNNAE" ColumnName="$JNNAE" />
+          <ScalarProperty Name="C_JNNAF" ColumnName="$JNNAF" />
+          <ScalarProperty Name="C_JNNAA" ColumnName="$JNNAA" />
+          <ScalarProperty Name="C_JNNAB" ColumnName="$JNNAB" />
+          <ScalarProperty Name="C_JNNAC" ColumnName="$JNNAC" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zsa757pf3">
+      <EntityTypeMapping TypeName="CallCardModel.zsa757pf3">
+        <MappingFragment StoreEntitySet="zsa757pf3">
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+          <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+          <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+          <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+          <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+          <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+          <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+          <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+          <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+          <ScalarProperty Name="C_JNNAD" ColumnName="$JNNAD" />
+          <ScalarProperty Name="C_JNNAE" ColumnName="$JNNAE" />
+          <ScalarProperty Name="C_JNNAF" ColumnName="$JNNAF" />
+          <ScalarProperty Name="C_JNNAA" ColumnName="$JNNAA" />
+          <ScalarProperty Name="C_JNNAB" ColumnName="$JNNAB" />
+          <ScalarProperty Name="C_JNNAC" ColumnName="$JNNAC" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zsa758pf">
+      <EntityTypeMapping TypeName="CallCardModel.zsa758pf">
+        <MappingFragment StoreEntitySet="zsa758pf">
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+          <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+          <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+          <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+          <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+          <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+          <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+          <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+          <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+          <ScalarProperty Name="C_JNQAD" ColumnName="$JNQAD" />
+          <ScalarProperty Name="C_JNQAE" ColumnName="$JNQAE" />
+          <ScalarProperty Name="C_JNQAF" ColumnName="$JNQAF" />
+          <ScalarProperty Name="C_JNQAA" ColumnName="$JNQAA" />
+          <ScalarProperty Name="C_JNQAB" ColumnName="$JNQAB" />
+          <ScalarProperty Name="C_JNQAC" ColumnName="$JNQAC" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CallCardReports">
+      <EntityTypeMapping TypeName="CallCardModel.CallCardReport">
+        <MappingFragment StoreEntitySet="CallCardReport">
+          <ScalarProperty Name="CPLDTE" ColumnName="CPLDTE" />
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+          <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+          <ScalarProperty Name="PDTDES" ColumnName="PDTDES" />
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+          <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+          <ScalarProperty Name="CMGRP3" ColumnName="CMGRP3" />
+          <ScalarProperty Name="CMGRP4" ColumnName="CMGRP4" />
+          <ScalarProperty Name="CADD2" ColumnName="CADD2" />
+          <ScalarProperty Name="ZCMTYP" ColumnName="ZCMTYP" />
+          <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+          <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temps">
+      <EntityTypeMapping TypeName="CallCardModel.temp">
+        <MappingFragment StoreEntitySet="temp">
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+          <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+          <ScalarProperty Name="CHECKED" ColumnName="CHECKED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zlvls">
+      <EntityTypeMapping TypeName="CallCardModel.zlvl">
+        <MappingFragment StoreEntitySet="zlvl">
+          <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+          <ScalarProperty Name="CMGRP3" ColumnName="CMGRP3" />
+          <ScalarProperty Name="CMGRP4" ColumnName="CMGRP4" />
+          <ScalarProperty Name="ZCMTYP" ColumnName="ZCMTYP" />
+          <ScalarProperty Name="ZLVL1" ColumnName="ZLVL1" />
+          <ScalarProperty Name="ZLVL2" ColumnName="ZLVL2" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="COUNT_SC_CHECKED_CUST_BY_DATE" FunctionName="CallCardModel.Store.COUNT_SC_CHECKED_CUST_BY_DATE" />
+    <FunctionImportMapping FunctionImportName="GetListScChecked" FunctionName="CallCardModel.Store.GetListScChecked">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CallCardModel.GetListScChecked_Result">
+          <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+          <ScalarProperty Name="CUST" ColumnName="CUST" />
+          <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+          <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+          <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+          <ScalarProperty Name="CHECKED" ColumnName="CHECKED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

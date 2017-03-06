@@ -100,7 +100,7 @@ namespace CallPlan2015.WebApp.Forms
             string query = string.Format(@"SELECT A.SLSMN,A.SMDESC, A.PDTCDE,A.[$JNMAH],[$JNMAR], 
                                         A.[$JNMAD],A.[$JNMAQ], A.[$JNMAF],A.[$JNMAI], A.CUST, A.CNAME, 
                                         A.CMGRP2, A.CADD1, A.CADD2,A.ZCMTYP, A.[$JNMAE],A.[$JNMAO],A.[$JNMAP], 
-                                        A.[$JNMAG], B.ZLVL2 as ZLVL 
+                                        A.[$JNMAG], B.ZLVL2 as ZLVL,CPLDTE
                                         FROM zsa756pf a left join zlvl b on a.cmgrp2=b.cmgrp2 and           
                                         a.cmgrp3=b.cmgrp3 and a.cmgrp4=b.cmgrp4 and a.zcmtyp=b.zcmtyp WHERE 
                                         CPLDTE = {0} and a.slsmn='{1}' 		

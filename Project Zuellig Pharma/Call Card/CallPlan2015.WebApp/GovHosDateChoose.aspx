@@ -7,13 +7,15 @@
       <meta charset="utf-8">
       <title>jQuery UI Datepicker functionality</title>
        
-       <%--<link href="~/Styles/jquery-ui.css" rel="stylesheet">
+<%--       <link href="~/Styles/jquery-ui.css" rel="stylesheet">
        <script src="/Styles/jquery-1.10.2.js"></script>
        <script src="/Styles/jquery-ui.js"></script>--%>
 
       <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
       <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+       
+
       <!-- Javascript -->
       <script>
           $(function () {
@@ -22,8 +24,7 @@
                   yearSuffix: "-CE",
                   showAnim: "slide"
               });
-          });
-      </script>
+          });</script>
    </head>
    <body>
       <!-- HTML -->

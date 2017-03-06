@@ -1,24 +1,25 @@
-﻿using System;
+﻿using CallPlan2015.Common;
+using CallPlan2015.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using CallPlan2015.Common;
-using CallPlan2015.DataModel;
 
 namespace CallPlan2015.Service
 {
-	public class CallPlanUtility
-	{
+    public class CallPlanUtility{
         //data as400 callplan -> class callPlanData
-		public static List<CallPlanData> ConvertCustomerTableToList(DataTable callPlanData)
-		{
-			var customerList = new List<CallPlanData>();
+        public static List<CallPlanData> ConvertCustomerTableToList(DataTable callPlanData)
+        {
+            var customerList = new List<CallPlanData>();
+            string SLSMN, cust = "";
+            int CPLDTE = 0;
+            int countIfCheck = 0;
 
-			foreach (DataRow row in callPlanData.Rows)
-			{
-				var data = new CallPlanData()
-				{
+            foreach (DataRow row in callPlanData.Rows)
+            {
+                var data = new CallPlanData()
+                {
                     //add by ph
                     //add data tung cot select tu as400 vao class CallPLanData
                     //CallPlanDate = (row[Constants.CALL_PLAN_DATE] != DBNull.Value) ? row[Constants.CALL_PLAN_DATE].ToString() : string.Empty,
@@ -32,42 +33,60 @@ namespace CallPlan2015.Service
                     PassedWD = (row[Constants.PassedWD] != DBNull.Value) ? Convert.ToInt32(row[Constants.PassedWD]) : 0,
 
                     TargetMTD = (row[Constants.Target_Today] != DBNull.Value) ? Convert.ToDouble(row[Constants.Target_MTD]) : 0,
-                    SalesMTD = (row[Constants.Sales_MTD] != DBNull.Value) ?  Convert.ToDouble(row[Constants.Sales_MTD]) : 0,
-                    MonthToGo = (row[Constants.Month_To_Go] != DBNull.Value) ?  Convert.ToDouble(row[Constants.Month_To_Go]): 0,
-                    TargetToday = (row[Constants.Target_Today] != DBNull.Value) ?  Convert.ToDouble(row[Constants.Target_Today]) :0,
-				
-					CustomerCode = (row[Constants.CUSTOMER_CUSTOMER_CODE] != DBNull.Value) ? row[Constants.CUSTOMER_CUSTOMER_CODE].ToString() : string.Empty,
-					CustomerName = (row[Constants.CUSTOMER_CUSTOMER_NAME] != DBNull.Value) ? row[Constants.CUSTOMER_CUSTOMER_NAME].ToString() : string.Empty,
-					Address = (row[Constants.CUSTOMER_ADDRESS] != DBNull.Value) ? row[Constants.CUSTOMER_ADDRESS].ToString() : string.Empty,
-					District = (row[Constants.CUSTOMER_DISTRICT] != DBNull.Value) ? row[Constants.CUSTOMER_DISTRICT].ToString() : string.Empty,
-					Class = (row[Constants.CUSTOMER_CLASS] != DBNull.Value) ? row[Constants.CUSTOMER_CLASS].ToString() : string.Empty,
-					Ave6LastMonth = (row[Constants.CUSTOMER_AVE6_LAST_MONTH] != DBNull.Value) ? Convert.ToDouble(row[Constants.CUSTOMER_AVE6_LAST_MONTH]) : 0.0,
-					MtdAllSources = (row[Constants.CUSTOMER_MTD_ALL_SOURCES] != DBNull.Value) ? Convert.ToDouble(row[Constants.CUSTOMER_MTD_ALL_SOURCES]) : 0.0,
-					MtdScSources = (row[Constants.CUSTOMER_MTD_SC_SOURCE] != DBNull.Value) ? Convert.ToDouble(row[Constants.CUSTOMER_MTD_SC_SOURCE]) : 0.0,
+                    SalesMTD = (row[Constants.Sales_MTD] != DBNull.Value) ? Convert.ToDouble(row[Constants.Sales_MTD]) : 0,
+                    MonthToGo = (row[Constants.Month_To_Go] != DBNull.Value) ? Convert.ToDouble(row[Constants.Month_To_Go]) : 0,
+                    TargetToday = (row[Constants.Target_Today] != DBNull.Value) ? Convert.ToDouble(row[Constants.Target_Today]) : 0,
+
+                    CustomerCode = (row[Constants.CUSTOMER_CUSTOMER_CODE] != DBNull.Value) ? row[Constants.CUSTOMER_CUSTOMER_CODE].ToString() : string.Empty,
+                    CustomerName = (row[Constants.CUSTOMER_CUSTOMER_NAME] != DBNull.Value) ? row[Constants.CUSTOMER_CUSTOMER_NAME].ToString() : string.Empty,
+                    Address = (row[Constants.CUSTOMER_ADDRESS] != DBNull.Value) ? row[Constants.CUSTOMER_ADDRESS].ToString() : string.Empty,
+                    District = (row[Constants.CUSTOMER_DISTRICT] != DBNull.Value) ? row[Constants.CUSTOMER_DISTRICT].ToString() : string.Empty,
+                    Class = (row[Constants.CUSTOMER_CLASS] != DBNull.Value) ? row[Constants.CUSTOMER_CLASS].ToString() : string.Empty,
+                    Ave6LastMonth = (row[Constants.CUSTOMER_AVE6_LAST_MONTH] != DBNull.Value) ? Convert.ToDouble(row[Constants.CUSTOMER_AVE6_LAST_MONTH]) : 0.0,
+                    MtdAllSources = (row[Constants.CUSTOMER_MTD_ALL_SOURCES] != DBNull.Value) ? Convert.ToDouble(row[Constants.CUSTOMER_MTD_ALL_SOURCES]) : 0.0,
+                    MtdScSources = (row[Constants.CUSTOMER_MTD_SC_SOURCE] != DBNull.Value) ? Convert.ToDouble(row[Constants.CUSTOMER_MTD_SC_SOURCE]) : 0.0,
                     PercentSaleBySc = (row[Constants.CUSTOMER_PERCENT_SALE_BY_SC] != DBNull.Value) ? Convert.ToDouble(row[Constants.CUSTOMER_PERCENT_SALE_BY_SC]) : 0.0,
                     Zlvl = (row[Constants.ZLLVL] != DBNull.Value) ? Convert.ToDouble(row[Constants.ZLLVL]) : 0.0
+                };
 
-				};
-				// Update percent sale by sc
-				//data.PercentSaleBySc = Math.Round(data.MtdScSources/data.MtdAllSources, 2);
+                SLSMN = row["SLSMN"].ToString();
+                cust = row["CUST"].ToString();
+                CPLDTE = Int32.Parse(row["CPLDTE"].ToString());
+                
+                CallCardEntities2 cc = new CallCardEntities2();
+                var count = cc.ZCPLDs.Where(t => t.CUST == cust && t.SLSMN == SLSMN && t.CPLUPD == CPLDTE).Count();
+
+                countIfCheck = Int32.Parse(count.ToString());
+                
+                if (countIfCheck > 0)
+                {
+                    data.check = true;
+                }
+                else
+                {
+                    data.check = false;
+                }
+
+                // Update percent sale by sc
+                //data.PercentSaleBySc = Math.Round(data.MtdScSources/data.MtdAllSources, 2);
 
                 //add nhieu dong vao mot list cac dong
-				customerList.Add(data);
-			}
+                customerList.Add(data);
+            }
             //return ve mot danh sach cac dong data cho bang callplan
-			return customerList;
-		}
+            return customerList;
+        }
 
         //add data tu cac cot select tu as400 vao class PharmacyCustomerData(cot du lieu se truyen vao repeater)
         //data as400 -> class PharmacyCustomerData
-	    public static List<PharmacyCustomerData> ConvertPharmacyCustomerTableToList(DataTable pharmacyCustomerData)
-	    {
-	        var pharmacyCustomerList = new List<PharmacyCustomerData>();
+        public static List<PharmacyCustomerData> ConvertPharmacyCustomerTableToList(DataTable pharmacyCustomerData)
+        {
+            var pharmacyCustomerList = new List<PharmacyCustomerData>();
 
             foreach (DataRow row in pharmacyCustomerData.Rows)
-	        {
-	            var data = new PharmacyCustomerData()   
-	            {
+            {
+                var data = new PharmacyCustomerData()
+                {
                     Cust = (row[Constants.PHARMACY_CUSTOMER_CUST] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_CUST].ToString() : string.Empty,
                     CustName = (row[Constants.PHARMACY_CUSTOMER_CNAME] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_CNAME].ToString() : string.Empty,
                     CustomerAddress = (row[Constants.PHARMACY_CUSTOMER_CADD1] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_CADD1].ToString() : string.Empty,
@@ -77,7 +96,7 @@ namespace CallPlan2015.Service
                     CustomerLocalGroup1 = (row[Constants.PHARMACY_CUSTOMER_CMGRP2] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_CMGRP2].ToString() : string.Empty,
                     SalespersonCode = (row[Constants.PHARMACY_CUSTOMER_SLSMN] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_SLSMN].ToString() : string.Empty,
                     SMDESC = (row[Constants.PHARMACY_CUSTOMER_SMDESC] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_SMDESC].ToString() : string.Empty,
-	                PrnCode = (row[Constants.PHARMACY_CUSTOMER_PRN_CODE] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_PRN_CODE].ToString() : string.Empty,
+                    PrnCode = (row[Constants.PHARMACY_CUSTOMER_PRN_CODE] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_PRN_CODE].ToString() : string.Empty,
                     ProCode = (row[Constants.PHARMACY_CUSTOMER_PRO_CODE] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_PRO_CODE].ToString() : string.Empty,
                     Description = (row[Constants.PHARMACY_CUSTOMER_DESCRIPTION] != DBNull.Value) ? row[Constants.PHARMACY_CUSTOMER_DESCRIPTION].ToString() : string.Empty,
                     Ave6LastMonthValue = (row[Constants.PHARMACY_CUSTOMER_AVE6_LAST_MONTH_VALUE] != DBNull.Value) ? Convert.ToDouble(row[Constants.PHARMACY_CUSTOMER_AVE6_LAST_MONTH_VALUE]) : 0.0,
@@ -88,16 +107,16 @@ namespace CallPlan2015.Service
                     MtdScSourcesQuantity = (row[Constants.PHARMACY_CUSTOMER_MTD_SC_SOURCE_QUANTITY] != DBNull.Value) ? Convert.ToDouble(row[Constants.PHARMACY_CUSTOMER_MTD_SC_SOURCE_QUANTITY]) : 0.0,
                     CheckStock = (row[Constants.PHARMACY_CUSTOMER_CHECK_STOCK] != DBNull.Value) ? Convert.ToInt32(row[Constants.PHARMACY_CUSTOMER_CHECK_STOCK]) : 0,
                     BestSaleFlag = (row[Constants.PHARMACY_CUSTOMER_BEST_SALE_FLAG] != DBNull.Value) ? Convert.ToString(row[Constants.PHARMACY_CUSTOMER_BEST_SALE_FLAG]) : "O"
-	            };
+                };
 
                 pharmacyCustomerList.Add(data);
-	        }
+            }
             //return danh sach cac dong data trong bang callcard pharmacy
-	        return pharmacyCustomerList;
-	    }
+            return pharmacyCustomerList;
+        }
 
-	    public static List<PharmacyCustomerData> ConvertPrivateHospitalTableToList(DataTable privateHospitalData)
-	    {
+        public static List<PharmacyCustomerData> ConvertPrivateHospitalTableToList(DataTable privateHospitalData)
+        {
             var pharmacyCustomerList = new List<PharmacyCustomerData>();
 
             foreach (DataRow row in privateHospitalData.Rows)
@@ -133,7 +152,7 @@ namespace CallPlan2015.Service
             }
             //return danh sach cac dong data trong bang callcard pharmacy
             return pharmacyCustomerList;
-	    }
+        }
 
         public static List<PharmacyCustomerData> ConvertGovHospitalTableToList(DataTable pharmacyCustomerData)
         {
@@ -143,8 +162,6 @@ namespace CallPlan2015.Service
             {
                 var data = new PharmacyCustomerData()
                 {
-
-
                     Cust = (row[Constants.GOV_HOSPITAL_CUST] != DBNull.Value) ? row[Constants.GOV_HOSPITAL_CUST].ToString() : string.Empty,
                     CustName = (row[Constants.GOV_HOSPITAL_CNAME] != DBNull.Value) ? row[Constants.GOV_HOSPITAL_CNAME].ToString() : string.Empty,
                     CustomerAddress = (row[Constants.GOV_HOSPITAL_CADD1] != DBNull.Value) ? row[Constants.GOV_HOSPITAL_CADD1].ToString() : string.Empty,
@@ -157,13 +174,13 @@ namespace CallPlan2015.Service
                     ProCode = (row[Constants.GOV_HOSPITAL_ITEM] != DBNull.Value) ? row[Constants.GOV_HOSPITAL_ITEM].ToString() : string.Empty,
                     Description = (row[Constants.GOV_HOSPITAL_IMSDES] != DBNull.Value) ? row[Constants.GOV_HOSPITAL_IMSDES].ToString() : string.Empty,
                     SMDESC = (row[Constants.GOV_HOSPITAL_SC_NAME] != DBNull.Value) ? row[Constants.GOV_HOSPITAL_SC_NAME].ToString() : string.Empty,
-                    
+
                     //quota va net qty
                     MtdAllSourcesQuantity = (row[Constants.GOV_HOSPITAL_QUOTA] != DBNull.Value) ? Convert.ToDouble(row[Constants.GOV_HOSPITAL_QUOTA]) : 0.0,
                     MtdScSourcesQuantity = (row[Constants.GOV_HOSPITAL_NET_QTY] != DBNull.Value) ? Convert.ToDouble(row[Constants.GOV_HOSPITAL_NET_QTY]) : 0.0,
                     CheckStock = (row[Constants.PHARMACY_CUSTOMER_CHECK_STOCK] != DBNull.Value) ? Convert.ToInt32(row[Constants.PHARMACY_CUSTOMER_CHECK_STOCK]) : 0,
 
-                    quotaRemain = (row["REM_QUOTA"] != DBNull.Value) ? Convert.ToInt32(row["REM_QUOTA"]) :0
+                    quotaRemain = (row["REM_QUOTA"] != DBNull.Value) ? Convert.ToInt32(row["REM_QUOTA"]) : 0
                 };
 
                 pharmacyCustomerList.Add(data);
@@ -171,6 +188,5 @@ namespace CallPlan2015.Service
             //return danh sach cac dong data trong bang callcard pharmacy
             return pharmacyCustomerList;
         }
-
-	}
+    }
 }

@@ -1,13 +1,47 @@
- 
+ SELECT TTYPE, ORDR, CODSEQ, CODINO, ITEM, codoun, CODUNT            
+,codseq,codepr*codunt, (codepr-codsel)/codepr,codpac FROM cod WHERE 
+CODDEL='' and TTYPE ='OR' and ordr in (29710107) and item in 
+('U010010',                      
+                                    'U010170' )   
+
+
+  CODINO  Line Overrides ? : chu S hoac P la override
+    N       
+	
+S kiem tra date cua san pham
+P hoac Y  		
+==>> chu P ko apply combo, chu S va Y van apply combo
+		
+select ORDR,ITEM,CODLTY,CODEPR,CODSEL,
+PBHCON,CODPAC,CODVAL,CODUNT,CODOUN,CODINO
+from cod                                                           
+where ordr = 30223219                                                
+and ttype='OR'  
+
+
+
+									
+P@ssw0rdz								
 
 
 
 
+=================
 
 
+Neu co check thi show 
+	<td align="center" style="
+		background: white;
+		color: green;
+	"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+
+con lai thi show 
+	<td align="left" style="
+		background: white;
+		color: white;
+	"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
 
 
- 
 		
 GVL01, là tháng 12,
 GVL02, là tháng 11,
@@ -82,18 +116,38 @@ c.T02= a.GVL11)
 -	load lên thì check nếu đã thăm thì show ra xanh còn chưa thì show ra đỏ 
 
 -	load trang lên thì gọi hàm check
-	=	hàm store sql check nếu SC cust và ngày truyền vào (gồm ngày hiện tại và quá khứ) nếu có thì retunr 1
+	=	select a*, b.CHECKED table-callplan a left join ZCPLD b on a.SC=b.SC and a.CUST=b.CUST and a.CPLDTE=b.CPLUPD
+	luu ra 
+	=	hàm store sql check nếu SC, cust và ngày truyền vào (gồm ngày hiện tại và quá khứ) nếu có thì retunr 1
 	=	chương trình gọi hàm check nếu 1 thì show ra icon check xanh ngược lại thì ẩn icon 
 -	click xem chi tiết thì gọi hàm insert 
 	=	cung cấp 4 tham số 
 	=	hàm store SQL insertChecked (SC,cust,DateCurrent,TimeCurrent): sẽ insert vào table SQL giá trị đã check gồm 5 giá trị (SC,cust,DateCurrent,TimeCurrent,1)
 
+P@ssw0rdz
 	
-	
-	
+-	chọn ngày
+-	truyền ngày chọn và SC vào hàm store sql get all theo ngày đó ra 1 tableChecked
+-	left join table và tableChecked ra table 3 có chứa cột checked 
+-	bind table 3 vào list callplan 
 
 
-							
+-	truyền sc,cust,ngày vào store sql 
+-	gọi hàm store SQL count(*) đếm 
+-	nếu > 0 thì show ra icon check, ngược lại thì ẩn ""
+
+
+	
+	GetListScChecked_Result1
+	
+SLSMN	CUST	CPLUPD	CPLUPT	SYCTIME	CHECKED
+R42	S00003	20170220	121708	NULL	1
+R42	S00003	20170220	130034	NULL	1
+
+	
+ 
+ 
+ 
 
 ===================================================
 -	thêm dấu hiệu để SC biết cust nào chưa vô xem callplan 

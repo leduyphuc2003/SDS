@@ -1,0 +1,836 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CallCardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CallCard.dbo.CallCardReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CallCardReport">
+          <Key>
+            <PropertyRef Name="CPLDTE" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="SMDESC" />
+            <PropertyRef Name="PDTCDE" />
+            <PropertyRef Name="PDTDES" />
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="CNAME" />
+            <PropertyRef Name="CMGRP2" />
+            <PropertyRef Name="CMGRP3" />
+            <PropertyRef Name="CMGRP4" />
+            <PropertyRef Name="CADD2" />
+            <PropertyRef Name="ZCMTYP" />
+            <PropertyRef Name="CPLUPD" />
+            <PropertyRef Name="CPLUPT" />
+          </Key>
+          <Property Name="CPLDTE" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SMDESC" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="PDTCDE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PDTDES" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMGRP2" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CMGRP3" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CMGRP4" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CADD2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZCMTYP" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="CPLUPD" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="CPLUPT" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CallCard.dbo.temp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="temp">
+          <Key>
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="CPLUPD" />
+            <PropertyRef Name="CPLUPT" />
+          </Key>
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CPLUPD" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="CPLUPT" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+          <Property Name="CHECKED" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserCallPLan">
+          <Key>
+            <PropertyRef Name="UserCode" />
+          </Key>
+          <Property Name="UserCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="date" />
+        </EntityType>
+        <EntityType Name="zcmimsoh">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ITEM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IMSOH" Type="decimal" Precision="11" Scale="3" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+        </EntityType>
+        <EntityType Name="ZCPLD">
+          <Key>
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="CPLUPD" />
+            <PropertyRef Name="CPLUPT" />
+          </Key>
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CPLUPD" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="CPLUPT" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+          <Property Name="CHECKED" Type="bit" />
+        </EntityType>
+        <EntityType Name="ZGOVHOSP2">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CADD1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMPHON" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="CMCONT" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="ARTRM" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SMDESC" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="PRNCPL" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ZCITYP" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ITEM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IMDESC" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="QUOTA" Type="numeric" Precision="31" Scale="3" />
+          <Property Name="NET_QTY" Type="numeric" Precision="31" Scale="3" />
+          <Property Name="SYCTIME" Type="date" />
+          <Property Name="REM_QUOTA" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CallCard.dbo.zlvl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="zlvl">
+          <Key>
+            <PropertyRef Name="CMGRP2" />
+            <PropertyRef Name="CMGRP3" />
+            <PropertyRef Name="CMGRP4" />
+            <PropertyRef Name="ZCMTYP" />
+            <PropertyRef Name="ZLVL1" />
+            <PropertyRef Name="ZLVL2" />
+          </Key>
+          <Property Name="CMGRP2" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CMGRP3" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CMGRP4" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ZCMTYP" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ZLVL1" Type="bigint" Nullable="false" />
+          <Property Name="ZLVL2" Type="bigint" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+        </EntityType>
+        <EntityType Name="zsa756pf">
+          <Key>
+            <PropertyRef Name="CPLDTE" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="CUST" />
+          </Key>
+          <Property Name="CPLDTE" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SMDESC" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="PDTCDE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PDTDES" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="$JNMAH" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="$JNMAR" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="$JNMAD" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNMAQ" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNMAF" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="$JNMAI" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMGRP2" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CMGRP3" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CMGRP4" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CADD1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CADD2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZCMTYP" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="$JNMAE" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="$JNMAO" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNMAP" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNMAG" Type="numeric" Precision="7" Scale="3" Nullable="false" />
+          <Property Name="$JNMAC" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="$JNMAK" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="$JNMAL" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+        </EntityType>
+        <EntityType Name="zsa757pf">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CADD1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMCONT" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="CMPHON" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ARTRM" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CMGRP2" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PDTCDE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SMDESC" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="ZCITYP" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="PRNCPL" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ITEM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IMDESC" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="$JNNAD" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNNAE" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNNAF" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNNAA" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="$JNNAB" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="$JNNAC" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+        </EntityType>
+        <EntityType Name="zsa757pf3">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CADD1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMCONT" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="CMPHON" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ARTRM" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CMGRP2" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PDTCDE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SMDESC" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="ZCITYP" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="PRNCPL" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ITEM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IMDESC" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="$JNNAD" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNNAE" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNNAF" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNNAA" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="$JNNAB" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="$JNNAC" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+        </EntityType>
+        <EntityType Name="zsa758pf">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CADD1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMCONT" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="CMPHON" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ARTRM" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CMGRP2" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PDTCDE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SLSMN" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SMDESC" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="ZCITYP" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="PRNCPL" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ITEM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IMDESC" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="$JNQAD" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNQAE" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNQAF" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="$JNQAA" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="$JNQAB" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="$JNQAC" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="date" />
+        </EntityType>
+        <Function Name="COUNT_SC_CHECKED_CUST_BY_DATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SLSMN" Type="nvarchar" Mode="In" />
+          <Parameter Name="CPLUPD" Type="int" Mode="In" />
+          <Parameter Name="CUST" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetListScChecked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SLSMN" Type="nvarchar" Mode="In" />
+          <Parameter Name="CPLUPD" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="CallCardModelStoreContainer">
+          <EntitySet Name="UserCallPLan" EntityType="Self.UserCallPLan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zcmimsoh" EntityType="Self.zcmimsoh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZCPLD" EntityType="Self.ZCPLD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZGOVHOSP2" EntityType="Self.ZGOVHOSP2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zsa756pf" EntityType="Self.zsa756pf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zsa757pf" EntityType="Self.zsa757pf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zsa757pf3" EntityType="Self.zsa757pf3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zsa758pf" EntityType="Self.zsa758pf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallCardReport" EntityType="Self.CallCardReport" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CallCardReport].[CPLDTE] AS [CPLDTE], 
+    [CallCardReport].[SLSMN] AS [SLSMN], 
+    [CallCardReport].[SMDESC] AS [SMDESC], 
+    [CallCardReport].[PDTCDE] AS [PDTCDE], 
+    [CallCardReport].[PDTDES] AS [PDTDES], 
+    [CallCardReport].[CUST] AS [CUST], 
+    [CallCardReport].[CNAME] AS [CNAME], 
+    [CallCardReport].[CMGRP2] AS [CMGRP2], 
+    [CallCardReport].[CMGRP3] AS [CMGRP3], 
+    [CallCardReport].[CMGRP4] AS [CMGRP4], 
+    [CallCardReport].[CADD2] AS [CADD2], 
+    [CallCardReport].[ZCMTYP] AS [ZCMTYP], 
+    [CallCardReport].[CPLUPD] AS [CPLUPD], 
+    [CallCardReport].[CPLUPT] AS [CPLUPT]
+    FROM [dbo].[CallCardReport] AS [CallCardReport]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="temp" EntityType="Self.temp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [temp].[SLSMN] AS [SLSMN], 
+    [temp].[CUST] AS [CUST], 
+    [temp].[CPLUPD] AS [CPLUPD], 
+    [temp].[CPLUPT] AS [CPLUPT], 
+    [temp].[SYCTIME] AS [SYCTIME], 
+    [temp].[CHECKED] AS [CHECKED]
+    FROM [dbo].[temp] AS [temp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zlvl" EntityType="Self.zlvl" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [zlvl].[CMGRP2] AS [CMGRP2], 
+    [zlvl].[CMGRP3] AS [CMGRP3], 
+    [zlvl].[CMGRP4] AS [CMGRP4], 
+    [zlvl].[ZCMTYP] AS [ZCMTYP], 
+    [zlvl].[ZLVL1] AS [ZLVL1], 
+    [zlvl].[ZLVL2] AS [ZLVL2], 
+    [zlvl].[SYCTIME] AS [SYCTIME]
+    FROM [dbo].[zlvl] AS [zlvl]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CallCardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UserCallPLan">
+          <Key>
+            <PropertyRef Name="UserCode" />
+          </Key>
+          <Property Name="UserCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="zcmimsoh">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMSOH" Type="Decimal" Precision="11" Scale="3" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ZCPLD">
+          <Key>
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="CPLUPD" />
+            <PropertyRef Name="CPLUPT" />
+          </Key>
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPLUPD" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="CPLUPT" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+          <Property Name="CHECKED" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ZGOVHOSP2">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CADD1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMPHON" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMCONT" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARTRM" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SMDESC" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRNCPL" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZCITYP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMDESC" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUOTA" Type="Decimal" Precision="31" Scale="3" />
+          <Property Name="NET_QTY" Type="Decimal" Precision="31" Scale="3" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+          <Property Name="REM_QUOTA" Type="Int32" />
+        </EntityType>
+        <EntityType Name="zsa756pf">
+          <Key>
+            <PropertyRef Name="CPLDTE" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="CUST" />
+          </Key>
+          <Property Name="CPLDTE" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SMDESC" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDTCDE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDTDES" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_JNMAH" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="C_JNMAR" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="C_JNMAD" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNMAQ" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNMAF" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="C_JNMAI" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP3" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP4" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CADD1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CADD2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZCMTYP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_JNMAE" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="C_JNMAO" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNMAP" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNMAG" Type="Decimal" Precision="7" Scale="3" Nullable="false" />
+          <Property Name="C_JNMAC" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_JNMAK" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_JNMAL" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="zsa757pf">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CADD1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMCONT" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMPHON" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARTRM" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDTCDE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SMDESC" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZCITYP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRNCPL" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMDESC" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_JNNAD" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAE" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAF" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAA" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAB" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAC" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="zsa757pf3">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CADD1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMCONT" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMPHON" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARTRM" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDTCDE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SMDESC" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZCITYP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRNCPL" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMDESC" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_JNNAD" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAE" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAF" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAA" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAB" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="C_JNNAC" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="zsa758pf">
+          <Key>
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CADD1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMCONT" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMPHON" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARTRM" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDTCDE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SMDESC" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZCITYP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRNCPL" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMDESC" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_JNQAD" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNQAE" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNQAF" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="C_JNQAA" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="C_JNQAB" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="C_JNQAC" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="CallCardReport">
+          <Key>
+            <PropertyRef Name="CPLDTE" />
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="SMDESC" />
+            <PropertyRef Name="PDTCDE" />
+            <PropertyRef Name="PDTDES" />
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="CNAME" />
+            <PropertyRef Name="CMGRP2" />
+            <PropertyRef Name="CMGRP3" />
+            <PropertyRef Name="CMGRP4" />
+            <PropertyRef Name="CADD2" />
+            <PropertyRef Name="ZCMTYP" />
+            <PropertyRef Name="CPLUPD" />
+            <PropertyRef Name="CPLUPT" />
+          </Key>
+          <Property Name="CPLDTE" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SMDESC" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDTCDE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PDTDES" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP3" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP4" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CADD2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZCMTYP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPLUPD" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="CPLUPT" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="temp">
+          <Key>
+            <PropertyRef Name="SLSMN" />
+            <PropertyRef Name="CUST" />
+            <PropertyRef Name="CPLUPD" />
+            <PropertyRef Name="CPLUPT" />
+          </Key>
+          <Property Name="SLSMN" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPLUPD" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="CPLUPT" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+          <Property Name="CHECKED" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="zlvl">
+          <Key>
+            <PropertyRef Name="CMGRP2" />
+            <PropertyRef Name="CMGRP3" />
+            <PropertyRef Name="CMGRP4" />
+            <PropertyRef Name="ZCMTYP" />
+            <PropertyRef Name="ZLVL1" />
+            <PropertyRef Name="ZLVL2" />
+          </Key>
+          <Property Name="CMGRP2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP3" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMGRP4" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZCMTYP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZLVL1" Type="Int64" Nullable="false" />
+          <Property Name="ZLVL2" Type="Int64" Nullable="false" />
+          <Property Name="SYCTIME" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="CallCardEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserCallPLans" EntityType="Self.UserCallPLan" />
+          <EntitySet Name="zcmimsohs" EntityType="Self.zcmimsoh" />
+          <EntitySet Name="ZCPLDs" EntityType="Self.ZCPLD" />
+          <EntitySet Name="ZGOVHOSP2" EntityType="Self.ZGOVHOSP2" />
+          <EntitySet Name="zsa756pf" EntityType="Self.zsa756pf" />
+          <EntitySet Name="zsa757pf" EntityType="Self.zsa757pf" />
+          <EntitySet Name="zsa757pf3" EntityType="Self.zsa757pf3" />
+          <EntitySet Name="zsa758pf" EntityType="Self.zsa758pf" />
+          <EntitySet Name="CallCardReports" EntityType="Self.CallCardReport" />
+          <EntitySet Name="temps" EntityType="Self.temp" />
+          <EntitySet Name="zlvls" EntityType="Self.zlvl" />
+          <FunctionImport Name="COUNT_SC_CHECKED_CUST_BY_DATE">
+            <Parameter Name="SLSMN" Mode="In" Type="String" />
+            <Parameter Name="CPLUPD" Mode="In" Type="Int32" />
+            <Parameter Name="CUST" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetListScChecked" ReturnType="Collection(CallCardModel.GetListScChecked_Result)">
+            <Parameter Name="SLSMN" Mode="In" Type="String" />
+            <Parameter Name="CPLUPD" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetListScChecked_Result">
+          <Property Type="String" Name="SLSMN" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="CUST" Nullable="false" MaxLength="6" />
+          <Property Type="Decimal" Name="CPLUPD" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="Decimal" Name="CPLUPT" Nullable="false" Precision="6" Scale="0" />
+          <Property Type="DateTime" Name="SYCTIME" Nullable="true" />
+          <Property Type="Boolean" Name="CHECKED" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CallCardModelStoreContainer" CdmEntityContainer="CallCardEntities2">
+          <EntitySetMapping Name="UserCallPLans">
+            <EntityTypeMapping TypeName="CallCardModel.UserCallPLan">
+              <MappingFragment StoreEntitySet="UserCallPLan">
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zcmimsohs">
+            <EntityTypeMapping TypeName="CallCardModel.zcmimsoh">
+              <MappingFragment StoreEntitySet="zcmimsoh">
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="IMSOH" ColumnName="IMSOH" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZCPLDs">
+            <EntityTypeMapping TypeName="CallCardModel.ZCPLD">
+              <MappingFragment StoreEntitySet="ZCPLD">
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+                <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+                <ScalarProperty Name="CHECKED" ColumnName="CHECKED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZGOVHOSP2">
+            <EntityTypeMapping TypeName="CallCardModel.ZGOVHOSP2">
+              <MappingFragment StoreEntitySet="ZGOVHOSP2">
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+                <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+                <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+                <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+                <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+                <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+                <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+                <ScalarProperty Name="QUOTA" ColumnName="QUOTA" />
+                <ScalarProperty Name="NET_QTY" ColumnName="NET_QTY" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+                <ScalarProperty Name="REM_QUOTA" ColumnName="REM_QUOTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zsa756pf">
+            <EntityTypeMapping TypeName="CallCardModel.zsa756pf">
+              <MappingFragment StoreEntitySet="zsa756pf">
+                <ScalarProperty Name="CPLDTE" ColumnName="CPLDTE" />
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+                <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+                <ScalarProperty Name="PDTDES" ColumnName="PDTDES" />
+                <ScalarProperty Name="C_JNMAH" ColumnName="$JNMAH" />
+                <ScalarProperty Name="C_JNMAR" ColumnName="$JNMAR" />
+                <ScalarProperty Name="C_JNMAD" ColumnName="$JNMAD" />
+                <ScalarProperty Name="C_JNMAQ" ColumnName="$JNMAQ" />
+                <ScalarProperty Name="C_JNMAF" ColumnName="$JNMAF" />
+                <ScalarProperty Name="C_JNMAI" ColumnName="$JNMAI" />
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+                <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+                <ScalarProperty Name="CMGRP3" ColumnName="CMGRP3" />
+                <ScalarProperty Name="CMGRP4" ColumnName="CMGRP4" />
+                <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+                <ScalarProperty Name="CADD2" ColumnName="CADD2" />
+                <ScalarProperty Name="ZCMTYP" ColumnName="ZCMTYP" />
+                <ScalarProperty Name="C_JNMAE" ColumnName="$JNMAE" />
+                <ScalarProperty Name="C_JNMAO" ColumnName="$JNMAO" />
+                <ScalarProperty Name="C_JNMAP" ColumnName="$JNMAP" />
+                <ScalarProperty Name="C_JNMAG" ColumnName="$JNMAG" />
+                <ScalarProperty Name="C_JNMAC" ColumnName="$JNMAC" />
+                <ScalarProperty Name="C_JNMAK" ColumnName="$JNMAK" />
+                <ScalarProperty Name="C_JNMAL" ColumnName="$JNMAL" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zsa757pf">
+            <EntityTypeMapping TypeName="CallCardModel.zsa757pf">
+              <MappingFragment StoreEntitySet="zsa757pf">
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+                <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+                <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+                <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+                <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+                <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+                <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+                <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+                <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+                <ScalarProperty Name="C_JNNAD" ColumnName="$JNNAD" />
+                <ScalarProperty Name="C_JNNAE" ColumnName="$JNNAE" />
+                <ScalarProperty Name="C_JNNAF" ColumnName="$JNNAF" />
+                <ScalarProperty Name="C_JNNAA" ColumnName="$JNNAA" />
+                <ScalarProperty Name="C_JNNAB" ColumnName="$JNNAB" />
+                <ScalarProperty Name="C_JNNAC" ColumnName="$JNNAC" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zsa757pf3">
+            <EntityTypeMapping TypeName="CallCardModel.zsa757pf3">
+              <MappingFragment StoreEntitySet="zsa757pf3">
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+                <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+                <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+                <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+                <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+                <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+                <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+                <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+                <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+                <ScalarProperty Name="C_JNNAD" ColumnName="$JNNAD" />
+                <ScalarProperty Name="C_JNNAE" ColumnName="$JNNAE" />
+                <ScalarProperty Name="C_JNNAF" ColumnName="$JNNAF" />
+                <ScalarProperty Name="C_JNNAA" ColumnName="$JNNAA" />
+                <ScalarProperty Name="C_JNNAB" ColumnName="$JNNAB" />
+                <ScalarProperty Name="C_JNNAC" ColumnName="$JNNAC" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zsa758pf">
+            <EntityTypeMapping TypeName="CallCardModel.zsa758pf">
+              <MappingFragment StoreEntitySet="zsa758pf">
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+                <ScalarProperty Name="CADD1" ColumnName="CADD1" />
+                <ScalarProperty Name="CMCONT" ColumnName="CMCONT" />
+                <ScalarProperty Name="CMPHON" ColumnName="CMPHON" />
+                <ScalarProperty Name="ARTRM" ColumnName="ARTRM" />
+                <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+                <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+                <ScalarProperty Name="ZCITYP" ColumnName="ZCITYP" />
+                <ScalarProperty Name="PRNCPL" ColumnName="PRNCPL" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="IMDESC" ColumnName="IMDESC" />
+                <ScalarProperty Name="C_JNQAD" ColumnName="$JNQAD" />
+                <ScalarProperty Name="C_JNQAE" ColumnName="$JNQAE" />
+                <ScalarProperty Name="C_JNQAF" ColumnName="$JNQAF" />
+                <ScalarProperty Name="C_JNQAA" ColumnName="$JNQAA" />
+                <ScalarProperty Name="C_JNQAB" ColumnName="$JNQAB" />
+                <ScalarProperty Name="C_JNQAC" ColumnName="$JNQAC" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallCardReports">
+            <EntityTypeMapping TypeName="CallCardModel.CallCardReport">
+              <MappingFragment StoreEntitySet="CallCardReport">
+                <ScalarProperty Name="CPLDTE" ColumnName="CPLDTE" />
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="SMDESC" ColumnName="SMDESC" />
+                <ScalarProperty Name="PDTCDE" ColumnName="PDTCDE" />
+                <ScalarProperty Name="PDTDES" ColumnName="PDTDES" />
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+                <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+                <ScalarProperty Name="CMGRP3" ColumnName="CMGRP3" />
+                <ScalarProperty Name="CMGRP4" ColumnName="CMGRP4" />
+                <ScalarProperty Name="CADD2" ColumnName="CADD2" />
+                <ScalarProperty Name="ZCMTYP" ColumnName="ZCMTYP" />
+                <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+                <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="temps">
+            <EntityTypeMapping TypeName="CallCardModel.temp">
+              <MappingFragment StoreEntitySet="temp">
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+                <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+                <ScalarProperty Name="CHECKED" ColumnName="CHECKED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zlvls">
+            <EntityTypeMapping TypeName="CallCardModel.zlvl">
+              <MappingFragment StoreEntitySet="zlvl">
+                <ScalarProperty Name="CMGRP2" ColumnName="CMGRP2" />
+                <ScalarProperty Name="CMGRP3" ColumnName="CMGRP3" />
+                <ScalarProperty Name="CMGRP4" ColumnName="CMGRP4" />
+                <ScalarProperty Name="ZCMTYP" ColumnName="ZCMTYP" />
+                <ScalarProperty Name="ZLVL1" ColumnName="ZLVL1" />
+                <ScalarProperty Name="ZLVL2" ColumnName="ZLVL2" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="COUNT_SC_CHECKED_CUST_BY_DATE" FunctionName="CallCardModel.Store.COUNT_SC_CHECKED_CUST_BY_DATE" />
+          <FunctionImportMapping FunctionImportName="GetListScChecked" FunctionName="CallCardModel.Store.GetListScChecked">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CallCardModel.GetListScChecked_Result">
+                <ScalarProperty Name="SLSMN" ColumnName="SLSMN" />
+                <ScalarProperty Name="CUST" ColumnName="CUST" />
+                <ScalarProperty Name="CPLUPD" ColumnName="CPLUPD" />
+                <ScalarProperty Name="CPLUPT" ColumnName="CPLUPT" />
+                <ScalarProperty Name="SYCTIME" ColumnName="SYCTIME" />
+                <ScalarProperty Name="CHECKED" ColumnName="CHECKED" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

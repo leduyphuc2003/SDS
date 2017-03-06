@@ -1,4 +1,96 @@
 
+-	Insert data using Entity Framework model
+It should be:
+
+context.TableName.AddObject(TableEntityInstance);
+Where:
+
+TableName: the name of the table in the database.
+TableEntityInstance: an instance of the table entity class.
+	
+-	Neu your table is Orders, then:
+
+Order order = new Order();
+context.Orders.AddObject(order);
+
+-	For example:
+
+ var id = Guid.NewGuid();
+
+ // insert
+ using (var db = new EfContext("name=EfSample"))
+ {
+    var customers = db.Set<Customer>();
+    customers.Add( new Customer { CustomerId = id, Name = "John Doe" } );
+
+    db.SaveChanges();
+ }
+ 
+-	Here is a live example:
+
+public void UpdatePlayerScreen(byte[] imageBytes, string installationKey)
+{
+  var player = (from p in this.ObjectContext.Players where p.InstallationKey == installationKey select p).FirstOrDefault();
+
+  var current = (from d in this.ObjectContext.Screenshots where d.PlayerID == player.ID select d).FirstOrDefault();
+
+  if (current != null)
+  {
+    current.Screen = imageBytes;
+    current.Refreshed = DateTime.Now;
+
+    this.ObjectContext.SaveChanges();
+  }
+  else
+  {
+    Screenshot screenshot = new Screenshot();
+
+    screenshot.ID = Guid.NewGuid();
+    screenshot.Interval = 1000;
+    screenshot.IsTurnedOn = true;
+    screenshot.PlayerID = player.ID;
+    screenshot.Refreshed = DateTime.Now;
+    screenshot.Screen = imageBytes;
+
+    this.ObjectContext.Screenshots.AddObject(screenshot);
+    this.ObjectContext.SaveChanges();
+  }
+}
+
+======================================================= 
+-	Get total row count in Entity Framework
+	var sql = "SELECT COUNT(*) FROM dbo.Logs";
+	var total = context.Database.SqlQuery<int>(sql).Single();
+
+=======================================================
+-	How to COUNT rows within EntityFramework without loading contents?
+Query syntax:
+
+var count = (from o in context.MyContainer
+             where o.ID == '1'
+             from t in o.MyTable
+             select t).Count();
+Method syntax:
+
+var count = context.MyContainer
+            .Where(o => o.ID == '1')
+            .SelectMany(o => o.MyTable)
+            .Count()
+======================================================= 
+-	Entity Framework CRUD: Select Insert Edit Update Delete using Entity Framework in ASP.Net
+http://www.aspsnippets.com/Articles/Entity-Framework-CRUD-Select-Insert-Edit-Update-Delete-using-Entity-Framework-in-ASPNet.aspx
+
+-	ADO.NET Entity: Insert Update and Delete
+https://blogs.msdn.microsoft.com/wriju/2008/08/21/ado-net-entity-insert-update-and-delete/
+======================================================= 
+Multiple condition in Where clause of entity framework Using MODEL in MVC
+
+var repo = new Repositories.Repository<listing>();
+            var listings = repo.GetTable().Where(l => l.IsDeleted == false && l.IDListingStatus == 2 && (l.IDListingType == 1 || l.IDListingType == 2 || l.IDListingType == 3));</listing>
+			
+
+
+=================================================================
 có 2 cách truyền dữ liều từ controller qua view 
 -	model
 -	Viewbag:	viewbag.WelcomString ="chào mừng bạn với ViewBag"
