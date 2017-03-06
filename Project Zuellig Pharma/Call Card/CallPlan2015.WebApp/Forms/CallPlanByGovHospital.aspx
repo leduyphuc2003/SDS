@@ -153,7 +153,7 @@
                             <td align="right"><%# ((CallPlanData)Container.DataItem).MtdScSources.ToString("n0") %></td>
                             <%--<td align="right"><%# ((CallPlanData)Container.DataItem).PercentSaleBySc.ToString("n0") %></td>--%>
                             <%-- them --%>
-                            <td align="right"><%# ((((CallPlanData)Container.DataItem).MtdAllSources/((CallPlanData)Container.DataItem).Ave6LastMonth)*100).ToStrinig("n1")  %></td>
+                            <td align="right"><%# ((((CallPlanData)Container.DataItem).MtdAllSources/((CallPlanData)Container.DataItem).Ave6LastMonth)*100).ToString("n1")  %></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

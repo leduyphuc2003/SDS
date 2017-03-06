@@ -165,6 +165,7 @@
                     <td style="border: none;"></td>
                     <td style="border: none;"></td>
                     <td style="border: none;"></td>
+                    <td style="border: none;"></td>
                     <td></td>
                     <td style="text-align: right; font-weight: bold">
                         <asp:Literal runat="server" ID="ltSumAve6LastMonth" /></td>
