@@ -2,3 +2,8 @@ C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\bin\Relea
 C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\bin\Release\CallPlan2015.DataModel.pdb
 C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\obj\Release\CallPlan2015.DataModel.dll
 C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.DataModel\obj\Release\CallPlan2015.DataModel.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\bin\Release\CallPlan2015.DataModel.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\bin\Release\CallPlan2015.DataModel.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Release\CallPlan2015.DataModel.csprojResolveAssemblyReference.cache
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Release\CallPlan2015.DataModel.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Release\CallPlan2015.DataModel.pdb

@@ -1,4 +1,19 @@
-
+--- run sales - report sales
+select b.ttype,b.invno,indseq,cust,INHDNM,b.prncpl,         
+item,b.whs,indunt,indval,indcfd                             
+from inh a,ind b                                            
+where a.ttype=b.ttype and a.invno=b.invno                   
+and inhdel='' and inddel='' and a.ttype in ('IV','CR')      
+and indcfd between 20160311 and 20170311                    
+and cust in ( 'N07714', 'N07722',                           
+              'N07715', 'N07723',                           
+              'N02868', 'N07724',                           
+              'N07717', 'N07725',                           
+              'N07718', 'N07726',                           
+              'N07719', 'N07727',                           
+              'N07720', 'N06139',                           
+              'N07721', 'N07716',                           
+               'N11422' )  
 ======================================================================
 ---- report audit KPMG - Ton Hoang Thai Thao <ttton@kpmg.com.vn>
  select                                                    
@@ -114,7 +129,7 @@ Send user bao cao ZPP G03 Item Movement Summary-YTD (XL) (NW) Friday, January 1,
  and cmdel='' and cadel=''                     
  File TEMP in LDPHUC was replaced.  
 
-========================   chi Truc
+========================   chi Truc - Cao Kim Truc 
 Incident #70412 -  extract data Thang 07.2016 - cao thi thanh truc
 extract data Thang 07.2016
 Dear IT team,
@@ -287,12 +302,12 @@ File TEMP12 in LDPHUC was created.
 
 --- lấy data
 select c.cust,INHDNM,CMGRP2, COHCTD,c.ordr,inhcfd,c.invno,item,    
-CODDES,codunt,codval,b.COHSRC,cohsts,c.psn,c.invno                  
+CODDES,codunt,CODSEL,CODEPR,codval,b.COHSRC,cohsts,c.psn,c.invno                 
 from ldphuc/temp12 a, ldphuc/temp b,inh c                          
 where a.ordr=b.ordr and b.ttype='OR'                               
 and b.ordr=c.ordr and inhdel=''                                     
 and c.ttype in ('IV','CR')                                          
-File TEMP17 in LDPHUC was created. 
+File TEMP17 in LDPHUC was created.     
 
 	--- thêm cột OTSSTS, OTSDES ,OTDDAT,OTDTIM 
 	SELECT DISTINCT A.CUST, A.INHDNM, A.CMGRP2, A.COHCTD, A.ORDR,    
@@ -337,6 +352,49 @@ WHERE cmdel='' and inhdel='' and inddel='' and a.cust= b.cust and
 b.ttype=c.ttype and b.invno=c.invno and c.item in ('B040140',      
 'B040220', 'B040170' , 'B040090' ) and indcfd between 20160101 and 
 20160631   
+==============================================================================================
+Incident #80038 -  data extract - cao thanh thuy (sales)
+data extract
+dear anh,
+vui lòng extract giúp em data theo template đính kèm, monthly, Jan đến Dec 2016 nha
+thanks anh
+
+select  b.SLSMN ,PLCAR,CMIMS1,                                      
+a.CMGRP2, b.PRNCPL,INHSRC,INHOTB,                                   
+ SUBSTR(CHAR(indcfd),5,2)                                           
+,sum(INDVAL)                                                        
+from inh a, ind b, cm c                                             
+where a.ttype=b.ttype and a.invno=b.invno and a.ttype in ('IV','CR')
+and inhdel='' and inddel='' and a.cust=c.cust                       
+and indcfd between 20160101 and 20161231                            
+group by b.SLSMN ,PLCAR,CMIMS1,                                     
+a.CMGRP2, b.PRNCPL,INHSRC,INHOTB,                                   
+ SUBSTR(CHAR(indcfd),5,2)                                           
+order by  b.SLSMN ,PLCAR,CMIMS1,                                    
+a.CMGRP2, b.PRNCPL,INHSRC,INHOTB,                                   
+ SUBSTR(CHAR(indcfd),5,2)  
+======================================================= 
+Incident #80074 -  data extract - Sanofi product - cao thanh thuy sales 
+data extract - Sanofi product			
+hi anh,
+anh vui lòng extract giúp em data theo template đính kèm nha. Jeff cần trong chiều nay nên nhờ anh hỗ trợ sớm giúp em
+thanks anh
+
+select a.cust,INHDNM,INHDA1,PLCTE,PLCAR,b.prncpl,b.item,isl#,IAEXPD 
+,INDSPR  ,indsel,sum(indunt),sum(indval)                            
+from inh a,ind b ,ia c, cm d                                        
+where a.ttype=b.ttype and a.invno=b.invno                           
+and inhdel='' and inddel=''                                         
+and a.ttype in ('IV','CR') and indcfd >= 20150701                   
+and iadel='' and b.ttype =c.ttype and b.invno=c.batch               
+and b.indseq=c.bhseq and b.item ='S300490'                          
+and cmdel='' and a.cust=d.cust                                      
+and isl# in ('5F002A',                                              
+             '6F388A' ,                                             
+             '6F418A'  )                                            
+group by                                                            
+a.cust,INHDNM,INHDA1,PLCTE,PLCAR,b.prncpl,b.item,isl#,IAEXPD,       
+INDSPR  ,indsel  
 ========================================================
   Incident #70634 -  Data sales HCM 07/2016 - vo hieu phuc - vhphuc 
 Data sales HCM 07/2016

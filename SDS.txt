@@ -1,11 +1,20 @@
 VIELDP
 leduyphuc
 
-gam http://cuudinh.vieplay.com/: haivl87 phucthuy8788
 ===================================================================
 user admin cai dat software 
 Administrator
 zuelligvietnam
+======================================================= 
+Add wifi 
+remote vao 17.26
+192.168.17.26\Administrator	
+Keepw@lk1ng
+
+
+
+guest/Zuellig123@  
+
 ===================================================================
 
 ---	update ten cot trong bao cao asap - ten cot bao cao asap 
@@ -833,7 +842,7 @@ Sau khi hoan tat tao file, go 1 vao SELECT output roi enter
      Library  . . . . . . . . .     ZPTLIBD    
    Member . . . . . . . . . . .   *FILE        
    Option . . . . . . . . . . .   1            
-=================================================================================================================
+========================================================================================================
 Xu ly A/R bi treo owing, cap nhat docno neu co (docno=0) (treo cong no)
 1. can cu chung tu user_ dua qua, minh xem thong tin chu yeu cac field nhu, CUST, TTYPE,ARPAT,DOCNO,ARVAL,AROWNG
 2. Nhu truong hop chung tu 27/06/2013, SysAid: #26263
@@ -874,11 +883,11 @@ DOCNO= 93736531
 SELECT CUST, TTYPE,ARSEQ,ARPAT,DOCNO,ARVAL,AROWNG                        
 FROM ARD                                                           
 WHERE ARDDEL='' AND CUST='M02416' AND TTYPE='PA' AND ARPAT='PY' AND
-DOCNO=0  
+DOCNO= 0  
 
 UPDATE ARD SET  DOCNO=93736531                               
 WHERE ARDDEL='' AND CUST='M02416' AND TTYPE='PA' AND ARPAT='PY' AND
-DOCNO=0 
+DOCNO= 0 
 
 --------------------- update so BATCH tu 0 thanh 93736531
 SELECT CUST, TTYPE,ARSEQ,ARPAT,DOCNO,ARVAL,AROWNG,BATCH                  
@@ -2032,6 +2041,21 @@ and a.CQHIMB=b.cqhimb and a.CQDSEQ = b.CQDSEQ) )
 
 Delete from cqh a where exists (select * from ldphuc/cqh b                  
 where  a.CQLLVL=b.cqllvl and a.CQHCMB=b.CQHCMB and a.CQHIMB=b.cqhimb)  
+======================================================= 
+SR## 79729 - anh Thong 
+De lam SR# nay, cac ban chi can them record vao ZITEMPF la xong nhe.
+
+insert into zitempf             
+values('' ,'G031930','G031930F')
+
+======================================================= 
+Nguyen Thi Huyen Tran - Dat hang lay theo dung so visa 
+Đặt hàng lấy theo đúng số VISA - anh Thong 
+
+SELECT a.ITEM, IMSDES, IMTYPE, ISL#, ISLEXP, ISLSOH, ISLSLN FROM
+zptlibd/isl a,zptlibd/im b WHERE isldel='' and imdel='' and     
+a.item=b.item    
+
 ===========================================================================
 
 Dear anh Thong,
@@ -4156,6 +4180,43 @@ from PSH where PSN = 53212453
     .000      
 
 CALL PGM(OPS240CA) PARM('01OPS240CA' 'PS' '53212453')
+======================================================= 
+WCS report 
+Job daily WCS report gửi mỗi ngày 
+Trong SQL server: 192.168.17.230 
+Link server: LINK_TO_WCS, LINK_TO_WCS_HN
+
+
+Ben duoi la dia chi va account log vo WCS HCM / HN
+
+HN WCS server
+ID Team View: 110 057 322
+Password: Ju$td0it
+Hostname: VNZPWCS-HN
+IP: 192.168.225.10
+Credential: administrator / Ju$td0it
+
+HCM WCS server
+ID Team View: 794 405 020
+Password: Ju$td0it
+Hostname: VNZP-WCSAPP01
+IP: 192.168.16.10 
+Credential: administrator / Ju$td0it
+
+======================================================= 
+Hi guys, - anh Thong - WCS 
+
+Cac ban luu lai so dien thoai ho tro WCS cua Dematic:
+
+1/. Dematic hot line for VN: +61 2 9486 5302, trong truong hop khan.
+
+2/. Tas – Dematic Technical Manager: +61 419 485 019, trong truong hop khan.
+
+3/. Email lien lac trong ngay va gio lam viec (thu 2 – 6, truoc 12 gio trua VN)
+RG AU Centre Contact Contact.Centre@dematic.com
+CC them: Abdullah, Rayhaan Dharmavilasan rdabdullah@zuelligpharma.com
+
+
 ===================================================================================
 Hi Hai/Phuc, - anh Thong - khong co trong workpool - WCS 
 
@@ -6420,7 +6481,74 @@ SBMJOB  => F4 => Dien thong tin nhu ben duoi
  Output priority (on OUTQ)  . . .   *JOBD         1-9, *JOBD                    
  Print device . . . . . . . . . .   *CURRENT      Name, *CURRENT, *USRPRF...    
 
+======================================================= 
+RPG500 Scheduled
 
+OR 34828443 1 	G030350 S 	2	.000 Scheduled
+OR 34844104 1 	L010160 S 	6	.000 Scheduled
+OR 34850236 1 	G100140 S 	1	.000 Scheduled
+OR 34850245 1 	G100140 S 	1	.000 Scheduled
+OR 34882392 13 	M040590 S 	1	.000 Scheduled
+
+SELECT TTYPE, ORDR, CODSEQ,whs,item 
+ FROM cod                           
+where  TTYPE                                                       
+=      'OR'                                
+and       ORDR                             
+=   20867304                               
+File TEMP4 in LDPHUC was replaced.         
+
+SELECT TTYPE, ORDR, CODSEQ,whs,item,codunt                             
+ FROM cod a                                                     
+where  exists (select * From ldphuc/temp4 b                     
+where a.ttype=b.ttype and a.ordr=b.ordr and a.codseq=b.codseq)                        
+File TEMP5 in LDPHUC was created.                 
+
+select count(*)      
+from ldphuc/temp5    
+
+ 
+select item,whs,sum(codunt)       
+from ldphuc/temp5                 
+group by item,whs                 
+File TEMP in LDPHUC was replaced. 
+
+		IW
+		select ITEM, IWSSA, WHS
+		from IW A	
+		where EXISTS (SELECT * FROM ldphuc/TEMP B WHERE A.ITEM=B.ITEM AND A.WHS=B.WHS) 
+		
+		UPDATE IW A SET IWSSA=IWSSA - (SELECT IWSSA FROM ldphuc/TEMP B   
+		WHERE                                                              
+		A.ITEM=B.ITEM AND A.WHS=B.WHS)                                     
+		  where EXISTS (SELECT * FROM ldphuc/TEMP B WHERE A.ITEM=B.ITEM AND 
+		A.WHS=B.WHS)
+		22 rows updated in IW in ZPTLIBD.  	
+
+select item,sum(codunt) IMSSA                
+from ldphuc/temp5                    
+group by item                        
+File TEMP2 in LDPHUC was replaced.   
+
+		IM		
+		UPDATE IM A SET IMSSA=IMSSA -(SELECT IMSSA FROM ldphuc/TEMP2 B WHERE 
+		A.ITEM=B.ITEM)                                                      
+		WHERE EXISTS (SELECT * FROM ldphuc/TEMP2 B WHERE A.ITEM=B.ITEM)     
+		21 rows updated in IM in ZPTLIBD.    
+		
+select *                                                       
+from ia a                                                      
+where exists (Select * From ldphuc/temp5 b                     
+where a.ttype =b.ttype and a.batch=b.ordr and a.bhseq=b.codseq)
+and a.ttype='OR'                                               
+File IA in LDPHUC was created.                                 
+
+delete                                                         
+from ia a                                                      
+where exists (Select * From ldphuc/temp5 b                     
+where a.ttype =b.ttype and a.batch=b.ordr and a.bhseq=b.codseq)
+and a.ttype='OR'                                               
+40 rows deleted from IA in ZPTLIBD.   
 ======================================================================================
 RPG500 lam si 
 Hi Phuc,
@@ -7564,11 +7692,19 @@ AND PSN IN (53508370, 53508369)
 
 13 54 1, SHIFT f8, f2 TIM SP MANIFEST
 ==================================================================================
+sp_helptext USP_ZTENDER
+
 Cap nhat du lieu thau hang thang (import tender dau moi thang,Import tender qua SQL) (upload tender web)
 Remote 17.4
 \\192.168.17.4\c$
 user:	zuelligpharma\vnzpadmin
 pass:	Imp@s1ble
+
+-	chương trình sysn tự động 
+	=	SQL server 17.4
+	=	4h sáng sẽ chạy MSD_Detail_S27
+	
+
 
 Cap nhat du lieu thau hang thang
 Hi Chu,
@@ -8250,8 +8386,48 @@ INSERT INTO ISSD (
  AND C.ISSPRN=B.PRNCPL) 
  AND A.CUST in ('N09626')
  264 rows inserted in ISSD in ZPTLIBD.                    
+======================================================= 
+Hi anh Phuc, --- add issd matrix - phan vuong bao nguyen 
+Hom nay bao cao van bi thieu sub dis code em tao hom qua N17436- sub dis PH1, he thong gui lai van thieu sub dis ORH, pls check lai giup em 2 code nay nhe, thanks anh
+N17422
+N17436
 
- ================================================================================
+select * From issd
+where  IVSCMB     
+in ( 'N17422',    
+     'N17436' )   
+	 
+ SUB  
+ USH  
+ 
+Phyto HN(N02028)	PHN / PH1	01	Others
+	ORH	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05
+	USH	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14
+
+
+WHS  CUST    SUB  
+WN1  N17422  PH1  
+WN1  N17436  PH1  
+
+company 03
+INSERT INTO ISSD (                                         
+  PCLLVL, IVSCMB, IVSIMB, SUB, ISSPRN, ISSSDT               
+ ,ISSEDT, ISSCRD, ISSCRT, ISSCRU )                          
+ SELECT '01', A.CUST, B.ITEM, 'ORH', B.PRNCPL,              
+ 20080101, 20201231,20170316,120000,'VIEOPR'                                        
+ FROM CM A, IM B 
+ WHERE A.CMDEL=''    
+ AND B.IMDEL='' AND B.PRNCPL IN 
+ ('G10','G11','F03','I02','M10','M14','N15','M15',
+'B10','M06','A10','S28','S29','S30','N19','S31','F05') 
+ AND B.IMTYPE IN ('ME','N','UL') AND A.SUB = 'PH1'                         
+ AND A.WHS='WN1' AND NOT EXISTS (SELECT * FROM ISSD C WHERE   
+ A.CUST=C.IVSCMB AND B.ITEM=C.IVSIMB AND C.PCLLVL='01'        
+ AND C.ISSPRN=B.PRNCPL) 
+ AND A.CUST in 
+('N17422','N17436' )
+ 1064 rows inserted in ISSD in ZPTLIBD.   
+================================================================================
   Service Request # 55176 add issd kho Da Nang - Hua Kim Ngan - Phan vuong bao nguyen - them issd
  Dear anh,
 Pls ho tro giup em add cac KH ben duoi vao ISSD Update Audit Report nhe, thaks anh!
@@ -10919,7 +11095,7 @@ SELECT * FROM ldphuc/ZSCTPCUST
 3.	Tuy theo cach Phuc de lam, mien sao la insert vao dung data va ko bi duplicated va khong thieu, vi day la bao cao tinh theo doanh so cua cty va cung de danh gia nhom SC di ban hang.
 
 =======================================================================================
-Service Request # 33126  - bao cao anh Man 
+Service Request # 33126  - bao cao anh Man - report anh Man  
 Update sales matrix to SDS report ( anh Man) - report anh Man - report matrix anh Man
 Dear IT,
 
@@ -10951,7 +11127,12 @@ and   a.CMSNM  = b.CMSNM
 and   a.CMGRP2 = b.CMGRP2                   
 and   a.INDOIT = b.INDOIT )                                                             
         
-                 
+       
+delete                                                 
+from ZSCTPCUST b                                       
+where slsmn in (Select slsmn from ldphuc/ZSCTPCUST)    
+338 rows deleted from ZSCTPCUST in ZPTLIBD.            
+	   
 INSERT INTO ZSCTPCUST                                               
 SELECT * FROM ldphuc/ZSCTPCUST                                       
  
@@ -13950,8 +14131,65 @@ update invdsc set INCDSA=0,
 INCPDD=20160205,INCPDT=102300,INCPDU='VIEOPR',INHOIN=20160307
 where invno =10029492 
 
- 
----------------------------------------- 
+======================================================= 		
+-Pham Vu Thanh Huyen - chi Huyen - fix rebate loi - rebate fix 
+Incident #80450 Escalated -  hoa don CR - rebate 
+hoa don CR - rebate
+Dear Phuc,
+
+Nho em kiem tra lai giup chi code KH S00789 mot loat cac inv sau khi bi huy thi so tien cua Rebate khong duoc dieu chinh, Owing van the hien tien cua rebate.
+
+Em xu ly  gap nhe vi chi so cac bo phan khac khong biet, nghi la tien thua cua KH ma lay so tien nay de lam bao cao clear cong no nhe 
+
+Ms Huyen 
+	  
+-	tìm trong invdsa xem docno => thấy code mẹ coporate 
+-	select trong ard code chính và code coporate
+-	update line có code coporate thành code chính, seq tăng thêm 1; update lại INVDAT,  ARDUED theo những line kia; update owning =0 
+
+---check trong file rebate, get ra được code coporate là S13734
+select * from invdsa                                 
+where docno in 
+(51599578, 	74176182, 
+74087330, 	74243840, 
+74087745, 	74251664, 
+74087753, 	51677419, 
+74087758, 	51694188, 
+74087776, 	51628665, 
+74087816, 	51672439, 
+74127914, 	51683344,
+51691859 )
+File TEMP in LDPHUC was replaced.       
+				
+---select trong ard tương ứng số docn và 2 code cust chính và code coporate
+select * from ard                                    
+where docno in (select docno from ldphuc/temp)       
+and cust  in                                         
+( 'S13734','S00789')                                 
+File TEMP2 in LDPHUC was replaced.  
+    
+---update lại file excel temp2
+update line có code coporate thành code chính, seq tăng thêm 1; update lại INVDAT,  ARDUED theo những line kia; update owning =0 
+
+---back up file ard truoc khi xoa 
+select * from ard                                    
+where docno in (select docno from ldphuc/temp)       
+and cust  in                                         
+( 'S13734','S00789')                                 
+File TEMP3 in LDPHUC was replaced.                   
+
+---xoa line trong ard 
+delete   from ard                                     
+where docno in (select docno from ldphuc/temp)        
+and cust  in                                          
+( 'S13734','S00789')                                  
+68 rows deleted from ARD in ZPTLIBD.  
+    
+---insert line đã chỉnh sửa vào lại ard 	
+insert into ard                                       
+select * from ldphuc/temp2                            
+68 rows inserted in ARD in ZPTLIBD.        
+======================================================= 
 UPLOAD CHUONG TRINH REBATE
 1. => Upload theo so hoa don goc INHOIN cua hoa don CR 
 Service Request # 54119 	Dear anh Thong/ anh Chu,	- Ho Phuong Thao
@@ -15040,7 +15278,10 @@ WHERE TTYPE='IV' AND INVNO = 72995294
  
 
 2.	Check thay invoice format type la ‘Z’ cap nhat lai thanh blank de in lai hoa don
- 
+select cust,CMITYP
+from cm  
+WHERE CUST = 'S08625' 
+
 UPDATE  CM SET CMITYP = ''                      
 WHERE CUST = 'S08625'      
 
@@ -15385,3 +15626,6 @@ go  MSYUAR
  chuong trinh in hoa don 
 ZPG0375SN   RPGLE       Generate Invoice Work Files - Sang Pharma 
 ZPG03751SN  RPGLE       Invoice Print - Sang Pharma         
+========================================================
+                                         
+ 

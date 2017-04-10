@@ -1,48 +1,57 @@
- SELECT TTYPE, ORDR, CODSEQ, CODINO, ITEM, codoun, CODUNT            
-,codseq,codepr*codunt, (codepr-codsel)/codepr,codpac FROM cod WHERE 
-CODDEL='' and TTYPE ='OR' and ordr in (29710107) and item in 
-('U010010',                      
-                                    'U010170' )   
+ O04 Order Cancelled 
+                     
 
-
-  CODINO  Line Overrides ? : chu S hoac P la override
-    N       
-	
-S kiem tra date cua san pham
-P hoac Y  		
-==>> chu P ko apply combo, chu S va Y van apply combo
-		
-select ORDR,ITEM,CODLTY,CODEPR,CODSEL,
-PBHCON,CODPAC,CODVAL,CODUNT,CODOUN,CODINO
-from cod                                                           
-where ordr = 30223219                                                
-and ttype='OR'  
-
-
-
-									
-P@ssw0rdz								
+					 
+sp_helptext USP_ZTENDER
 
 
 
 
-=================
 
 
-Neu co check thi show 
-	<td align="center" style="
-		background: white;
-		color: green;
-	"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
 
-con lai thi show 
-	<td align="left" style="
-		background: white;
-		color: white;
-	"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+========================================================================================================
+
+Chay sale cho cac BV thuoc SYT Bac Ninh phuc vu cho thanh li thau:
+thoi gian: 11/3/2016 - 11/3/2017
+cho cac kh/h.
+N07714	Trung Tam Y  Te  Thanh Pho Bac Ninh 
+N07715	Benh Vien Y Hoc Co Truyen          
+N02868	BENH VIEN DA KHOA TINH BAC NINH-Khoa Duoc
+N07717	Benh Vien Phong- Da Lieu Bac Ninh    
+N07718	Benh Vien Lao Va benh  Phoi     
+N07719	Benh Vien Phuc Hoi Chuc Nang  Tỉnh Bắc  ninh      
+N07720	Benh Vien Mat      
+N07721	Benh Vien Da Khoa Huyen Thuan Thanh      
+N07722	Benh Vien Da Khoa Huyen Luong Tai        
+N07723	Benh Vien Da Khoa Huyen Yen Phong 
+N07724	Benh Vien Da Khoa Huyen Tu Son       
+N07725	Benh Vien Da Khoa Huyen Tien Du          
+N07726	Benh Vien Da Khoa Huyen Que Vo   
+N07727	Benh Vien Da Khoa Huyen Gia Binh    
+N06139	Trung Tam Y Te Du Phong Tinh Bac Ninh 
+N07716	 Bệnh Viện Tâm Thần 
+N11422 	 Bệnh Viện Sản - Nhi Bắc Ninh  
+
+--- run sales - report sales
+select b.ttype,b.invno,indseq,cust,INHDNM,b.prncpl,         
+item,b.whs,indunt,indval,indcfd                             
+from inh a,ind b                                            
+where a.ttype=b.ttype and a.invno=b.invno                   
+and inhdel='' and inddel='' and a.ttype in ('IV','CR')      
+and indcfd between 20160311 and 20170311                    
+and cust in ( 'N07714', 'N07722',                           
+              'N07715', 'N07723',                           
+              'N02868', 'N07724',                           
+              'N07717', 'N07725',                           
+              'N07718', 'N07726',                           
+              'N07719', 'N07727',                           
+              'N07720', 'N06139',                           
+              'N07721', 'N07716',                           
+               'N11422' )                                   
 
 
-		
+=============================================================================================
 GVL01, là tháng 12,
 GVL02, là tháng 11,
 GVL03, là tháng 10,
@@ -52,59 +61,308 @@ GVL06, là tháng 7,
 GVL07, là tháng 6, 
 GVL08, là tháng 5, 
 GVL09, là tháng 4, 
-GVL10, là tháng 3
-					GVL11, là tháng 2
+					GVL10, là tháng 3
+GVL11, là tháng 2
 GVL12, là tháng 1
 
+chay GLS110 de post len GL het
 
- SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T02              
+ SELECT CO, DIV, BR, GLACCT, SUM(MJDEBJ-MJCRJ) T03              
  FROM GJ                                                        
  WHERE MJDATE                                                   
- BETWEEN 20170201 AND 20170228 GROUP BY CO, DIV, BR, GLACCT     
+ BETWEEN 20170301 AND 20170331 GROUP BY CO, DIV, BR, GLACCT     
 File GJ in ldphuc was replaced.                                  
 
 2. Kiem tra lai tai khoan chi tiet va master = nhau ?, neu chua = cap nhat buoc 3
-SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T02, B.GVL11   
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T03, B.GVL10   
 FROM ldphuc/GJ a,gm b                                 
 WHERE a.co=b.co and a.div=b.div and                  
 a.br=b.br and a.glacct=b.glacct  and                 
-A.T02<>B.GVL11                                       
+A.T03<>B.GVL10                                       
 File TEMP in ldphuc was replaced. 
 
-update GM b set b.GVL11 = (SELECT  A.T02         
+update GM b set b.GVL10 = (SELECT  A.T03         
 FROM ldphuc/GJ a                                  
 WHERE a.co=b.co and a.div=b.div and              
 a.br=b.br and a.glacct=b.glacct  and             
-A.T02<>B.GVL11 )                                 
-where exists (SELECT A.T02                       
+A.T03<>B.GVL10 )                                 
+where exists (SELECT A.T03                       
 FROM ldphuc/GJ a                                  
 WHERE a.co=b.co and a.div=b.div and              
 a.br=b.br and a.glacct=b.glacct  and             
-A.T02<>B.GVL11   )                               
-  21 rows updated in GM in ZPTLIBD.    
+A.T03<>B.GVL10   )                               
+  16 rows updated in GM in ZPTLIBD.       
 
 
 ---- Check lai select lai kiem tra xem con loi ko
- SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T02, B.GVL11     
+ SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T03, B.GVL10     
 FROM ldphuc/GJ a,gm b                                   
 WHERE a.co=b.co and a.div=b.div and                    
 a.br=b.br and a.glacct=b.glacct  and                   
-A.T02<>B.GVL11  
+A.T03<>B.GVL10  
  => ko co => dung
  
-SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T02                           
+SELECT A.CO, A.DIV, A.BR, A.GLACCT, A.T03                           
 FROM ldphuc/GJ a where not exists (select * from                      
  gm b                                                                
 WHERE a.co=b.co and a.div=b.div and                                  
 a.br=b.br and a.glacct=b.glacct  and                                 
-A.T02= B.GVL11)                                                      
+A.T03= B.GVL10)                                                      
  => ko co => dung     
                                  
-SELECT * FROM gm a,ac b WHERE GVL11 <>0 and a.glacct=b.glacct and    
+SELECT * FROM gm a,ac b WHERE GVL10 <>0 and a.glacct=b.glacct and    
 b.aclvl='99' and not exists (select * from ldphuc/gj c WHERE          
 a.co=c.co and a.div=c.div and a.br=c.br and a.glacct=c.glacct and    
-c.T02= a.GVL11)                                                      
+c.T03= a.GVL10)                                                      
  => ko co => dung. 
+
+======================================================= 				 
+	
+ZPTLIBM/QRPGSRC
+         ZPG470
+		 
+ZSCTPCUST
+CMGRP2
+
+SPLSQL                        
+/java/SQLS/ZPG470GSK.sql      
+
+SELECT *                                       
+FROM ZPTLIBD.ZSCTPCUST1                        
+WHERE SVCDE in ('S21','S23','S24','S28','S29') 
+AND INDOIT like ('G03%') 
+and CMGRP2 in ('PC1','PH1','TD1')                      
+ORDER BY SVCDE                                 
+
+INSERT INTO ZSCTPCUST1                                          
+SELECT G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST, E.CNAME,    
+E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR, E.PLCTE,A.CMSNM,  
+B.INDOIT,B.PROGROUP,D.ITEM,D.INDDES,                            
+SUM(INDUNT), SUM(INDVAL), :@FDTE, :@TDTE                        
+FROM ZSCTPCUST A,ZSCTPITEM B,INH C,IND D,CM E,SM F,SV G        
+ WHERE C.INHDEL='' AND D.INDDEL='' AND C.TTYPE=D.TTYPE AND     
+C.INVNO=D.INVNO AND B.ITEM=D.ITEM AND A.INDOIT=B.INDOIT AND    
+C.CUST=E.CUST AND ( (A.CUST<>'' AND A.CUST=E.CUST) OR (A.CUST=''
+AND A.PLCAR=E.PLCAR AND A.CMGRP2=E.CMGRP2 AND (A.PLCTE='' OR   
+A.PLCTE=E.PLCTE))) AND D.INDCFD BETWEEN :@FDTE AND :@TDTE      
+AND A.SVCDE=G.SVCDE AND A.SLSMN=F.SLSMN                        
+GROUP BY G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST,             
+E.CNAME, E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR,            
+E.PLCTE,A.CMSNM, B.INDOIT, B.PROGROUP,D.ITEM, D.INDDES   
+
+ 
+
+
+SELECT A.TTYPE, A.ORDERNUMBER, A.ORDERDATE, A.CUSTOMER,                      
+A.ORDERSTATUS, A.ORDERSOURCE, A.DETAILSTATUS, A.PICKINGSLIP,                 
+A.INVOICE, A.INVOICESEQ, B.INDCFD, A.MANIFEST, A.ITEM, A.ITEMDESCRIPTION,    
+A.PRINCPAL, A.WAREHOUSE, A.REQUESTEDQTY, A.SUPPLIEDQTY,                      
+A.BACKORDEREDQTY, A.SUPPLIEDVALUE, A.DELIVERYNAME,                           
+A.DELIVERYADDRESS1, A.DELIVERYADDRESS2, A.DELIVERYADDRESS3,                  
+A.DELIVERYINSTRUCTION1, A.DELIVERYINSTRUCTION2,                              
+A.DELIVERYINSTRUCTION3, A.URGENTORDERCODE,                                   
+A.HOSPITALORGINALDOCUMENT, A.DELIVERYDATE, CASE WHEN                         
+INVOICE=69076180 AND INVOICESEQ IN ( 1,4,5) THEN 20131007 ELSE               
+A.DELIVEREDONDATE END AS DELIVEREDONDATE,value(indcfd,0) as INVOICEDATE,     
+case when ordernumber in (28677967,28678005,28683240,28690552,28859545)      
+then A.SUPPLIEDQTY else value(indunt,0) end as  INVOICESUPPLIEDQTY,          
+case when ordernumber in (28677967,28678005,28683240,28690552,28859545)      
+then A.SUPPLIEDVALUE else value(indval,0) end as INVOICESUPPLIEDVALUE        
+FROM ZPTLIBD.zstockup a left join                                            
+ZPTLIBD.ind b on INVOICE =invno and INVOICESEQ=indseq AND                    
+B.TTYPE='IV'                                                                 
+
+
+  
+-	novartis, gsk, astra 
+-	sales hiện tại show là show total của zpv. Mong muốn là show sales của team đó (novartis, gsk, astra)
+-	call card bên trong không có chi tiết: theo SC va theo team 
+-	các cột class (theo điều kiện của mỗi nhóm), AVE 6 last month, mtd all sources, mtd sc sources, MTD vs ave last 6 month: xử lí theo từng SC và từng team 
+ 
+  
+======================================================= 
+SELECT *                                         
+FROM ZPTLIBD.ZSCTPCUST1                          
+WHERE SVCDE in ('S21','S23','S24','S28','S29')   
+AND INDOIT like ('G03%')                         
+ORDER BY SVCDE                                   
+
+
+INSERT INTO ZSCTPCUST1                                          
+SELECT G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST, E.CNAME,    
+E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR, E.PLCTE,A.CMSNM,  
+B.INDOIT,B.PROGROUP,D.ITEM,D.INDDES,   l                         
+SUM(INDUNT), SUM(INDVAL), :@FDTE, :@TDTE                        
+FROM ZSCTPCUST A,ZSCTPITEM B,INH C,IND D,CM E,SM F,SV G         
+ WHERE C.INHDEL='' AND D.INDDEL='' AND C.TTYPE=D.TTYPE A ND      
+C.INVNO=D.INVNO AND B.ITEM=D.ITEM AND A.INDOIT=B.INDOIT AND     
+C.CUST=E.CUST AND ( (A.CUST<>'' AND A.CUST=E.CUST) OR (A.CUST='' 
+AND A.PLCAR=E.PLCAR AND A.CMGRP2=E.CMGRP2 AND (A.PLCTE='' OR    
+A.PLCTE=E.PLCTE))) AND D.INDCFD BETWEEN :@FDTE AND :@TDTE       
+AND A.SVCDE=G.SVCDE AND A.SLSMN=F.SLSMN                         
+GROUP BY G.SVCDE, G.SVNAM, F.SLSMN, F.SMDESC, E.CUST,   
+E.CNAME, E.CADD1, E.CADD2, E.CADD3, E.CMGRP2, E.PLCAR,  
+E.PLCTE,A.CMSNM, B.INDOIT, B.PROGROUP,D.ITEM, D.INDDES  
+
+======================================================= 
+
+https://malwaretips.com/blogs/remove-browser-redirect-virus/
+http://www.myantispyware.com/2016/12/22/how-to-remove-search3-ozipcompression-com-chrome-firefox-ie-edge/
+https://www.techsupportall.com/top-best-free-adware-removal-tools/
+
+
+
+HN WCS server
+ID Team View: 110 057 322
+Password: Ju$td0it
+Hostname: VNZPWCS-HN
+IP: 192.168.225.10
+Credential: administrator / Ju$td0it
+ 
+======================================================= 
+kiếm từ và tiêu từ 	
+-	kiếm từ
+-	tra từ 
+-	tiêu từ: nói và viết 
+		
+            
+
+======================================================= 			
+
+select A.TTYPE,A.INVNO,INDSEQ,CUST,INHDNM,ITEM,B.ORDR   
+,B.PRNCPL            ,INDUNT ,INDVAL                    
+from inh a,ind b                                        
+where a.ttype=b.ttype and a.invno=b.invno               
+and a.ttype in ('IV','CR') and inhdel='' and inddel=''  
+and indcfd between 20170227 and 20170303                
+and B.prncpl in ('P04','P05','P10')                     
+File TEMP in LDPHUC was replaced.                       
+
+
+						
+======================================================= 
+
+   tang thoi gian doc va nghe tieng anh 
+-	tăng thời gian đọc và nghe tiếng anh để gia tăng vốn từ mới 
+-	đọc tài liệu theo chủ đề mình thích: gặp từ mới thì tra và note lại từ mới để học 
+-	đọc vietnam news, VOA, CNN 
+-	nghe tiếng anh: Ellen show , american got talent, ted 
+-	học qua các topic 
+-	học từ theo cả cụm từ chứ đừng học theo 1 từ đơn lẻ 
+-	xác định mình dễ học bằng hình ảnh hay nghe thì học theo hình ảnh hoặc âm thanh đó
+-	học bằng hình: gõ từ vào google tìm hình ảnh của nó để học 
+
+
+
+-	Kiên tâm(Grit) là đam mê và bền bỉ theo đuổi mục tiêu dài hạn(đi kèm với kỷ luật: phải hoàn thành nhiệm vụ trong ngày). Kiên tâm đi liền với sự chịu đựng. Niềm tin sẽ phát triển sự kiên tâm. Sự kiên tâm không liên quan đến IQ và đôi khi còn đi ngược lại với IQ 
+
+======================================================= 
+ Incident #80201 -  Check bao cao ZPP ISSD Update Audit R
+ Check bao cao ZPP ISSD Update Audit Report code N17422- Benh Xa Cong An Tinh Hung Yen
+ Dear anh,
+Pls check giup em bao cao ZPP ISSD Update Audit Report code N17422- Benh Xa Cong An Tinh Hung Yen, he thong gui lai co 1 sub dis USH, thieu sub dis ORH, thanks anh
+
+======================================================= 
+ 
+-	SD1: 74194827 vua ban vua thuong: co trong hang ban nhung ko co trong thuong, 
+	74240725 hoa don thuong : ko co trong bao cao thuong va ban luon 
+-	SAH: 74195674, 74213916, 74213918, 74213920 deu la ban va thuong : chi xuat hien trong bao cao ban ma ko trong thuong 
+-	deu la dan pham the cao
+-	deu la thang 2
+
+
+
+IT
+IND 
+INH 
+CM
+WM
+IM 
+	Z9585
+ISL
+
+SUB	INVNO
+SD1	74194827
+SAH	74195674
+SAH	74213916
+SAH	74213918
+SAH	74213920
+SD1	74240725
+
+    RT007  RPP  Retrieval Selection Definition Retrieval: ZIN785               
+                                               Chi Tiet Hoa Don                
+Type options, press Enter                                                      
+                                                                               
+       Field                                 And             C/?   Field /     
+       Name    Field Description              or  Field   Op. F   Constant     
+       TTYPE   Prime Transaction Type         A   ITDAT   GE  ?                
+       INVNO   Invoice Number                 A   ITDAT   LE  ?                
+       INDLTY  Line Type                      A   SUB     GE  ?  PHN           
+       ITEM    Item Code                      A   SUB     LE  ?  PSG           
+       INDSDS  Short Description              A   IMTX    GE  ?                
+       WHS     Warehouse Code                 A   IMTX    LE  ?  9*            
+       INDCFD  Invoice Confirmed Date         A   *CL028  EQ  C  Y             
+       INDUNT  Qty Invoiced - Selling         A   ZPHTB   NE  ?  Y             
+       INDVAL  Inv Line Value                 A   TTYPE   NE  ?  CR            
+       INDUCT  Unit Cost                      A   ITSTYP  EQ  ?  BN                     
+
+
+======================================================= 
+
+select *                                       
+from camlibd/ja                                
+where  CO='01' and  DIV='001' and   BR ='001'  
+and GLACCT ='2100'                             
+and  MJDKEY                                      
+=   'VC00002845001'                              
+
+
+select *                                         
+from camlibd/gj                                  
+where  CO='01' and  DIV='001' and   BR ='001'    
+and GLACCT ='2100'                               
+and  MJDKEY                                      
+=   'VC00002845001'                              
+
+
+
+ 
+select a.cust,INHDNM,INHDA1,PLCTE,PLCAR,b.prncpl,b.item,isl#,IAEXPD    
+,INDSPR  ,indsel,indunt,indval                                         
+from inh a,ind b ,ia c, cm d                                           
+where a.ttype=b.ttype and a.invno=b.invno                              
+and inhdel='' and inddel=''                                            
+and a.ttype in ('IV','CR') and indcfd >= 20150701                      
+and iadel='' and b.ttype =c.ttype and b.invno=c.batch                  
+and b.indseq=c.bhseq and b.item ='S300490'                             
+and ((isl# =   '5F002A' and IAEXPD =20170831 )                         
+or ( isl# =   '6F388A' and IAEXPD =20171031)                           
+or ( isl# =   '6F418A' and IAEXPD =20171231))                          
+and cmdel='' and a.cust=d.cust                                         
+File TEMP in LDPHUC was replaced.                                      
+
+
+										  
+  PLCAR              CM                 Physical Area Code        
+ PLCTE              CM                 Physical Territory Code   
+
+ select a.cust,INHDNM,INHDA1,PLCTE,PLCAR,b.prncpl,b.item,isl#,IAEXPD 
+,INDSPR  ,indsel,indunt,indval                                      
+from inh a,ind b ,ia c, cm d                                        
+where a.ttype=b.ttype and a.invno=b.invno                           
+and inhdel='' and inddel=''                                         
+and a.ttype in ('IV','CR') and indcfd >= 20150701                   
+and iadel='' and b.ttype =c.ttype and b.invno=c.batch               
+and b.indseq=c.bhseq and b.item ='S300490'                          
+and cmdel='' and a.cust=d.cust                                      
+and isl# in ('5F002A',                                              
+             '6F388A' ,                                             
+             '6F418A'  )                                            
+			 
+			
+                                                   
+
+=================
 
 
  
@@ -145,8 +403,26 @@ R42	S00003	20170220	121708	NULL	1
 R42	S00003	20170220	130034	NULL	1
 
 	
+-	them giao dien html
+-	them cot CPLDTE trong select trong moi callplan 
  
+-	chua hoc tu vung: mỗi ngày học 5 từ vựng (300-500 từ) là đủ giao tiếp
+	=	hoc tu dien giay, và nghe google translate đọc chuẩn  
+	=	nghe  nhac tieng anh 
+	=	sử dụng trang lập trình tiếng anh https://www.pluralsight.com/ , chỉnh video nghe tốc độ chậm
+	=	xem phim (luyện được nghe nói) HDonline xem 3 
+		==	xem lần 1 với phụ đề tiếng anh, ghi từ lạ ra, rồi dịch ra 
+		==	xem lần 2 
+		==	xem lần 3 tắt phụ đề 
+	=	luyện tập, luyện tập, luyện tập ngày 2h 
+	=	đừng lười biếng
+	=	mắc cỡ, 
+-	khong nghe duoc tu vung da hoc 
+
  
+
+
+
  
 
 ===================================================

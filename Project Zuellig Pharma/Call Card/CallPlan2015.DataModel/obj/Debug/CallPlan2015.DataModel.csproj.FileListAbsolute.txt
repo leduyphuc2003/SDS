@@ -38,6 +38,5 @@ D:\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan201
 D:\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\bin\Debug\CallPlan2015.DataModel.pdb
-D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.csprojResolveAssemblyReference.cache
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.dll
 D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.DataModel\obj\Debug\CallPlan2015.DataModel.pdb

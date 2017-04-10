@@ -278,7 +278,6 @@ namespace CallPlan2015.WebApp.Forms
             //    CallPlanService.InsertToReport(cust, ScCode, date, time, connection);
             //    connection.CloseConnection();
             //}
-
             //dung sql thay cho as400
             if ((cust != null) && (ScCode != null) && (date != null) && (time != null))
             {

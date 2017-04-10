@@ -249,24 +249,24 @@ namespace CallPlan2015.WebApp.Forms
             //string cust = sData.Cust;
             //string ScCode = sData.SalespersonCode;
             string cust = Request[Constants.REQUEST_CUST_CODE];
-            string ScCode = Session[Constants.SESSION_USER_NAME].ToString();
+            string scCode = Session[Constants.SESSION_USER_NAME].ToString();
             int date = Int32.Parse(DateTime.Now.ToString("yyyyMMdd"));
             int time = Int32.Parse(DateTime.Now.ToString("HHmmss"));
 
             //if ((cust != null) && (ScCode != null) && (date != null) && (time != null))
             //{
-            //    var connection = new As400ConnectionUtility();
+            //var connection = new As400ConnectionUtility();
             //    connection.OpenConnection();
             //    CallPlanService.InsertToReport(cust, ScCode, date, time, connection);
             //    connection.CloseConnection();
             //}
 
             //dung sql thay cho as400
-            if ((cust != null) && (ScCode != null) && (date != null) && (time != null))
+            if ((cust != null) && (scCode != null) && (date != null) && (time != null))
             {
                 var connection = new SQLConnectionUtility();
                 connection.OpenConnection();
-                CallPlanService.InsertToReportUseSQl(cust, ScCode, date, time, connection);
+                CallPlanService.InsertToReportUseSQl(cust, scCode, date, time, connection);
                 connection.CloseConnection();
             }
         }

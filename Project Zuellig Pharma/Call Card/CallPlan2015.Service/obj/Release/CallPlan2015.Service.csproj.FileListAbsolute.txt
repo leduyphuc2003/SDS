@@ -9,3 +9,19 @@ C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\bin\Release
 C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\obj\Release\CallPlan2015.Service.csprojResolveAssemblyReference.cache
 C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\obj\Release\CallPlan2015.Service.dll
 C:\Users\dple\Desktop\CallPlan2015\CallPlan2015\CallPlan2015.Service\obj\Release\CallPlan2015.Service.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\CallPlan2015.Service.dll.config
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\CallPlan2015.Service.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\CallPlan2015.Service.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\CallPlan2015.Common.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\CallPlan2015.DataModel.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\EntityFramework.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\EntityFramework.SqlServer.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\IBM.Data.DB2.iSeries.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\CallPlan2015.Common.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\CallPlan2015.DataModel.pdb
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\EntityFramework.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\EntityFramework.SqlServer.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\bin\Release\IBM.Data.DB2.iSeries.xml
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\obj\Release\CallPlan2015.Service.csprojResolveAssemblyReference.cache
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\obj\Release\CallPlan2015.Service.dll
+D:\Git Hub\SDS\SDS\Project Zuellig Pharma\Call Card\CallPlan2015.Service\obj\Release\CallPlan2015.Service.pdb
