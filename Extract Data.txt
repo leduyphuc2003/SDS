@@ -232,6 +232,13 @@ AND COHCNL<>'Y' AND A.ORDR=C.ORDR  AND COHSRC = 'SU'     AND COHDAT
 A.TTYPE AND E.ORDR = A.ORDR AND E.OTHSTS = F.OTSSTS  AND B.PSN =    
 E.PSN AND E.OTHSTS <> 'ZZZ' and a.cust in ('S01177')                
 
+--------------------------- bao cao Ipsen  - Ho Dang Khoa 
+ZPP B04 Customer Rebate Detail 
+Submit test report rebate
+-	delete from splr where ttype='TS'                       
+-	INSERT INTO SPLR VALUES('','TS','RBTB04')      
+-	SBMEXLRPT TYPE(TS) DTAQ(ZPTAUTORPT) USER('')
+
 --------------------------- bao cao Sanofi - Vo thi minh thi - ho phuong thao
 Submit test report rebate
 -	delete from splr where ttype='TS'                       

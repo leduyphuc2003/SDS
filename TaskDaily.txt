@@ -1,5 +1,9 @@
 English + MVC
 ==============================================
+internet vnpt 		 
+user:	ainhi2012	
+pass:	megavnn1
+
 Edumall Android
 Email: leduyphuc2003@gmail.com
 Password: 12345678

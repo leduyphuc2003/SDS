@@ -12,7 +12,6 @@ remote vao 17.26
 Keepw@lk1ng
 
 
-
 guest/Zuellig123@  
 
 ===================================================================
@@ -2784,6 +2783,17 @@ WHERE ISSDEL='' AND ISSPRN IN ('U05','S27','J05','T01','B09',
 'J06','A16','N14','E05','M17','A18','B14')
 AND IVSCMB ='S08176'         
 
+Hi guys, anh Thong 
+
+Khi chuyen mot khach hang tu sub-dist nay qua sub-dist khac, ngoai cac buoc hien tai dang lam, cac ban lam them mot buoc nua refresh ISSD nua nhe
+
+1/. delete   FROM issd WHERE PCLLVL= '01' and IVSCMB ='XXXXXX' 
+and ISSEDT= 20201231                                               
+
+XXXXXX la customer code
+
+2/. ISSD mass update: menu MZOPR4, option 75
+
 ----------------------------  
 Service Request # 43590  upload subdist chi Hanh CS
 Upload tender price& subdist 07052015
@@ -4371,7 +4381,7 @@ Thanks nhieu.
 Upload file tam CUST theo format cua chuong trinh len file tam ldphuc/cust
 
 - xem nhung cust nao da co trong he thong roi xoa no di
-  SELECT *                                                      
+SELECT *                                                      
 FROM ldphuc/CUST A                                             
 WHERE EXISTS (SELECT * FROM  ZCPCL B  WHERE A.ZCPNUM=B.ZCPNUM 
 AND A.ZCPCBS =B.ZCPCBS AND A.ZCPCUS =B.ZCPCUS)  
@@ -8240,7 +8250,7 @@ INDIC#,	INDICL,	INDWDP,	INDUWD,	INDLWD,	EWMXBN,	EWMXSQ,	SAPEXT,	INDEQT,	MNHCON,	
 )
 1 rows inserted in IND in ZPTLIBD. 	
 =============================================================================================
-Dear anh Phuc, (Hua Kim Ngan)
+Dear anh Phuc, (Hua Kim Ngan) - them issd - add issd 
 Hom nay he thong gui lai da co cac code KH em tao ngay hom nay nhu file dinh kem, chi thieu sub dist (ORP) cua code M05308, code KH em tao ngay hom qua chua co trong bao cao pls ho tro giup em chay bao cao cua cac code KH ben duoi nha, thanks anh!
 
 S12808	SAN	WM1
@@ -11131,8 +11141,8 @@ and   a.INDOIT = b.INDOIT )
 delete                                                 
 from ZSCTPCUST b                                       
 where slsmn in (Select slsmn from ldphuc/ZSCTPCUST)    
-338 rows deleted from ZSCTPCUST in ZPTLIBD.            
-	   
+ 
+ 
 INSERT INTO ZSCTPCUST                                               
 SELECT * FROM ldphuc/ZSCTPCUST                                       
  
@@ -14494,6 +14504,22 @@ and inhdel='' )
 L5004	L5005	L5006
 	0		0		0
 9-Sep	8-Aug	7-Jul
+
+L5001	thang 12	
+L5002	thang 11
+L5003	thang 10
+
+L5004	thang 9		Sep			
+L5005	thang 8		Aug	
+L5006	thang 7		Jul
+
+L5007	thang 6		
+L5008	thang 5	
+L5009	thang 4	
+
+L5010	thang 3	
+L5011	thang 2	
+L5012	thang 1	
 
 --tao file tam
 SELECT PDTCDE, PRNCPL, SLSMN, L5001, L5002, L5003, L5004, L5005, 

@@ -1,8 +1,256 @@
- O04 Order Cancelled 
-                     
 
-					 
-sp_helptext USP_ZTENDER
+	
+	
+0068	GM
+ Key field . . . . . . . . . . . . . . . . :            CO                    
+ Key field . . . . . . . . . . . . . . . . :            DIV                      
+ Key field . . . . . . . . . . . . . . . . :            BR                       
+ Key field . . . . . . . . . . . . . . . . :            GLACCT        
+ 
+0067	AC	 GLACCT 
+ 
+0011	CD
+ Key field . . . . . . . . . . . . . . . . :            CO                               
+ Key field . . . . . . . . . . . . . . . . :            DIV                 
+     
+
+SELECT CO , DIV , BR , GLACCT , GMDESC                             
+,GVL25, GVL26, GVL27, GVL28, GVL29, GVL30, GVL31, GVL32,           
+GVL33, GVL34, GVL35, GVL36                                 FROM gm 
+where  CO ='05'                                                    
+
+
+CO    
+DIV   
+BR    
+GLACCT
+GMDESC
+GVL12 
+GVL11 
+GVL10 
+GVL09 
+GVL08 
+GVL07 
+GVL06 
+GVL05 
+GVL04             - 04               
+GVL03             - 03               
+GVL02             - 02               
+GVL01  G/L Values - 01               
+ACLVL  Account Level (99=Posted To)  
+ACTYPE Account Type                  
+GRTCDE G/L Report Type Code          
+CDDESC Division Name                 
+GMOBNY G/L Opening Balance This Year 
+CDASDS Alt Lang Short Division Name  
+
+ACLVL , ACTYPE ,GRTCDE ,CDDESC ,GMOBNY ,CDASDS 
+
+
+SELECT a.CO , a.DIV , a.BR , a.GLACCT , GMDESC            
+,ACLVL , ACTYPE ,GRTCDE ,CDDESC ,GMOBNY ,CDASDS           
+,GVL25, GVL26, GVL27, GVL28, GVL29, GVL30, GVL31, GVL32,  
+GVL33, GVL34, GVL35, GVL36                                
+FROM gm a, ac b, cd c                                     
+where  a.CO ='05'                                         
+and a.GLACCT=b.GLACCT and a.CO=c.CO and a.DIV=c.DIV       
+and gmdel='' and acdel='' and cddel=''                    
+File TEMP in LDPHUC was replaced.                         
+
+
+
+L5004	L5005	L5006
+	0		0		0
+9-Sep	8-Aug	7-Jul
+
+L5001	thang 12	
+L5002	thang 11
+L5003	thang 10
+
+L5004	thang 9		Sep			
+L5005	thang 8		Aug	
+L5006	thang 7		Jul
+
+L5007	thang 6		
+L5008	thang 5	
+L5009	thang 4	
+
+L5010	thang 3	
+L5011	thang 2	
+L5012	thang 1	
+
+
+L5009	L5008	L5007
+4		5		6
+ Apr 	 May 	 Jun 
+ 65,181,982 	 63,348,515 	 61,878,680 
+
+
+	
+========================================================================================================
+
+-	kiên trì mới thành công
+-	học và bắt chước làm theo người giỏi hơn mình trong lĩnh vực mình cần phát triển
+-	chi tiết và cụ thể sẽ tốt hơn
+-	phải hiểu vấn đề: tốc độ mắt phải đủ chậm để não có thể hiểu, tốc độ nghe phải đủ chậm để não có thể hiểu, tốc độ đọc phải đủ chậm để não có thể hiểu  
+
+
+Y8KEY  - Key For Reason File 
+COHCNL - Order Cancel Flag 
+
+O04 Order Cancelled 
+
+
+-	lay so user nhap
+-	gan cho so n
+-	lặp n lần:
+	=	mỗi vòng lặp tạo số ngẫu nhiên 
+	=	add vào listCacSo 
+	=	Gán listCacSo vào list box 
+	
+	
+*098*904#
+
+
+ 
+=======================================================================================================
+
+Dear anh,
+Pls ho tro giup em dieu chinh sub dis KH ben duoi tu PD1 thanh PA1 nhe, thanks anh
+CUST	CNAME	CADD1	CADD2	CADD3	SUB
+N17577	Benh Vien Da Khoa Huyen Le Thuy	To Dan Pho 3- TT. Kien Giang	Le Thuy	Quang Binh	PD1
+N17578	Benh Vien Da Khoa Huyen Minh Hoa	TT. Quy Dat	Minh Hoa	Quang Binh	PD1
+N17579	Benh Vien Y Hoc Co Truyen Tinh Quang Binh	Tran Quang Khai- P. Nam Ly	Dong Hoi	Quang BinhPD1
+N17580	Benh Vien Da Khoa Huyen Tuyen Hoa	TT. Dong Le	Tuyen Hoa	Quang Binh	PD1
+
+
+1. vi du doi voi code='S08176'
+SELECT SUB                      
+FROM CM                         
+WHERE CMDEL='' AND CUST in 
+('N17577',
+'N17578',
+'N17579',
+'N17580') 
+
+2. CAP NHAT LAI THANH SAN
+UPDATE CM SET                   
+SUB='PA1'                       
+, PPUPDD=20170417           
+, CMUPDD=20170417          
+WHERE CMDEL='' AND CUST
+in 
+('N17577',
+'N17578',
+'N17579',
+'N17580') 
+
+select cust, WHS, sub           
+from CM                         
+where cust in 
+('N17577',
+'N17578',
+'N17579',
+'N17580') 
+
+ CUST    WHS  SUB    
+ N17577  WD3  PA1    
+ N17578  WD3  PA1    
+ N17579  WD3  PA1    
+ N17580  WD3  PA1    
+ 
+ 
+ Phyto Ha Noi at Da Nang	PA1	01	Others
+	PA3	03	G10 / G11 / F03/I02/M10/M14/N15/M15/B10/M06/A10/S28/S29/S30/N19/S31/F05/N22,N23
+	PA4	04	U05 / S27 / J05 /T01/B09/J06/A16/N14/E05/M17/A18/B14,P10,B17 
+
+	
+ -- Day la update company 03
+UPDATE ISSD SET  SUB='PA3'             
+WHERE  ISSPRN IN ('G10','G11','F03','I02','M10','M14',
+'N15','M15','B10','M06','A10','S28','S29','S30','N19','S31','F05','N22','N23') AND 
+IVSCMB in 
+('N17577',
+'N17578',
+'N17579',
+'N17580') 
+
+ 
+-- Day la update company 04
+UPDATE ISSD SET SUB='PA4'                        
+WHERE ISSDEL='' AND ISSPRN IN ('U05','S27','J05','T01','B09',
+'J06','A16','N14','E05','M17','A18','B14','P10','B17')
+AND IVSCMB in 
+('N17577',
+'N17578',
+'N17579',
+'N17580')         
+
+1/. delete   FROM issd WHERE PCLLVL= '01' and IVSCMB in 
+('N17577',
+'N17578',
+'N17579',
+'N17580')         
+and ISSEDT= 20201231                                               
+
+XXXXXX la customer code
+
+2/. ISSD mass update: menu MZOPR4, option 75
+
+
+
+ 
+ select * from parm15                    
+
+ 
+ update        parm15                    
+ set      P15DAT                         
+ =0                                      
+ , P15BSY  =''                           
+ 1 rows updated in PARM15 in VNMLIBD.    
+ 
+
+ 
+ 
+ 
+  
+
+
+======================================================================================================
+-	nhiệm vụ người lập trình là cố gắng sử dụng thư viện library có sẵn chứ không phải cố gắng implement lại cái thuật toán đó 
+-	build tool giúp quản lý thư viện library nào đó 
+
+-	tìm thư viện java hỗ trợ vấn đề mình đang cần giải quyết, 
+-	biet seach google
+-	biet framework Spring 
+
+
+Để giải quyết vấn đề: 
+-	tu viet code
+-	sử dụng thu vien co san trong ngon ngu java
+-	download thu vien tren mang 
+
+
+select a.ttype,a.invno,inhcfd,b.invno,b.indcfd       
+from inh a,ind b                                     
+where a.ttype=b.ttype and a.invno=b.invno            
+and inhdel='' and inddel=''                          
+and inhcfd>=20170101                                 
+and inhcfd<>indcfd                                   
+and a.ttype ='IV'                                    
+                                                     
+select ttype,invno,inhcfd,INHCTD                    
+from inh                                            
+where inhdel='' and ttype ='IV' and inhcfd>=20170101
+and inhcfd <>INHCTD                                 
+File TEMP in LDPHUC was replaced.                                                        
+														  
+update inh a set inhcfd=(select INHCTD  from ldphuc/temp b    
+where a.ttype=b.ttype and a.invno=b.invno and a.ttype='IV')   
+where exists (Select * from ldphuc/temp b                     
+where a.ttype=b.ttype and a.invno=b.invno and a.ttype='IV')   
+54 rows updated in INH in ZPTLIBD.                            
+
 
 
 
